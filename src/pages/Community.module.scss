@@ -1,0 +1,19 @@
+.main {
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+
+  border: 1px solid gainsboro;
+
+  > :first-child {
+    flex-shrink: 0;
+
+    width: 25rem;
+    background: rgb(255, 187, 98);
+  }
+
+  > :last-child {
+    flex-grow: 1;
+    background: rebeccapurple;
+  }
+}
