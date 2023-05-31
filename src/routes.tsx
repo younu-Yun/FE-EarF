@@ -1,9 +1,14 @@
 import Home from "pages/Home";
+import Mypage from "pages/Mypage";
 
 const routes = [
   {
-    path: "/",
+    path: '/',
     element: <Home />,
+  },
+  {
+    path: '/mypage',
+    element: <Mypage />,
   },
 ];
 
