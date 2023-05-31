@@ -1,6 +1,12 @@
+import styles from './Mypage.module.scss'
+
 function Mypage() {
   return (
-    <div>Mypage</div>
+    <div>
+      <div>Mypage</div>
+      <div>Side navigation</div>
+      <div className={styles.container}>main</div>
+    </div>
   )
 }
 
