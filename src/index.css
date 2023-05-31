@@ -1,4 +1,5 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
 
 html {
   /* 62.5% of 16px browser font size is 10px */
@@ -13,7 +14,8 @@ html {
   color: inherit;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+  font-size: 1.6rem;
+  font-family: 'Spoqa Han Sans Neo', 'Noto Sans KR', 'sans-serif';
 }
 
 *,
@@ -45,7 +47,10 @@ canvas,
 svg {
   display: block;
   max-width: 100%;
-  vertical-align: top;
+}
+
+a {
+  text-decoration: none;
 }
 
 button {
@@ -54,20 +59,14 @@ button {
   cursor: pointer;
 }
 
-a {
-  text-decoration: none;
+input {
+  border: none;
+  outline: none;
 }
 
 table {
   border-collapse: collapse;
   border-spacing: 0;
-}
-
-button,
-input {
-  cursor: pointer;
-  outline: none;
-  background: none;
 }
 
 /* * {
