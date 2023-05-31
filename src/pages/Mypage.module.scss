@@ -1,5 +1,45 @@
 @import 'color.scss';
 
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 60px;
+
+  background-color: aquamarine;
+  font-size: 32px;
+  font-weight: bold;
+}
+
 .container{
-  background: $--color--background;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.sideNavigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 180px;
+  height: 300px;
+
+  border: 1px solid #000000;
+  border-radius: 10px;
+}
+
+.sideNavigation > ul {
+  padding-inline-start: 0px;
+}
+
+.main {
+  width: 700px;
+  height: 850px;
+  border: 20px solid #d9d9d93b;
+  border-radius: 10px;
+
+
 }
