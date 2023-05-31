@@ -11,7 +11,7 @@ function Main() {
     <div className={styles.main}>
       {showModal && (
         <div className={styles.modalBox}>
-          <div>비밀번호를 입력해주세요</div>
+          <p>비밀번호를 입력해주세요</p>
           <input type='password' ></input>
           <button className={styles.button} onClick={onEdit} >확인</button>
         </div>
