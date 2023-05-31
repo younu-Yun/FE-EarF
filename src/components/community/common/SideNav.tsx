@@ -9,8 +9,10 @@ function SideNav() {
         <hr />
         <nav>
           <ul>
-            <li>d</li>
-            <li>d</li>
+            <li>질문해요</li>
+            <li>자랑해요</li>
+            <li>함께해요</li>
+            <li>소개해요</li>
           </ul>
         </nav>
       </aside>

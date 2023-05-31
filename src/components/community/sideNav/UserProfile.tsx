@@ -6,13 +6,13 @@ function UserProfile() {
     <div className={styles.container}>
       <UserProfileImg />
       <div className={styles.userInfo}>
-        <div>
-          <span>사용자명</span>
-          <div>뱃지</div>
+        <div className={styles.userName}>
+          <span>어프</span>
+          <div className={styles.userBadge}> </div>
         </div>
         <div className={styles.userPostingNumber}>
           <span>내가 쓴 글</span>
-          <span>17개</span>
+          <button>17 개</button>
         </div>
       </div>
     </div>

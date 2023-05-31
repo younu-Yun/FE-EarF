@@ -1,6 +1,6 @@
-import Title from 'components/common/community/common/Title';
-import SideNav from 'components/common/community/common/SideNav';
-import Main from 'components/common/community/common/Main';
+import Title from 'components/community/common/Title';
+import SideNav from 'components/community/common/SideNav';
+import Main from 'components/community/common/Main';
 import styles from './Community.module.scss';
 
 function Community() {

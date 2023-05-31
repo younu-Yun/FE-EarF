@@ -1,19 +1,19 @@
 .main {
   display: flex;
   justify-content: space-between;
-  gap: 4rem;
+  gap: 3rem;
 
-  border: 1px solid gainsboro;
+  width: 1140px;
+  margin: 3rem auto;
 
   > :first-child {
     flex-shrink: 0;
 
-    width: 25rem;
-    background: rgb(255, 187, 98);
+    width: 22rem;
   }
 
   > :last-child {
     flex-grow: 1;
-    background: rebeccapurple;
+    background: gainsboro;
   }
 }
