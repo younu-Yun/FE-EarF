@@ -50,7 +50,7 @@
   .react-calendar__tile {
     font-weight: bold;
     text-align: center;
-    height: 60px;
+    height: 80px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -84,13 +84,18 @@
     background: $--color--primary;
     border-radius: 14px;
   }
+
+  .react-calendar__month-view__days > button {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 }
 
 /* ------------------------------ */
 
 .dot1 {
-  height: 28px;
-  width: 28px;
+  height: 40px;
+  width: 40px;
   background-color: beige;
   border-radius: 50%;
   display: flex;
@@ -117,4 +122,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  padding: 5px;
 }

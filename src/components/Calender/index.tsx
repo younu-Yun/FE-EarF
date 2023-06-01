@@ -26,7 +26,7 @@ export default function Calender() {
         prev2Label={null}
         showNeighboringMonth={false}
         formatDay={(locale, date) => dayjs(date).format('DD')}
-        tileContent={({ date, view }) => {
+        tileContent={({ date }) => {
           const foundMark = mark.find((x) => x === dayjs(date).format('YYYY-MM-DD'));
           if (foundMark !== undefined && foundMark !== null) {
             return (
