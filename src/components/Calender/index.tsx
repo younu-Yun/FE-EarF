@@ -14,32 +14,51 @@ export default function Calender() {
   const mark = ['2023-06-02', '2022-06-05', '2023-06-10'];
 
   return (
-    <div className='custom-calendar-container'>
-      <Calendar
-        locale='en'
-        className='container'
-        onChange={onChange}
-        value={value}
-        minDetail='month'
-        maxDetail='month'
-        next2Label={null}
-        prev2Label={null}
-        showNeighboringMonth={false}
-        formatDay={(locale, date) => dayjs(date).format('DD')}
-        tileContent={({ date }) => {
-          const foundMark = mark.find((x) => x === dayjs(date).format('YYYY-MM-DD'));
-          if (foundMark !== undefined && foundMark !== null) {
-            return (
-              <>
-                <div className='tileContent'>
-                  <div className={true ? 'dot1' : 'dot2'}></div>
-                </div>
-              </>
-            );
-          }
-        }}
-      />
-      <div>{dayjs(value?.toString()).format('YYYY년 MM월 DD일')}</div>
+    <div className='wrapper'>
+      <div className='custom-calendar-container'>
+        <Calendar
+          locale='en'
+          className='container'
+          onChange={onChange}
+          value={value}
+          minDetail='month'
+          maxDetail='month'
+          next2Label={null}
+          prev2Label={null}
+          showNeighboringMonth={false}
+          formatDay={(locale, date) => dayjs(date).format('DD')}
+          tileContent={({ date }) => {
+            const foundMark = mark.find((x) => x === dayjs(date).format('YYYY-MM-DD'));
+            if (foundMark !== undefined && foundMark !== null) {
+              return (
+                <>
+                  <div className='tileContent'>
+                    <div className={true ? 'dot1' : 'dot2'}></div>
+                  </div>
+                </>
+              );
+            }
+          }}
+        />
+        <div>{dayjs(value?.toString()).format('YYYY년 MM월 DD일')}</div>
+      </div>
+      <div className='container2'>
+        <div className='tagContainer'>
+          <span>태그</span>
+          <div>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+          </div>
+        </div>
+        <div className='recordContainer'>
+          <span>기록</span>
+          <input placeholder='sadf' />
+          <input placeholder='sadf' />
+          <input placeholder='sadf' />
+          <button>등록</button>
+        </div>
+      </div>
     </div>
   );
 }
