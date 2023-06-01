@@ -1,5 +1,6 @@
-import Home from "pages/Home";
-import Mypage from "pages/Mypage";
+import Home from 'pages/Home';
+import Mypage from 'pages/Mypage';
+import MyCommunity from 'pages/MyCommunity';
 
 const routes = [
   {
@@ -7,8 +8,12 @@ const routes = [
     element: <Home />,
   },
   {
-    path: '/mypage',
+    path: '/mypage/info',
     element: <Mypage />,
+  },
+  {
+    path: '/mypage/mycommunity',
+    element: <MyCommunity />,
   },
 ];
 
