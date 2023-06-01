@@ -1,5 +1,5 @@
 import Home from 'pages/Home';
-import Mypage from 'pages/Mypage';
+import MyPage from 'pages/MyPage';
 import MyCommunity from 'pages/MyCommunity';
 
 const routes = [
@@ -9,7 +9,7 @@ const routes = [
   },
   {
     path: '/mypage/info',
-    element: <Mypage />,
+    element: <MyPage />,
   },
   {
     path: '/mypage/mycommunity',
