@@ -1,5 +1,6 @@
 import styles from './Main.module.scss';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Main() {
   const [showModal, setShowModal] = useState(false);
@@ -7,14 +8,16 @@ function Main() {
   const onEdit = () => {
     setShowModal(!showModal);
   };
+
   return (
     <div className={styles.main}>
       {showModal && (
         <div className={styles.modalBox}>
           <p>비밀번호를 입력해주세요</p>
+          {/* 비밀번호를 확인하는 api와 연동하여 맞은 경우 edit 페이지로 이동*/}
           <input type='password' placeholder='********'></input>
-          <button className={styles.button} onClick={onEdit}>
-            확인
+          <button className={styles.button}>
+            <Link to='/mypage/edit'>확인</Link>
           </button>
         </div>
       )}
