@@ -31,7 +31,28 @@
       letter-spacing: 0.25rem;
 
       li {
+        position: relative;
+
         cursor: pointer;
+
+        &::after {
+          position: absolute;
+          bottom: -0.2rem;
+          left: 50%;
+
+          display: block;
+          width: 0;
+          height: 1px;
+
+          background: $--color--primary;
+          transition: width 0.3s ease 0s, left 0.3s ease 0s;
+          content: '';
+        }
+
+        &:hover::after {
+          width: 100%;
+          left: 0;
+        }
       }
     }
   }

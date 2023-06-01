@@ -1,5 +1,7 @@
 import { ReactComponent as Chat } from 'assets/icons/Search.svg';
+import { ReactComponent as Post } from 'assets/icons/Pencil.svg';
 import styles from './Board.module.scss';
+import QuestionPosting from './QuestionPosting';
 
 function Board() {
   const handleSubmitSearch: React.FormEventHandler<HTMLFormElement> = (e) => {
@@ -15,7 +17,7 @@ function Board() {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <div>
         <form onSubmit={handleSubmitSearch} className={styles.searchContainer}>
           <input
@@ -29,16 +31,25 @@ function Board() {
           </button>
         </form>
       </div>
-      <div>
-        <button className={styles.postingButton}>작성하기</button>
-        <div>최신순 / 좋아요순 / 댓글순</div>
+      <div className={styles.boardTopContainer}>
+        <button className={styles.postingButton}>
+          <Post className={styles.postingSvg} />
+          작성하기
+        </button>
+        <div className={styles.filteringContainer}>
+          <ul>
+            <li>최신순</li>
+            <li>댓글순</li>
+            <li>좋아요순</li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <div>프로필 이미지 / 이름 / 시간 / 수정&삭제</div>
-        <div>제목</div>
-        <div>내용</div>
-        <div>반응</div>
-      </div>
+      <ul>
+        <QuestionPosting />
+        <QuestionPosting />
+        <QuestionPosting />
+      </ul>
+      <div>1234567</div>
     </div>
   );
 }

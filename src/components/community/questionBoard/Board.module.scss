@@ -1,14 +1,20 @@
 @import 'color.scss';
 
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .searchContainer {
   display: flex;
   align-items: center;
 
   width: 100%;
-  height: 4.5rem;
+  height: 5rem;
 
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0 1.5rem;
 
   background: white;
   border: 1px solid $--color--border;
@@ -34,13 +40,45 @@
     display: inline-block;
   }
 }
+.boardTopContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 
-.postingButton {
-  height: 4rem;
-  padding: 0 2rem;
-  background: $--color--primary;
-  border-radius: 0.4rem;
+  margin-top: 4rem;
 
-  font-size: 12pt;
-  color: white;
+  .postingButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+
+    height: 4rem;
+    padding: 0 2rem;
+    background: $--color--primary;
+    border-radius: 0.4rem;
+
+    font-size: 12pt;
+    color: white;
+
+    .postingSvg {
+      display: inline-block;
+    }
+  }
+  .filteringContainer {
+    display: inline-block;
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2.5rem;
+
+      li {
+        font-size: 10pt;
+
+        cursor: pointer;
+      }
+    }
+  }
 }
