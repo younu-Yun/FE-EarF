@@ -14,7 +14,9 @@ html {
   color: inherit;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
   font-size: 1.6rem;
+
   font-family: 'Spoqa Han Sans Neo', 'Noto Sans KR', 'sans-serif';
 }
 
@@ -33,6 +35,10 @@ html {
   overflow-wrap: break-word;
   word-break: break-word;
   tab-size: 4;
+}
+
+body {
+  font-size: 1.6rem;
 }
 
 ol,
