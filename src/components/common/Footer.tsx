@@ -1,7 +1,7 @@
 import styles from './Footer.module.scss';
-import headsetIcon from '../../assets/icons/headset.svg';
-import githubIcon from '../../assets/icons/github.svg';
-import gitlabIcon from '../../assets/icons/gitlab.svg';
+import headsetIcon from 'assets/icons/headset.svg';
+import githubIcon from 'assets/icons/github.svg';
+import gitlabIcon from 'assets/icons/gitlab.svg';
 
 function Footer() {
   return (
