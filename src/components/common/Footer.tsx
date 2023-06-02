@@ -14,19 +14,13 @@ function Footer() {
             </div>
             <ul>
               <li>
-                <a href='javascript:void(0)'>
-                  <span>개인정보처리방침</span>
-                </a>
+                <span>개인정보처리방침</span>
               </li>
               <li>
-                <a href='javascript:void(0)'>
-                  <span>이용약관</span>
-                </a>
+                <span>이용약관</span>
               </li>
               <li>
-                <a href='javascript:void(0)'>
-                  <span>이용안내</span>
-                </a>
+                <span>이용안내</span>
               </li>
             </ul>
           </div>
@@ -36,7 +30,7 @@ function Footer() {
                 <img src={githubIcon} alt='github' />
               </li>
               <li>
-                <img src={gitlabIcon} alt='github' />
+                <img src={gitlabIcon} alt='gitlab' />
               </li>
             </ul>
           </div>

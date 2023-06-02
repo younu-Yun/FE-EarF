@@ -5,12 +5,31 @@ import styles from './Header.module.scss';
 import profileIcon from '../../assets/icons/profile.svg';
 
 function Header(): JSX.Element {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
-  const [showSideMenu, setShowSideMenu] = useState<boolean>(false); // 사이드 메뉴 표시 상태 추가
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [token, setToken] = useState<string>('');
+  const [showSideMenu, setShowSideMenu] = useState<boolean>(false);
 
   const login = async () => {
-    // ... (기존 login 함수 코드)
+    try {
+      const response = await axios.post('/api/login', {
+        username: 'user',
+        password: 'password',
+      });
+
+      if (response.status === 200) {
+        const { token } = response.data;
+
+        setIsLoggedIn(true);
+        setToken(token);
+      } else {
+        // 로그인 실패 처리
+      }
+    } catch (error) {
+      console.error('로그인 요청 중 오류 발생:', error);
+    }
   };
+
+  login();
 
   const handleMouseOver = () => {
     setShowSideMenu(true);
@@ -59,9 +78,9 @@ function Header(): JSX.Element {
               )}
             </Link>
           ) : (
-            <button onClick={login} className={styles.button}>
+            <Link to='/login' className={styles.loginButton}>
               시작하기
-            </button>
+            </Link>
           )}
         </div>
       </div>
