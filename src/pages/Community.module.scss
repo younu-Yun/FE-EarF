@@ -1,0 +1,18 @@
+.main {
+  display: flex;
+  justify-content: space-between;
+  gap: 8rem;
+
+  width: 1140px;
+  margin: 6rem auto;
+
+  > :first-child {
+    flex-shrink: 0;
+
+    width: 23rem;
+  }
+
+  > :last-child {
+    flex-grow: 1;
+  }
+}
