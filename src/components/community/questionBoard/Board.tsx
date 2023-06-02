@@ -1,9 +1,14 @@
+import PropTypes from 'prop-types';
 import { ReactComponent as Chat } from 'assets/icons/Search.svg';
 import { ReactComponent as Post } from 'assets/icons/Pencil.svg';
 import styles from './Board.module.scss';
 import QuestionPosting from './QuestionPosting';
 
-function Board() {
+type BoardProps = {
+  enterPostingButtonClick: React.MouseEventHandler<HTMLButtonElement>;
+};
+
+function Board({ enterPostingButtonClick }: BoardProps) {
   const handleSubmitSearch: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     console.log('검색동작');
@@ -32,11 +37,11 @@ function Board() {
         </form>
       </div>
       <div className={styles.boardTopContainer}>
-        <button className={styles.postingButton}>
+        <button className={styles.postingButton} onClick={enterPostingButtonClick}>
           <Post className={styles.postingSvg} />
           작성하기
         </button>
-        <div className={styles.filteringContainer}>
+        <div className={styles.sortingContainer}>
           <ul>
             <li>최신순</li>
             <li>댓글순</li>
@@ -53,5 +58,9 @@ function Board() {
     </div>
   );
 }
+
+Board.propTypes = {
+  enterPostingButtonClick: PropTypes.func.isRequired,
+};
 
 export default Board;

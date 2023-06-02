@@ -1,0 +1,46 @@
+@import 'color.scss';
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  width: 100%;
+  padding: 4rem 3rem;
+  border: 1px solid $--color--border;
+  border-radius: 1rem;
+
+  input {
+    width: inherit;
+    &::placeholder {
+      color: $--color--text3;
+    }
+  }
+  hr {
+    height: 1px;
+
+    background: $--color--border;
+    border: 0;
+  }
+}
+
+.title {
+  font-size: 16pt;
+  font-weight: 400;
+  color: $--color--text1;
+}
+.content {
+  min-height: 20rem;
+
+  border: none;
+
+  font-size: 12pt;
+  font-weight: 300;
+  color: $--color--text2;
+
+  resize: none;
+
+  &:focus {
+    outline: none;
+  }
+}

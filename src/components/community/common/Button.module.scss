@@ -1,0 +1,23 @@
+@import 'color.scss';
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+
+  height: 4rem;
+  padding: 0 2rem;
+  background: $--color--primary;
+  border-radius: 0.4rem;
+
+  font-size: 12pt;
+  color: white;
+}
+
+.whiteButton {
+  background: white;
+  border: 1px solid $--color--border;
+
+  color: $--color--text2;
+}
