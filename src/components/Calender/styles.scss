@@ -1,0 +1,116 @@
+@import 'color.scss';
+@import '~react-calendar/dist/Calendar.css';
+
+.container {
+  width: 50%;
+  border: none;
+}
+
+.custom-calendar-container {
+  .react-calendar__navigation {
+    display: flex;
+    justify-content: center;
+
+    background: $--color--secondary;
+    height: 90px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .react-calendar__navigation > button:disabled {
+    background-color: $--color--secondary;
+  }
+
+  .react-calendar__navigation button:nth-child(1):enabled:hover,
+  .react-calendar__navigation button:nth-child(1):enabled:focus {
+    transform: scale(2);
+    background: none;
+    border-radius: 20px 0 0 0;
+  }
+
+  .react-calendar__navigation button:nth-child(2) {
+    max-width: 50px;
+  }
+
+  .react-calendar__navigation button:nth-child(3):enabled:hover,
+  .react-calendar__navigation button:nth-child(3):enabled:focus {
+    transform: scale(2);
+    background: none;
+    border-radius: 0 20px 0 0;
+  }
+
+  .react-calendar__navigation__label > span {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  .react-calendar__tile {
+    font-weight: bold;
+    text-align: center;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .react-calendar__tile:enabled:hover,
+  .react-calendar__tile:enabled:focus,
+  .react-calendar__tile--active {
+    background: $--color--primary;
+    border-radius: 14px;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color: black;
+  }
+
+  .react-calendar__tile:enabled:hover,
+  .react-calendar__tile:enabled:focus {
+    font-size: 1.5rem;
+    background-color: none;
+  }
+
+  .react-calendar__tile--now {
+    color: blueviolet;
+    background: none;
+    border-radius: 14px;
+  }
+  /*hover, focus 시 */
+  .react-calendar__tile--now:enabled:hover,
+  .react-calendar__tile--now:enabled:focus {
+    background: $--color--primary;
+    border-radius: 14px;
+  }
+}
+
+/* ------------------------------ */
+
+.dot1 {
+  height: 28px;
+  width: 28px;
+  background-color: beige;
+  border-radius: 50%;
+  display: flex;
+  margin-left: 1px;
+}
+.dot2 {
+  height: 28px;
+  width: 28px;
+  background-color: #f87171;
+  border-radius: 50%;
+  display: flex;
+  margin-left: 1px;
+}
+.dot3 {
+  height: 28px;
+  width: 28px;
+  background-color: #f87171;
+  border-radius: 50%;
+  display: flex;
+  margin-left: 1px;
+}
+
+.tileContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
