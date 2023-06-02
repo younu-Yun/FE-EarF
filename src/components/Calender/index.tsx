@@ -3,15 +3,29 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './styles.scss';
 import dayjs from 'dayjs';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from 'store';
+import { setSelectedDay } from 'store/selectedDaySlice';
 
 type ValuePiece = Date | null;
 
 export default function Calender() {
-  const [value, onChange] = useState<ValuePiece | [ValuePiece, ValuePiece]>(new Date());
+  // const [value, onChange] = useState<ValuePiece | [ValuePiece, ValuePiece]>(new Date());
 
-  console.log(value, 'value');
+  // console.log(value, 'value');
 
   const mark = ['2023-06-02', '2022-06-05', '2023-06-10'];
+
+  const dispatch = useDispatch();
+  const selectedValue = useSelector((state: RootState) => {
+    return state.selectedDay.value;
+  });
+
+  const handleDateChange = (date: any) => {
+    dispatch(setSelectedDay(dayjs(date?.toString()).format('YYYY MM DD')));
+  };
+
+  console.log(selectedValue, 'couut');
 
   return (
     <div className='wrapper'>
@@ -19,8 +33,8 @@ export default function Calender() {
         <Calendar
           locale='en'
           className='container'
-          onChange={onChange}
-          value={value}
+          onChange={handleDateChange}
+          value={selectedValue}
           minDetail='month'
           maxDetail='month'
           next2Label={null}
@@ -40,7 +54,7 @@ export default function Calender() {
             }
           }}
         />
-        <div>{dayjs(value?.toString()).format('YYYY년 MM월 DD일')}</div>
+        <div>{dayjs(selectedValue?.toString()).format('YYYY년 MM월 DD일')}</div>
       </div>
       <div className='container2'>
         <div className='tagContainer'>
