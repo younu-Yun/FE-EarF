@@ -5,7 +5,6 @@ import MyPageEdit from 'pages/MyPageEdit';
 import Community from 'pages/Community';
 import Calender from 'components/Calender';
 
-
 const routes = [
   {
     path: '/',
@@ -16,7 +15,6 @@ const routes = [
     element: <Community />,
   },
   {
-
     path: '/mypage/info',
     element: <MyPage />,
   },
