@@ -1,0 +1,13 @@
+@import 'color.scss';
+
+.title {
+  font-size: 16pt;
+  font-weight: 400;
+  color: $--color--text1;
+}
+.content {
+  margin-top: 2rem;
+  font-size: 12pt;
+  font-weight: 300;
+  color: $--color--text2;
+}

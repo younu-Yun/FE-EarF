@@ -1,0 +1,34 @@
+{
+  "root": true,
+  "extends": [
+    // 리액트 추천 룰셋
+    "plugin:react/recommended",
+    // 타입스크립트 추천 룰셋
+    "plugin:@typescript-eslint/recommended",
+    // eslint의 typescript 포매팅 기능을 제거(eslint-config-prettier)
+    "prettier",
+    // eslint의 포매팅 기능을 prettier로 사용함. 항상 마지막에 세팅 되어야 함.
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./tsconfig.json"],
+    "ecmaVersion": "latest",
+    // 모듈 시스템 사용시
+    "sourceType": "module",
+    "ecmaFeatures": {
+      // 리액트의 JSX 파싱을 위해서
+      "jsx": true
+    }
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
+  }
+}
