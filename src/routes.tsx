@@ -3,6 +3,8 @@ import MyPage from 'pages/MyPage';
 import MyCommunity from 'pages/MyCommunity';
 import MyPageEdit from 'pages/MyPageEdit';
 import Community from 'pages/Community';
+import Calender from 'components/Calender';
+
 
 const routes = [
   {
@@ -14,6 +16,7 @@ const routes = [
     element: <Community />,
   },
   {
+
     path: '/mypage/info',
     element: <MyPage />,
   },
@@ -24,6 +27,10 @@ const routes = [
   {
     path: '/mypage/mycommunity',
     element: <MyCommunity />,
+  },
+  {
+    path: '/calender',
+    element: <Calender />,
   },
 ];
 
