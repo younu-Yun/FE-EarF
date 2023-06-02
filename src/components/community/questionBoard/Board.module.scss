@@ -82,3 +82,23 @@
     }
   }
 }
+
+.scrollContainer {
+  position: fixed;
+  right: 3%;
+  bottom: 5%;
+  z-index: 1;
+  cursor: pointer;
+
+  button {
+    border-radius: 50%;
+    border: 2px solid $--color--primary;
+    padding: 1rem;
+
+    &:hover {
+      color: rgba($color: transparent, $alpha: 0.5);
+      border-color: rgba($color: transparent, $alpha: 0.5);
+      transition: all 0.4s ease-out;
+    }
+  }
+}

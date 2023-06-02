@@ -28,10 +28,14 @@
   }
 
   .postingDate {
-    margin-left: 3rem;
+    margin-left: 2rem;
 
     font-size: 10pt;
     font-weight: 300;
     color: $--color--text3;
   }
+}
+
+.contentContainer {
+  cursor: pointer;
 }

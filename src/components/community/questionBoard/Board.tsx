@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { ReactComponent as Chat } from 'assets/icons/Search.svg';
 import { ReactComponent as Post } from 'assets/icons/Pencil.svg';
+import { ReactComponent as Top } from 'assets/icons/ArrowUp.svg';
 import styles from './Board.module.scss';
 import QuestionPosting from './QuestionPosting';
 
@@ -9,6 +10,13 @@ type BoardProps = {
 };
 
 function Board({ enterPostingButtonClick }: BoardProps) {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   const handleSubmitSearch: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     console.log('검색동작');
@@ -55,6 +63,11 @@ function Board({ enterPostingButtonClick }: BoardProps) {
         <QuestionPosting />
       </ul>
       <div>1234567</div>
+      <div className={styles.scrollContainer}>
+        <button onClick={scrollToTop} type='button'>
+          <Top />
+        </button>
+      </div>
     </div>
   );
 }
