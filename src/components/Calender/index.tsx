@@ -14,7 +14,7 @@ export default function Calender() {
 
   // console.log(value, 'value');
 
-  const mark = ['2023-06-02', '2022-06-05', '2023-06-10'];
+  const mark = ['2023-06-02', '2023-06-05', '2023-06-10'];
 
   const dispatch = useDispatch();
   const selectedValue = useSelector((state: RootState) => {
