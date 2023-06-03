@@ -16,7 +16,7 @@ const Pages: PageType = {
   BADGE: 'badge',
 };
 
-// 현재의 경로값을 가져와 마지막 값만 사용하도록 바꾸는 함수
+// 현재 URL을 가져와 /mypage/ 이후의 값만 사용하도록 바꾸는 함수
 function getLastPath() {
   const location = useLocation();
   const nowPath = location.pathname.replace('/mypage/', '');

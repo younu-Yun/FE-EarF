@@ -6,7 +6,7 @@ function Main() {
   const [showModal, setShowModal] = useState(false);
   // 회원 정보 수정 버튼
   const onEdit = () => {
-    setShowModal(!showModal);
+    setShowModal((prevState) => !prevState);
   };
 
   return (
