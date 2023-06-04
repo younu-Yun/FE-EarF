@@ -11,8 +11,10 @@ function HeartReaction() {
     setLikeItNumber((prevNumber) => (likeIt ? prevNumber - 1 : prevNumber + 1));
   };
 
+  const containerClasses = `${styles.reactionContainer} ${likeIt ? styles.active : ''}`;
+
   return (
-    <div className={styles.reactionContainer} onClick={handleLikeIt}>
+    <div className={containerClasses} onClick={handleLikeIt}>
       <Heart />
       <span className={styles.reactionNumber}>{likeItNumber}</span>
     </div>
