@@ -6,10 +6,14 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api주소경로.com' }),
   tagTypes: ['User'],
   endpoints: (builder) => ({
-    // 유저 정보 get Api 수정 필수 -> 토큰 값으로 유저 정보를 얻는 과정이 필요함.
     getUserInfo: builder.query<User, void>({
-      query: () => 'user',
-      providesTags: ['User'],
+      query: () => ({
+        url: 'user',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+        providesTags: ['User'],
+      }),
     }),
     // 커뮤니티 게시판 게시글 get Api
     getCommunityPosts: builder.query<QuestionPost[], string>({
