@@ -1,199 +1,113 @@
 import styles from './Join.module.scss';
-import React, { useState, useRef } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { DefaultInput } from 'components/User/DefaultInput';
 
 interface FormData {
   id: string;
   password: string;
   confirmPassword: string;
   email: string;
-  phone1: string;
-  phone2: string;
-  phone3: string;
+  phone: string;
   name: string;
 }
 
-function Join() {
+const Join: React.FC = () => {
   const navigate = useNavigate();
-  const firstEmptyInputRef = useRef<HTMLInputElement>(null);
-
   const [formData, setFormData] = useState<FormData>({
     id: '',
     password: '',
     confirmPassword: '',
     email: '',
-    phone1: '',
-    phone2: '',
-    phone3: '',
+    phone: '',
     name: '',
   });
 
-  const [warningMessages, setWarningMessages] = useState<Partial<FormData>>({});
+  const [warningMessages, setWarningMessages] = useState<Record<string, string>>({});
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
+    setFormData((prevData) => ({
+      ...prevData,
       [name]: value,
     }));
-
-    if (name === 'phone1' || name === 'phone2' || name === 'phone3') {
-      validatePhone(formData.phone1, formData.phone2, formData.phone3);
-    }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const validateForm = (): { isValid: boolean; warnings: Record<string, string> } => {
+    let isValid = true;
+    const warnings: Record<string, string> = {};
+
+    // 아이디 유효성 검사
+    if (formData.id.length < 8 || !/^[a-zA-Z0-9]+$/.test(formData.id)) {
+      warnings.id = '아이디는 영어와 숫자의 조합으로 8자 이상이어야 합니다.';
+      isValid = false;
+    }
+
+    // 비밀번호 유효성 검사
+    if (formData.password.length < 8) {
+      warnings.password = '비밀번호는 8자 이상이어야 합니다.';
+      isValid = false;
+    }
+
+    // 비밀번호 확인 유효성 검사
+    if (formData.password !== formData.confirmPassword) {
+      warnings.confirmPassword = '비밀번호와 비밀번호 확인 값이 일치해야 합니다.';
+      isValid = false;
+    }
+
+    // 이메일 유효성 검사
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(formData.email)) {
+      warnings.email = '유효한 이메일 주소를 입력해주세요.';
+      isValid = false;
+    }
+
+    // 전화번호 유효성 검사
+    const phoneRegex = /^\d{3}-\d{4}-\d{4}$/;
+    if (!phoneRegex.test(formData.phone)) {
+      warnings.phone = '유효한 전화번호를 입력해주세요. (예시: 010-1234-5678)';
+      isValid = false;
+    }
+
+    // 이름 유효성 검사
+    if (formData.name.length < 2) {
+      warnings.name = '이름은 2자 이상 입력해주세요.';
+      isValid = false;
+    }
+
+    return { isValid, warnings };
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    handleEmptyInput();
+    const { isValid, warnings } = validateForm();
 
-    if (hasErrors()) {
-      return; // Stop form submission if validation fails
-    }
+    if (isValid) {
+      try {
+        const userData = {
+          id: formData.id,
+          password: formData.password,
+          name: formData.name,
+          email: formData.email,
+          phoneNumber: formData.phone,
+        };
 
-    const { id, password, confirmPassword, email, phone1, phone2, phone3, name } = formData;
-    const data = {
-      id,
-      password,
-      confirmPassword,
-      email,
-      phone: `${phone1}-${phone2}-${phone3}`,
-      name,
-    };
+        const response = await axios.post('http://localhost:3000/api/users/signup', userData);
 
-    try {
-      const response = await axios.post('http://localhost:3000/api/users/signup', data);
-      console.log(response.data);
+        console.log(userData);
 
-      // Reset the form fields
-      setFormData({
-        id: '',
-        password: '',
-        confirmPassword: '',
-        email: '',
-        phone1: '',
-        phone2: '',
-        phone3: '',
-        name: '',
-      });
+        console.error('회원 가입을 완료했습니다.', response.data);
+        alert('회원가입이 완료되었습니다. 로그인페이지로 이동합니다.');
 
-      setWarningMessages({});
-
-      alert('회원가입에 성공했습니다.');
-      navigate('/login');
-    } catch (error) {
-      // Handle error
-      console.error(error);
-    }
-  };
-
-  const validateId = (id: string) => {
-    const idRegex = /^[A-Za-z0-9]{8,}$/;
-    if (!idRegex.test(id)) {
-      setWarningMessages((prevState) => ({
-        ...prevState,
-        id: '아이디는 영어와 숫자의 조합으로 8자 이상이어야 합니다.',
-      }));
-      return false;
-    }
-    setWarningMessages((prevState) => ({ ...prevState, id: '' }));
-    return true;
-  };
-
-  const validatePassword = (password: string) => {
-    if (password.length < 8) {
-      setWarningMessages((prevState) => ({ ...prevState, password: '비밀번호는 8자 이상이어야 합니다.' }));
-      return false;
-    }
-    setWarningMessages((prevState) => ({ ...prevState, password: '' }));
-    return true;
-  };
-
-  const validateConfirmPassword = (password: string, confirmPassword: string) => {
-    if (password !== confirmPassword) {
-      setWarningMessages((prevState) => ({
-        ...prevState,
-        confirmPassword: '비밀번호와 비밀번호 확인 값이 일치해야 합니다.',
-      }));
-      return false;
-    }
-    setWarningMessages((prevState) => ({ ...prevState, confirmPassword: '' }));
-    return true;
-  };
-
-  const validateEmail = (email: string) => {
-    const emailRegex = /^\S+@\S+\.\S+$/;
-    if (!emailRegex.test(email)) {
-      setWarningMessages((prevState) => ({ ...prevState, email: '유효한 이메일 주소를 입력해주세요.' }));
-      return false;
-    }
-    setWarningMessages((prevState) => ({ ...prevState, email: '' }));
-    return true;
-  };
-
-  const validatePhone = (phone1: string, phone2: string, phone3: string) => {
-    if (!phone1 || !phone2 || !phone3) {
-      setWarningMessages((prevState) => ({ ...prevState, phone1: '전화번호를 입력해주세요.' }));
-      return false;
-    }
-
-    const phoneRegex = /^[0-9]+$/;
-    if (!phoneRegex.test(phone1) || !phoneRegex.test(phone2) || !phoneRegex.test(phone3)) {
-      setWarningMessages((prevState) => ({ ...prevState, phone1: '전화번호는 숫자만 입력해주세요.' }));
-      return false;
-    }
-
-    setWarningMessages((prevState) => ({ ...prevState, phone: '' }));
-    return true;
-  };
-
-  const validateName = (name: string) => {
-    if (!name) {
-      setWarningMessages((prevState) => ({ ...prevState, name: '이름을 입력해주세요.' }));
-      return false;
-    }
-    setWarningMessages((prevState) => ({ ...prevState, name: '' }));
-    return true;
-  };
-
-  const handleEmptyInput = () => {
-    const fields: Array<keyof FormData> = [
-      'id',
-      'password',
-      'confirmPassword',
-      'email',
-      'phone1',
-      'phone2',
-      'phone3',
-      'name',
-    ];
-
-    for (const field of fields) {
-      if (!formData[field]) {
-        setWarningMessages((prevState) => ({ ...prevState, [field]: '필수 항목입니다.' }));
-
-        // Set focus to the first empty input field
-        if (firstEmptyInputRef.current && field === fields[0]) {
-          firstEmptyInputRef.current.focus();
-        }
-
-        return;
+        navigate('/login');
+      } catch (error) {
+        console.error('회원 가입 중 오류가 발생했습니다.', error);
       }
+    } else {
+      setWarningMessages(warnings);
     }
-  };
-
-  const hasErrors = () => {
-    const { id, password, confirmPassword, email, phone1, phone2, phone3, name } = formData;
-
-    const idValid = validateId(id);
-    const passwordValid = validatePassword(password);
-    const confirmPasswordValid = validateConfirmPassword(password, confirmPassword);
-    const emailValid = validateEmail(email);
-    const phoneValid = validatePhone(phone1, phone2, phone3);
-    const nameValid = validateName(name);
-
-    return !(idValid && passwordValid && confirmPasswordValid && emailValid && phoneValid && nameValid);
   };
 
   return (
@@ -204,71 +118,88 @@ function Join() {
       <div className={styles.form}>
         <form onSubmit={handleSubmit}>
           <fieldset>
-            <legend>회원가입</legend>
+            <legend>로그인</legend>
 
-            <div className={styles.formElement}>
-              <label htmlFor='id'>아이디</label>
-              <input
-                type='text'
-                id='id'
-                name='id'
-                value={formData.id}
-                onChange={handleChange}
-                ref={formData.id === '' ? firstEmptyInputRef : null}
-              />
-              <div className={styles.warning}>{warningMessages.id}</div>
-            </div>
+            <DefaultInput
+              inputProps={{
+                type: 'text',
+                id: 'id',
+                value: formData.id,
+                onChange: handleChange,
+              }}
+              label='아이디'
+              showWarning={!!warningMessages.id}
+              warning={warningMessages.id}
+            />
 
-            <div className={styles.formElement}>
-              <label htmlFor='password'>비밀번호</label>
-              <input type='password' id='password' name='password' value={formData.password} onChange={handleChange} />
-              <div className={styles.warning}>{warningMessages.password}</div>
-            </div>
+            <DefaultInput
+              inputProps={{
+                type: 'password',
+                id: 'password',
+                value: formData.password,
+                onChange: handleChange,
+              }}
+              label='비밀번호'
+              showWarning={!!warningMessages.password}
+              warning={warningMessages.password}
+            />
 
-            <div className={styles.formElement}>
-              <label htmlFor='confirmPassword'>비밀번호 확인</label>
-              <input
-                type='password'
-                id='confirmPassword'
-                name='confirmPassword'
-                value={formData.confirmPassword}
-                onChange={handleChange}
-              />
-              <div className={styles.warning}>{warningMessages.confirmPassword}</div>
-            </div>
+            <DefaultInput
+              inputProps={{
+                type: 'password',
+                id: 'confirmPassword',
+                value: formData.confirmPassword,
+                onChange: handleChange,
+              }}
+              label='비밀번호 확인'
+              showWarning={!!warningMessages.confirmPassword}
+              warning={warningMessages.confirmPassword}
+            />
 
-            <div className={styles.formElement}>
-              <label htmlFor='name'>이름</label>
-              <input type='text' id='name' name='name' value={formData.name} onChange={handleChange} />
-              <div className={styles.warning}>{warningMessages.name}</div>
-            </div>
+            <DefaultInput
+              inputProps={{
+                type: 'email',
+                id: 'email',
+                value: formData.email,
+                onChange: handleChange,
+              }}
+              label='이메일'
+              showWarning={!!warningMessages.email}
+              warning={warningMessages.email}
+            />
 
-            <div className={styles.formElement}>
-              <label htmlFor='email'>이메일</label>
-              <input type='email' id='email' name='email' value={formData.email} onChange={handleChange} />
-              <div className={styles.warning}>{warningMessages.email}</div>
-            </div>
+            <DefaultInput
+              inputProps={{
+                type: 'text',
+                id: 'phone',
+                value: formData.phone,
+                onChange: handleChange,
+              }}
+              label='전화번호'
+              showWarning={!!warningMessages.phone}
+              warning={warningMessages.phone}
+            />
 
-            <div className={styles.formElement}>
-              <label htmlFor='phone1'>전화번호</label>
-              <div>
-                <input type='text' id='phone1' name='phone1' value={formData.phone1} onChange={handleChange} />
-                <span>-</span>
-                <input type='text' id='phone2' name='phone2' value={formData.phone2} onChange={handleChange} />
-                <span>-</span>
-                <input type='text' id='phone3' name='phone3' value={formData.phone3} onChange={handleChange} />
-              </div>
-              <div className={styles.warning}>{warningMessages.phone1}</div>
-            </div>
+            <DefaultInput
+              inputProps={{
+                type: 'text',
+                id: 'name',
+                value: formData.name,
+                onChange: handleChange,
+              }}
+              label='이름'
+              showWarning={!!warningMessages.name}
+              warning={warningMessages.name}
+            />
           </fieldset>
 
           <div className={styles.buttonBox}>
-            <button type='submit'>회원가입</button>
+            <button type='submit'>가입하기</button>
           </div>
         </form>
       </div>
     </div>
   );
-}
+};
 
 export default Join;
