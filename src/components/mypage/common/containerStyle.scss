@@ -1,0 +1,8 @@
+@mixin container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+
+  width: 1140px;
+  margin: 6rem auto;
+}
