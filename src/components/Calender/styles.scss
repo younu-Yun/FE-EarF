@@ -4,17 +4,18 @@
 .wrapper {
   display: flex;
   flex-direction: row;
+  align-items: center;
 
   width: 1140px;
+  background-color: #f9f9f9;
 
   margin: auto;
 }
 .container {
   width: 100%;
 
-  padding: 20px;
-
   border: none;
+  border-radius: 20px;
 }
 
 .dot1 {
@@ -65,6 +66,8 @@
 
 .custom-calendar-container {
   width: 50%;
+
+  margin: 20px;
 }
 .custom-calendar-container {
   .react-calendar__navigation {

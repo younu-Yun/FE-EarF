@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store';
 import { setSelectedDay } from 'store/selectedDaySlice';
-import Diary from 'components/Diary';
+import Diary from 'components/DiaryPost';
 
 type ValuePiece = Date | null;
 
@@ -18,9 +18,7 @@ export default function Calender() {
   const mark = ['2023-06-02', '2023-06-05', '2023-06-10'];
 
   const dispatch = useDispatch();
-  const selectedValue = useSelector((state: RootState) => {
-    return state.selectedDay.value;
-  });
+  const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
 
   const handleDateChange = (date: any) => {
     dispatch(setSelectedDay(dayjs(date?.toString()).format('YYYY MM DD')));
