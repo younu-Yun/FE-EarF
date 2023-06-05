@@ -1,10 +1,5 @@
-@import 'color.scss';
+@import 'components/mypage/common/containerStyle.scss';
 
 .container {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-
-  width: 1140px;
-  margin: 6rem auto;
+  @include container;
 }
