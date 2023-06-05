@@ -18,12 +18,13 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-top: 1rem;
 }
 
 .commentUserContainer {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 
   .userName {
     font-size: 12pt;

@@ -3,10 +3,15 @@ import { ReactComponent as Heart } from 'assets/icons/Heart.svg';
 import styles from '../questionBoard/QuestionUserReaction.module.scss';
 
 function HeartReaction() {
+  const token = localStorage.getItem('token');
   const [likeIt, setLikeIt] = useState(false);
   const [likeItNumber, setLikeItNumber] = useState(0);
 
   const handleLikeIt = () => {
+    if (!token) {
+      return; // 클릭 동작을 막음
+    }
+
     setLikeIt((prevLikeIt) => !prevLikeIt);
     setLikeItNumber((prevNumber) => (likeIt ? prevNumber - 1 : prevNumber + 1));
   };
