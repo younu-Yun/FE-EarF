@@ -8,6 +8,7 @@ import Login from 'pages/Login';
 import Join from 'pages/Join';
 import FindId from 'pages/FindId';
 import FindPassword from 'pages/FindPassword';
+import ChangePassword from 'pages/ChangePassword';
 
 const routes = [
   {
@@ -49,6 +50,10 @@ const routes = [
   {
     path: '/find_password',
     element: <FindPassword />,
+  },
+  {
+    path: '/change_password',
+    element: <ChangePassword />,
   },
 ];
 
