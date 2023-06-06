@@ -9,6 +9,7 @@ import Join from 'pages/Join';
 import FindId from 'pages/FindId';
 import FindPassword from 'pages/FindPassword';
 import ChangePassword from 'pages/ChangePassword';
+import MyBadge from 'pages/MyBadge';
 
 const routes = [
   {
@@ -30,6 +31,10 @@ const routes = [
   {
     path: '/mypage/mycommunity',
     element: <MyCommunity />,
+  },
+  {
+    path: '/mypage/badge',
+    element: <MyBadge />,
   },
   {
     path: '/calender',
