@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store';
 import { setSelectedDay } from 'store/selectedDaySlice';
+import Diary from 'components/DiaryPost';
 
 type ValuePiece = Date | null;
 
@@ -17,9 +18,7 @@ export default function Calender() {
   const mark = ['2023-06-02', '2023-06-05', '2023-06-10'];
 
   const dispatch = useDispatch();
-  const selectedValue = useSelector((state: RootState) => {
-    return state.selectedDay.value;
-  });
+  const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
 
   const handleDateChange = (date: any) => {
     dispatch(setSelectedDay(dayjs(date?.toString()).format('YYYY MM DD')));
@@ -56,23 +55,7 @@ export default function Calender() {
         />
         <div>{dayjs(selectedValue?.toString()).format('YYYY년 MM월 DD일')}</div>
       </div>
-      <div className='container2'>
-        <div className='tagContainer'>
-          <span>태그</span>
-          <div>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-          </div>
-        </div>
-        <div className='recordContainer'>
-          <span>기록</span>
-          <input placeholder='sadf' />
-          <input placeholder='sadf' />
-          <input placeholder='sadf' />
-          <button>등록</button>
-        </div>
-      </div>
+      <Diary />
     </div>
   );
 }
