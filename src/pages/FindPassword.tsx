@@ -11,10 +11,8 @@ function FindPassword() {
 
   const handleSendEmail = (e: React.FormEvent) => {
     e.preventDefault();
-    // 이메일 발송 로직을 구현합니다.
+
     console.log('Send email to:', email);
-    // 이메일 발송 후에는 로그인 페이지로 이동하거나 사용자에게 알림을 보낼 수 있습니다.
-    // 예시로 콘솔에 이메일을 출력하고 있습니다.
   };
 
   return (
