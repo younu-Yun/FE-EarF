@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from 'store';
+import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
