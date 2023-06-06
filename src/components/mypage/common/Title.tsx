@@ -17,14 +17,14 @@ const Pages: PageType = {
 };
 
 // 현재 URL을 가져와 /mypage/ 이후의 값만 사용하도록 바꾸는 함수
-function getLastPath() {
+function useLastPath() {
   const location = useLocation();
   const nowPath = location.pathname.replace('/mypage/', '');
   return nowPath;
 }
 
 function Title() {
-  const nowPath = getLastPath();
+  const nowPath = useLastPath();
 
   const pageTitleMap: { [key: string]: string } = {
     [Pages.INFO]: '내 정보',
