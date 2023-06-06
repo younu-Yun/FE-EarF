@@ -1,6 +1,8 @@
 {
   "root": true,
   "extends": [
+    "react-app",
+    "react-app/jest",
     // 리액트 추천 룰셋
     "plugin:react/recommended",
     // 타입스크립트 추천 룰셋
