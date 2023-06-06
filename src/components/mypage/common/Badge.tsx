@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import styles from './Badge.module.scss';
+import { badgeImg1, badgeImg2, badgeImg3, badgeImg4, badgeImg5, badgeImg6, badgeImg7 } from 'assets/images/badgeIndex';
 
-interface Badge {
+interface BadgeInfo {
   name: string;
   isGet: boolean;
 }
 
-const BADGE_LIST: Badge[] = [
+const BADGE_LIST: BadgeInfo[] = [
   {
     name: '신규유저',
     isGet: true,
@@ -37,6 +38,8 @@ const BADGE_LIST: Badge[] = [
   },
 ];
 
+const badgeImages = [badgeImg1, badgeImg2, badgeImg3, badgeImg4, badgeImg5, badgeImg6, badgeImg7];
+
 function Badge() {
   const [badges, setBadges] = useState(BADGE_LIST);
   // user에 저장된 badge를 가져와서 보여줌 useState 사용?
@@ -46,8 +49,9 @@ function Badge() {
   return (
     <div className={styles.container}>
       {badges.map((badge, index) => (
-        <div key={index} className={styles.item}>
+        <div key={index} className={styles.items}>
           <div>{badge.name}</div>
+          <img src={badgeImages[index]} alt='뱃지' />
           <div>{badge.isGet.toString()}</div>
         </div>
       ))}
