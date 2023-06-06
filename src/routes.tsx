@@ -13,7 +13,17 @@ import FindPassword from 'pages/FindPassword';
 import ChangePassword from 'pages/ChangePassword';
 import MyBadge from 'pages/MyBadge';
 
-const routes = [
+export const protectedRoutes = [
+  {
+    path: '/community/post',
+    element: <CommunityPosting />,
+  },
+  {
+    path: '/mypage/info',
+    element: <MyPage />,
+  },
+];
+export const routes = [
   {
     path: '/',
     element: <Home />,
@@ -23,16 +33,8 @@ const routes = [
     element: <Community />,
   },
   {
-    path: '/community/post',
-    element: <CommunityPosting />,
-  },
-  {
     path: '/community/boast',
     element: <Boast />,
-  },
-  {
-    path: '/mypage/info',
-    element: <MyPage />,
   },
   {
     path: '/mypage/edit',
@@ -71,5 +73,3 @@ const routes = [
     element: <ChangePassword />,
   },
 ];
-
-export default routes;
