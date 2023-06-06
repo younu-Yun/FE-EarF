@@ -1,6 +1,21 @@
-function Button() {
-  const submitHandler = () => {};
-  //안쪽에서 사용하는 핸들러, 기타 콜백함수는 arrow function으로 작성합니다.
+import styles from './Button.module.scss';
+
+interface ButtonProps {
+  text: string;
+  className?: string;
+  disabled?: boolean;
+  onClick?: () => void;
 }
-//컴포넌트는 일반 함수
+
+function Button({ text, className, disabled, onClick }: ButtonProps) {
+  const buttonClass = className ? `${styles.button} ${styles[className]}` : styles.button;
+  const isDisabled = disabled === true;
+
+  return (
+    <button className={buttonClass} disabled={isDisabled} onClick={onClick}>
+      {text}
+    </button>
+  );
+}
+
 export default Button;

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Button from '../common/Button';
+import Button from '../../common/Button';
 import PostingContent from './PostingContent';
 import styles from './QuestionPostingBoard.module.scss';
 
