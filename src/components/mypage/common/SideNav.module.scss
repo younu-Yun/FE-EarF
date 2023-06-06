@@ -15,16 +15,16 @@
 
   box-sizing: border-box;
 
-  ul {
+  & > ul {
     padding-inline-start: 0px;
 
-    li {
+    & > li {
       padding: 10px 0;
       font-size: 2rem;
       cursor: pointer;
     }
 
-    li:hover {
+    & > li:hover {
       border-bottom: 1px solid $--color--primary;
     }
   }
