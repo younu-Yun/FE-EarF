@@ -104,7 +104,6 @@ function FindId() {
 
     if (foundUser) {
       setFoundId(foundUser.id);
-      // 여기에서 모달 또는 알림을 표시하는 로직을 작성하세요.
       console.log(`찾은 아이디: ${foundUser.id}`);
     } else {
       // 사용자를 찾지 못한 경우에 대한 처리 로직을 작성하세요.
