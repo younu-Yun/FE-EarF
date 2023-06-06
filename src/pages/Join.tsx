@@ -118,7 +118,7 @@ const Join: React.FC = () => {
       <div className={styles.form}>
         <form onSubmit={handleSubmit}>
           <fieldset>
-            <legend>로그인</legend>
+            <legend>회원가입</legend>
 
             <DefaultInput
               inputProps={{
