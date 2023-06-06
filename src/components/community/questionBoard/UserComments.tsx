@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import CommentItem from './CommentItem';
-import Button from '../../common/Button';
+import Button from 'components/common/Button';
 import styles from './UserComments.module.scss';
 
 function UserComments() {
