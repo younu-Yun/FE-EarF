@@ -1,10 +1,11 @@
 import { useRef } from 'react';
 import CommentItem from './CommentItem';
-import styles from './UserComments.module.scss';
 import Button from '../common/Button';
+import styles from './UserComments.module.scss';
 
 function UserComments() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const token = localStorage.getItem('token');
 
   const autoResizeHeight = () => {
     const textarea = textareaRef.current;
@@ -26,14 +27,18 @@ function UserComments() {
           <div className={styles.userProfile}></div>
           <div className={styles.userBadge}></div>
         </div>
-        <textarea
-          rows={1}
-          placeholder='댓글을 입력해주세요.'
-          className={styles.content}
-          onChange={autoResizeHeight}
-          ref={textareaRef}
-        />
-        <Button text='등록' />
+        {!token ? (
+          <textarea rows={1} placeholder='로그인 후 댓글 작성이 가능합니다.' className={styles.content} disabled />
+        ) : (
+          <textarea
+            rows={1}
+            placeholder='댓글을 입력해주세요.'
+            className={styles.content}
+            onChange={autoResizeHeight}
+            ref={textareaRef}
+          />
+        )}
+        {!token ? <Button text='등록' disabled={true} /> : <Button text='등록' />}
       </div>
     </div>
   );

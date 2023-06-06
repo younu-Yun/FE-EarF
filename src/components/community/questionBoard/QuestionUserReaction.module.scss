@@ -31,3 +31,14 @@
     }
   }
 }
+
+.active {
+  & svg {
+    transition: all 0.5s ease;
+    stroke: $--color--pink;
+  }
+  .reactionNumber {
+    transition: all 0.5s ease;
+    color: $--color--pink;
+  }
+}

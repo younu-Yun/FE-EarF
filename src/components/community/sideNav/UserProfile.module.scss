@@ -33,6 +33,14 @@
         border-right: 1rem solid transparent;
       }
     }
+    .notLoggedIn {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+
+      font-size: 9pt;
+      color: $--color--text3;
+    }
 
     .userPostingNumber {
       display: flex;
@@ -41,12 +49,12 @@
 
       font-size: 9pt;
 
-      > :first-child {
+      & > :first-child {
         font-weight: 300;
         color: $--color--text3;
       }
 
-      > :last-child {
+      & > :last-child {
         position: relative;
         font-size: 9pt;
         color: $--color--primary;

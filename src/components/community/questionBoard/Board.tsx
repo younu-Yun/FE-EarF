@@ -1,15 +1,12 @@
-import PropTypes from 'prop-types';
+import { Link, useNavigate } from 'react-router-dom';
 import { ReactComponent as Chat } from 'assets/icons/Search.svg';
 import { ReactComponent as Post } from 'assets/icons/Pencil.svg';
 import { ReactComponent as Top } from 'assets/icons/ArrowUp.svg';
-import styles from './Board.module.scss';
 import QuestionPosting from './QuestionPosting';
+import PageBox from './PageBox';
+import styles from './Board.module.scss';
 
-type BoardProps = {
-  enterPostingButtonClick: React.MouseEventHandler<HTMLButtonElement>;
-};
-
-function Board({ enterPostingButtonClick }: BoardProps) {
+function Board() {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -29,6 +26,22 @@ function Board({ enterPostingButtonClick }: BoardProps) {
     }
   };
 
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+
+  const handlePostingClick = () => {
+    if (!token) {
+      const confirmMessage = '로그인 후 작성이 가능합니다.';
+      const shouldRedirect = window.confirm(confirmMessage);
+
+      if (shouldRedirect) {
+        navigate('/login');
+      }
+    } else {
+      navigate('/community/post');
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div>
@@ -45,10 +58,17 @@ function Board({ enterPostingButtonClick }: BoardProps) {
         </form>
       </div>
       <div className={styles.boardTopContainer}>
-        <button className={styles.postingButton} onClick={enterPostingButtonClick}>
-          <Post className={styles.postingSvg} />
-          작성하기
-        </button>
+        {!token ? (
+          <button onClick={handlePostingClick} className={styles.postingButton}>
+            <Post className={styles.postingSvg} />
+            작성하기
+          </button>
+        ) : (
+          <Link to='/community/post' className={styles.postingButton}>
+            <Post className={styles.postingSvg} />
+            작성하기
+          </Link>
+        )}
         <div className={styles.sortingContainer}>
           <ul>
             <li>최신순</li>
@@ -62,7 +82,9 @@ function Board({ enterPostingButtonClick }: BoardProps) {
         <QuestionPosting />
         <QuestionPosting />
       </ul>
-      <div>1234567</div>
+      <div>
+        <PageBox />
+      </div>
       <div className={styles.scrollContainer}>
         <button onClick={scrollToTop} type='button'>
           <Top />
@@ -71,9 +93,5 @@ function Board({ enterPostingButtonClick }: BoardProps) {
     </div>
   );
 }
-
-Board.propTypes = {
-  enterPostingButtonClick: PropTypes.func.isRequired,
-};
 
 export default Board;

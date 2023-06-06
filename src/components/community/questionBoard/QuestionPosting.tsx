@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ko';
 import UserProfileImage from './UserProfileImage';
-import styles from './QuestionPosting.module.scss';
 import PostEditButton from './PostEditButton';
 import QuestionPostingContent from './QuestionPostingContent';
 import QuestionUserReaction from './QuestionUserReaction';
 import QuestionContentDetail from './QuestionContentDetail';
 import UserComments from './UserComments';
+import styles from './QuestionPosting.module.scss';
 
 function QuestionPosting() {
   const [viewContentDetail, setViewContentDetail] = useState(false);
@@ -19,32 +21,21 @@ function QuestionPosting() {
   const date = '2023-05-19T12:04:55.676Z';
 
   const getPostingTime = (date: string): string => {
-    const dataDate = new Date(date);
-    const currentDate = new Date();
-    const timeDifference = currentDate.getTime() - dataDate.getTime();
+    const dataDate = dayjs(date).locale('ko');
+    const currentDate = dayjs();
+    const diff = currentDate.diff(dataDate, 'minute');
 
-    const diffMinutes = Math.floor(timeDifference / (1000 * 60));
-    const diffHours = Math.floor(timeDifference / (1000 * 60 * 60));
-    const diffDays = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-
-    let result = '';
-
-    if (diffMinutes < 60) {
-      result = `${diffMinutes}분 전`;
-    } else if (diffHours < 24) {
-      result = `${diffHours}시간 전`;
-    } else if (diffDays < 7) {
-      result = `${diffDays}일 전`;
+    if (diff < 1) {
+      return '방금 전';
+    } else if (diff < 60) {
+      return `${diff}분 전`;
+    } else if (diff < 1440) {
+      return `${Math.floor(diff / 60)}시간 전`;
+    } else if (diff < 10080) {
+      return `${Math.floor(diff / 1440)}일 전`;
     } else {
-      const year = dataDate.getFullYear();
-      const month = dataDate.getMonth() + 1;
-      const day = dataDate.getDate();
-      const hours = dataDate.getHours().toString().padStart(2, '0');
-      const minutes = dataDate.getMinutes().toString().padStart(2, '0');
-      result = `${year}.${month}.${day} ${hours}:${minutes}`;
+      return dataDate.format('YYYY.MM.DD HH:mm');
     }
-
-    return result;
   };
 
   return (

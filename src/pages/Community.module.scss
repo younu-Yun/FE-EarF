@@ -6,13 +6,13 @@
   width: 1140px;
   margin: 6rem auto;
 
-  > :first-child {
+  & > :first-child {
     flex-shrink: 0;
 
     width: 23rem;
   }
 
-  > :last-child {
+  & > :last-child {
     flex-grow: 1;
   }
 }

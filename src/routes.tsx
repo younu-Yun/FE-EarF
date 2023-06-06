@@ -3,6 +3,8 @@ import MyPage from 'pages/MyPage';
 import MyCommunity from 'pages/MyCommunity';
 import MyPageEdit from 'pages/MyPageEdit';
 import Community from 'pages/Community';
+import CommunityPosting from 'pages/CommunityPosting';
+import Boast from 'pages/Boast';
 import Calender from 'components/Calender';
 import Login from 'pages/Login';
 import Join from 'pages/Join';
@@ -19,6 +21,14 @@ const routes = [
   {
     path: '/community',
     element: <Community />,
+  },
+  {
+    path: '/community/post',
+    element: <CommunityPosting />,
+  },
+  {
+    path: '/community/boast',
+    element: <Boast />,
   },
   {
     path: '/mypage/info',
