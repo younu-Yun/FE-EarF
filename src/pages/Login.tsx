@@ -1,11 +1,15 @@
 import styles from './Login.module.scss';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { DefaultInput } from 'components/User/DefaultInput';
 import loginImages from '../assets/images/login.jpg';
 
 function Login() {
-  const [id, setId] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
+  const [idWarning, setIdWarning] = useState('');
+  const [passwordWarning, setPasswordWarning] = useState('');
 
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setId(event.target.value);
@@ -15,17 +19,24 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  const handleLogin = async () => {
-    try {
-      const response = await axios.post('/api/login', {
-        id,
-        password,
-      });
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-      if (response.status === 200) {
-        // 로그인 성공 처리
-      } else {
-        // 로그인 실패 처리
+    if (id === '') {
+      setIdWarning('아이디를 입력해주세요');
+    }
+    if (password === '') {
+      setPasswordWarning('비밀번호를 입력해주세요');
+    }
+
+    try {
+      if (id !== '' && password !== '') {
+        const response = await axios.post('/api/login', {
+          id,
+          password,
+        });
+
+        console.log('로그인에 성공했습니다:', response.data);
       }
     } catch (error) {
       console.error('로그인 요청 중 오류 발생:', error);
@@ -42,17 +53,50 @@ function Login() {
           <form>
             <fieldset>
               <legend>로그인</legend>
-              <div>
-                <label htmlFor='id'>아이디</label>
-                <input type='text' id='id' value={id} onChange={handleUsernameChange} />
+              <div className={styles.logo}>
+                <div>
+                  <img src='' alt='' />
+                </div>
+                <span>EarF</span>
+              </div>
+              <div className={styles.title}>
+                <h2>로그인</h2>
+                <p>Welcome back! Please enter your details</p>
               </div>
               <div>
-                <label htmlFor='password'>비밀번호</label>
-                <input type='password' id='password' value={password} onChange={handlePasswordChange} />
+                <DefaultInput
+                  inputProps={{
+                    type: 'text',
+                    id: 'id',
+                    value: id,
+                    onChange: handleUsernameChange,
+                  }}
+                  label='아이디'
+                  showWarning={idWarning !== ''}
+                  warning={idWarning}
+                />
+                <DefaultInput
+                  inputProps={{
+                    type: 'password',
+                    id: 'password',
+                    value: password,
+                    onChange: handlePasswordChange,
+                  }}
+                  label='비밀번호'
+                  showWarning={passwordWarning !== ''}
+                  warning={passwordWarning}
+                />
               </div>
-              <button type='submit' onClick={handleLogin}>
-                로그인
-              </button>
+              <div className={styles.buttonBox}>
+                <button type='submit' onClick={handleLogin}>
+                  로그인
+                </button>
+              </div>
+              <div className={styles.linkBox}>
+                <Link to='/join'>회원가입</Link>
+                <Link to='/find_id'>아이디 찾기</Link>
+                <Link to='/find_password'>비밀번호 찾기</Link>
+              </div>
             </fieldset>
           </form>
         </div>
