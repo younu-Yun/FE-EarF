@@ -77,7 +77,7 @@ export default function Diary() {
       </div>
       <div className={styles.recordContainer}>
         <span>기록</span>
-        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+        <div className={styles.recondWrapper}>
           <img src={selectedImage} className={styles.defaultImg} onClick={handleImageClick} />
           <input
             placeholder='사진'
