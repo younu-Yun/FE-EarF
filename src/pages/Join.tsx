@@ -2,6 +2,7 @@ import styles from './Join.module.scss';
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { SaveToken } from 'components/common/token';
 import { DefaultInput } from 'components/User/DefaultInput';
 
 interface FormData {
@@ -27,10 +28,10 @@ const Join: React.FC = () => {
   const [warningMessages, setWarningMessages] = useState<Record<string, string>>({});
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { id, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [id]: value,
     }));
   };
 
@@ -100,6 +101,10 @@ const Join: React.FC = () => {
 
         console.error('회원 가입을 완료했습니다.', response.data);
         alert('회원가입이 완료되었습니다. 로그인페이지로 이동합니다.');
+
+        // 토큰을 저장합니다.
+        const { accessToken } = response.data;
+        SaveToken(accessToken);
 
         navigate('/login');
       } catch (error) {
