@@ -1,6 +1,9 @@
 import styles from './Edit.module.scss';
 import { useState, ChangeEvent } from 'react';
 import { ReactComponent as UserIcon } from 'assets/icons/UserIcon.svg';
+import Button from 'components/common/Button';
+import camera from 'assets/images/camera.png';
+
 interface FormValues {
   name: string;
   email: string;
@@ -10,14 +13,13 @@ interface FormValues {
 
 function Edit() {
   const [formData, setFormData] = useState<FormValues>({
-    name: '',
-    email: '',
-    password: '',
-    phoneNumber: '',
+    name: '불러온 이름',
+    email: 'abc@def.com',
+    password: '0000',
+    phoneNumber: '010-1234-5678',
   });
 
   const [profileImage, setProfileImage] = useState<File | null>(null);
-  const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -31,28 +33,28 @@ function Edit() {
     const file = e.target.files?.[0];
     if (file) {
       setProfileImage(file);
-      setPreviewImage(URL.createObjectURL(file));
     }
+  };
+
+  const handleNavigateToInfo = (): void => {
+    window.location.href = '/mypage/info';
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 서버로 데이터 전송
+    // 서버로 formData와 profileImage 전송
     // formData 객체를 서버로 보낼 수 있도록 구현
     // 전송 후 성공/실패 처리 로직 추가
   };
   return (
     <div className={styles.edit}>
       <form onSubmit={handleSubmit}>
-        <div className={styles.profileImage}>
-          {previewImage && (
-            <div>
-              <img src={previewImage} alt='프로필 사진 미리보기' style={{ maxWidth: '100px', maxHeight: '100px' }} />
-            </div>
-          )}
-          <label htmlFor='profileImage' style={{ display: previewImage ? 'none' : 'block' }}>
-            <UserIcon />
+        <div className={styles.profileImageBox}>
+          {/* 프로필 이미지로 교체 */}
+          <UserIcon />
+          <label htmlFor='profileImage' className={styles.camera}>
+            <img src={camera} alt='카메라'></img>
           </label>
           <input
             type='file'
@@ -83,8 +85,8 @@ function Edit() {
           <input type='tel' id='phoneNumber' name='phoneNumber' value={formData.phoneNumber} onChange={handleChange} />
         </div>
         <div className={styles.buttonContainer}>
-          <button className={styles.button}> 수정하기 </button>
-          <button className={styles.button}> 회원탈퇴 </button>
+          <Button text={'완료'} />
+          <Button text={'취소'} className={'whiteButton'} onClick={handleNavigateToInfo} />
         </div>
       </form>
     </div>
