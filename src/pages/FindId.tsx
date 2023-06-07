@@ -15,7 +15,8 @@ function FindId() {
   const [foundId, setFoundId] = useState('');
   const [emailWarning, setEmailWarning] = useState('');
   const [nameWarning, setNameWarning] = useState('');
-  const [showModal, setShowModal] = useState(false); // State to control the visibility of the modal
+  const [idFoundWarning, setIdFoundWarning] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleFindId = async (e: FormEvent) => {
     e.preventDefault();
@@ -41,7 +42,7 @@ function FindId() {
     setNameWarning('');
 
     try {
-      const userData = {
+      const userData: User = {
         email,
         name,
       };
@@ -51,9 +52,11 @@ function FindId() {
 
       if (foundUser) {
         setFoundId(foundUser.id);
-        setShowModal(true); // Display the modal when the ID is found
+        setIdFoundWarning(false);
+        setShowModal(true);
         console.log(`찾은 아이디: ${foundUser.id}`);
       } else {
+        setIdFoundWarning(true);
         setShowModal(false);
         console.log('일치하는 사용자를 찾을 수 없습니다.');
       }
@@ -63,10 +66,10 @@ function FindId() {
   };
 
   const validateEmail = (email: string) => {
-    // Email validation regex pattern
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
   };
+
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     setEmailWarning('');
@@ -106,7 +109,8 @@ function FindId() {
             showWarning={true}
             warning={nameWarning}
           />
-          <div className={styles.warning}>일치하는 아이디가 없습니다.</div>
+          {idFoundWarning && <div className={styles.warning}>일치하는 아이디가 없습니다.</div>}
+
           <div className={styles.buttonBox}>
             <button type='submit'>아이디 찾기</button>
           </div>
