@@ -1,7 +1,7 @@
 import styles from './QuestionPostingContent.module.scss';
 
 function QuestionPostingContent(props: { content: string }) {
-  const contentText = `${props.content.split('.').slice(0, 2).join('. ')} ...`;
+  const contentText = `${props.content.split('.').slice(0, 5).join('. ')} ...`;
 
   return (
     <div className={styles.container}>

@@ -1,0 +1,36 @@
+.postContainer {
+  width: 10rem;
+  height: 100%;
+
+  border-radius: 1rem;
+  perspective: 500px;
+  transform-style: preserve-3d;
+}
+.imgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  border-radius: inherit;
+}
+
+.profileContainer {
+  display: none;
+}
+.userName {
+  display: none;
+}
+.contentsContainer {
+  display: none;
+}
+
+.heartReaction {
+  align-self: flex-end;
+}

@@ -7,7 +7,8 @@ function HeartReaction() {
   const [likeIt, setLikeIt] = useState(false);
   const [likeItNumber, setLikeItNumber] = useState(0);
 
-  const handleLikeIt = () => {
+  const handleLikeIt = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
     if (!token) {
       return; // 클릭 동작을 막음
     }
