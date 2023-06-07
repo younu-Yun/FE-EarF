@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { DefaultInput } from 'components/User/DefaultInput';
+import { SaveToken, SaveRefreshToken } from 'components/common/token';
 import loginImages from '../assets/images/login.jpg';
 
 function Login() {
@@ -37,6 +38,10 @@ function Login() {
         });
 
         console.log('로그인에 성공했습니다:', response.data);
+
+        const { accessToken, refreshToken } = response.data;
+        SaveToken(accessToken);
+        SaveRefreshToken(refreshToken);
       }
     } catch (error) {
       console.error('로그인 요청 중 오류 발생:', error);
