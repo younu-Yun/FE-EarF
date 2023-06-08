@@ -25,9 +25,14 @@
 
   width: 150px;
   height: 200px;
-  border: solid $--color--border 1px;
+  border: solid $--color--primary 1px;
   border-radius: 10px;
   box-sizing: border-box;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: $--color--primary 0px 2px 8px 0px;
+  }
 
   & > img {
     width: 120px;
@@ -39,5 +44,6 @@
 }
 
 .notAcquired {
+  border: solid $--color--border 1px;
   opacity: 0.2;
 }
