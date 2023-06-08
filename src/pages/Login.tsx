@@ -5,6 +5,7 @@ import axios from 'axios';
 import { DefaultInput } from 'components/User/DefaultInput';
 import { SaveToken, SaveRefreshToken } from 'components/common/token';
 import loginImages from '../assets/images/login.jpg';
+import LoginIllust2 from '../assets/images/LoginIllust2.jpg';
 
 function Login() {
   const [id, setId] = useState('');
@@ -32,7 +33,7 @@ function Login() {
 
     try {
       if (id !== '' && password !== '') {
-        const response = await axios.post('/api/login', {
+        const response = await axios.post('/api/auth', {
           id,
           password,
         });
@@ -52,21 +53,18 @@ function Login() {
     <div className={styles.container}>
       <div>
         <div className={styles.image}>
-          <img src={loginImages} alt='' />
+          <img src={LoginIllust2} alt='' />
         </div>
         <div className={styles.form}>
           <form>
             <fieldset>
               <legend>로그인</legend>
               <div className={styles.logo}>
-                <div>
-                  <img src='' alt='' />
-                </div>
                 <span>EarF</span>
               </div>
               <div className={styles.title}>
                 <h2>로그인</h2>
-                <p>Welcome back! Please enter your details</p>
+                <p>실천하고, 기록하고, 공유해보세요!</p>
               </div>
               <div>
                 <DefaultInput
@@ -98,9 +96,14 @@ function Login() {
                 </button>
               </div>
               <div className={styles.linkBox}>
-                <Link to='/join'>회원가입</Link>
                 <Link to='/find_id'>아이디 찾기</Link>
                 <Link to='/find_password'>비밀번호 찾기</Link>
+              </div>
+              <div className={styles.border}>
+                <span>회원이 아니신가요?</span>
+              </div>
+              <div className={styles.buttonBox}>
+                <Link to='/join'>회원가입</Link>
               </div>
             </fieldset>
           </form>
