@@ -10,19 +10,18 @@ import DiaryTagButton from './common/DiaryTagButton';
 import ShareButton from './common/ShareButton';
 import CheckboxComponent from './common/CheckboxComponent';
 import { TFormData, CheckboxesState } from 'types/types';
-import { handleDiarySubmit } from 'services/calenderService';
+import {
+  handleDiarySubmit,
+  HandleEachValue,
+  HandleSharedClick,
+  HandleImageChange,
+  HandleCheckboxChange,
+} from 'services/calenderService';
 
 export default function Diary() {
   const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
   const [selectedImage, setSelectedImage] = useState<string | undefined>(inputDefaultImg);
   const hiddenFileInput = useRef<HTMLInputElement | null>(null);
-
-  const HandleEachValue = (element: keyof TFormData, value: any) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [element]: value,
-    }));
-  };
 
   const [formData, setFormData] = useState<TFormData>({
     tag: [],
@@ -32,31 +31,6 @@ export default function Diary() {
     shareStatus: false,
   });
 
-  const handleSharedClick = () => {
-    HandleEachValue('shareStatus', !formData.shareStatus);
-  };
-
-  const handleImageClick = () => {
-    hiddenFileInput.current?.click();
-  };
-
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const imageDataURL = reader.result as string;
-        setSelectedImage(imageDataURL);
-      };
-      reader.readAsDataURL(file);
-      HandleEachValue('file', file);
-    }
-  };
-
-  const handleDiarySubmit = () => {
-    console.log('Form Data:', formData);
-  };
-
   const [checkboxes, setCheckboxes] = useState<CheckboxesState>({
     tag1: false,
     tag2: false,
@@ -64,22 +38,27 @@ export default function Diary() {
   });
 
   useEffect(() => {
-    HandleEachValue('tag', getSelectedCheckboxes());
+    HandleEachValue('tag', getSelectedCheckboxes(), setFormData);
   }, [checkboxes]);
 
-  console.log(checkboxes.tag1, 'checkbox');
+  // console.log(checkboxes.tag1, 'checkbox');
 
   const getSelectedCheckboxes = (): string[] => {
-    return Object.keys(checkboxes).filter((checkbox) => checkboxes[checkbox]);
-  };
-  // console.log(getSelectedCheckboxes(), 'checkout value');
-
-  const handleCheckboxChange = (checkboxName: string) => {
-    setCheckboxes({
-      ...checkboxes,
-      [checkboxName]: !checkboxes[checkboxName],
+    return Object.keys(checkboxes).filter((checkbox) => {
+      console.log(typeof checkbox, 'checkout');
+      checkboxes[checkbox];
     });
   };
+
+  const handleImageClick = () => {
+    hiddenFileInput.current?.click();
+  };
+
+  const handleDiarySubmit = () => {
+    console.log('Form Data:', formData);
+  };
+
+  // console.log(getSelectedCheckboxes(), 'checkout value');
 
   console.log(selectedValue, 'in diary state');
   return (
@@ -90,19 +69,19 @@ export default function Diary() {
           <CheckboxComponent
             label='텀블러'
             isChecked={checkboxes.tag1}
-            onChange={() => handleCheckboxChange('tag1')}
+            onChange={() => HandleCheckboxChange('tag1', checkboxes, setCheckboxes)}
             tag='tag1'
           />
           <CheckboxComponent
             label='대중교통'
             isChecked={checkboxes.tag2}
-            onChange={() => handleCheckboxChange('tag2')}
+            onChange={() => HandleCheckboxChange('tag2', checkboxes, setCheckboxes)}
             tag='tag2'
           />
           <CheckboxComponent
             label='채식'
             isChecked={checkboxes.tag3}
-            onChange={() => handleCheckboxChange('tag3')}
+            onChange={() => HandleCheckboxChange('tag3', checkboxes, setCheckboxes)}
             tag='tag3'
           />
         </div>
@@ -117,14 +96,14 @@ export default function Diary() {
             className={styles.inputImg}
             ref={hiddenFileInput}
             style={{ display: 'none' }}
-            onChange={handleImageChange}
+            onChange={(event) => HandleImageChange(event, setSelectedImage, setFormData)}
           />
 
           <input
             placeholder='행동 한마디'
             className={styles.inputContent}
             onChange={(event) => {
-              HandleEachValue('title', event.target.value);
+              HandleEachValue('title', event.target.value, setFormData);
             }}
             value={formData.title}
           />
@@ -133,10 +112,13 @@ export default function Diary() {
             className={styles.inputContent}
             rows={5}
             onChange={(event) => {
-              HandleEachValue('content', event.target.value);
+              HandleEachValue('content', event.target.value, setFormData);
             }}
           />
-          <ShareButton toggle={formData.shareStatus} onClick={handleSharedClick} />
+          <ShareButton
+            toggle={formData.shareStatus}
+            onClick={() => HandleSharedClick('shareStatus', !formData.shareStatus, setFormData)}
+          />
           <DiaryButton text='등록하기' onClick={handleDiarySubmit} />
         </div>
       </div>
