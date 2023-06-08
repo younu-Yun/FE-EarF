@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import inputDefaultImg from '../../assets/images/inputDefaultImg.png';
 
@@ -8,13 +8,9 @@ import { setSelectedDay } from 'store/selectedDaySlice';
 import DiaryButton from './common/DiaryButton';
 import DiaryTagButton from './common/DiaryTagButton';
 import ShareButton from './common/ShareButton';
-
-type TFormData = {
-  file: File | null;
-  inputTitle: string;
-  inputMain: string;
-  sharedValue: boolean;
-};
+import CheckboxComponent from './common/CheckboxComponent';
+import { TFormData, CheckboxesState } from 'types/types';
+import { handleDiarySubmit } from 'services/calenderService';
 
 export default function Diary() {
   const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
@@ -29,18 +25,15 @@ export default function Diary() {
   };
 
   const [formData, setFormData] = useState<TFormData>({
+    tag: [],
     file: null,
-    inputTitle: '',
-    inputMain: '',
-    sharedValue: false,
+    title: '',
+    content: '',
+    shareStatus: false,
   });
 
   const handleSharedClick = () => {
-    HandleEachValue('sharedValue', !formData.sharedValue);
-    // setFormData((prevFormData) => ({
-    //   ...prevFormData,
-    //   sharedValue: !formData.sharedValue,
-    // }));
+    HandleEachValue('shareStatus', !formData.shareStatus);
   };
 
   const handleImageClick = () => {
@@ -64,15 +57,54 @@ export default function Diary() {
     console.log('Form Data:', formData);
   };
 
+  const [checkboxes, setCheckboxes] = useState<CheckboxesState>({
+    tag1: false,
+    tag2: false,
+    tag3: false,
+  });
+
+  useEffect(() => {
+    HandleEachValue('tag', getSelectedCheckboxes());
+  }, [checkboxes]);
+
+  console.log(checkboxes.tag1, 'checkbox');
+
+  const getSelectedCheckboxes = (): string[] => {
+    return Object.keys(checkboxes).filter((checkbox) => checkboxes[checkbox]);
+  };
+  // console.log(getSelectedCheckboxes(), 'checkout value');
+
+  const handleCheckboxChange = (checkboxName: string) => {
+    setCheckboxes({
+      ...checkboxes,
+      [checkboxName]: !checkboxes[checkboxName],
+    });
+  };
+
   console.log(selectedValue, 'in diary state');
   return (
     <div className={styles.container}>
       <div className={styles.tagContainer}>
         <span>태그</span>
         <div>
-          <DiaryTagButton text='텀블러' className='tag1' />
-          <DiaryTagButton text='대중교통' className='tag2' />
-          <DiaryTagButton text='채식' className='tag3' />
+          <CheckboxComponent
+            label='텀블러'
+            isChecked={checkboxes.tag1}
+            onChange={() => handleCheckboxChange('tag1')}
+            tag='tag1'
+          />
+          <CheckboxComponent
+            label='대중교통'
+            isChecked={checkboxes.tag2}
+            onChange={() => handleCheckboxChange('tag2')}
+            tag='tag2'
+          />
+          <CheckboxComponent
+            label='채식'
+            isChecked={checkboxes.tag3}
+            onChange={() => handleCheckboxChange('tag3')}
+            tag='tag3'
+          />
         </div>
       </div>
       <div className={styles.recordContainer}>
@@ -92,19 +124,19 @@ export default function Diary() {
             placeholder='행동 한마디'
             className={styles.inputContent}
             onChange={(event) => {
-              HandleEachValue('inputTitle', event.target.value);
+              HandleEachValue('title', event.target.value);
             }}
-            value={formData.inputTitle}
+            value={formData.title}
           />
           <textarea
             placeholder='오늘 어떤 행동을 했나요 ?'
             className={styles.inputContent}
             rows={5}
             onChange={(event) => {
-              HandleEachValue('inputMain', event.target.value);
+              HandleEachValue('content', event.target.value);
             }}
           />
-          <ShareButton toggle={formData.sharedValue} onClick={handleSharedClick} />
+          <ShareButton toggle={formData.shareStatus} onClick={handleSharedClick} />
           <DiaryButton text='등록하기' onClick={handleDiarySubmit} />
         </div>
       </div>
