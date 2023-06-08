@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import axios from 'axios';
 import styles from './Header.module.scss';
 import profileIcon from '../../assets/icons/profile.svg';
+import MainLogo from '../../assets/icons/MainLogo.svg';
 
 function Header(): JSX.Element {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -10,23 +11,21 @@ function Header(): JSX.Element {
   const [showSideMenu, setShowSideMenu] = useState<boolean>(false);
 
   const login = async () => {
-    try {
-      const response = await axios.post('/api/login', {
-        username: 'user',
-        password: 'password',
-      });
-
-      if (response.status === 200) {
-        const { token } = response.data;
-
-        setIsLoggedIn(true);
-        setToken(token);
-      } else {
-        // 로그인 실패 처리
-      }
-    } catch (error) {
-      console.error('로그인 요청 중 오류 발생:', error);
-    }
+    // try {
+    //   const response = await axios.post('/api/login', {
+    //     username: 'user',
+    //     password: 'password',
+    //   });
+    //   if (response.status === 200) {
+    //     const { token } = response.data;
+    //     setIsLoggedIn(true);
+    //     setToken(token);
+    //   } else {
+    //     // 로그인 실패 처리
+    //   }
+    // } catch (error) {
+    //   console.error('로그인 요청 중 오류 발생:', error);
+    // }
   };
 
   login();
@@ -44,11 +43,14 @@ function Header(): JSX.Element {
       <div className={styles.inner}>
         <div>
           <Link to='/' className={styles.logo}>
-            로고
+            <div>
+              <img src={MainLogo} alt='메인로고' />
+            </div>
+            <strong>EarF</strong>
           </Link>
           <ul className={styles.menu}>
             <li>
-              <NavLink to='/home' className={({ isActive }) => (isActive ? 'active' : '')}>
+              <NavLink to='/calendar' className={({ isActive }) => (isActive ? 'active' : '')}>
                 기록하기
               </NavLink>
             </li>
