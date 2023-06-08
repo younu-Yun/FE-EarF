@@ -3,6 +3,9 @@ import axios from 'axios';
 import styles from './FindId.module.scss';
 import { Link } from 'react-router-dom';
 import { DefaultInput } from 'components/User/DefaultInput';
+import JoginIllust from '../assets/images/JoinIllust.jpg';
+import AlertCircle from '../assets/icons/AlertCircle.svg';
+import Modal from 'components/User/Modal';
 
 interface User {
   name: string;
@@ -81,55 +84,79 @@ function FindId() {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.title}>
-        <h2>아이디찾기</h2>
-      </div>
-      <div className={styles.form}>
-        <form onSubmit={handleFindId}>
-          <DefaultInput
-            inputProps={{
-              type: 'text',
-              id: 'email',
-              value: email,
-              onChange: handleEmailChange,
-            }}
-            label='이메일'
-            showWarning={true}
-            warning={emailWarning}
-          />
-          <DefaultInput
-            inputProps={{
-              type: 'text',
-              id: 'name',
-              value: name,
-              onChange: handleNameChange,
-            }}
-            label='이름'
-            showWarning={true}
-            warning={nameWarning}
-          />
-          {idFoundWarning && <div className={styles.warning}>일치하는 아이디가 없습니다.</div>}
-
-          <div className={styles.buttonBox}>
-            <button type='submit'>아이디 찾기</button>
+    <>
+      <div className={styles.container}>
+        <div>
+          <div className={styles.image}>
+            <img src={JoginIllust} alt='아이디찾기 일러스트' />
           </div>
-        </form>
+          <div className={styles.form}>
+            <form onSubmit={handleFindId}>
+              <fieldset>
+                <legend>아이디찾기</legend>
+                <div className={styles.logo}>
+                  <span>EarF</span>
+                </div>
+                <div className={styles.title}>
+                  <h2>아이디 찾기</h2>
+                  <p>아이디를 잊으셨나요? 이메일과 이름을 입력해주세요.</p>
+                </div>
+                <div>
+                  <DefaultInput
+                    inputProps={{
+                      type: 'text',
+                      id: 'email',
+                      value: email,
+                      onChange: handleEmailChange,
+                    }}
+                    label='이메일'
+                    showWarning={true}
+                    warning={emailWarning}
+                  />
+                  <DefaultInput
+                    inputProps={{
+                      type: 'text',
+                      id: 'name',
+                      value: name,
+                      onChange: handleNameChange,
+                    }}
+                    label='이름'
+                    showWarning={true}
+                    warning={nameWarning}
+                  />
+                  {idFoundWarning && <div className={styles.warning}>일치하는 아이디가 없습니다.</div>}
+                </div>
+              </fieldset>
+              <div className={styles.buttonBox}>
+                <button type='submit'>아이디 찾기</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
 
       {showModal && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
-            <button onClick={() => setShowModal(false)}>닫기</button>
-            <h3>아이디찾기</h3>
-            <p>찾은 아이디: {foundId}</p>
-
-            <Link to='/login'>로그인</Link>
-            <Link to='/find_password'>비밀번호 찾기</Link>
-          </div>
-        </div>
+        <Modal
+          title='아이디찾기'
+          content={
+            <>
+              <span>
+                <img src={AlertCircle} alt='안내' /> 회원님의 정보와 일치하는 아이디입니다.
+              </span>
+              <p>{foundId}</p>
+            </>
+          }
+          button={
+            <>
+              <Link to='/login'>로그인</Link>
+              <Link to='/find_password'>비밀번호 찾기</Link>
+            </>
+          }
+          onClose={() => setShowModal(false)}
+          showModal={showModal}
+        />
       )}
-    </div>
+    </>
   );
 }
 
