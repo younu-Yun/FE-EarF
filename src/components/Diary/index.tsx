@@ -56,13 +56,6 @@ export default function Diary() {
   };
   // console.log(getSelectedCheckboxes(), 'checkout value');
 
-  // const handleCheckboxChange = (checkboxName: string) => {
-  //   setCheckboxes({
-  //     ...checkboxes,
-  //     [checkboxName]: !checkboxes[checkboxName],
-  //   });
-  // };
-
   console.log(selectedValue, 'in diary state');
   return (
     <div className={styles.container}>

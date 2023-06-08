@@ -6,7 +6,8 @@ import dayjs from 'dayjs';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store';
 import { setSelectedDay } from 'store/selectedDaySlice';
-import Diary from 'components/DiaryPost';
+import Diary from 'components/Diary';
+import IsDataDiary from 'components/Diary/IsDataDiary';
 
 type ValuePiece = Date | null;
 
@@ -16,6 +17,9 @@ export default function Calender() {
   // console.log(value, 'value');
 
   const mark = ['2023-06-02', '2023-06-05', '2023-06-10'];
+
+  // TODO: 이 부분 api로 현재 선택된 날짜 (selectedValue) 통해서 데이터 있는지 확인하고 있으면 true 없으면 false 로 수정
+  const [isDataInDay, setIsDataInDay] = useState(false);
 
   const dispatch = useDispatch();
   const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
@@ -55,7 +59,7 @@ export default function Calender() {
         />
         <div>{dayjs(selectedValue?.toString()).format('YYYY년 MM월 DD일')}</div>
       </div>
-      <Diary />
+      {isDataInDay ? <Diary /> : <IsDataDiary />}
     </div>
   );
 }
