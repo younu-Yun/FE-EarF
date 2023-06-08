@@ -19,7 +19,7 @@ type THandleImageChange = (
 ) => void;
 
 type THandleCheckboxChange = (
-  checkboxName: string,
+  checkboxName: keyof CheckboxesState,
   checkboxes: CheckboxesState,
   setCheckboxes: React.Dispatch<React.SetStateAction<CheckboxesState>>
 ) => void;

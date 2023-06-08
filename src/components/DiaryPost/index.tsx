@@ -43,13 +43,6 @@ export default function Diary() {
 
   // console.log(checkboxes.tag1, 'checkbox');
 
-  const getSelectedCheckboxes = (): string[] => {
-    return Object.keys(checkboxes).filter((checkbox) => {
-      console.log(typeof checkbox, 'checkout');
-      checkboxes[checkbox];
-    });
-  };
-
   const handleImageClick = () => {
     hiddenFileInput.current?.click();
   };
@@ -58,7 +51,17 @@ export default function Diary() {
     console.log('Form Data:', formData);
   };
 
+  const getSelectedCheckboxes = (): string[] => {
+    return Object.keys(checkboxes).filter((checkbox: string) => checkboxes[checkbox]);
+  };
   // console.log(getSelectedCheckboxes(), 'checkout value');
+
+  // const handleCheckboxChange = (checkboxName: string) => {
+  //   setCheckboxes({
+  //     ...checkboxes,
+  //     [checkboxName]: !checkboxes[checkboxName],
+  //   });
+  // };
 
   console.log(selectedValue, 'in diary state');
   return (
