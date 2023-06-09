@@ -3,11 +3,11 @@ import { useState, ChangeEvent } from 'react';
 import { ReactComponent as UserIcon } from 'assets/icons/UserIcon.svg';
 import Button from 'components/common/Button';
 import camera from 'assets/images/camera.png';
+import { userInfoChange } from 'components/common/Fetcher';
 
 interface FormValues {
   name: string;
   email: string;
-  password: string;
   phoneNumber: string;
 }
 
@@ -15,7 +15,6 @@ function Edit() {
   const [formData, setFormData] = useState<FormValues>({
     name: '불러온 이름',
     email: 'abc@def.com',
-    password: '0000',
     phoneNumber: '010-1234-5678',
   });
 
@@ -42,11 +41,11 @@ function Edit() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    // 서버로 formData와 profileImage 전송
-    // formData 객체를 서버로 보낼 수 있도록 구현
-    // 전송 후 성공/실패 처리 로직 추가
+    const { name, email, phoneNumber } = formData;
+    userInfoChange(name, email, phoneNumber);
+    // profileImage 전송 추가
   };
+
   return (
     <div className={styles.edit}>
       <form onSubmit={handleSubmit}>
@@ -75,10 +74,6 @@ function Edit() {
         <div className={styles.userInfo}>
           <label htmlFor='email'>이메일</label>
           <input type='email' id='email' name='email' value={formData.email} onChange={handleChange} />
-        </div>
-        <div className={styles.userInfo}>
-          <label htmlFor='password'>비밀번호</label>
-          <input type='password' id='password' name='password' value={formData.password} onChange={handleChange} />
         </div>
         <div className={styles.userInfo}>
           <label htmlFor='phoneNumber'>전화번호</label>
