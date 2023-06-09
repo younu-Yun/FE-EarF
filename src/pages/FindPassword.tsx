@@ -3,6 +3,7 @@ import React, { useState, ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { DefaultInput } from 'components/User/DefaultInput';
 import axios from 'axios';
+// import { FindPassword } from 'components/common/Fetcher';
 import JoginIllust from '../assets/images/JoinIllust.jpg';
 
 function FindPassword() {
@@ -20,10 +21,17 @@ function FindPassword() {
     setEmailWarning('');
 
     try {
-      await axios.post('/api/user/reset-password', {
+      const response = await axios.post('http://34.64.216.86/api/user/reset', {
         email: email,
       });
-      alert('초기화 된 비밀번호를 발송했습니다.');
+
+      alert(response.data);
+
+      /*
+      //Fetcher 사용
+      const data: any = await FindPassword(email);
+      alert(data);
+      */
     } catch (error) {
       alert('이메일 발송 중 오류가 발생했습니다.');
       console.log(`이메일 발송 중 오류가 발생했습니다. ${error}`);

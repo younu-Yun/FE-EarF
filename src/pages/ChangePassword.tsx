@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { DefaultInput } from 'components/User/DefaultInput';
+// import { ChangePassword } from 'components/common/Fetcher';
+
 import JoginIllust from '../assets/images/JoinIllust.jpg';
 
 function ChangePassword() {
@@ -53,17 +55,25 @@ function ChangePassword() {
 
     try {
       //비밀번호 변경 성공 시
-
-      //임시로 만든 api주소 → 추후 수정예정
-      const response = await axios.post('/api/user/change-password', {
+      const response = await axios.post('http://34.64.216.86/api/user/change', {
         currentPassword,
         newPassword,
       });
 
       alert('비밀번호 변경이 완료되었습니다. 다시 로그인해주세요.');
-      console.log(`비밀번호 변경이 완료되었습니다: ${response.data}`);
+      console.log(response.data);
 
       navigate('/login');
+
+      /*
+      //Fetcher 사용
+      const data: any = await ChangePassword(currentPassword, newPassword);
+      
+      alert('비밀번호 변경이 완료되었습니다. 다시 로그인해주세요.');
+      console.log(data);
+
+      navigate('/login');
+      */
     } catch (error) {
       // 비밀번호 변경 실패 시
       console.error('비밀번호 변경에 실패했습니다:', error);

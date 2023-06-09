@@ -3,9 +3,10 @@ import axios from 'axios';
 import styles from './FindId.module.scss';
 import { Link } from 'react-router-dom';
 import { DefaultInput } from 'components/User/DefaultInput';
+import DefaultModal from '../components/common/DefaultModal';
+// import { FindId } from 'components/common/Fetcher';
 import JoginIllust from '../assets/images/JoinIllust.jpg';
 import AlertCircle from '../assets/icons/AlertCircle.svg';
-import DefaultModal from '../components/common/DefaultModal';
 
 interface User {
   name: string;
@@ -49,9 +50,14 @@ function FindId() {
         email,
         name,
       };
-      const response = await axios.post('http://localhost:3000/api/user/loginid', userData);
-
+      const response = await axios.post('http://34.64.216.86/api/user/loginid', userData);
       const foundUser = response.data;
+
+      /*
+        //Fetcher 사용
+        const data: any = await FindId(email, name);
+        const foundUser = data;
+        */
 
       if (foundUser) {
         setFoundId(foundUser.id);

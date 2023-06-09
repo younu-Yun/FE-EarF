@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { DefaultInput } from 'components/User/DefaultInput';
 import { SaveToken, SaveRefreshToken } from 'components/common/token';
-import loginImages from '../assets/images/login.jpg';
-import LoginIllust2 from '../assets/images/LoginIllust2.jpg';
+// import { userLogin } from 'components/common/Fetcher';
+
+import LoginIllust from '../assets/images/LoginIllust.jpg';
 
 function Login() {
   const [id, setId] = useState('');
@@ -33,16 +34,27 @@ function Login() {
 
     try {
       if (id !== '' && password !== '') {
-        const response = await axios.post('/api/auth', {
+        const userData = {
           id,
           password,
-        });
+        };
+        const response = await axios.post('/api/auth', userData);
 
         console.log('로그인에 성공했습니다:', response.data);
 
         const { accessToken, refreshToken } = response.data;
         SaveToken(accessToken);
         SaveRefreshToken(refreshToken);
+
+        /*
+        //Fetcher 사용
+        const data: any = await userLogin(id, password);
+        console.log('로그인에 성공했습니다:', data);
+
+        const { accessToken, refreshToken } = data;
+        SaveToken(accessToken);
+        SaveRefreshToken(refreshToken);
+        */
       }
     } catch (error) {
       console.error('로그인 요청 중 오류 발생:', error);
@@ -53,7 +65,7 @@ function Login() {
     <div className={styles.container}>
       <div>
         <div className={styles.image}>
-          <img src={LoginIllust2} alt='' />
+          <img src={LoginIllust} alt='' />
         </div>
         <div className={styles.form}>
           <form>

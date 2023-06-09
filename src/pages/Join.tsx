@@ -2,8 +2,8 @@ import styles from './Join.module.scss';
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import { SaveToken } from 'components/common/token';
 import { DefaultInput } from 'components/User/DefaultInput';
+// import { userJoin } from 'components/common/Fetcher';
 import JoginIllust from '../assets/images/JoinIllust.jpg';
 
 interface FormData {
@@ -99,15 +99,19 @@ const Join: React.FC = () => {
         const response = await axios.post('http://34.64.216.86/api/user/register', userData);
 
         console.log(userData);
-
-        console.error('회원 가입을 완료했습니다.', response.data);
-        alert('회원가입이 완료되었습니다. 로그인페이지로 이동합니다.');
-
-        // 토큰을 저장합니다.
-        const { accessToken } = response.data;
-        SaveToken(accessToken);
+        console.log('회원 가입을 완료했습니다.', response.data);
+        alert(response.data.message);
 
         navigate('/login');
+
+        /*
+        //Fetcher 사용
+        const data: any = await userLogin(formData.id, formData.password, formData.name, formData.email, formData.phone);
+        console.log('회원 가입을 완료했습니다.', data);
+        alert(data.message);
+
+        navigate('/login');
+        */
       } catch (error) {
         console.error('회원 가입 중 오류가 발생했습니다.', error);
       }
@@ -209,6 +213,7 @@ const Join: React.FC = () => {
                 />
               </div>
             </fieldset>
+
             <div className={styles.buttonBox}>
               <button type='submit'>가입하기</button>
             </div>
