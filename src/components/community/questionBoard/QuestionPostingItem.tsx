@@ -14,7 +14,7 @@ interface postItemProps {
   commentNums: number;
 }
 function QuestionPostingItem({ date, title, content, username, likeNums, commentNums }: postItemProps) {
-  const contentText = `${content.split('.').slice(0, 5).join('. ')} ...`;
+  const contentText = `${content.split('.').slice(0, 5).join('. ')}`;
 
   return (
     <li className={styles.container}>
