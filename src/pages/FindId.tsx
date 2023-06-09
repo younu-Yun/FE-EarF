@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { DefaultInput } from 'components/User/DefaultInput';
 import JoginIllust from '../assets/images/JoinIllust.jpg';
 import AlertCircle from '../assets/icons/AlertCircle.svg';
-import Modal from 'components/User/Modal';
+import DefaultModal from '../components/common/DefaultModal';
 
 interface User {
   name: string;
@@ -19,7 +19,7 @@ function FindId() {
   const [emailWarning, setEmailWarning] = useState('');
   const [nameWarning, setNameWarning] = useState('');
   const [idFoundWarning, setIdFoundWarning] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
 
   const handleFindId = async (e: FormEvent) => {
     e.preventDefault();
@@ -136,14 +136,14 @@ function FindId() {
       </div>
 
       {showModal && (
-        <Modal
+        <DefaultModal
           title='아이디찾기'
           content={
             <>
               <span>
                 <img src={AlertCircle} alt='안내' /> 회원님의 정보와 일치하는 아이디입니다.
               </span>
-              <p>{foundId}</p>
+              <p>{foundId}dbsdnwjd96</p>
             </>
           }
           button={
