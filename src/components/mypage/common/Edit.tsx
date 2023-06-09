@@ -1,12 +1,14 @@
 import styles from './Edit.module.scss';
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
 import { ReactComponent as UserIcon } from 'assets/icons/UserIcon.svg';
 import Button from 'components/common/Button';
 import camera from 'assets/images/camera.png';
 import { useNavigate } from 'react-router-dom';
-// import { userInfoChange } from 'api/Fetcher';
+import { userInfo } from 'api/Fetcher';
+import { userInfoChange } from 'api/Fetcher';
 
 interface FormValues {
+  id: string;
   name: string;
   email: string;
   phoneNumber: string;
@@ -17,11 +19,32 @@ function Edit() {
   const navigate = useNavigate();
   const [profileImage, setProfileImage] = useState<File | null>(null);
   const [formData, setFormData] = useState<FormValues>({
-    name: '불러온 이름',
-    email: 'abc@def.com',
-    phoneNumber: '010-1234-5678',
+    id: '',
+    name: '',
+    email: '',
+    phoneNumber: '',
     profileImage: null,
   });
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response: FormValues = await userInfo();
+        const { name, email, phoneNumber, profileImage, id } = response;
+        const userData = {
+          id,
+          name,
+          email,
+          phoneNumber,
+          profileImage,
+        };
+        setFormData(userData);
+      } catch (error) {
+        console.error('Error fetching user info:', error);
+      }
+    };
+    fetchUserInfo();
+  }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -46,6 +69,16 @@ function Edit() {
     navigate('/mypage/info');
   };
 
+  const handleUserInfoChange = async () => {
+    try {
+      const { name, email, phoneNumber } = formData;
+      await userInfoChange(name, email, phoneNumber);
+      navigate('/mypage/info');
+    } catch (error) {
+      console.error('수정에 실패했습니다.', error);
+    }
+  };
+
   return (
     <div className={styles.edit}>
       <form>
@@ -65,7 +98,7 @@ function Edit() {
         </div>
         <div className={styles.userInfo}>
           <label htmlFor='name'>아이디</label>
-          <input type='text' id='name' name='name' value={formData.name} />
+          <input type='text' id='name' name='name' value={formData.id} readOnly />
         </div>
         <div className={styles.userInfo}>
           <label htmlFor='name'>이름</label>
@@ -80,8 +113,7 @@ function Edit() {
           <input type='tel' id='phoneNumber' name='phoneNumber' value={formData.phoneNumber} onChange={handleChange} />
         </div>
         <div className={styles.buttonContainer}>
-          <Button text={'완료'} />
-          {/* onClick={handleSubmit} */}
+          <Button text={'완료'} onClick={handleUserInfoChange} />
           <Button text={'취소'} className={'whiteButton'} onClick={useNavigateToInfo} />
         </div>
       </form>

@@ -56,7 +56,7 @@ export async function ChangePassword(currentPassword: string, newPassword: strin
 
 // 유저 정보 획득
 export async function userInfo() {
-  return await Api.get(domain, '/user');
+  return await Api.get(domain, 'user');
 }
 
 // 로그아웃
@@ -77,7 +77,7 @@ export async function userInfoChange(
     phoneNumber: userPhoneNumber,
     profileImage: userProfileImage,
   };
-  return await Api.patch(domain, '/user', data);
+  return await Api.patch(domain, 'user', data);
 }
 
 // 대표 뱃지 변경
@@ -85,5 +85,5 @@ export async function checkedBadgeChange(checkedBadge: string) {
   const data = {
     checkedBadge: checkedBadge,
   };
-  return await Api.patch(domain, '/user', data);
+  return await Api.patch(domain, 'user', data);
 }
