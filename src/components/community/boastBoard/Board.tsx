@@ -1,16 +1,17 @@
 import SelectBox from './SelectBox';
-import BoastItem from './BoastItem';
-import BoastItemUnActive from './BoastItemUnActive';
+import BoastSwiper from './BoastSwiper';
+import 'swiper/css';
+import 'swiper/css/pagination';
 import styles from './Board.module.scss';
 
 function Board() {
   return (
     <div className={styles.container}>
-      <SelectBox />
+      <div className={styles.category}>
+        <SelectBox />
+      </div>
       <div className={styles.BoastItemsContainer}>
-        <BoastItemUnActive />
-        <BoastItem />
-        <BoastItemUnActive />
+        <BoastSwiper />
       </div>
     </div>
   );

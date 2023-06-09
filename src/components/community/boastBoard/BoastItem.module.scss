@@ -5,10 +5,16 @@
   gap: 1.5rem;
 
   position: relative;
-  width: 35rem;
+  width: 50rem;
+  margin: 1rem 0;
 
+  background: white;
   border-radius: 1rem;
   box-shadow: 0px 0px 10px rgba($color: #000000, $alpha: 0.1);
+  transition: transform 200ms ease-in;
+  &:active {
+    transform: scale(0.9);
+  }
 }
 
 .imgContainer {
@@ -30,7 +36,7 @@
 .profileContainer {
   position: absolute;
   top: 25rem;
-  left: 3rem;
+  left: 2rem;
   align-self: flex-start;
 
   .userProfile {
@@ -54,9 +60,9 @@
 }
 
 .userName {
-  align-self: flex-start;
-  margin-left: 14rem;
-  margin-top: 0.3rem;
+  align-self: flex-end;
+  margin-left: 12rem;
+  margin-top: 0.4rem;
 
   font-size: 16pt;
   font-weight: 500;
@@ -64,6 +70,7 @@
 .contentsContainer {
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   gap: 2rem;
 
   padding: 1rem 3rem 3rem 3rem;
@@ -77,5 +84,5 @@
 }
 
 .heartReaction {
-  align-self: flex-end;
+  align-self: flex-start;
 }

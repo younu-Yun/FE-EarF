@@ -1,6 +1,7 @@
 import Title from 'components/community/common/Title';
-import SideNav from 'components/community/common/SideNav';
 import Board from 'components/community/questionBoard/Board';
+import RightSideNav from 'components/community/common/RightSideNav';
+import LeftSideNav from 'components/community/common/LeftSideNav';
 import styles from './Community.module.scss';
 
 function Community() {
@@ -8,8 +9,9 @@ function Community() {
     <div className={styles.container}>
       <Title />
       <section className={styles.main}>
-        <SideNav />
+        <LeftSideNav />
         <Board />
+        <RightSideNav />
       </section>
     </div>
   );

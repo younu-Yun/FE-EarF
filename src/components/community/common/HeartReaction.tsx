@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ReactComponent as Heart } from 'assets/icons/Heart.svg';
-import styles from '../questionBoard/QuestionUserReaction.module.scss';
+import styles from './UserReaction.module.scss';
 
 function HeartReaction() {
   const token = localStorage.getItem('token');

@@ -1,18 +1,23 @@
 .main {
   display: flex;
   justify-content: space-between;
-  gap: 8rem;
+  gap: 4rem;
 
   width: 1140px;
-  margin: 6rem auto;
+  margin: 5rem auto;
 
   & > :first-child {
     flex-shrink: 0;
 
-    width: 23rem;
+    width: 18rem;
   }
 
-  & > :last-child {
+  & > :nth-child(2) {
     flex-grow: 1;
+  }
+  & > :last-child {
+    flex-shrink: 0;
+
+    width: 18rem;
   }
 }

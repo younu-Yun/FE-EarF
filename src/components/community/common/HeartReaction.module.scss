@@ -1,20 +1,11 @@
 @import 'color.scss';
 
-.container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 3rem;
-
-  margin: 3rem 0;
-}
 .reactionContainer {
   display: flex;
   align-items: center;
   gap: 0.6rem;
 
   cursor: pointer;
-
   .reactionNumber {
     font-size: 10pt;
     color: $--color--text3;
