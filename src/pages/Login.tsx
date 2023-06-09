@@ -1,6 +1,6 @@
 import styles from './Login.module.scss';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { DefaultInput } from 'components/User/DefaultInput';
 import { SaveToken, SaveRefreshToken } from 'components/common/token';
@@ -9,6 +9,7 @@ import { SaveToken, SaveRefreshToken } from 'components/common/token';
 import LoginIllust from '../assets/images/LoginIllust.jpg';
 
 function Login() {
+  const navigate = useNavigate();
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [idWarning, setIdWarning] = useState('');
@@ -31,20 +32,23 @@ function Login() {
     if (password === '') {
       setPasswordWarning('비밀번호를 입력해주세요');
     }
+    console.log(id, password);
 
     try {
       if (id !== '' && password !== '') {
         const userData = {
-          id,
-          password,
+          id: id,
+          password: password,
         };
-        const response = await axios.post('/api/auth', userData);
+        const response = await axios.post('http://34.64.216.86/api/auth', userData);
 
         console.log('로그인에 성공했습니다:', response.data);
 
         const { accessToken, refreshToken } = response.data;
         SaveToken(accessToken);
         SaveRefreshToken(refreshToken);
+
+        navigate('/calendar');
 
         /*
         //Fetcher 사용

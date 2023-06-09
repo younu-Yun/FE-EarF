@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import styles from './Header.module.scss';
 // import axios from 'axios';
@@ -8,10 +8,10 @@ import MainLogo from '../../assets/icons/MainLogo.svg';
 
 function Header(): JSX.Element {
   const navigate = useNavigate();
-  //토큰여부에 따라 로그인처리
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(Boolean(GetToken()));
-  const [showSideMenu, setShowSideMenu] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showSideMenu, setShowSideMenu] = useState(false);
 
+  // 로그아웃시 access, refrest 토큰 제거
   const handleLogout = () => {
     RemoveToken();
     setIsLoggedIn(false);
@@ -28,6 +28,16 @@ function Header(): JSX.Element {
   const handleMyPageClick = () => {
     navigate('/mypage');
   };
+
+  // 로그인 상태 변경 시 isLoggedIn 값 업데이트
+  const updateLoginStatus = () => {
+    const token = GetToken();
+    setIsLoggedIn(Boolean(token));
+  };
+
+  useEffect(() => {
+    updateLoginStatus();
+  }, [isLoggedIn]);
 
   return (
     <header>
