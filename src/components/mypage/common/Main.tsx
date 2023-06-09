@@ -1,12 +1,13 @@
 import styles from './Main.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'components/common/Button';
 import Modal from './Modal';
-// import { userInfo } from 'components/common/Fetcher';
+import { userInfo } from 'api/Fetcher';
 
 function Main() {
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
   const [showRemoveModal, setShowRemoveModal] = useState<boolean>(false);
+  const [user, setUser] = useState({});
 
   // Edit 모달
   const handleShowEditModal = (): void => {
@@ -29,7 +30,17 @@ function Main() {
   };
 
   // 유저 정보 불러오기
-  // const userData = userInfo();
+  // useEffect(() => {
+  //   const fetchUserInfo = async () => {
+  //     try {
+  //       const userData = await userInfo();
+  //       setUser(userData);
+  //     } catch (error) {
+  //       console.error('Error fetching user info:', error);
+  //     }
+  //   };
+  //   fetchUserInfo();
+  // }, []);
 
   return (
     <div className={styles.main}>
