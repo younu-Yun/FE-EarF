@@ -50,9 +50,9 @@ export async function ChangePassword(currentPassword: string, newPassword: strin
 }
 
 // 유저 정보 획득
-export async function userInfo() {
-  return await Api.get(domain, '/user');
-}
+// export async function userInfo() {
+//   return await Api.get(domain, '/user');
+// }
 
 // 로그아웃
 export async function userLogout() {

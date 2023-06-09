@@ -2,7 +2,7 @@ import styles from './Main.module.scss';
 import { useState } from 'react';
 import Button from 'components/common/Button';
 import Modal from './Modal';
-import { userInfo } from 'components/common/Fetcher';
+// import { userInfo } from 'components/common/Fetcher';
 
 function Main() {
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
@@ -29,14 +29,7 @@ function Main() {
   };
 
   // 유저 정보 불러오기
-  async function getUserInfo() {
-    try {
-      const userData = await userInfo();
-    } catch (error) {
-      console.error('유저 정보 불러오기 실패', error);
-    }
-  }
-  getUserInfo();
+  // const userData = userInfo();
 
   return (
     <div className={styles.main}>

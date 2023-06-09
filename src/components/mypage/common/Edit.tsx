@@ -3,7 +3,8 @@ import { useState, ChangeEvent } from 'react';
 import { ReactComponent as UserIcon } from 'assets/icons/UserIcon.svg';
 import Button from 'components/common/Button';
 import camera from 'assets/images/camera.png';
-import { userInfoChange } from 'components/common/Fetcher';
+import { useNavigate } from 'react-router-dom';
+// import { userInfoChange } from 'components/common/Fetcher';
 
 interface FormValues {
   name: string;
@@ -35,20 +36,24 @@ function Edit() {
     }
   };
 
-  const handleNavigateToInfo = (): void => {
-    window.location.href = '/mypage/info';
+  const useNavigateToInfo = () => {
+    const navigate = useNavigate();
+    navigate('/mypage/info');
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const { name, email, phoneNumber } = formData;
-    userInfoChange(name, email, phoneNumber);
-    // profileImage 전송 추가
-  };
+  // const handleSubmit = async (e: any) => {
+  //   e.preventDefault();
+  //   const { name, email, phoneNumber } = formData;
+  //   try {
+  //     await userInfoChange(name, email, phoneNumber);
+  //   } catch (error) {
+  //     console.error('유저 정보 변경 실패', error);
+  //   }
+  // };
 
   return (
     <div className={styles.edit}>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className={styles.profileImageBox}>
           {/* 프로필 이미지로 교체 */}
           <UserIcon />
@@ -65,7 +70,7 @@ function Edit() {
         </div>
         <div className={styles.userInfo}>
           <label htmlFor='name'>아이디</label>
-          <input type='text' id='name' name='name' value={'아이디는 고정값'} />
+          <input type='text' id='name' name='name' value={formData.name} />
         </div>
         <div className={styles.userInfo}>
           <label htmlFor='name'>이름</label>
@@ -81,7 +86,8 @@ function Edit() {
         </div>
         <div className={styles.buttonContainer}>
           <Button text={'완료'} />
-          <Button text={'취소'} className={'whiteButton'} onClick={handleNavigateToInfo} />
+          {/* onClick={handleSubmit} */}
+          <Button text={'취소'} className={'whiteButton'} onClick={useNavigateToInfo} />
         </div>
       </form>
     </div>

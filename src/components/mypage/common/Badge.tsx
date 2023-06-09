@@ -31,6 +31,7 @@ function Badge() {
       ))}
       {showModal && selectedImageIndex !== null && (
         <BadgeModal
+          type={BadgeList[selectedImageIndex].type}
           name={BadgeList[selectedImageIndex].name}
           imgSrc={BadgeList[selectedImageIndex].url}
           isGet={BadgeList[selectedImageIndex].isGet}

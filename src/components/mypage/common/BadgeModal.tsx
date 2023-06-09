@@ -1,8 +1,9 @@
 import styles from './BadgeModal.module.scss';
 import { ReactComponent as Exit } from 'assets/icons/Exit.svg';
 import Button from 'components/common/Button';
-
+import { checkedBadgeChange } from 'components/common/Fetcher';
 interface BadgeModalProps {
+  type: string;
   name: string;
   imgSrc: string;
   isGet: boolean;
@@ -10,11 +11,13 @@ interface BadgeModalProps {
   onClick: () => void;
 }
 
-function BadgeModal({ name, imgSrc, isGet, info, onClick }: BadgeModalProps) {
-  const handleCheckedBadge = () => {
-    // 대표 뱃지 설정하는 함수 추가
-    // post로 대표 뱃지 전달
-    console.log('버튼이 클릭되었습니다');
+function BadgeModal({ type, name, imgSrc, isGet, info, onClick }: BadgeModalProps) {
+  const handleCheckedBadge = async () => {
+    try {
+      await checkedBadgeChange(type);
+    } catch (error) {
+      console.error('대표 뱃지 변경 실패', error);
+    }
   };
   return (
     <div className={styles.modalBox}>

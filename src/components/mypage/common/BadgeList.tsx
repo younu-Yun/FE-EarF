@@ -62,11 +62,7 @@ function getBadges(user: User): string[] {
 }
 
 const badgeTypes = getBadges(user);
-// console.log(badgeTypes); ['신규', '최초']
-// ['신규', '최초', '연속', '텀블', '교통', '버켓', '커뮤'],
 
-// initialBadgeList
-// 후에 isGet 초기값을 모두 false로 변경
 const BadgeList: BadgeInfo[] = [
   {
     type: '신규',
@@ -119,7 +115,6 @@ const BadgeList: BadgeInfo[] = [
   },
 ];
 
-// 가져온 type을 바탕으로 기존의 BadgeList를 업데이트(있을 경우 true로 변경)
 function updateBadgeList(badgeTypes: string[], BadgeList: BadgeInfo[]): BadgeInfo[] {
   return BadgeList.map((badge) => {
     if (badgeTypes.includes(badge.type)) {
