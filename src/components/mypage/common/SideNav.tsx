@@ -1,4 +1,3 @@
-import axios from 'axios';
 import styles from './SideNav.module.scss';
 import { NavLink } from 'react-router-dom';
 import { userLogout } from 'api/Fetcher';
