@@ -41,7 +41,7 @@ function Header(): JSX.Element {
           </Link>
           <ul className={styles.menu}>
             <li>
-              <NavLink to='/calendar' className={({ isActive }) => (isActive ? 'active' : '')}>
+              <NavLink to='/calender' className={({ isActive }) => (isActive ? 'active' : '')}>
                 기록하기
               </NavLink>
             </li>
