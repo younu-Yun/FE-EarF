@@ -17,3 +17,15 @@ export interface PostInput {
   title: string;
   content: string;
 }
+
+export type TFormData = {
+  tag: string[];
+  file: File | null;
+  title: string;
+  content: string;
+  shareStatus: boolean;
+};
+
+export interface CheckboxesState {
+  [key: string]: boolean;
+}
