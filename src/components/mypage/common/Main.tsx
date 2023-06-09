@@ -2,6 +2,7 @@ import styles from './Main.module.scss';
 import { useState } from 'react';
 import Button from 'components/common/Button';
 import Modal from './Modal';
+import { userInfo } from 'components/common/Fetcher';
 
 function Main() {
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
@@ -27,27 +28,36 @@ function Main() {
     console.log('회원 탈퇴 버튼 클릭');
   };
 
+  // 유저 정보 불러오기
+  async function getUserInfo() {
+    try {
+      const userData = await userInfo();
+    } catch (error) {
+      console.error('유저 정보 불러오기 실패', error);
+    }
+  }
+  getUserInfo();
+
   return (
     <div className={styles.main}>
       {showEditModal && <Modal handleShowModal={handleShowEditModal} handleNavigateToEdit={handleNavigateToEdit} />}
       {showRemoveModal && <Modal handleShowModal={handleShowRemoveModal} handleNavigateToEdit={handleRemoveAccount} />}
       <div className={styles.profile}>
         <div className={styles.imgContainer}></div>
-        <div className={styles.userId}>나는유저</div>
+        {/* <div className={styles.userId}>{userData.id}</div> */}
       </div>
-      {/* 컴포넌트로 추출해 사용하는 리펙토링 진행하기*/}
       <div className={styles.dataFiledSet}>
         <div className={styles.dataFiled}>
           <div className={styles.fixedData}>이름</div>
-          <div className={styles.fetchData}>김길동</div>
+          {/* <div className={styles.fetchData}>{userData.name}</div> */}
         </div>
         <div className={styles.dataFiled}>
           <div className={styles.fixedData}>이메일</div>
-          <div className={styles.fetchData}>abc@elice.com</div>
+          {/* <div className={styles.fetchData}>{userData.email}</div> */}
         </div>
         <div className={styles.dataFiled}>
           <div className={styles.fixedData}>전화번호</div>
-          <div className={styles.fetchData}>010-1234-5678</div>
+          {/* <div className={styles.fetchData}>{userData.phoneNumber}</div> */}
         </div>
       </div>
       <div className={styles.buttonContainer}>
