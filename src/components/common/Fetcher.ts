@@ -1,23 +1,13 @@
 import * as Api from './ApiRequest';
 
-<<<<<<< HEAD
-const domain = `api주소`;
-
-// 로그인
-async function userLogin(userId: string, password: string) {
-=======
-const domain = `http://34.64.216.86/api/`;
+const domain = `http://34.64.216.86/api`;
 
 // 로그인
 export async function userLogin(userId: string, password: string) {
->>>>>>> 38a03a9 (Feat: Fetcher 추가)
   const data = {
     id: userId,
     password: password,
   };
-<<<<<<< HEAD
-  return await Api.post(domain, 'login', data, false);
-=======
   return await Api.post(domain, 'auth', data);
 }
 
@@ -57,5 +47,38 @@ export async function ChangePassword(currentPassword: string, newPassword: strin
     newPassword: newPassword,
   };
   return await Api.post(domain, 'user/change', data);
->>>>>>> 38a03a9 (Feat: Fetcher 추가)
+}
+
+// 유저 정보 획득
+export async function userInfo() {
+  return await Api.get(domain, '/user');
+}
+
+// 로그아웃
+export async function userLogout() {
+  return await Api.get(domain, '/auth/logout');
+}
+
+// 유저 정보 변경
+export async function userInfoChange(
+  userName: string,
+  userEmail: string,
+  userPhoneNumber: string,
+  userProfileImage?: string
+) {
+  const data = {
+    name: userName,
+    email: userEmail,
+    phoneNumber: userPhoneNumber,
+    profileImage: userProfileImage,
+  };
+  return await Api.patch(domain, '/user', data);
+}
+
+// 대표 뱃지 변경
+export async function checkedBadgeChange(checkedBadge: string) {
+  const data = {
+    checkedBadge: checkedBadge,
+  };
+  return await Api.patch(domain, '/user', data);
 }
