@@ -36,9 +36,7 @@ const options: ChartOptions<'doughnut'> = {
 };
 
 export default function IsReportDataDiary() {
-  // React.useEffect(() => {
   Chart.register(ArcElement, Tooltip, Legend);
-  // }, []);
 
   return (
     <div className={styles.reportContainer}>
