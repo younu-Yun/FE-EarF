@@ -1,7 +1,7 @@
 import axios from 'axios';
 import styles from './SideNav.module.scss';
 import { NavLink } from 'react-router-dom';
-import { userLogout } from 'components/common/Fetcher';
+import { userLogout } from 'api/Fetcher';
 
 interface NavLinkItem {
   to: string;

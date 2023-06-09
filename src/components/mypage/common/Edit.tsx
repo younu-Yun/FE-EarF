@@ -4,7 +4,7 @@ import { ReactComponent as UserIcon } from 'assets/icons/UserIcon.svg';
 import Button from 'components/common/Button';
 import camera from 'assets/images/camera.png';
 import { useNavigate } from 'react-router-dom';
-// import { userInfoChange } from 'components/common/Fetcher';
+// import { userInfoChange } from 'api/Fetcher';
 
 interface FormValues {
   name: string;

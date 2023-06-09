@@ -2,7 +2,7 @@ import styles from './Main.module.scss';
 import { useState } from 'react';
 import Button from 'components/common/Button';
 import Modal from './Modal';
-// import { userInfo } from 'components/common/Fetcher';
+// import { userInfo } from 'api/Fetcher';
 
 function Main() {
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
