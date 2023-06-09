@@ -1,6 +1,3 @@
-// import jwt_decode from 'jwt-decode';
-// import URL from './server_url';
-
 function GetToken(): string | null {
   return localStorage.getItem('token');
 }
