@@ -2,7 +2,7 @@ import axios from 'axios';
 
 interface RequestParams<T> {
   endpoint: string;
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+  method: 'GET' | 'POST' | 'PATCH' | 'DELETE';
   params?: string;
   data?: any;
   requiresToken?: boolean;
@@ -51,10 +51,10 @@ const get = <T>(endpoint: string, params = '', requiresToken = true): Promise<T>
 const post = <T>(endpoint: string, params = '', data: any, requiresToken = true): Promise<T> =>
   request<T>({ endpoint, method: 'POST', params, data, requiresToken });
 
-const put = <T>(endpoint: string, params = '', data: any, requiresToken = true): Promise<T> =>
-  request<T>({ endpoint, method: 'PUT', params, data, requiresToken });
+const patch = <T>(endpoint: string, params = '', data: any, requiresToken = true): Promise<T> =>
+  request<T>({ endpoint, method: 'PATCH', params, data, requiresToken });
 
 const del = <T>(endpoint: string, params = '', data: any = {}, requiresToken = true): Promise<T> =>
   request<T>({ endpoint, method: 'DELETE', params, data, requiresToken });
 
-export { get, post, put, del as delete };
+export { get, post, patch, del as delete };

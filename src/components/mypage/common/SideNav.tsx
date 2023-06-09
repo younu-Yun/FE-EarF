@@ -1,8 +1,7 @@
 import axios from 'axios';
 import styles from './SideNav.module.scss';
 import { NavLink } from 'react-router-dom';
-
-const SERVER_URL = 'http://localhost:3000';
+import { userLogout } from 'components/common/Fetcher';
 
 interface NavLinkItem {
   to: string;
@@ -18,8 +17,8 @@ const navLinks: NavLinkItem[] = [
 function SideNav() {
   async function handleLogout() {
     try {
-      await axios.get(`${SERVER_URL}/api/user/logout`);
-      // 로그아웃이 됐다는 알림을 modal로?
+      await userLogout();
+      localStorage.removeItem('token');
     } catch (error) {
       console.error('로그아웃 실패', error);
     }
