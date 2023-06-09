@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { DefaultInput } from 'components/User/DefaultInput';
+// import { ChangePassword } from 'components/common/Fetcher';
+
+import JoginIllust from '../assets/images/JoinIllust.jpg';
 
 function ChangePassword() {
   const navigate = useNavigate();
@@ -52,17 +55,25 @@ function ChangePassword() {
 
     try {
       //비밀번호 변경 성공 시
-
-      //임시로 만든 api주소 → 추후 수정예정
-      const response = await axios.post('/api/user/change-password', {
+      const response = await axios.post('http://34.64.216.86/api/user/change', {
         currentPassword,
         newPassword,
       });
 
       alert('비밀번호 변경이 완료되었습니다. 다시 로그인해주세요.');
-      console.log(`비밀번호 변경이 완료되었습니다: ${response.data}`);
+      console.log(response.data);
 
       navigate('/login');
+
+      /*
+      //Fetcher 사용
+      const data: any = await ChangePassword(currentPassword, newPassword);
+      
+      alert('비밀번호 변경이 완료되었습니다. 다시 로그인해주세요.');
+      console.log(data);
+
+      navigate('/login');
+      */
     } catch (error) {
       // 비밀번호 변경 실패 시
       console.error('비밀번호 변경에 실패했습니다:', error);
@@ -71,54 +82,65 @@ function ChangePassword() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>
-        <h2>비밀번호 변경</h2>
-      </div>
-      <div className={styles.form}>
-        <form onSubmit={handleSubmit}>
-          <fieldset>
-            <legend>비밀번호 변경</legend>
+      <div>
+        <div className={styles.image}>
+          <img src={JoginIllust} alt='아이디찾기 일러스트' />
+        </div>
 
-            <DefaultInput
-              inputProps={{
-                type: 'password',
-                id: 'currentPassword',
-                value: currentPassword,
-                onChange: handleCurrentPasswordChange,
-              }}
-              label='현재 비밀번호'
-              showWarning={showWarning && currentPassword.length === 0}
-              warning='비밀번호를 입력해주세요.'
-            />
+        <div className={styles.form}>
+          <form onSubmit={handleSubmit}>
+            <fieldset>
+              <legend>비밀번호 변경</legend>
+              <div className={styles.logo}>
+                <span>EarF</span>
+              </div>
+              <div className={styles.title}>
+                <h2>비밀번호 변경</h2>
+                <p>비밀번호를 변경해주세요.</p>
+              </div>
+              <div>
+                <DefaultInput
+                  inputProps={{
+                    type: 'password',
+                    id: 'currentPassword',
+                    value: currentPassword,
+                    onChange: handleCurrentPasswordChange,
+                  }}
+                  label='현재 비밀번호'
+                  showWarning={showWarning && currentPassword.length === 0}
+                  warning='비밀번호를 입력해주세요.'
+                />
 
-            <DefaultInput
-              inputProps={{
-                type: 'password',
-                id: 'newPassword',
-                value: newPassword,
-                onChange: handleNewPasswordChange,
-              }}
-              label='새로운 비밀번호'
-              showWarning={showWarning && newPassword.length < 8}
-              warning='비밀번호를 8자 이상 입력해주세요.'
-            />
+                <DefaultInput
+                  inputProps={{
+                    type: 'password',
+                    id: 'newPassword',
+                    value: newPassword,
+                    onChange: handleNewPasswordChange,
+                  }}
+                  label='새로운 비밀번호'
+                  showWarning={showWarning && newPassword.length < 8}
+                  warning='비밀번호를 8자 이상 입력해주세요.'
+                />
 
-            <DefaultInput
-              inputProps={{
-                type: 'password',
-                id: 'confirmPassword',
-                value: confirmPassword,
-                onChange: handleConfirmPasswordChange,
-              }}
-              label='비밀번호 확인'
-              showWarning={showWarning && (confirmPassword.length === 0 || newPassword !== confirmPassword)}
-              warning='비밀번호가 다릅니다.'
-            />
-          </fieldset>
-          <div className={styles.buttonBox}>
-            <button type='submit'>변경하기</button>
-          </div>
-        </form>
+                <DefaultInput
+                  inputProps={{
+                    type: 'password',
+                    id: 'confirmPassword',
+                    value: confirmPassword,
+                    onChange: handleConfirmPasswordChange,
+                  }}
+                  label='비밀번호 확인'
+                  showWarning={showWarning && (confirmPassword.length === 0 || newPassword !== confirmPassword)}
+                  warning='비밀번호가 다릅니다.'
+                />
+              </div>
+            </fieldset>
+            <div className={styles.buttonBox}>
+              <button type='submit'>변경하기</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

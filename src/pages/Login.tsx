@@ -3,7 +3,10 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { DefaultInput } from 'components/User/DefaultInput';
-import loginImages from '../assets/images/login.jpg';
+import { SaveToken, SaveRefreshToken } from 'components/common/token';
+// import { userLogin } from 'components/common/Fetcher';
+
+import LoginIllust from '../assets/images/LoginIllust.jpg';
 
 function Login() {
   const [id, setId] = useState('');
@@ -31,12 +34,27 @@ function Login() {
 
     try {
       if (id !== '' && password !== '') {
-        const response = await axios.post('/api/login', {
+        const userData = {
           id,
           password,
-        });
+        };
+        const response = await axios.post('/api/auth', userData);
 
         console.log('로그인에 성공했습니다:', response.data);
+
+        const { accessToken, refreshToken } = response.data;
+        SaveToken(accessToken);
+        SaveRefreshToken(refreshToken);
+
+        /*
+        //Fetcher 사용
+        const data: any = await userLogin(id, password);
+        console.log('로그인에 성공했습니다:', data);
+
+        const { accessToken, refreshToken } = data;
+        SaveToken(accessToken);
+        SaveRefreshToken(refreshToken);
+        */
       }
     } catch (error) {
       console.error('로그인 요청 중 오류 발생:', error);
@@ -47,21 +65,18 @@ function Login() {
     <div className={styles.container}>
       <div>
         <div className={styles.image}>
-          <img src={loginImages} alt='' />
+          <img src={LoginIllust} alt='' />
         </div>
         <div className={styles.form}>
           <form>
             <fieldset>
               <legend>로그인</legend>
               <div className={styles.logo}>
-                <div>
-                  <img src='' alt='' />
-                </div>
                 <span>EarF</span>
               </div>
               <div className={styles.title}>
                 <h2>로그인</h2>
-                <p>Welcome back! Please enter your details</p>
+                <p>실천하고, 기록하고, 공유해보세요!</p>
               </div>
               <div>
                 <DefaultInput
@@ -93,9 +108,14 @@ function Login() {
                 </button>
               </div>
               <div className={styles.linkBox}>
-                <Link to='/join'>회원가입</Link>
                 <Link to='/find_id'>아이디 찾기</Link>
                 <Link to='/find_password'>비밀번호 찾기</Link>
+              </div>
+              <div className={styles.border}>
+                <span>회원이 아니신가요?</span>
+              </div>
+              <div className={styles.buttonBox}>
+                <Link to='/join'>회원가입</Link>
               </div>
             </fieldset>
           </form>

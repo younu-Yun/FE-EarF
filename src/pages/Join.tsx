@@ -1,8 +1,10 @@
 import styles from './Join.module.scss';
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { DefaultInput } from 'components/User/DefaultInput';
+// import { userJoin } from 'components/common/Fetcher';
+import JoginIllust from '../assets/images/JoinIllust.jpg';
 
 interface FormData {
   id: string;
@@ -27,10 +29,10 @@ const Join: React.FC = () => {
   const [warningMessages, setWarningMessages] = useState<Record<string, string>>({});
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { id, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [id]: value,
     }));
   };
 
@@ -94,14 +96,22 @@ const Join: React.FC = () => {
           phoneNumber: formData.phone,
         };
 
-        const response = await axios.post('http://localhost:3000/api/users/signup', userData);
+        const response = await axios.post('http://34.64.216.86/api/user/register', userData);
 
         console.log(userData);
-
-        console.error('회원 가입을 완료했습니다.', response.data);
-        alert('회원가입이 완료되었습니다. 로그인페이지로 이동합니다.');
+        console.log('회원 가입을 완료했습니다.', response.data);
+        alert(response.data.message);
 
         navigate('/login');
+
+        /*
+        //Fetcher 사용
+        const data: any = await userLogin(formData.id, formData.password, formData.name, formData.email, formData.phone);
+        console.log('회원 가입을 완료했습니다.', data);
+        alert(data.message);
+
+        navigate('/login');
+        */
       } catch (error) {
         console.error('회원 가입 중 오류가 발생했습니다.', error);
       }
@@ -112,91 +122,103 @@ const Join: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>
-        <h2>회원가입</h2>
-      </div>
-      <div className={styles.form}>
-        <form onSubmit={handleSubmit}>
-          <fieldset>
-            <legend>회원가입</legend>
+      <div>
+        <div className={styles.image}>
+          <img src={JoginIllust} alt='회원가입 일러스트' />
+        </div>
+        <div className={styles.form}>
+          <form onSubmit={handleSubmit}>
+            <fieldset>
+              <legend>회원가입</legend>
+              <div className={styles.logo}>
+                <span>EarF</span>
+              </div>
+              <div className={styles.title}>
+                <h2>회원가입</h2>
+                <p>
+                  이미 계정이 있으신가요? <Link to='/login'>로그인</Link>
+                </p>
+              </div>
+              <div>
+                <DefaultInput
+                  inputProps={{
+                    type: 'text',
+                    id: 'id',
+                    value: formData.id,
+                    onChange: handleChange,
+                  }}
+                  label='아이디'
+                  showWarning={!!warningMessages.id}
+                  warning={warningMessages.id}
+                />
 
-            <DefaultInput
-              inputProps={{
-                type: 'text',
-                id: 'id',
-                value: formData.id,
-                onChange: handleChange,
-              }}
-              label='아이디'
-              showWarning={!!warningMessages.id}
-              warning={warningMessages.id}
-            />
+                <DefaultInput
+                  inputProps={{
+                    type: 'password',
+                    id: 'password',
+                    value: formData.password,
+                    onChange: handleChange,
+                  }}
+                  label='비밀번호'
+                  showWarning={!!warningMessages.password}
+                  warning={warningMessages.password}
+                />
 
-            <DefaultInput
-              inputProps={{
-                type: 'password',
-                id: 'password',
-                value: formData.password,
-                onChange: handleChange,
-              }}
-              label='비밀번호'
-              showWarning={!!warningMessages.password}
-              warning={warningMessages.password}
-            />
+                <DefaultInput
+                  inputProps={{
+                    type: 'password',
+                    id: 'confirmPassword',
+                    value: formData.confirmPassword,
+                    onChange: handleChange,
+                  }}
+                  label='비밀번호 확인'
+                  showWarning={!!warningMessages.confirmPassword}
+                  warning={warningMessages.confirmPassword}
+                />
 
-            <DefaultInput
-              inputProps={{
-                type: 'password',
-                id: 'confirmPassword',
-                value: formData.confirmPassword,
-                onChange: handleChange,
-              }}
-              label='비밀번호 확인'
-              showWarning={!!warningMessages.confirmPassword}
-              warning={warningMessages.confirmPassword}
-            />
+                <DefaultInput
+                  inputProps={{
+                    type: 'text',
+                    id: 'name',
+                    value: formData.name,
+                    onChange: handleChange,
+                  }}
+                  label='이름'
+                  showWarning={!!warningMessages.name}
+                  warning={warningMessages.name}
+                />
 
-            <DefaultInput
-              inputProps={{
-                type: 'email',
-                id: 'email',
-                value: formData.email,
-                onChange: handleChange,
-              }}
-              label='이메일'
-              showWarning={!!warningMessages.email}
-              warning={warningMessages.email}
-            />
+                <DefaultInput
+                  inputProps={{
+                    type: 'email',
+                    id: 'email',
+                    value: formData.email,
+                    onChange: handleChange,
+                  }}
+                  label='이메일'
+                  showWarning={!!warningMessages.email}
+                  warning={warningMessages.email}
+                />
 
-            <DefaultInput
-              inputProps={{
-                type: 'text',
-                id: 'phone',
-                value: formData.phone,
-                onChange: handleChange,
-              }}
-              label='전화번호'
-              showWarning={!!warningMessages.phone}
-              warning={warningMessages.phone}
-            />
+                <DefaultInput
+                  inputProps={{
+                    type: 'text',
+                    id: 'phone',
+                    value: formData.phone,
+                    onChange: handleChange,
+                  }}
+                  label='전화번호'
+                  showWarning={!!warningMessages.phone}
+                  warning={warningMessages.phone}
+                />
+              </div>
+            </fieldset>
 
-            <DefaultInput
-              inputProps={{
-                type: 'text',
-                id: 'name',
-                value: formData.name,
-                onChange: handleChange,
-              }}
-              label='이름'
-              showWarning={!!warningMessages.name}
-              warning={warningMessages.name}
-            />
-          </fieldset>
-
-          <div className={styles.buttonBox}>
-            <button type='submit'>가입하기</button>
-          </div>
-        </form>
+            <div className={styles.buttonBox}>
+              <button type='submit'>가입하기</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
