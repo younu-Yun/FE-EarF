@@ -9,7 +9,7 @@ const data = {
   shareStatus: true,
 };
 
-export default function IsDataDiary() {
+export default function IsPostDataDiary() {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(data.title);
   const [editedContent, setEditedContent] = useState(data.content);
@@ -29,7 +29,7 @@ export default function IsDataDiary() {
   const combinedTags = data.tag.join(', ');
 
   return (
-    <div className={styles.container}>
+    <>
       <div className={styles.postContainer}>
         <div className={styles.postItemWrapper}>
           <div className={styles.tagImg}>.</div>
@@ -61,6 +61,6 @@ export default function IsDataDiary() {
         {isEditing ? <button onClick={handleSaveClick}>완료</button> : <button onClick={handleEditClick}>수정</button>}
         <button>삭제</button>
       </div>
-    </div>
+    </>
   );
 }
