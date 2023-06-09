@@ -1,0 +1,30 @@
+@import 'color.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  width: 100%;
+  padding: 1.4rem 2rem;
+  & > p {
+    font-size: 10pt;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  & > div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &:hover {
+    background: $--color--background;
+  }
+}
+
+.userName {
+  font-size: 10pt;
+  font-weight: 600;
+  color: $--color--text2;
+}

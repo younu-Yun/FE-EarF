@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import UserProfile from './sideNav/MyProfile';
-import styles from './SideNav.module.scss';
+import styles from './LeftSideNav.module.scss';
 
-function SideNav() {
+function LeftSideNav() {
   return (
     <div>
       <aside className={styles.container}>
         <UserProfile />
-        <hr />
+
         <nav>
           <ul>
             <Link to='/community'>
@@ -25,4 +25,4 @@ function SideNav() {
   );
 }
 
-export default SideNav;
+export default LeftSideNav;

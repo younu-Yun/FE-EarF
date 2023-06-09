@@ -3,7 +3,7 @@ import { User, QuestionPost, PostInput } from 'types/types';
 
 export const api = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://api주소경로.com' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://34.64.216.86/api' }),
   tagTypes: ['User'],
   endpoints: (builder) => ({
     getUserInfo: builder.query<User, void>({
@@ -16,7 +16,11 @@ export const api = createApi({
       }),
     }),
     // 커뮤니티 게시판 게시글 get Api
-    getCommunityPosts: builder.query<QuestionPost[], string>({
+    getCommunityPosts: builder.query<QuestionPost[], number | void>({
+      query: (page) => `/community${page ? `?page=${page}` : ''}`,
+    }),
+    // 커뮤니티 게시판 게시글 sort get Api
+    getSortedCommunityPosts: builder.query<QuestionPost[], number>({
       query: (sort) => `/community${sort ? `?sort=${sort}` : ''}`,
     }),
     // 커뮤니티 게시글 등록 post Api

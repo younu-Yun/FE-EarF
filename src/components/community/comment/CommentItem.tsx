@@ -1,6 +1,6 @@
 import HeartReaction from '../common/HeartReaction';
 import styles from './CommentItem.module.scss';
-import UserProfileImage from './UserProfileImage';
+import UserProfileImage from '../common/sideNav/UserProfile';
 
 function CommentItem() {
   return (

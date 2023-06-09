@@ -6,8 +6,6 @@
   align-items: center;
   gap: 4rem;
 
-  padding: 4rem 0;
-  background: $--color--background;
   border-radius: 1rem;
 
   hr {
@@ -19,7 +17,7 @@
   }
 
   nav {
-    font-size: 16pt;
+    font-size: 14pt;
     text-align: center;
 
     ul {
@@ -31,8 +29,12 @@
 
       li {
         position: relative;
-
+        color: $--color--text3;
         cursor: pointer;
+
+        &:hover {
+          color: $--color--text1;
+        }
 
         &::after {
           position: absolute;

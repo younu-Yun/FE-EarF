@@ -1,0 +1,32 @@
+@import 'color.scss';
+
+.questionContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 34rem;
+  height: 14rem;
+  padding: 2rem;
+
+  border: 1px solid $--color--border;
+  border-radius: 1rem;
+
+  list-style-type: none;
+
+  & > p:first-child {
+    font-size: 10pt;
+    font-weight: 600;
+  }
+
+  & > :nth-child(2) {
+    font-size: 12pt;
+    font-weight: 500;
+  }
+
+  & > p:last-child {
+    font-size: 10pt;
+    text-align: right;
+    font-weight: 400;
+    color: $--color--text3;
+  }
+}
