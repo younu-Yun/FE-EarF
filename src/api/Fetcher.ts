@@ -15,3 +15,75 @@ export async function getCommunityPosts(number?: string) {
   const params = number ? `community/questions?page=${number}?sort=latest` : `community/questions?page=1?sort=latest`;
   return await Api.get(domain, params, false);
 }
+
+//회원가입
+export async function userJoin(userId: string, password: string, name: string, email: string, phone: string) {
+  const data = {
+    id: userId,
+    password: password,
+    name: name,
+    email: email,
+    phoneNumber: phone,
+  };
+  return await Api.post(domain, 'user/register', data);
+}
+
+//아이디찾기
+export async function FindId(email: string, name: string) {
+  const data = {
+    email: email,
+    name: name,
+  };
+  return await Api.post(domain, 'user/loginid', data);
+}
+
+//비밀번호 찾기
+export async function FindPassword(email: string) {
+  const data = {
+    email: email,
+  };
+  return await Api.post(domain, 'user/reset', data);
+}
+
+//비밀번호 변경
+export async function ChangePassword(currentPassword: string, newPassword: string) {
+  const data = {
+    currentPassword: currentPassword,
+    newPassword: newPassword,
+  };
+  return await Api.post(domain, 'user/change', data);
+}
+
+// 유저 정보 획득
+export async function userInfo() {
+  return await Api.get(domain, '/user');
+}
+
+// 로그아웃
+export async function userLogout() {
+  return await Api.get(domain, '/auth/logout');
+}
+
+// 유저 정보 변경
+export async function userInfoChange(
+  userName: string,
+  userEmail: string,
+  userPhoneNumber: string,
+  userProfileImage?: string
+) {
+  const data = {
+    name: userName,
+    email: userEmail,
+    phoneNumber: userPhoneNumber,
+    profileImage: userProfileImage,
+  };
+  return await Api.patch(domain, '/user', data);
+}
+
+// 대표 뱃지 변경
+export async function checkedBadgeChange(checkedBadge: string) {
+  const data = {
+    checkedBadge: checkedBadge,
+  };
+  return await Api.patch(domain, '/user', data);
+}

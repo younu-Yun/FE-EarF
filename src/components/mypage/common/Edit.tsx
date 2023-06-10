@@ -4,22 +4,24 @@ import { ReactComponent as UserIcon } from 'assets/icons/UserIcon.svg';
 import Button from 'components/common/Button';
 import camera from 'assets/images/camera.png';
 import { useNavigate } from 'react-router-dom';
-// import { userInfoChange } from 'components/common/Fetcher';
+// import { userInfoChange } from 'api/Fetcher';
 
 interface FormValues {
   name: string;
   email: string;
   phoneNumber: string;
+  profileImage: File | null;
 }
 
 function Edit() {
+  const navigate = useNavigate();
+  const [profileImage, setProfileImage] = useState<File | null>(null);
   const [formData, setFormData] = useState<FormValues>({
     name: '불러온 이름',
     email: 'abc@def.com',
     phoneNumber: '010-1234-5678',
+    profileImage: null,
   });
-
-  const [profileImage, setProfileImage] = useState<File | null>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -33,29 +35,21 @@ function Edit() {
     const file = e.target.files?.[0];
     if (file) {
       setProfileImage(file);
+      setFormData((prevData) => ({
+        ...prevData,
+        profileImage: file,
+      }));
     }
   };
 
   const useNavigateToInfo = () => {
-    const navigate = useNavigate();
     navigate('/mypage/info');
   };
-
-  // const handleSubmit = async (e: any) => {
-  //   e.preventDefault();
-  //   const { name, email, phoneNumber } = formData;
-  //   try {
-  //     await userInfoChange(name, email, phoneNumber);
-  //   } catch (error) {
-  //     console.error('유저 정보 변경 실패', error);
-  //   }
-  // };
 
   return (
     <div className={styles.edit}>
       <form>
         <div className={styles.profileImageBox}>
-          {/* 프로필 이미지로 교체 */}
           <UserIcon />
           <label htmlFor='profileImage' className={styles.camera}>
             <img src={camera} alt='카메라'></img>
@@ -64,6 +58,7 @@ function Edit() {
             type='file'
             id='profileImage'
             name='profileImage'
+            accept='image/*'
             onChange={handleImageChange}
             style={{ display: 'none' }}
           />
