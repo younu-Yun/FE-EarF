@@ -69,7 +69,7 @@ export async function userInfoChange(
   userName: string,
   userEmail: string,
   userPhoneNumber: string,
-  userProfileImage?: string
+  userProfileImage?: string | File
 ) {
   const data = {
     name: userName,

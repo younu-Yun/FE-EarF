@@ -1,36 +1,33 @@
 import styles from './Edit.module.scss';
 import { useState, ChangeEvent, useEffect } from 'react';
-import { ReactComponent as UserIcon } from 'assets/icons/UserIcon.svg';
 import Button from 'components/common/Button';
 import camera from 'assets/images/camera.png';
 import { useNavigate } from 'react-router-dom';
-import { userInfo } from 'api/Fetcher';
-import { userInfoChange } from 'api/Fetcher';
-
+import { userInfo, userInfoChange } from 'api/Fetcher';
+import defaultProfile from 'assets/icons/UserIcon.svg';
 interface FormValues {
   id: string;
   name: string;
   email: string;
   phoneNumber: string;
-  profileImage: File | null;
+  profileImage: File | string;
 }
 
 function Edit() {
   const navigate = useNavigate();
-  const [profileImage, setProfileImage] = useState<File | null>(null);
+  const [profileImage, setProfileImage] = useState<string>('');
   const [formData, setFormData] = useState<FormValues>({
     id: '',
     name: '',
     email: '',
     phoneNumber: '',
-    profileImage: null,
+    profileImage: '',
   });
 
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response: FormValues = await userInfo();
-        const { name, email, phoneNumber, profileImage, id } = response;
+        const { name, email, phoneNumber, profileImage, id }: FormValues = await userInfo();
         const userData = {
           id,
           name,
@@ -57,7 +54,12 @@ function Edit() {
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setProfileImage(file);
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setProfileImage(reader.result);
+        console.log('file', file);
+      };
       setFormData((prevData) => ({
         ...prevData,
         profileImage: file,
@@ -65,15 +67,18 @@ function Edit() {
     }
   };
 
-  const useNavigateToInfo = () => {
-    navigate('/mypage/info');
+  const useNavigateToChangePassword = () => {
+    navigate('/change_password');
   };
 
-  const handleUserInfoChange = async () => {
+  const handleUserInfoChange = async (e) => {
+    e.preventDefault();
     try {
-      const { name, email, phoneNumber } = formData;
-      await userInfoChange(name, email, phoneNumber);
-      navigate('/mypage/info');
+      const { name, email, phoneNumber, profileImage } = formData;
+      await userInfoChange(name, email, phoneNumber, profileImage);
+      console.log(name, email, phoneNumber, profileImage);
+      console.log(formData);
+      // navigate('/mypage/info');
     } catch (error) {
       console.error('수정에 실패했습니다.', error);
     }
@@ -83,7 +88,7 @@ function Edit() {
     <div className={styles.edit}>
       <form>
         <div className={styles.profileImageBox}>
-          <UserIcon />
+          <img src={profileImage ? profileImage : `${defaultProfile}`} alt='프로필' />
           <label htmlFor='profileImage' className={styles.camera}>
             <img src={camera} alt='카메라'></img>
           </label>
@@ -114,7 +119,7 @@ function Edit() {
         </div>
         <div className={styles.buttonContainer}>
           <Button text={'완료'} onClick={handleUserInfoChange} />
-          <Button text={'취소'} className={'whiteButton'} onClick={useNavigateToInfo} />
+          <Button text={'비밀번호 변경하기'} className={'whiteButton'} onClick={useNavigateToChangePassword} />
         </div>
       </form>
     </div>
