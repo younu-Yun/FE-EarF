@@ -47,7 +47,7 @@ function Main() {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const { name, email, id, phoneNumber, profileImage }: UserData = await userInfo();
+        const { name, email, id, phoneNumber, profileImage }: UserData = (await userInfo()) as UserData;
         const userData = {
           name,
           email,

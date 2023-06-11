@@ -27,7 +27,7 @@ function Edit() {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const { name, email, phoneNumber, profileImage, id }: FormValues = await userInfo();
+        const { name, email, phoneNumber, profileImage, id }: FormValues = (await userInfo()) as FormValues;
         const userData = {
           id,
           name,
@@ -54,12 +54,12 @@ function Edit() {
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        setProfileImage(reader.result);
-        console.log('file', file);
-      };
+      const imageUrl = URL.createObjectURL(file);
+      console.log('imageUrl', imageUrl);
+      // file로 변경
+      setProfileImage(imageUrl);
+      console.log('file', file);
+
       setFormData((prevData) => ({
         ...prevData,
         profileImage: file,
@@ -75,10 +75,10 @@ function Edit() {
     e.preventDefault();
     try {
       const { name, email, phoneNumber, profileImage } = formData;
+      console.log('info', name, email, phoneNumber, profileImage);
+      console.log('formData', formData);
       await userInfoChange(name, email, phoneNumber, profileImage);
-      console.log(name, email, phoneNumber, profileImage);
-      console.log(formData);
-      // navigate('/mypage/info');
+      navigate('/mypage/info');
     } catch (error) {
       console.error('수정에 실패했습니다.', error);
     }
