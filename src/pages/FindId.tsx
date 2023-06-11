@@ -2,6 +2,8 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
 import styles from './FindId.module.scss';
 import { Link } from 'react-router-dom';
+import FormHead from 'components/User/FormHead';
+import FormButton from 'components/User/FormButton';
 import { DefaultInput } from 'components/User/DefaultInput';
 import DefaultModal from '../components/common/DefaultModal';
 // import { FindId } from 'components/common/Fetcher';
@@ -100,13 +102,7 @@ function FindId() {
             <form onSubmit={handleFindId}>
               <fieldset>
                 <legend>아이디찾기</legend>
-                <div className={styles.logo}>
-                  <span>EarF</span>
-                </div>
-                <div className={styles.title}>
-                  <h2>아이디 찾기</h2>
-                  <p>아이디를 잊으셨나요? 이메일과 이름을 입력해주세요.</p>
-                </div>
+                <FormHead heading={'아이디 찾기'} description={'아이디를 잊으셨나요? 이메일과 이름을 입력해주세요.'} />
                 <div>
                   <DefaultInput
                     inputProps={{
@@ -133,9 +129,9 @@ function FindId() {
                   {idFoundWarning && <div className={styles.warning}>일치하는 아이디가 없습니다.</div>}
                 </div>
               </fieldset>
-              <div className={styles.buttonBox}>
+              <FormButton>
                 <button type='submit'>아이디 찾기</button>
-              </div>
+              </FormButton>
             </form>
           </div>
         </div>

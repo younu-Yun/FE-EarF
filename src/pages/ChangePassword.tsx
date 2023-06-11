@@ -2,6 +2,8 @@ import styles from './ChangePassword.module.scss';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import FormHead from 'components/User/FormHead';
+import FormButton from 'components/User/FormButton';
 import { DefaultInput } from 'components/User/DefaultInput';
 // import { ChangePassword } from 'components/common/Fetcher';
 
@@ -91,13 +93,7 @@ function ChangePassword() {
           <form onSubmit={handleSubmit}>
             <fieldset>
               <legend>비밀번호 변경</legend>
-              <div className={styles.logo}>
-                <span>EarF</span>
-              </div>
-              <div className={styles.title}>
-                <h2>비밀번호 변경</h2>
-                <p>비밀번호를 변경해주세요.</p>
-              </div>
+              <FormHead heading={'비밀번호 변경'} description={'비밀번호를 변경해주세요.'} />
               <div>
                 <DefaultInput
                   inputProps={{
@@ -136,9 +132,9 @@ function ChangePassword() {
                 />
               </div>
             </fieldset>
-            <div className={styles.buttonBox}>
+            <FormButton>
               <button type='submit'>변경하기</button>
-            </div>
+            </FormButton>
           </form>
         </div>
       </div>

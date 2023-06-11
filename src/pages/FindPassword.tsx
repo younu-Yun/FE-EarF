@@ -1,6 +1,8 @@
 import styles from './FindPassword.module.scss';
 import React, { useState, ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
+import FormHead from 'components/User/FormHead';
+import FormButton from 'components/User/FormButton';
 import { DefaultInput } from 'components/User/DefaultInput';
 import axios from 'axios';
 // import { FindPassword } from 'components/common/Fetcher';
@@ -60,29 +62,25 @@ function FindPassword() {
           <form onSubmit={handleSendEmail}>
             <fieldset>
               <legend>비밀번호 찾기</legend>
-              <div className={styles.logo}>
-                <span>EarF</span>
+              <FormHead heading={'비밀번호 찾기'} description={'이메일 입력시, 임시비밀번호가 발송됩니다.'} />
+              <div>
+                <DefaultInput
+                  inputProps={{
+                    type: 'email',
+                    id: 'email',
+                    value: email,
+                    onChange: handleEmailChange,
+                  }}
+                  label='이메일'
+                  showWarning={true}
+                  warning={emailWarning}
+                />
               </div>
-              <div className={styles.title}>
-                <h2>비밀번호 찾기</h2>
-                <p>이메일 입력시, 임시비밀번호가 발송됩니다.</p>
-              </div>
-              <DefaultInput
-                inputProps={{
-                  type: 'email',
-                  id: 'email',
-                  value: email,
-                  onChange: handleEmailChange,
-                }}
-                label='이메일'
-                showWarning={true}
-                warning={emailWarning}
-              />
             </fieldset>
-            <div className={styles.buttonBox}>
+            <FormButton>
               <Link to='/login'>로그인</Link>
               <button type='submit'>비밀번호 발송</button>
-            </div>
+            </FormButton>
           </form>
         </div>
       </div>

@@ -2,6 +2,8 @@ import styles from './Login.module.scss';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import FormHead from 'components/User/FormHead';
+import FormButton from 'components/User/FormButton';
 import { DefaultInput } from 'components/User/DefaultInput';
 import { SaveToken, SaveRefreshToken } from 'components/common/token';
 // import { userLogin } from 'components/common/Fetcher';
@@ -75,13 +77,7 @@ function Login() {
           <form>
             <fieldset>
               <legend>로그인</legend>
-              <div className={styles.logo}>
-                <span>EarF</span>
-              </div>
-              <div className={styles.title}>
-                <h2>로그인</h2>
-                <p>실천하고, 기록하고, 공유해보세요!</p>
-              </div>
+              <FormHead heading={'로그인'} description={'실천하고, 기록하고, 공유해보세요!'} />
               <div>
                 <DefaultInput
                   inputProps={{
@@ -106,11 +102,11 @@ function Login() {
                   warning={passwordWarning}
                 />
               </div>
-              <div className={styles.buttonBox}>
+              <FormButton>
                 <button type='submit' onClick={handleLogin}>
                   로그인
                 </button>
-              </div>
+              </FormButton>
               <div className={styles.linkBox}>
                 <Link to='/find_id'>아이디 찾기</Link>
                 <Link to='/find_password'>비밀번호 찾기</Link>
@@ -118,9 +114,9 @@ function Login() {
               <div className={styles.border}>
                 <span>회원이 아니신가요?</span>
               </div>
-              <div className={styles.buttonBox}>
+              <FormButton>
                 <Link to='/join'>회원가입</Link>
-              </div>
+              </FormButton>
             </fieldset>
           </form>
         </div>

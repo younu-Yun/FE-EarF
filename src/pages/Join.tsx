@@ -1,7 +1,9 @@
 import styles from './Join.module.scss';
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import FormHead from 'components/User/FormHead';
+import FormButton from 'components/User/FormButton';
 import { DefaultInput } from 'components/User/DefaultInput';
 // import { userJoin } from 'components/common/Fetcher';
 import JoginIllust from '../assets/images/JoinIllust.jpg';
@@ -130,15 +132,7 @@ const Join: React.FC = () => {
           <form onSubmit={handleSubmit}>
             <fieldset>
               <legend>회원가입</legend>
-              <div className={styles.logo}>
-                <span>EarF</span>
-              </div>
-              <div className={styles.title}>
-                <h2>회원가입</h2>
-                <p>
-                  이미 계정이 있으신가요? <Link to='/login'>로그인</Link>
-                </p>
-              </div>
+              <FormHead heading={'회원가입'} description={'실천하고, 기록하고, 공유해보세요!'} showLoginLink={true} />
               <div>
                 <DefaultInput
                   inputProps={{
@@ -214,9 +208,9 @@ const Join: React.FC = () => {
               </div>
             </fieldset>
 
-            <div className={styles.buttonBox}>
+            <FormButton>
               <button type='submit'>가입하기</button>
-            </div>
+            </FormButton>
           </form>
         </div>
       </div>
