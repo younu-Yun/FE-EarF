@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Button from 'components/common/Button';
 import Modal from './Modal';
 import { userInfo } from 'api/Fetcher';
+import defaultProfile from 'assets/icons/UserIcon.svg';
 
 interface UserData {
   id: string;
@@ -68,7 +69,9 @@ function Main() {
       {showEditModal && <Modal handleShowModal={handleShowEditModal} handleNavigateToEdit={handleNavigateToEdit} />}
       {showRemoveModal && <Modal handleShowModal={handleShowRemoveModal} handleNavigateToEdit={handleRemoveAccount} />}
       <div className={styles.profile}>
-        <div className={styles.imgContainer}></div>
+        <div className={styles.imgContainer}>
+          <img src={userData.profileImage ? userData.profileImage : `${defaultProfile}`} alt='프로필' />
+        </div>
         <div className={styles.userId}>{userData.id}</div>
       </div>
       <div className={styles.dataFiledSet}>

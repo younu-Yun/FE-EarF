@@ -10,7 +10,7 @@ interface FormValues {
   name: string;
   email: string;
   phoneNumber: string;
-  profileImage: File | string;
+  profileImage: string;
 }
 
 function Edit() {
@@ -27,7 +27,7 @@ function Edit() {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const { name, email, phoneNumber, profileImage, id }: FormValues = (await userInfo()) as FormValues;
+        const { id, name, email, phoneNumber, profileImage }: FormValues = (await userInfo()) as FormValues;
         const userData = {
           id,
           name,
@@ -54,16 +54,17 @@ function Edit() {
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      console.log('imageUrl', imageUrl);
-      // file로 변경
-      setProfileImage(imageUrl);
-      console.log('file', file);
-
-      setFormData((prevData) => ({
-        ...prevData,
-        profileImage: file,
-      }));
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        const dataUrl = reader.result as string;
+        setProfileImage(dataUrl);
+        console.log('dataUrl', dataUrl);
+        setFormData((prevData) => ({
+          ...prevData,
+          profileImage: dataUrl,
+        }));
+      };
     }
   };
 
@@ -74,10 +75,10 @@ function Edit() {
   const handleUserInfoChange = async (e) => {
     e.preventDefault();
     try {
-      const { name, email, phoneNumber, profileImage } = formData;
-      console.log('info', name, email, phoneNumber, profileImage);
+      const { id, name, email, phoneNumber, profileImage } = formData;
+      console.log('info', id, name, email, phoneNumber, profileImage);
       console.log('formData', formData);
-      await userInfoChange(name, email, phoneNumber, profileImage);
+      await userInfoChange(id, name, email, phoneNumber, profileImage);
       navigate('/mypage/info');
     } catch (error) {
       console.error('수정에 실패했습니다.', error);

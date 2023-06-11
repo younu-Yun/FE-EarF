@@ -61,17 +61,19 @@ export async function userInfo() {
 
 // 로그아웃
 export async function userLogout() {
-  return await Api.get(domain, '/auth/logout');
+  return await Api.get(domain, 'auth/logout');
 }
 
 // 유저 정보 변경
 export async function userInfoChange(
+  userId: string,
   userName: string,
   userEmail: string,
   userPhoneNumber: string,
-  userProfileImage?: string | File
+  userProfileImage: string
 ) {
   const data = {
+    id: userId,
     name: userName,
     email: userEmail,
     phoneNumber: userPhoneNumber,
