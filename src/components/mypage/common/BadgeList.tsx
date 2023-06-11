@@ -1,4 +1,4 @@
-import { badgeImg1, badgeImg2, badgeImg3, badgeImg4, badgeImg5, badgeImg6, badgeImg7 } from 'assets/images/badgeIndex';
+import { badgeImg1, badgeImg2, badgeImg3, badgeImg4, badgeImg5, badgeImg6, badgeImg7 } from 'utils/badgeIndex';
 import { userInfo } from 'api/Fetcher';
 import { useEffect, useState } from 'react';
 
