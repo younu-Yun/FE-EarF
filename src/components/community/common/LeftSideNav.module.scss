@@ -1,0 +1,60 @@
+@import 'color.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+
+  border-radius: 1rem;
+
+  hr {
+    width: 85%;
+    height: 1px;
+
+    background: $--color--border;
+    border: 0;
+  }
+
+  nav {
+    font-size: 14pt;
+    text-align: center;
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      letter-spacing: 0.25rem;
+
+      li {
+        position: relative;
+        color: $--color--text3;
+        cursor: pointer;
+
+        &:hover {
+          color: $--color--text1;
+        }
+
+        &::after {
+          position: absolute;
+          bottom: -0.2rem;
+          left: 50%;
+
+          display: block;
+          width: 0;
+          height: 1px;
+
+          background: $--color--primary;
+          transition: width 0.3s ease 0s, left 0.3s ease 0s;
+          content: '';
+        }
+
+        &:hover::after {
+          width: 100%;
+          left: 0;
+        }
+      }
+    }
+  }
+}

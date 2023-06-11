@@ -1,0 +1,35 @@
+@import 'color.scss';
+
+.reactionContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  cursor: pointer;
+  .reactionNumber {
+    font-size: 10pt;
+    color: $--color--text3;
+  }
+
+  &:hover {
+    svg {
+      transition: all 0.5s ease;
+      stroke: $--color--pink;
+    }
+    span {
+      transition: all 0.5s ease;
+      color: $--color--pink;
+    }
+  }
+}
+
+.active {
+  & svg {
+    transition: all 0.5s ease;
+    stroke: $--color--pink;
+  }
+  .reactionNumber {
+    transition: all 0.5s ease;
+    color: $--color--pink;
+  }
+}

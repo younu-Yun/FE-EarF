@@ -1,4 +1,5 @@
-import Button from '../common/Button';
+import { Link } from 'react-router-dom';
+import Button from 'components/common/Button';
 import PostingContent from './PostingContent';
 import styles from './QuestionPostingBoard.module.scss';
 
@@ -11,7 +12,9 @@ function QuestionPostingBoard() {
       </div>
       <PostingContent />
       <div className={styles.buttonContainer}>
-        <Button text='취소' className='whiteButton' />
+        <Link to='/community'>
+          <Button text='취소' className='whiteButton' />
+        </Link>
         <Button text='등록' />
       </div>
     </div>

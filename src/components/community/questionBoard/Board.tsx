@@ -1,15 +1,33 @@
-import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Pagination from 'react-js-pagination';
+import { getCommunityPosts } from 'api/Fetcher';
 import { ReactComponent as Chat } from 'assets/icons/Search.svg';
 import { ReactComponent as Post } from 'assets/icons/Pencil.svg';
+import { ReactComponent as Circle } from 'assets/icons/Circle.svg';
 import { ReactComponent as Top } from 'assets/icons/ArrowUp.svg';
+import QuestionPostingItem from './QuestionPostingItem';
 import styles from './Board.module.scss';
-import QuestionPosting from './QuestionPosting';
+import UnsolvedQuestion from './UnsolvedQuestion';
 
-type BoardProps = {
-  enterPostingButtonClick: React.MouseEventHandler<HTMLButtonElement>;
-};
+interface postDataType {
+  id: string;
+  name: string;
+  profileImage: string;
+  checkedBadge: string;
+  title: string;
+  content: string;
+  likeIds: [];
+  commentIds: [];
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+function Board() {
+  const [postData, setPostData] = useState<postDataType[] | undefined>();
 
-function Board({ enterPostingButtonClick }: BoardProps) {
+  // 스크롤링
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -17,6 +35,7 @@ function Board({ enterPostingButtonClick }: BoardProps) {
     });
   };
 
+  // 검색 이벤트
   const handleSubmitSearch: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     console.log('검색동작');
@@ -28,6 +47,42 @@ function Board({ enterPostingButtonClick }: BoardProps) {
       console.log('검색동작');
     }
   };
+
+  // 작성하기 버튼 페이지 이동
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+
+  const handlePostingClick = () => {
+    if (!token) {
+      const confirmMessage = '로그인 후 작성이 가능합니다.';
+      const shouldRedirect = window.confirm(confirmMessage);
+
+      if (shouldRedirect) {
+        navigate('/login');
+      }
+    } else {
+      navigate('/community/post');
+    }
+  };
+
+  // 페이지네이션
+  const [page, setPage] = useState(1);
+  const movePage = (page: number) => {
+    setPage(page);
+  };
+
+  // 게시글 데이터
+  useEffect(() => {
+    getQuestionPosts();
+  });
+  async function getQuestionPosts() {
+    try {
+      const response: any = await getCommunityPosts();
+      setPostData(response);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -43,26 +98,67 @@ function Board({ enterPostingButtonClick }: BoardProps) {
             <Chat />
           </button>
         </form>
+        <div className={styles.unsolved}>
+          <span>답변을 기다리고 있어요</span>
+          <UnsolvedQuestion />
+        </div>
       </div>
       <div className={styles.boardTopContainer}>
-        <button className={styles.postingButton} onClick={enterPostingButtonClick}>
-          <Post className={styles.postingSvg} />
-          작성하기
-        </button>
+        {!token ? (
+          <button onClick={handlePostingClick} className={styles.postingButton}>
+            <Post className={styles.postingSvg} />
+            작성하기
+          </button>
+        ) : (
+          <Link to='/community/post' className={styles.postingButton}>
+            <Post className={styles.postingSvg} />
+            작성하기
+          </Link>
+        )}
         <div className={styles.sortingContainer}>
           <ul>
-            <li>최신순</li>
-            <li>댓글순</li>
-            <li>좋아요순</li>
+            <li>
+              <Circle />
+              최신순
+            </li>
+            <li>
+              <Circle />
+              댓글순
+            </li>
+            <li>
+              <Circle />
+              추천순
+            </li>
           </ul>
         </div>
       </div>
       <ul>
-        <QuestionPosting />
-        <QuestionPosting />
-        <QuestionPosting />
+        {postData &&
+          postData.map((post) => (
+            <QuestionPostingItem
+              key={post._id}
+              likeNums={post.likeIds.length}
+              commentNums={post.commentIds.length}
+              title={post.title}
+              content={post.content}
+              date={post.createdAt}
+              username={post.name}
+            />
+          ))}
       </ul>
-      <div>1234567</div>
+      <div>
+        <div className={styles.pageContainer}>
+          <Pagination
+            activePage={page}
+            itemsCountPerPage={10}
+            totalItemsCount={50}
+            pageRangeDisplayed={5}
+            prevPageText='‹'
+            nextPageText='›'
+            onChange={movePage}
+          />
+        </div>
+      </div>
       <div className={styles.scrollContainer}>
         <button onClick={scrollToTop} type='button'>
           <Top />
@@ -71,9 +167,5 @@ function Board({ enterPostingButtonClick }: BoardProps) {
     </div>
   );
 }
-
-Board.propTypes = {
-  enterPostingButtonClick: PropTypes.func.isRequired,
-};
 
 export default Board;

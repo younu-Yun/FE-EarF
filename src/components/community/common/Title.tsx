@@ -1,4 +1,4 @@
-import titleImage from 'assets/images/8507842.jpg';
+// import titleImage from 'assets/images/8507842.jpg';
 import styles from './Title.module.scss';
 
 function Title() {

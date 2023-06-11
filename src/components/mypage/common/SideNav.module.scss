@@ -15,17 +15,34 @@
 
   box-sizing: border-box;
 
-  ul {
+  & > ul {
     padding-inline-start: 0px;
 
-    li {
+    & > li {
+      position: relative;
+
       padding: 10px 0;
       font-size: 2rem;
       cursor: pointer;
-    }
 
-    li:hover {
-      border-bottom: 1px solid $--color--primary;
+      &::after {
+        position: absolute;
+        bottom: -0.2rem;
+        left: 50%;
+
+        display: block;
+        width: 0;
+        height: 1px;
+
+        background: $--color--primary;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        content: '';
+      }
+
+      &:hover::after {
+        width: 100%;
+        left: 0;
+      }
     }
   }
 }

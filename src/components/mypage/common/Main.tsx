@@ -1,47 +1,72 @@
 import styles from './Main.module.scss';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import Button from 'components/common/Button';
+import Modal from './Modal';
+import { userInfo } from 'api/Fetcher';
 
 function Main() {
-  const [showModal, setShowModal] = useState(false);
-  // 회원 정보 수정 버튼
-  const onEdit = () => {
-    setShowModal(!showModal);
+  const [showEditModal, setShowEditModal] = useState<boolean>(false);
+  const [showRemoveModal, setShowRemoveModal] = useState<boolean>(false);
+  const [user, setUser] = useState({});
+
+  // Edit 모달
+  const handleShowEditModal = (): void => {
+    setShowEditModal((prevState) => !prevState);
   };
+  // Remove 모달
+  const handleShowRemoveModal = (): void => {
+    setShowRemoveModal((prevState) => !prevState);
+  };
+
+  // Edit 페이지 이동
+  const handleNavigateToEdit = (): void => {
+    window.location.href = '/mypage/edit';
+  };
+
+  // 회원 탈퇴
+  const handleRemoveAccount = (): void => {
+    // api 요청
+    console.log('회원 탈퇴 버튼 클릭');
+  };
+
+  // 유저 정보 불러오기
+  // useEffect(() => {
+  //   const fetchUserInfo = async () => {
+  //     try {
+  //       const userData = await userInfo();
+  //       setUser(userData);
+  //     } catch (error) {
+  //       console.error('Error fetching user info:', error);
+  //     }
+  //   };
+  //   fetchUserInfo();
+  // }, []);
 
   return (
     <div className={styles.main}>
-      {showModal && (
-        <div className={styles.modalBox}>
-          <p>비밀번호를 입력해주세요</p>
-          {/* 비밀번호를 확인하는 api와 연동하여 맞은 경우 edit 페이지로 이동*/}
-          <input type='password' placeholder='********'></input>
-          <button className={styles.button}>
-            <Link to='/mypage/edit'>확인</Link>
-          </button>
-        </div>
-      )}
+      {showEditModal && <Modal handleShowModal={handleShowEditModal} handleNavigateToEdit={handleNavigateToEdit} />}
+      {showRemoveModal && <Modal handleShowModal={handleShowRemoveModal} handleNavigateToEdit={handleRemoveAccount} />}
       <div className={styles.profile}>
         <div className={styles.imgContainer}></div>
-        <div className={styles.userId}>나는유저</div>
+        {/* <div className={styles.userId}>{userData.id}</div> */}
       </div>
-      <div className={styles.dataFiled}>
-        <div>
-          이름<span>김길동</span>
+      <div className={styles.dataFiledSet}>
+        <div className={styles.dataFiled}>
+          <div className={styles.fixedData}>이름</div>
+          {/* <div className={styles.fetchData}>{userData.name}</div> */}
         </div>
-        <div>
-          이메일<span>abc@elice.com</span>
+        <div className={styles.dataFiled}>
+          <div className={styles.fixedData}>이메일</div>
+          {/* <div className={styles.fetchData}>{userData.email}</div> */}
         </div>
-        <div>
-          전화번호<span>010-1234-5678</span>
+        <div className={styles.dataFiled}>
+          <div className={styles.fixedData}>전화번호</div>
+          {/* <div className={styles.fetchData}>{userData.phoneNumber}</div> */}
         </div>
-        <hr />
-        <div className={styles.buttonContainer}>
-          <button className={styles.button} onClick={onEdit}>
-            수정하기
-          </button>
-          <button className={styles.button}>회원탈퇴</button>
-        </div>
+      </div>
+      <div className={styles.buttonContainer}>
+        <Button text={'수정하기'} onClick={handleShowEditModal} />
+        <Button text={'회원탈퇴'} className={'whiteButton'} onClick={handleShowRemoveModal} />
       </div>
     </div>
   );

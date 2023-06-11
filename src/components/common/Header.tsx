@@ -1,35 +1,21 @@
-import { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import styles from './Header.module.scss';
+// import axios from 'axios';
+import { GetToken, RemoveToken } from './token';
 import profileIcon from '../../assets/icons/profile.svg';
+import MainLogo from '../../assets/icons/MainLogo.svg';
 
 function Header(): JSX.Element {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [token, setToken] = useState<string>('');
-  const [showSideMenu, setShowSideMenu] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showSideMenu, setShowSideMenu] = useState(false);
 
-  const login = async () => {
-    try {
-      const response = await axios.post('/api/login', {
-        username: 'user',
-        password: 'password',
-      });
-
-      if (response.status === 200) {
-        const { token } = response.data;
-
-        setIsLoggedIn(true);
-        setToken(token);
-      } else {
-        // 로그인 실패 처리
-      }
-    } catch (error) {
-      console.error('로그인 요청 중 오류 발생:', error);
-    }
+  // 로그아웃시 access, refrest 토큰 제거
+  const handleLogout = () => {
+    RemoveToken();
+    setIsLoggedIn(false);
   };
-
-  login();
 
   const handleMouseOver = () => {
     setShowSideMenu(true);
@@ -39,16 +25,33 @@ function Header(): JSX.Element {
     setShowSideMenu(false);
   };
 
+  const handleMyPageClick = () => {
+    navigate('/mypage');
+  };
+
+  // 로그인 상태 변경 시 isLoggedIn 값 업데이트
+  const updateLoginStatus = () => {
+    const token = GetToken();
+    setIsLoggedIn(Boolean(token));
+  };
+
+  useEffect(() => {
+    updateLoginStatus();
+  }, [isLoggedIn]);
+
   return (
     <header>
       <div className={styles.inner}>
         <div>
           <Link to='/' className={styles.logo}>
-            로고
+            <div>
+              <img src={MainLogo} alt='메인로고' />
+            </div>
+            <strong>EarF</strong>
           </Link>
           <ul className={styles.menu}>
             <li>
-              <NavLink to='/home' className={({ isActive }) => (isActive ? 'active' : '')}>
+              <NavLink to='/calender' className={({ isActive }) => (isActive ? 'active' : '')}>
                 기록하기
               </NavLink>
             </li>
@@ -61,7 +64,12 @@ function Header(): JSX.Element {
         </div>
         <div>
           {isLoggedIn ? (
-            <Link to='/mypage' className={styles.login} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
+            <div
+              className={styles.login}
+              onClick={handleMyPageClick}
+              onMouseOver={handleMouseOver}
+              onMouseLeave={handleMouseLeave}
+            >
               <div className={styles.infoBox}>
                 <span>안녕하세요, 윤우정님</span>
               </div>
@@ -72,11 +80,11 @@ function Header(): JSX.Element {
                 <div className={styles.sideMenu}>
                   <NavLink to='/mypage'>내 정보</NavLink>
                   <NavLink to='/mypage'>내 게시글</NavLink>
-                  <NavLink to='/badge'>뱃지</NavLink>
-                  <button>로그아웃</button>
+                  <NavLink to='/mypage/badge'>뱃지</NavLink>
+                  <button onClick={handleLogout}>로그아웃</button>
                 </div>
               )}
-            </Link>
+            </div>
           ) : (
             <Link to='/login' className={styles.loginButton}>
               시작하기

@@ -1,4 +1,5 @@
-import UserProfile from '../sideNav/UserProfile';
+import { Link } from 'react-router-dom';
+import UserProfile from './sideNav/MyProfile';
 import styles from './SideNav.module.scss';
 
 function SideNav() {
@@ -9,8 +10,12 @@ function SideNav() {
         <hr />
         <nav>
           <ul>
-            <li>질문해요</li>
-            <li>자랑해요</li>
+            <Link to='/community'>
+              <li>질문해요</li>
+            </Link>
+            <Link to='/community/boast'>
+              <li>자랑해요</li>
+            </Link>
             <li>함께해요</li>
             <li>소개해요</li>
           </ul>

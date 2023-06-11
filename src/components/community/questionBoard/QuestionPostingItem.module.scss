@@ -1,0 +1,65 @@
+@import 'color.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 1rem;
+  border-top: 1px solid $--color--border;
+}
+
+.userEditContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 2.5rem 0;
+
+  .postingDate {
+    font-size: 10pt;
+    font-weight: 400;
+    color: $--color--text3;
+  }
+}
+
+.contentContainer {
+  cursor: pointer;
+
+  .title {
+    font-size: 14pt;
+    font-weight: 500;
+    color: $--color--text1;
+  }
+  .content {
+    margin-top: 1rem;
+    font-size: 11pt;
+    font-weight: 300;
+    color: $--color--text2;
+  }
+}
+
+.userContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 2.5rem 0;
+}
+
+.userReactionContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+}
+
+.reactionContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  .reactionNumber {
+    font-size: 10pt;
+    color: $--color--text3;
+  }
+}
