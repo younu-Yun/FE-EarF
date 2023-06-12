@@ -1,60 +1,15 @@
-import { TFormData, CheckboxesState } from 'types/types';
+import tagImg1 from 'assets/images/tagimg1.png';
+import tagImg2 from 'assets/images/tagimg2.png';
+import tagImg3 from 'assets/images/tagimg3.png';
 
-type THandleEachValue = <T extends keyof TFormData>(
-  element: T,
-  value: TFormData[T],
-  setFormData: React.Dispatch<React.SetStateAction<TFormData>>
-) => void;
-
-type THandleSharedClick = (
-  eachKeyElement: keyof TFormData,
-  value: boolean,
-  setFormData: React.Dispatch<React.SetStateAction<TFormData>>
-) => void;
-
-type THandleImageChange = (
-  event: React.ChangeEvent<HTMLInputElement>,
-  setSelectedImage: React.Dispatch<React.SetStateAction<string | undefined>>,
-  setFormData: React.Dispatch<React.SetStateAction<TFormData>>
-) => void;
-
-type THandleCheckboxChange = (
-  checkboxName: keyof CheckboxesState,
-  checkboxes: CheckboxesState,
-  setCheckboxes: React.Dispatch<React.SetStateAction<CheckboxesState>>
-) => void;
-
-export const handleDiarySubmit = () => {
-  console.log('Form Data:');
-};
-
-export const HandleEachValue: THandleEachValue = (element, value, setFormData) => {
-  setFormData((prevFormData) => ({
-    ...prevFormData,
-    [element]: value,
-  }));
-};
-
-export const HandleSharedClick: THandleSharedClick = (eachKeyElement, value, setFormData) => {
-  HandleEachValue(eachKeyElement, value, setFormData);
-};
-
-export const HandleImageChange: THandleImageChange = (event, setSelectedImage, setFormData) => {
-  const file = event.target.files?.[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const imageDataURL = reader.result as string;
-      setSelectedImage(imageDataURL);
-    };
-    reader.readAsDataURL(file);
-    HandleEachValue('file', file, setFormData);
+export const GetTagImage = (tagLength: number | undefined) => {
+  if (tagLength === 1) {
+    return tagImg1;
+  } else if (tagLength === 2) {
+    return tagImg2;
+  } else if (tagLength === 3) {
+    return tagImg3;
   }
-};
-
-export const HandleCheckboxChange: THandleCheckboxChange = (checkboxName, checkboxes, setCheckboxes) => {
-  setCheckboxes({
-    ...checkboxes,
-    [checkboxName]: !checkboxes[checkboxName],
-  });
+  // 기본 이미지 또는 예외 처리
+  return tagImg1;
 };

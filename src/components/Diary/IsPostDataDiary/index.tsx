@@ -9,6 +9,7 @@ import tagImg2 from 'assets/images/tagimg2.png';
 import tagImg3 from 'assets/images/tagimg3.png';
 
 import { getApiCalendarEachData } from 'services/calendarApiService';
+import { GetTagImage } from 'services/calendarService';
 
 type EachDayDataApiType = {
   _id: string;
@@ -44,19 +45,7 @@ export default function IsPostDataDiary() {
     });
   }, [selectedValue]);
 
-  const getTagImage = (tagLength: number | undefined) => {
-    if (tagLength === 1) {
-      return tagImg1;
-    } else if (tagLength === 2) {
-      return tagImg2;
-    } else if (tagLength === 3) {
-      return tagImg3;
-    }
-    // 기본 이미지 또는 예외 처리
-    return tagImg1;
-  };
-
-  const tagImageSrc = getTagImage(data?.tag.length);
+  const tagImageSrc = GetTagImage(data?.tag.length);
 
   const handleEditClick = () => {
     setIsEditing(true);

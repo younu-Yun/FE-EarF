@@ -1,28 +1,28 @@
+import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
-import { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { getApiCalendarAllData, getApiCalendarHavedata } from 'services/calendarApiService';
 import { RootState } from 'store';
 import { setSelectedDay } from 'store/selectedDaySlice';
+
+import notPost from 'assets/images/notpost.png';
+import tagImg1 from 'assets/images/tagimg1.png';
+import tagImg2 from 'assets/images/tagimg2.png';
+import tagImg3 from 'assets/images/tagimg3.png';
+
 import './styles.scss';
-import { getApiCalendarAllData } from 'services/calendarApiService';
+import { GetTagImage } from 'services/calendarService';
 
 localStorage.setItem(
   'token',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgyZjg2N2U0MGNjMmNmMWM5ZmY0ZjAiLCJpZCI6InRlc3QwMDEiLCJuYW1lIjoi7Jyk7Jqw7KCVIiwiZW1haWwiOiJkYnNkbndqZDk2QG5hdmVyLmNvbSIsImlhdCI6MTY4NjU4NTE5NCwiZXhwIjoxNjg2NTg4Nzk0fQ.JNXVEW6Ex-3lFdaL9_La97buqcP6Q60PkkFyxq5PaK4'
 );
 
-// type ValuePiece = Date | null;
-
 export default function Calender() {
-  // const [value, onChange] = useState<ValuePiece | [ValuePiece, ValuePiece]>(new Date());
-
-  // console.log(value, 'value');
-
   const mark = ['2023-06-02', '2023-06-05', '2023-06-10'];
-
-  // TODO: 이 부분 api로 현재 선택된 날짜 (selectedValue) 통해서 데이터 있는지 확인(api로)하고 있으면 true 없으면 false 로 수정
+  const [markData, setMarkData] = useState<string[]>();
 
   const dispatch = useDispatch();
   const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
@@ -34,15 +34,20 @@ export default function Calender() {
     handleDateChange(dayjs(date?.toString()).format('YYYY MM DD'));
   };
 
-  console.log(selectedValue, 'couut');
-
   const paramsMonth = dayjs(selectedValue).format('YYYY-MM');
 
-  console.log(paramsMonth, 'paramsMonth');
+  useEffect(() => {
+    //TODO: 이건 리포트 데이터임
+    getApiCalendarAllData(paramsMonth).then((data) => {
+      console.log(data, ' dataetat');
+    });
 
-  getApiCalendarAllData(paramsMonth).then((data) => {
-    console.log(data, ' dataetat');
-  });
+    // //TODO: 이건 캘린더에 보여줄 데이터
+    getApiCalendarHavedata(paramsMonth).then((data: any) => {
+      console.log(data, '데이터 있는 날짜 배열');
+      setMarkData(data);
+    });
+  }, [selectedValue]);
 
   return (
     <>
@@ -59,16 +64,13 @@ export default function Calender() {
         onActiveStartDateChange={({ activeStartDate }) => handleActiveStartDateChange(activeStartDate)}
         formatDay={(locale, date) => dayjs(date).format('DD')}
         tileContent={({ date }) => {
-          const foundMark = mark.find((x) => x === dayjs(date).format('YYYY-MM-DD'));
+          const foundMark = markData?.find((x) => x[0] === dayjs(date).format('YYYY-MM-DD'));
           if (foundMark !== undefined && foundMark !== null) {
+            const tagImageSrc = GetTagImage(parseInt(foundMark[1]));
             // TODO: api 돌려서 만약에 태그가 3개면 dot3 className이 되도록 설정
-            return (
-              <>
-                <div className='tileContent'>
-                  <div className={true ? 'dot1' : 'dot2'}></div>
-                </div>
-              </>
-            );
+            return <img src={tagImageSrc} alt='notPost' className='notPost' />;
+          } else {
+            return <img src={notPost} alt='notPost' className='notPost' />;
           }
         }}
       />
