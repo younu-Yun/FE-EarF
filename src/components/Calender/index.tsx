@@ -18,7 +18,6 @@ localStorage.setItem(
 );
 
 export default function Calender() {
-  const mark = ['2023-06-02', '2023-06-05', '2023-06-10'];
   const [markData, setMarkData] = useState<string[]>();
 
   const dispatch = useDispatch();
@@ -39,8 +38,8 @@ export default function Calender() {
       console.log(data, ' dataetat');
     });
 
-    // //TODO: 이건 캘린더에 보여줄 데이터
-    getApiCalendarHavedata(paramsMonth).then((data: any) => {
+    //TODO: 이건 캘린더에 보여줄 데이터
+    getApiCalendarHavedata(paramsMonth).then((data: string[]) => {
       console.log(data, '데이터 있는 날짜 배열');
       setMarkData(data);
     });
@@ -64,7 +63,6 @@ export default function Calender() {
           const foundMark = markData?.find((x) => x[0] === dayjs(date).format('YYYY-MM-DD'));
           if (foundMark !== undefined && foundMark !== null) {
             const tagImageSrc = GetTagImage(parseInt(foundMark[1]));
-            // TODO: api 돌려서 만약에 태그가 3개면 dot3 className이 되도록 설정
             return <img src={tagImageSrc} alt='notPost' className='notPost' />;
           } else {
             return <img src={notPost} alt='notPost' className='notPost' />;

@@ -51,7 +51,7 @@ export default function IsPostDataDiary() {
       <div className={styles.postContainer}>
         <div className={styles.postItemWrapper}>
           <img src={tagImageSrc} alt='tagimg' className={styles.tagImg} />
-          <span>{editedTag}</span>
+          <span>{data?.tag.length}개 달성!</span>
         </div>
         <img alt='postimg' src={data?.imageUrl} className={styles.imgContainer} />
         {isEditing ? (
