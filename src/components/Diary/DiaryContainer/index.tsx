@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styles.module.scss';
-import IsPostDataDiary from './IsPostDataDiary';
-import IsReportDataDiary from './IsReportDataDiary';
+import IsPostDataDiary from '../IsPostDataDiary';
+import IsReportDataDiary from '../IsReportDataDiary';
 
 export default function DiaryContainer() {
   const [isReport, setIsReport] = useState(false);

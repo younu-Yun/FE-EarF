@@ -32,6 +32,8 @@ export default function IsPostDataDiary() {
   const [editedTag, setEditedTag] = useState('');
   const [loading, setLoading] = useState(true);
 
+  const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
+
   useEffect(() => {
     getApiCalendarEachData(selectedValue).then((data: EachDayDataApiType) => {
       setData(data);
@@ -40,7 +42,7 @@ export default function IsPostDataDiary() {
       setEditedTag(data?.tag.join(', '));
       setLoading(false);
     });
-  }, []);
+  }, [selectedValue]);
 
   const getTagImage = (tagLength: number | undefined) => {
     if (tagLength === 1) {
@@ -55,8 +57,6 @@ export default function IsPostDataDiary() {
   };
 
   const tagImageSrc = getTagImage(data?.tag.length);
-
-  const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
 
   const handleEditClick = () => {
     setIsEditing(true);
