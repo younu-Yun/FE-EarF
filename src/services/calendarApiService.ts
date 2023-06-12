@@ -1,20 +1,7 @@
 import * as Api from '../api/ApiRequest';
+import { EachDayDataApiType } from 'types/types';
 
 const domain = `http://34.64.216.86/api`;
-
-type EachDayDataApiType = {
-  _id: string;
-  id: string;
-  tag: string[];
-  imageUrl: string;
-  title: string;
-  content: string;
-  shareStatus: boolean;
-  date: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-};
 
 export async function getApiCalendarAllData(date?: string) {
   const params = `/diary/month/${date}`;

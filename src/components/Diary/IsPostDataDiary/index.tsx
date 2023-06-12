@@ -4,26 +4,9 @@ import styles from './styles.module.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 
-import tagImg1 from 'assets/images/tagimg1.png';
-import tagImg2 from 'assets/images/tagimg2.png';
-import tagImg3 from 'assets/images/tagimg3.png';
-
 import { getApiCalendarEachData } from 'services/calendarApiService';
 import { GetTagImage } from 'services/calendarService';
-
-type EachDayDataApiType = {
-  _id: string;
-  id: string;
-  tag: string[];
-  imageUrl: string;
-  title: string;
-  content: string;
-  shareStatus: boolean;
-  date: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-};
+import { EachDayDataApiType } from 'types/types';
 
 export default function IsPostDataDiary() {
   const [data, setData] = useState<EachDayDataApiType>();

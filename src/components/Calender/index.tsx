@@ -8,16 +8,13 @@ import { RootState } from 'store';
 import { setSelectedDay } from 'store/selectedDaySlice';
 
 import notPost from 'assets/images/notpost.png';
-import tagImg1 from 'assets/images/tagimg1.png';
-import tagImg2 from 'assets/images/tagimg2.png';
-import tagImg3 from 'assets/images/tagimg3.png';
 
 import './styles.scss';
 import { GetTagImage } from 'services/calendarService';
 
 localStorage.setItem(
   'token',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgyZjg2N2U0MGNjMmNmMWM5ZmY0ZjAiLCJpZCI6InRlc3QwMDEiLCJuYW1lIjoi7Jyk7Jqw7KCVIiwiZW1haWwiOiJkYnNkbndqZDk2QG5hdmVyLmNvbSIsImlhdCI6MTY4NjU4NTE5NCwiZXhwIjoxNjg2NTg4Nzk0fQ.JNXVEW6Ex-3lFdaL9_La97buqcP6Q60PkkFyxq5PaK4'
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgyZjg2N2U0MGNjMmNmMWM5ZmY0ZjAiLCJpZCI6InRlc3QwMDEiLCJuYW1lIjoi7Jyk7Jqw7KCVIiwiZW1haWwiOiJkYnNkbndqZDk2QG5hdmVyLmNvbSIsImlhdCI6MTY4NjU4ODgzOSwiZXhwIjoxNjg2NTkyNDM5fQ.yn4-V5HI3xgAbkCKWC5kxQtTi2Ymi1ft9ObTCZlayiU'
 );
 
 export default function Calender() {
