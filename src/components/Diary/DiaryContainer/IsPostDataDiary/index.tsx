@@ -4,6 +4,10 @@ import styles from './styles.module.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 
+import tagImg1 from 'assets/images/tagimg1.png';
+import tagImg2 from 'assets/images/tagimg2.png';
+import tagImg3 from 'assets/images/tagimg3.png';
+
 import { getApiCalendarEachData } from 'services/calendarApiService';
 
 type EachDayDataApiType = {
@@ -22,6 +26,11 @@ type EachDayDataApiType = {
 
 export default function IsPostDataDiary() {
   const [data, setData] = useState<EachDayDataApiType>();
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedTitle, setEditedTitle] = useState('');
+  const [editedContent, setEditedContent] = useState('');
+  const [editedTag, setEditedTag] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getApiCalendarEachData(selectedValue).then((data: EachDayDataApiType) => {
@@ -33,13 +42,19 @@ export default function IsPostDataDiary() {
     });
   }, []);
 
-  console.log();
+  const getTagImage = (tagLength: number | undefined) => {
+    if (tagLength === 1) {
+      return tagImg1;
+    } else if (tagLength === 2) {
+      return tagImg2;
+    } else if (tagLength === 3) {
+      return tagImg3;
+    }
+    // 기본 이미지 또는 예외 처리
+    return tagImg1;
+  };
 
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedTitle, setEditedTitle] = useState('');
-  const [editedContent, setEditedContent] = useState('');
-  const [editedTag, setEditedTag] = useState('');
-  const [loading, setLoading] = useState(true);
+  const tagImageSrc = getTagImage(data?.tag.length);
 
   const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
 
@@ -63,7 +78,7 @@ export default function IsPostDataDiary() {
     <>
       <div className={styles.postContainer}>
         <div className={styles.postItemWrapper}>
-          <div className={styles.tagImg}>.</div>
+          <img src={tagImageSrc} alt='tagimg' className={styles.tagImg} />
           <span>{editedTag}</span>
         </div>
         <img alt='postimg' src={data?.imageUrl} className={styles.imgContainer} />

@@ -10,7 +10,7 @@ import { getApiCalendarAllData } from 'services/calendarApiService';
 
 localStorage.setItem(
   'token',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgyZjg2N2U0MGNjMmNmMWM5ZmY0ZjAiLCJpZCI6InRlc3QwMDEiLCJuYW1lIjoi7Jyk7Jqw7KCVIiwiZW1haWwiOiJkYnNkbndqZDk2QG5hdmVyLmNvbSIsImlhdCI6MTY4NjU3MDg4NiwiZXhwIjoxNjg2NTc0NDg2fQ.FbTxnRT9ShF0_x1Dp-4MbhtalGrwpJ5jxANYJx5gxgU'
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgyZjg2N2U0MGNjMmNmMWM5ZmY0ZjAiLCJpZCI6InRlc3QwMDEiLCJuYW1lIjoi7Jyk7Jqw7KCVIiwiZW1haWwiOiJkYnNkbndqZDk2QG5hdmVyLmNvbSIsImlhdCI6MTY4NjU4NTE5NCwiZXhwIjoxNjg2NTg4Nzk0fQ.JNXVEW6Ex-3lFdaL9_La97buqcP6Q60PkkFyxq5PaK4'
 );
 
 // type ValuePiece = Date | null;
@@ -36,16 +36,11 @@ export default function Calender() {
 
   console.log(selectedValue, 'couut');
 
-  const paramsMonth = parseInt(dayjs(selectedValue).format('M')) - 1;
+  const paramsMonth = dayjs(selectedValue).format('YYYY-MM');
 
-  console.log('mnoth', paramsMonth);
+  console.log(paramsMonth, 'paramsMonth');
 
-  const startOfMonth = dayjs().month(paramsMonth).startOf('month').format('YYYY-MM-DD').toString();
-  const endOfMonth = dayjs().month(paramsMonth).endOf('month').format('YYYY-MM-DD').toString();
-
-  console.log(startOfMonth, endOfMonth);
-
-  getApiCalendarAllData(startOfMonth, endOfMonth).then((data) => {
+  getApiCalendarAllData(paramsMonth).then((data) => {
     console.log(data, ' dataetat');
   });
 

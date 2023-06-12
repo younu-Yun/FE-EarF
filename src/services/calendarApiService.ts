@@ -16,8 +16,8 @@ type EachDayDataApiType = {
   __v: number;
 };
 
-export async function getApiCalendarAllData(startDate?: string, endDate?: string) {
-  const params = `/diary/month?startDate=${startDate}&endDate=${endDate}`;
+export async function getApiCalendarAllData(date?: string) {
+  const params = `/diary/month/${date}`;
   return await Api.get(domain, params, true);
 }
 
