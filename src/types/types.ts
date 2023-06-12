@@ -20,7 +20,7 @@ export interface PostInput {
 
 export type TFormData = {
   tag: string[];
-  file: File | null;
+  file: string | Blob;
   title: string;
   content: string;
   shareStatus: boolean;

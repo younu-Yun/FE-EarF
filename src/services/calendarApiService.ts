@@ -17,3 +17,8 @@ export async function getApiCalendarHavedata(date?: string): Promise<string[]> {
   const params = `/diary/monthDiary/${date}`;
   return await Api.get(domain, params, true);
 }
+
+export async function postApiCalendarData(date?: string, data?: any) {
+  const params = `/diary/${date}`;
+  return await Api.post(domain, params, data, true);
+}

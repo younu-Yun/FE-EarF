@@ -14,7 +14,7 @@ import { GetTagImage } from 'services/calendarService';
 
 localStorage.setItem(
   'token',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgyZjg2N2U0MGNjMmNmMWM5ZmY0ZjAiLCJpZCI6InRlc3QwMDEiLCJuYW1lIjoi7Jyk7Jqw7KCVIiwiZW1haWwiOiJkYnNkbndqZDk2QG5hdmVyLmNvbSIsImlhdCI6MTY4NjU4ODgzOSwiZXhwIjoxNjg2NTkyNDM5fQ.yn4-V5HI3xgAbkCKWC5kxQtTi2Ymi1ft9ObTCZlayiU'
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgyZjg2N2U0MGNjMmNmMWM5ZmY0ZjAiLCJpZCI6InRlc3QwMDEiLCJuYW1lIjoi7Jyk7Jqw7KCVIiwiZW1haWwiOiJkYnNkbndqZDk2QG5hdmVyLmNvbSIsImlhdCI6MTY4NjYwMDgwMCwiZXhwIjoxNjg2NjA0NDAwfQ.JXwNO3p-YWU82v7L7WmlVromCd8cRxd8reJNUiY0uUo'
 );
 
 export default function Calender() {
