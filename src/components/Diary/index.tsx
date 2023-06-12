@@ -16,7 +16,7 @@ import {
   HandleSharedClick,
   HandleImageChange,
   HandleCheckboxChange,
-} from 'services/calenderService';
+} from 'services/calendarService';
 
 export default function Diary() {
   const selectedValue = useSelector((state: RootState) => state.selectedDay.value);

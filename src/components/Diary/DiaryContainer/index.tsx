@@ -13,7 +13,7 @@ export default function DiaryContainer() {
   return (
     <div className={styles.container}>
       <button onClick={handleReportClick}>리포트 보기</button>
-      {isReport ? <IsPostDataDiary /> : <IsReportDataDiary />}
+      {!isReport ? <IsPostDataDiary /> : <IsReportDataDiary />}
     </div>
   );
 }
