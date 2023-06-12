@@ -10,7 +10,7 @@ interface UserData {
   name: string;
   email: string;
   phoneNumber: string;
-  profileImage: string;
+  profileImage: string | null;
 }
 
 function Main() {
@@ -21,7 +21,7 @@ function Main() {
     name: '',
     email: '',
     phoneNumber: '',
-    profileImage: '',
+    profileImage: null,
   });
 
   // Edit 모달

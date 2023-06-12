@@ -3,25 +3,25 @@ import { useState, ChangeEvent, useEffect } from 'react';
 import Button from 'components/common/Button';
 import camera from 'assets/images/camera.png';
 import { useNavigate } from 'react-router-dom';
-import { userInfo, userInfoChange } from 'api/Fetcher';
+import { userInfo, userInfoChange, userImgChange } from 'api/Fetcher';
 import defaultProfile from 'assets/icons/UserIcon.svg';
 interface FormValues {
   id: string;
   name: string;
   email: string;
   phoneNumber: string;
-  profileImage: string;
+  profileImage?: File | null | string;
 }
 
 function Edit() {
   const navigate = useNavigate();
-  const [profileImage, setProfileImage] = useState<string>('');
+  const imgFormData = new FormData();
   const [formData, setFormData] = useState<FormValues>({
     id: '',
     name: '',
     email: '',
     phoneNumber: '',
-    profileImage: '',
+    profileImage: null,
   });
 
   useEffect(() => {
@@ -54,17 +54,12 @@ function Edit() {
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        const dataUrl = reader.result as string;
-        setProfileImage(dataUrl);
-        console.log('dataUrl', dataUrl);
-        setFormData((prevData) => ({
-          ...prevData,
-          profileImage: dataUrl,
-        }));
-      };
+      console.log(file);
+      setFormData((prevData) => ({
+        ...prevData,
+        profileImage: file,
+      }));
+      imgFormData.append('profileImage', formData.profileImage as File);
     }
   };
 
@@ -72,13 +67,12 @@ function Edit() {
     navigate('/change_password');
   };
 
-  const handleUserInfoChange = async (e) => {
+  const handleUserInfoChange = async (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     try {
-      const { id, name, email, phoneNumber, profileImage } = formData;
-      console.log('info', id, name, email, phoneNumber, profileImage);
-      console.log('formData', formData);
-      await userInfoChange(id, name, email, phoneNumber, profileImage);
+      const { id, name, email, phoneNumber } = formData;
+      await userInfoChange(id, name, email, phoneNumber);
+      await userImgChange(imgFormData);
       navigate('/mypage/info');
     } catch (error) {
       console.error('수정에 실패했습니다.', error);
@@ -103,8 +97,8 @@ function Edit() {
           />
         </div>
         <div className={styles.userInfo}>
-          <label htmlFor='name'>아이디</label>
-          <input type='text' id='name' name='name' value={formData.id} readOnly />
+          <label htmlFor='id'>아이디</label>
+          <input type='text' id='id' name='id' value={formData.id} readOnly />
         </div>
         <div className={styles.userInfo}>
           <label htmlFor='name'>이름</label>

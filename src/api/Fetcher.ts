@@ -65,19 +65,12 @@ export async function userLogout() {
 }
 
 // 유저 정보 변경
-export async function userInfoChange(
-  userId: string,
-  userName: string,
-  userEmail: string,
-  userPhoneNumber: string,
-  userProfileImage: string
-) {
+export async function userInfoChange(userId: string, userName: string, userEmail: string, userPhoneNumber: string) {
   const data = {
     id: userId,
     name: userName,
     email: userEmail,
     phoneNumber: userPhoneNumber,
-    profileImage: userProfileImage,
   };
   return await Api.patch(domain, 'user', data);
 }
@@ -88,4 +81,20 @@ export async function checkedBadgeChange(checkedBadge: string) {
     checkedBadge: checkedBadge,
   };
   return await Api.patch(domain, 'user', data);
+}
+
+// 비밀번호 확인
+export async function checkPassword(password: string) {
+  const data = {
+    password: password,
+  };
+  return await Api.post(domain, 'user/check', data);
+}
+
+// 유저 프로필 이지미 변경
+export async function userImgChange(profileImg: FormData) {
+  const data = {
+    profileImg: profileImg,
+  };
+  return await Api.post(domain, 'user/profile', data);
 }
