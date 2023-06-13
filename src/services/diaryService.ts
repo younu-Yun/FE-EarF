@@ -1,5 +1,5 @@
 import { TFormData, CheckboxesState } from 'types/types';
-import { postApiCalendarData } from './calendarApiService';
+import axios from 'axios';
 
 type THandleEachValue = <T extends keyof TFormData>(
   element: T,
@@ -62,22 +62,38 @@ export const HandleDiarySubmit: THandleDiarySubmit = (formData, selectedValue) =
   console.log('Form Data:', formData);
 
   const { tag, file, title, content, shareStatus } = formData;
-  console.log(JSON.stringify(tag), 'tag');
 
-  console.log(file, 'file');
+  const tagMapping: Record<string, string> = {
+    tag1: '텀블러',
+    tag2: '대중교통',
+    tag3: '채식',
+  };
+
+  const transformedTags: string[] = tag.map((data: any) => tagMapping[data]);
 
   const postFormData = new FormData();
-  postFormData.append('tag', JSON.stringify(tag));
-  postFormData.append('file', file);
+  transformedTags.forEach((value: string, index: number) => {
+    postFormData.append(`tag[${index}]`, value);
+  });
+  postFormData.append('imageUrl', file);
   postFormData.append('title', title);
   postFormData.append('content', content);
   postFormData.append('shareStatus', shareStatus.toString());
 
   console.log(postFormData, '폼데이터 확인');
 
-  console.log(postFormData.get('file'), 'postFormData file');
+  console.log(postFormData.get('imageUrl'), 'postFormData file');
 
-  postApiCalendarData(selectedValue, postFormData).then(() => {
-    // window.location.reload();
-  });
+  const headers = {
+    'Content-Type': 'multipart/form-data',
+  };
+
+  axios
+    .post(`http://34.64.216.86/api/diary/${selectedValue}`, postFormData, { headers: headers })
+    .then((response) => {
+      console.log('응답 데이터:', response.data);
+    })
+    .catch((error) => {
+      console.error('에러 발생:', error);
+    });
 };

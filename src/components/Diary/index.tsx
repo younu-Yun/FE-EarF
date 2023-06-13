@@ -1,15 +1,14 @@
-import React, { useRef, useState, useEffect } from 'react';
-import styles from './styles.module.scss';
+import { useRef, useState, useEffect } from 'react';
 import inputDefaultImg from '../../assets/images/inputDefaultImg.png';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from 'store';
-import { setSelectedDay } from 'store/selectedDaySlice';
-import DiaryButton from './common/DiaryButton';
 
+import DiaryButton from './common/DiaryButton';
 import ShareButton from './common/ShareButton';
 import CheckboxComponent from './common/CheckboxComponent';
 import { TFormData, CheckboxesState } from 'types/types';
+
 import {
   HandleDiarySubmit,
   HandleEachValue,
@@ -17,6 +16,8 @@ import {
   HandleImageChange,
   HandleCheckboxChange,
 } from 'services/diaryService';
+
+import styles from './styles.module.scss';
 
 export default function Diary() {
   const selectedValue = useSelector((state: RootState) => state.selectedDay.value);

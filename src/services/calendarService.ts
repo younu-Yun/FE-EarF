@@ -10,6 +10,5 @@ export const GetTagImage = (tagLength: number | undefined) => {
   } else if (tagLength === 3) {
     return tagImg3;
   }
-  // 기본 이미지 또는 예외 처리
   return tagImg1;
 };
