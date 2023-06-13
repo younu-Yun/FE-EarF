@@ -2,7 +2,7 @@ import styles from './Main.module.scss';
 import { useEffect, useState } from 'react';
 import Button from 'components/common/Button';
 import Modal from './Modal';
-import { userInfo } from 'api/Fetcher';
+import { userInfo } from 'api/fetcher';
 import defaultProfile from 'assets/icons/UserIcon.svg';
 
 interface UserData {
