@@ -1,19 +1,75 @@
 export interface User {
+  _id: string;
+  id: string;
   name: string;
   email: string;
-  password: string;
   phoneNumber: string;
+  profileImage: string;
+  checkedBadge: string;
+  postNum: number;
+  tumblerNum: number;
+  transportNum: number;
+  basketNum: number;
+  refreshToken: string;
+  badges: string[];
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
 }
 
 export interface QuestionPost {
+  _id: string;
   id: string;
-  userId: string;
+  name: string;
+  profileImage: string;
+  checkedBadge: string;
   title: string;
   content: string;
+  likeIds: string[];
+  commentIds: string[];
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  numComments: number;
+  numLikes: number;
 }
 
-export interface PostInput {
-  userId: string;
+export interface DeletePost {
+  message: string;
+  question: QuestionPost;
+}
+
+export interface CommentPath {
+  postId: string;
+  commentId: string;
+}
+
+export interface CommentPost {
+  comment: string;
+}
+
+export interface LastComment {
+  title: string;
+  comment: string;
+}
+
+export interface Comment {
+  _id: string;
+  postId: string;
+  id: string;
+  name: string;
+  profileImage: string;
+  checkedBadge: string;
+  comment: string;
+  likeIds: string[];
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  numLikes: number;
+}
+
+export interface CreateQuestionPost {
+  _id?: string;
   title: string;
   content: string;
 }

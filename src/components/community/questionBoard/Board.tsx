@@ -1,31 +1,44 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import {
+  useGetAllCommunityPostsQuery,
+  useGetCommunityPostsQuery,
+  useGetMostCommentsCommunityPostsQuery,
+  useGetMostLikesCommunityPostsQuery,
+} from 'api/communityApiSlice';
 import Pagination from 'react-js-pagination';
-import { getCommunityPosts } from 'api/Fetcher';
 import { ReactComponent as Chat } from 'assets/icons/Search.svg';
 import { ReactComponent as Post } from 'assets/icons/Pencil.svg';
 import { ReactComponent as Circle } from 'assets/icons/Circle.svg';
 import { ReactComponent as Top } from 'assets/icons/ArrowUp.svg';
 import QuestionPostingItem from './QuestionPostingItem';
+import { PuffLoader } from 'react-spinners';
+import errorCommunity from 'assets/images/errorCommunity.png';
 import styles from './Board.module.scss';
-import UnsolvedQuestion from './UnsolvedQuestion';
+import UnsolvedQuestionSwiper from './UnsolvedQuestionSwiper';
 
-interface postDataType {
-  id: string;
-  name: string;
-  profileImage: string;
-  checkedBadge: string;
-  title: string;
-  content: string;
-  likeIds: [];
-  commentIds: [];
-  _id: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
 function Board() {
-  const [postData, setPostData] = useState<postDataType[] | undefined>();
+  const [page, setPage] = useState(1);
+  const [activeSorting, setActiveSorting] = useState('recent');
+  const [totalItemsCount, setTotalItemsCount] = useState(0);
+
+  const { data: allPostData } = useGetAllCommunityPostsQuery();
+  useEffect(() => {
+    if (allPostData) {
+      setTotalItemsCount(allPostData.length);
+    }
+  }, [allPostData]);
+  const { data: postData, isLoading: isPostLoading, error: postError } = useGetCommunityPostsQuery(page);
+  const {
+    data: mostCommentsData,
+    isLoading: isMostCommentsLoading,
+    error: mostCommentsError,
+  } = useGetMostCommentsCommunityPostsQuery(page);
+  const {
+    data: mostLikesData,
+    isLoading: isMostLikesLoading,
+    error: mostLikesError,
+  } = useGetMostLikesCommunityPostsQuery(page);
 
   // 스크롤링
   const scrollToTop = () => {
@@ -66,22 +79,26 @@ function Board() {
   };
 
   // 페이지네이션
-  const [page, setPage] = useState(1);
   const movePage = (page: number) => {
     setPage(page);
   };
 
-  // 게시글 데이터
-  useEffect(() => {
-    getQuestionPosts();
-  });
-  async function getQuestionPosts() {
-    try {
-      const response: any = await getCommunityPosts();
-      setPostData(response);
-    } catch (err) {
-      console.log(err);
-    }
+  // 정렬 기준 변경 이벤트
+  const handleSortingClick = (sorting: string) => {
+    setActiveSorting(sorting);
+  };
+  let sortedData = postData;
+  let isLoading = isPostLoading;
+  let error = postError;
+
+  if (activeSorting === 'comments') {
+    sortedData = mostCommentsData;
+    isLoading = isMostCommentsLoading;
+    error = mostCommentsError;
+  } else if (activeSorting === 'likes') {
+    sortedData = mostLikesData;
+    isLoading = isMostLikesLoading;
+    error = mostLikesError;
   }
 
   return (
@@ -98,10 +115,7 @@ function Board() {
             <Chat />
           </button>
         </form>
-        <div className={styles.unsolved}>
-          <span>답변을 기다리고 있어요</span>
-          <UnsolvedQuestion />
-        </div>
+        <UnsolvedQuestionSwiper />
       </div>
       <div className={styles.boardTopContainer}>
         {!token ? (
@@ -110,52 +124,87 @@ function Board() {
             작성하기
           </button>
         ) : (
-          <Link to='/community/post' className={styles.postingButton}>
+          <Link to='/community/question/post' className={styles.postingButton}>
             <Post className={styles.postingSvg} />
             작성하기
           </Link>
         )}
         <div className={styles.sortingContainer}>
           <ul>
-            <li>
+            <li
+              onClick={() => {
+                handleSortingClick('recent');
+                setPage(1);
+                scrollToTop();
+              }}
+              className={activeSorting === 'recent' ? styles.activeSorting : ''}
+            >
               <Circle />
               최신순
             </li>
-            <li>
+            <li
+              onClick={() => {
+                handleSortingClick('comments');
+                setPage(1);
+                scrollToTop();
+              }}
+              className={activeSorting === 'comments' ? styles.activeSorting : ''}
+            >
               <Circle />
               댓글순
             </li>
-            <li>
+            <li
+              onClick={() => {
+                handleSortingClick('likes');
+                setPage(1);
+                scrollToTop();
+              }}
+              className={activeSorting === 'likes' ? styles.activeSorting : ''}
+            >
               <Circle />
               추천순
             </li>
           </ul>
         </div>
       </div>
-      <ul>
-        {postData &&
-          postData.map((post) => (
-            <QuestionPostingItem
-              key={post._id}
-              likeNums={post.likeIds.length}
-              commentNums={post.commentIds.length}
-              title={post.title}
-              content={post.content}
-              date={post.createdAt}
-              username={post.name}
-            />
-          ))}
-      </ul>
+      {isLoading ? (
+        <div className={styles.loadingContainer}>
+          <PuffLoader color='#24AE63' loading size={100} />
+        </div>
+      ) : error ? (
+        <div className={styles.errorContainer}>
+          <img src={errorCommunity} />
+          게시글을 불러오지 못했습니다.
+        </div>
+      ) : (
+        <ul>
+          {sortedData &&
+            sortedData?.map((post) => (
+              <QuestionPostingItem
+                key={post._id}
+                _id={post._id}
+                title={post.title}
+                content={post.content}
+                createdAt={post.createdAt}
+                id={post.id}
+                name={post.name}
+                profileImage={post.profileImage}
+                numComments={post.numComments}
+                numLikes={post.numLikes}
+              />
+            ))}
+        </ul>
+      )}
       <div>
         <div className={styles.pageContainer}>
           <Pagination
             activePage={page}
             itemsCountPerPage={10}
-            totalItemsCount={50}
+            totalItemsCount={totalItemsCount}
             pageRangeDisplayed={5}
             prevPageText='‹'
             nextPageText='›'
-            onChange={movePage}
+            onChange={(selectedPage) => movePage(selectedPage)}
           />
         </div>
       </div>
