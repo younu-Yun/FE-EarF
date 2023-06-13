@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
+import dayjs from 'dayjs';
 
 import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement, ChartOptions, Tooltip, Legend } from 'chart.js';
+
+import { useSelector } from 'react-redux';
+import { RootState } from 'store';
+
+import { getApiCalendarReportData } from 'services/calendarApiService';
 
 interface ChartData {
   labels: string[];
   datasets: any;
 }
 
-const data: ChartData = {
+const initialData: ChartData = {
   labels: ['텀블러', '대중교통', '채식'],
   datasets: [
     {
@@ -36,12 +42,32 @@ const options: ChartOptions<'doughnut'> = {
 };
 
 export default function IsReportDataDiary() {
-  Chart.register(ArcElement, Tooltip, Legend);
+  const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
+  const [data, setData] = useState<ChartData>(initialData); // 상태로 관리할 데이터
+
+  const selectedValueInReport = dayjs(selectedValue).format('YYYY-MM');
+
+  useEffect(() => {
+    Chart.register(ArcElement, Tooltip, Legend);
+
+    getApiCalendarReportData(selectedValueInReport).then((response) => {
+      setData((prevData) => ({
+        ...prevData,
+        labels: Object.keys(response),
+        datasets: [
+          {
+            ...prevData.datasets[0],
+            data: Object.values(response),
+          },
+        ],
+      }));
+    });
+  }, [selectedValue]);
 
   return (
     <div className={styles.reportContainer}>
       <Doughnut data={data} options={options} />
-      <div className={styles.reportWrapper}>this is report diary</div>
+      {/* <div className={styles.reportWrapper}>this is report diary</div> */}
     </div>
   );
 }

@@ -25,7 +25,7 @@ export default function Diary() {
 
   const [formData, setFormData] = useState<TFormData>({
     tag: [],
-    file: '',
+    file: null,
     title: '',
     content: '',
     shareStatus: false,

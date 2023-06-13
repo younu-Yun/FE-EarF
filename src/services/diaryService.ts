@@ -62,6 +62,9 @@ export const HandleDiarySubmit: THandleDiarySubmit = (formData, selectedValue) =
   console.log('Form Data:', formData);
 
   const { tag, file, title, content, shareStatus } = formData;
+  console.log(JSON.stringify(tag), 'tag');
+
+  console.log(file, 'file');
 
   const postFormData = new FormData();
   postFormData.append('tag', JSON.stringify(tag));
@@ -72,7 +75,9 @@ export const HandleDiarySubmit: THandleDiarySubmit = (formData, selectedValue) =
 
   console.log(postFormData, '폼데이터 확인');
 
+  console.log(postFormData.get('file'), 'postFormData file');
+
   postApiCalendarData(selectedValue, postFormData).then(() => {
-    window.location.reload();
+    // window.location.reload();
   });
 };

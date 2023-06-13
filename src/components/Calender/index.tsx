@@ -12,10 +12,10 @@ import notPost from 'assets/images/notpost.png';
 import './styles.scss';
 import { GetTagImage } from 'services/calendarService';
 
-localStorage.setItem(
-  'token',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgyZjg2N2U0MGNjMmNmMWM5ZmY0ZjAiLCJpZCI6InRlc3QwMDEiLCJuYW1lIjoi7Jyk7Jqw7KCVIiwiZW1haWwiOiJkYnNkbndqZDk2QG5hdmVyLmNvbSIsImlhdCI6MTY4NjYwMDgwMCwiZXhwIjoxNjg2NjA0NDAwfQ.JXwNO3p-YWU82v7L7WmlVromCd8cRxd8reJNUiY0uUo'
-);
+// localStorage.setItem(
+//   'token',
+//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDg4MDc4NjAzNzUyNDk2ZDhlODJmYTQiLCJpZCI6ImNrZGd1czg3MzQiLCJuYW1lIjoi7Jik7LC97ZiEIiwiZW1haWwiOiJja2RndXM1MTg5QGdtYWlsLmNvbSIsImlhdCI6MTY4NjY0MDExMywiZXhwIjoxNjg2NjQzNzEzfQ.qLH4P7NBae_ADVh4H9guZOVhxwnb7MlHcxa9_Eygo34'
+// );
 
 export default function Calender() {
   const [markData, setMarkData] = useState<string[]>();
