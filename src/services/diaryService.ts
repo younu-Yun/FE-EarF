@@ -59,8 +59,6 @@ export const HandleCheckboxChange: THandleCheckboxChange = (checkboxName, checkb
 };
 
 export const HandleDiarySubmit: THandleDiarySubmit = (formData, selectedValue) => {
-  console.log('Form Data:', formData);
-
   const { tag, file, title, content, shareStatus } = formData;
 
   const tagMapping: Record<string, string> = {
@@ -80,10 +78,6 @@ export const HandleDiarySubmit: THandleDiarySubmit = (formData, selectedValue) =
   postFormData.append('content', content);
   postFormData.append('shareStatus', shareStatus.toString());
 
-  console.log(postFormData, '폼데이터 확인');
-
-  console.log(postFormData.get('imageUrl'), 'postFormData file');
-
   const headers = {
     'Content-Type': 'multipart/form-data',
   };
@@ -91,7 +85,7 @@ export const HandleDiarySubmit: THandleDiarySubmit = (formData, selectedValue) =
   axios
     .post(`http://34.64.216.86/api/diary/${selectedValue}`, postFormData, { headers: headers })
     .then((response) => {
-      console.log('응답 데이터:', response.data);
+      window.location.reload();
     })
     .catch((error) => {
       console.error('에러 발생:', error);

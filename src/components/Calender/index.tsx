@@ -31,7 +31,6 @@ export default function Calender() {
 
   useEffect(() => {
     getApiCalendarHavedata(paramsMonth).then((data: string[]) => {
-      console.log(data, '데이터 있는 날짜 배열');
       setMarkData(data);
     });
   }, [selectedValue]);

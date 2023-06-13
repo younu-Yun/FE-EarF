@@ -15,10 +15,7 @@ export default function DiaryContainer() {
 
   const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
 
-  console.log(selectedValue, 'in calendar');
-
   getApiCalendarEachData(selectedValue).then((data) => {
-    console.log(data, 'api data in calendar');
     if (data !== null) {
       setIsDataInDay(true);
     } else {

@@ -30,8 +30,6 @@ export default function IsPostDataDiary() {
     fetchPost();
   }, [selectedValue]);
 
-  console.log(data, 'datatddddd');
-
   const tagImageSrc = GetTagImage(data?.tag.length);
 
   if (loading) {
@@ -48,10 +46,7 @@ export default function IsPostDataDiary() {
           </div>
           <img alt='postimg' src={data?.imageUrl} className={styles.imgContainer} />
           <>
-            <div className={styles.postTitleDiv}>
-              {data?.title}
-              {/* <img src={test} alt='test' style={{ width: '20px', marginBottom: '20px' }} /> */}
-            </div>
+            <div className={styles.postTitleDiv}>{data?.title}</div>
 
             <div className={styles.postContentDiv}>{data?.content}</div>
           </>

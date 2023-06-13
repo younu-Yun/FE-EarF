@@ -50,7 +50,6 @@ export default function Diary() {
     return Object.keys(checkboxes).filter((checkbox: string) => checkboxes[checkbox]);
   };
 
-  console.log(selectedValue, 'in diary state');
   return (
     <div className={styles.container}>
       <div className={styles.tagContainer}>
