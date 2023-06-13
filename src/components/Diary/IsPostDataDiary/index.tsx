@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 
-import { getApiCalendarEachData } from 'services/calendarApiService';
+import { getApiCalendarEachData, deleteApiCalendarData } from 'services/calendarApiService';
 import { GetTagImage } from 'services/calendarService';
 import { EachDayDataApiType } from 'types/types';
 
@@ -11,41 +11,28 @@ import styles from './styles.module.scss';
 
 export default function IsPostDataDiary() {
   const [data, setData] = useState<EachDayDataApiType>();
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedTitle, setEditedTitle] = useState('');
-  const [editedContent, setEditedContent] = useState('');
-  const [editedTag, setEditedTag] = useState('');
   const [loading, setLoading] = useState(true);
 
   const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
 
   useEffect(() => {
-    getApiCalendarEachData(selectedValue).then((data: EachDayDataApiType) => {
-      setData(data);
-      setEditedContent(data?.content);
-      setEditedTitle(data?.title);
-      setEditedTag(data?.tag.join(', '));
-      setLoading(false);
-    });
+    const fetchPost = async () => {
+      try {
+        await getApiCalendarEachData(selectedValue).then((data: EachDayDataApiType) => {
+          setData(data);
+          setLoading(false);
+        });
+      } catch (error) {
+        console.error('Error fetching post:', error);
+      }
+    };
+
+    fetchPost();
   }, [selectedValue]);
 
   console.log(data, 'datatddddd');
 
   const tagImageSrc = GetTagImage(data?.tag.length);
-
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
-
-  const handleSaveClick = () => {
-    setIsEditing(false);
-    setEditedTitle(editedTitle);
-    setEditedContent(editedContent);
-  };
-
-  console.log(editedTag, 'asdfsadfa');
-
-  console.log(data?.imageUrl);
 
   if (loading) {
     return <div>loading...</div>;
@@ -60,34 +47,19 @@ export default function IsPostDataDiary() {
             <span>{data?.tag.length}개 달성!</span>
           </div>
           <img alt='postimg' src={data?.imageUrl} className={styles.imgContainer} />
-          {isEditing ? (
-            <div className={styles.inputContainer}>
-              <input
-                type='text'
-                value={editedTitle}
-                onChange={(e) => setEditedTitle(e.target.value)}
-                className={styles.inputContent}
-              />
-              <textarea
-                value={editedContent}
-                onChange={(e) => setEditedContent(e.target.value)}
-                className={styles.inputContent}
-              />
+          <>
+            <div className={styles.postTitleDiv}>
+              {data?.title}
+              {/* <img src={test} alt='test' style={{ width: '20px', marginBottom: '20px' }} /> */}
             </div>
-          ) : (
-            <>
-              <div className={styles.postItemWrapper}>{editedTitle}</div>
-              <div className={styles.postItemWrapper}>{editedContent}</div>
-            </>
-          )}
+
+            <div className={styles.postContentDiv}>{data?.content}</div>
+          </>
         </div>
         <div>
-          {isEditing ? (
-            <button onClick={handleSaveClick}>완료</button>
-          ) : (
-            <button onClick={handleEditClick}>수정</button>
-          )}
-          <button>삭제</button>
+          <button className={styles.deleteButton} onClick={() => deleteApiCalendarData(selectedValue)}>
+            삭제
+          </button>
         </div>
       </div>
     </>

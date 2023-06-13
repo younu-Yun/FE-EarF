@@ -1,3 +1,4 @@
+import axios from 'axios';
 import * as Api from '../api/apiRequest';
 import { EachDayDataApiType } from 'types/types';
 
@@ -31,4 +32,15 @@ export async function getApiCalendarReportData(date?: string): Promise<string[]>
 export async function patchApiPostData(date?: string, data?: any): Promise<string[]> {
   const params = `/diary/${date}`;
   return await Api.patch(domain, params, data, true);
+}
+
+export async function deleteApiCalendarData(date?: string) {
+  axios
+    .delete(`http://34.64.216.86/api/diary/${date}`)
+    .then((response) => {
+      alert('삭제되었습니다.');
+    })
+    .catch((error) => {
+      console.error('에러 발생:', error);
+    });
 }

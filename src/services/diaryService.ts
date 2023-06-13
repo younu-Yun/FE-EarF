@@ -86,8 +86,6 @@ export const HandleDiarySubmit: THandleDiarySubmit = (formData, selectedValue) =
 
   const headers = {
     'Content-Type': 'multipart/form-data',
-    Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDg4MmI0YjFjYjQ4MTljMzAzMTRmOWMiLCJpZCI6InRlc3QxMTEiLCJuYW1lIjoidGVzdHR0dHQiLCJlbWFpbCI6InRlc3RAdGdzZ3MuY29tIiwiaWF0IjoxNjg2NjU0MDI5LCJleHAiOjE2ODY2NTc2Mjl9.05zx6QsTFoSghhzT2FYRrroX1jWUNCvXJPfXZvn1Dgg',
   };
 
   axios
