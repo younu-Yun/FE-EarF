@@ -1,4 +1,4 @@
-import * as Api from '../api/ApiRequest';
+import * as Api from '../api/apiRequest';
 import { EachDayDataApiType } from 'types/types';
 
 const domain = `http://34.64.216.86/api`;
