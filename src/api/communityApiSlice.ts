@@ -147,6 +147,16 @@ export const communityApiSlice = createApi({
       }),
       invalidatesTags: ['Post'],
     }),
+    // 댓글 좋아요 patch Api
+    toggleLikeComment: builder.mutation<Omit<Comment, 'numLikes'>, CommentPath>({
+      query: ({ postId, commentId }) => ({
+        url: `community/questions/comments/like/${postId}/${commentId}`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }),
+      invalidatesTags: ['Post'],
+    }),
   }),
 });
 
@@ -168,4 +178,5 @@ export const {
   useCreateCommentMutation,
   useEditCommentMutation,
   useDeleteCommentMutation,
+  useToggleLikeCommentMutation,
 } = communityApiSlice;
