@@ -1,5 +1,6 @@
 import { TFormData, CheckboxesState } from 'types/types';
 import { postApiCalendarData } from './calendarApiService';
+import axios from 'axios';
 
 type THandleEachValue = <T extends keyof TFormData>(
   element: T,
@@ -75,16 +76,31 @@ export const HandleDiarySubmit: THandleDiarySubmit = (formData, selectedValue) =
   transformedTags.forEach((value: string, index: number) => {
     postFormData.append(`tag[${index}]`, value);
   });
-  postFormData.append('file', file);
+  postFormData.append('imageUrl', file);
   postFormData.append('title', title);
   postFormData.append('content', content);
   postFormData.append('shareStatus', shareStatus.toString());
 
   console.log(postFormData, '폼데이터 확인');
 
-  console.log(postFormData.get('file'), 'postFormData file');
+  console.log(postFormData.get('imageUrl'), 'postFormData file');
 
-  postApiCalendarData(selectedValue, postFormData).then(() => {
-    // window.location.reload();
-  });
+  const headers = {
+    'Content-Type': 'multipart/form-data',
+    Authorization:
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDg4MmI0YjFjYjQ4MTljMzAzMTRmOWMiLCJpZCI6InRlc3QxMTEiLCJuYW1lIjoidGVzdHR0dHQiLCJlbWFpbCI6InRlc3RAdGdzZ3MuY29tIiwiaWF0IjoxNjg2NjU0MDI5LCJleHAiOjE2ODY2NTc2Mjl9.05zx6QsTFoSghhzT2FYRrroX1jWUNCvXJPfXZvn1Dgg',
+  };
+
+  axios
+    .post(`http://34.64.216.86/api/diary/${selectedValue}`, postFormData, { headers: headers })
+    .then((response) => {
+      console.log('응답 데이터:', response.data);
+    })
+    .catch((error) => {
+      console.error('에러 발생:', error);
+    });
+
+  // postApiCalendarData(selectedValue, postFormData).then(() => {
+  //   // window.location.reload();
+  // });
 };

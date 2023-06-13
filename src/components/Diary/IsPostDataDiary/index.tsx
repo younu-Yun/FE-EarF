@@ -42,6 +42,8 @@ export default function IsPostDataDiary() {
 
   console.log(editedTag, 'asdfsadfa');
 
+  console.log(data?.imageUrl);
+
   if (loading) {
     return <div>loading...</div>;
   }
