@@ -5,7 +5,7 @@ import MyPageEdit from 'pages/MyPageEdit';
 import Community from 'pages/Community';
 import CommunityPosting from 'pages/CommunityPosting';
 import Boast from 'pages/Boast';
-import Calender from 'components/Calender';
+import Calender from 'pages/Calendar';
 import Login from 'pages/Login';
 import Join from 'pages/Join';
 import FindId from 'pages/FindId';

@@ -1,4 +1,5 @@
 import { TFormData, CheckboxesState } from 'types/types';
+import { postApiCalendarData } from './calendarApiService';
 
 type THandleEachValue = <T extends keyof TFormData>(
   element: T,
@@ -24,9 +25,7 @@ type THandleCheckboxChange = (
   setCheckboxes: React.Dispatch<React.SetStateAction<CheckboxesState>>
 ) => void;
 
-export const handleDiarySubmit = () => {
-  console.log('Form Data:');
-};
+type THandleDiarySubmit = (formData: any, selectedValue: string) => void;
 
 export const HandleEachValue: THandleEachValue = (element, value, setFormData) => {
   setFormData((prevFormData) => ({
@@ -56,5 +55,29 @@ export const HandleCheckboxChange: THandleCheckboxChange = (checkboxName, checkb
   setCheckboxes({
     ...checkboxes,
     [checkboxName]: !checkboxes[checkboxName],
+  });
+};
+
+export const HandleDiarySubmit: THandleDiarySubmit = (formData, selectedValue) => {
+  console.log('Form Data:', formData);
+
+  const { tag, file, title, content, shareStatus } = formData;
+  console.log(JSON.stringify(tag), 'tag');
+
+  console.log(file, 'file');
+
+  const postFormData = new FormData();
+  postFormData.append('tag', JSON.stringify(tag));
+  postFormData.append('file', file);
+  postFormData.append('title', title);
+  postFormData.append('content', content);
+  postFormData.append('shareStatus', shareStatus.toString());
+
+  console.log(postFormData, '폼데이터 확인');
+
+  console.log(postFormData.get('file'), 'postFormData file');
+
+  postApiCalendarData(selectedValue, postFormData).then(() => {
+    // window.location.reload();
   });
 };

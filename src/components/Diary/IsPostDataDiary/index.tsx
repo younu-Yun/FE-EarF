@@ -1,18 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
-const data = {
-  tag: ['텀블러', '대중교통'],
-  imageUrl: 'https://images.unsplash.com/source-404?fit=crop&fm=jpg&h=800&q=60&w=1200',
-  title: '오늘의 지구 지키기',
-  content: '오늘은 카페에서 일회용품대신 텀블러로 주문을 했다, 기분이 좋았다.',
-  shareStatus: true,
-};
+import { useSelector } from 'react-redux';
+import { RootState } from 'store';
+
+import { getApiCalendarEachData } from 'services/calendarApiService';
+import { GetTagImage } from 'services/calendarService';
+import { EachDayDataApiType } from 'types/types';
 
 export default function IsPostDataDiary() {
+  const [data, setData] = useState<EachDayDataApiType>();
   const [isEditing, setIsEditing] = useState(false);
-  const [editedTitle, setEditedTitle] = useState(data.title);
-  const [editedContent, setEditedContent] = useState(data.content);
+  const [editedTitle, setEditedTitle] = useState('');
+  const [editedContent, setEditedContent] = useState('');
+  const [editedTag, setEditedTag] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
+
+  useEffect(() => {
+    getApiCalendarEachData(selectedValue).then((data: EachDayDataApiType) => {
+      setData(data);
+      setEditedContent(data?.content);
+      setEditedTitle(data?.title);
+      setEditedTag(data?.tag.join(', '));
+      setLoading(false);
+    });
+  }, [selectedValue]);
+
+  const tagImageSrc = GetTagImage(data?.tag.length);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -22,20 +38,22 @@ export default function IsPostDataDiary() {
     setIsEditing(false);
     setEditedTitle(editedTitle);
     setEditedContent(editedContent);
-    console.log(editedTitle);
-    console.log(editedContent);
   };
 
-  const combinedTags = data.tag.join(', ');
+  console.log(editedTag, 'asdfsadfa');
+
+  if (loading) {
+    return <div>loading...</div>;
+  }
 
   return (
     <>
       <div className={styles.postContainer}>
         <div className={styles.postItemWrapper}>
-          <div className={styles.tagImg}>.</div>
-          <span>{combinedTags}</span>
+          <img src={tagImageSrc} alt='tagimg' className={styles.tagImg} />
+          <span>{data?.tag.length}개 달성!</span>
         </div>
-        <img src={data.imageUrl} className={styles.imgContainer} />
+        <img alt='postimg' src={data?.imageUrl} className={styles.imgContainer} />
         {isEditing ? (
           <div className={styles.inputContainer}>
             <input
