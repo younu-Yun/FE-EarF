@@ -13,7 +13,6 @@ function QuestionPostingBoard() {
 
   useEffect(() => {
     const post = url.pathname.split('/')[3];
-    console.log(post);
     setPostId(post);
   }, [url]);
 
