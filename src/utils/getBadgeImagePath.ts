@@ -8,6 +8,8 @@ import badgeCommunity from 'assets/images/badgeCommunity.png';
 
 export default function getBadgeImagePath(checkedBadge: string) {
   switch (checkedBadge) {
+    case '신규':
+      return badgeDefault;
     case '최초':
       return badgeNewPost;
     case '연속':

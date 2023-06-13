@@ -1,6 +1,7 @@
-import { badgeImg1, badgeImg2, badgeImg3, badgeImg4, badgeImg5, badgeImg6, badgeImg7 } from 'utils/badgeIndex';
+// import { badgeImg1, badgeImg2, badgeImg3, badgeImg4, badgeImg5, badgeImg6, badgeImg7 } from 'utils/badgeIndex';
 import { userInfo } from 'api/fetcher';
 import { useEffect, useState } from 'react';
+import getBadgeImagePath from 'utils/getBadgeImagePath';
 
 interface BadgeInfo {
   type: string;
@@ -35,49 +36,49 @@ const initialBadgeList: BadgeInfo[] = [
     type: '신규',
     name: '신규유저',
     isGet: true,
-    url: badgeImg1,
+    url: getBadgeImagePath('신규'),
     info: '반갑습니다! 회원님! 회원가입시 획득가능합니다.',
   },
   {
     type: '최초',
     name: '최초 작성',
     isGet: false,
-    url: badgeImg2,
+    url: getBadgeImagePath('최초'),
     info: '데일리 기록을 최초 작성 시 획득가능합니다.',
   },
   {
     type: '연속',
     name: '3회이상 연속 작성',
     isGet: false,
-    url: badgeImg3,
+    url: getBadgeImagePath('연속'),
     info: '데일리 기록을 3회 이상 작성 시 획득가능합니다.',
   },
   {
     type: '텀블',
     name: '텀블러 사용 3회',
     isGet: false,
-    url: badgeImg4,
+    url: getBadgeImagePath('텀블'),
     info: '텀블러 태그 3회 이상 작성 시 획득 가능합니다.',
   },
   {
     type: '교통',
     name: '대중교통 이용 3회',
     isGet: false,
-    url: badgeImg5,
+    url: getBadgeImagePath('교통'),
     info: '대중교통 태그 3회 이상 작성 시 획득 가능합니다.',
   },
   {
     type: '버켓',
     name: '채식하기 3회',
     isGet: false,
-    url: badgeImg6,
+    url: getBadgeImagePath('버켓'),
     info: '대중교통 태그 3회 이상 작성 시 획득 가능합니다.',
   },
   {
     type: '커뮤',
     name: '커뮤니티 포스팅 3회',
     isGet: false,
-    url: badgeImg7,
+    url: getBadgeImagePath('커뮤'),
     info: '커뮤니티 게시물을 3회 이상 작성 시 획득 가능합니다.',
   },
 ];
