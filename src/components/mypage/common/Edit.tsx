@@ -83,7 +83,8 @@ function Edit() {
     <div className={styles.edit}>
       <form>
         <div className={styles.profileImageBox}>
-          <img src={formData.profileImage ? formData.profileImage : `${defaultProfile}`} alt='프로필' />
+          {/* formData.profileImage ? formData.profileImage : */}
+          <img src={`${defaultProfile}`} alt='프로필' />
           <label htmlFor='profileImage' className={styles.camera}>
             <img src={camera} alt='카메라'></img>
           </label>
