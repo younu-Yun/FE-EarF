@@ -65,7 +65,6 @@ async function RefreshAccessToken() {
     accessTokenTime();
   } catch (error) {
     console.error('토큰을 재발급하는데 실패했습니다:', error);
-    alert('토큰을 재발급하는데 실패했습니다.');
   }
 }
 
