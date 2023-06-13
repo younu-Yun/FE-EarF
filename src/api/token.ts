@@ -49,7 +49,7 @@ function isTokenExpired() {
   return false;
 }
 
-async function RefreshAccessToken() {
+async function refreshAccessToken() {
   const URL = 'http://34.64.216.86';
   try {
     const refreshToken = getRefreshToken();
@@ -77,5 +77,5 @@ export {
   accessTokenTime,
   removeAccessTokenTime,
   isTokenExpired,
-  RefreshAccessToken,
+  refreshAccessToken,
 };

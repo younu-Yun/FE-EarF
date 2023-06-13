@@ -1,5 +1,5 @@
 import axios, { AxiosError, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
-import { isTokenExpired, RefreshAccessToken } from './token';
+import { isTokenExpired, refreshAccessToken } from './token';
 
 function getToken(): string | null {
   const token = localStorage.getItem('token');
@@ -29,7 +29,7 @@ axios.interceptors.response.use(
   },
   async (error: AxiosError) => {
     if (error.response?.status === 401) {
-      if (isTokenExpired()) await RefreshAccessToken();
+      if (isTokenExpired()) await refreshAccessToken();
 
       const accessToken = getToken();
 
