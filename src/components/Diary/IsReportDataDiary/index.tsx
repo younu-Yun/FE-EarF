@@ -43,7 +43,7 @@ const options: ChartOptions<'doughnut'> = {
 
 export default function IsReportDataDiary() {
   const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
-  const [data, setData] = useState<ChartData>(initialData); // 상태로 관리할 데이터
+  const [data, setData] = useState<ChartData>(initialData);
 
   const selectedValueInReport = dayjs(selectedValue).format('YYYY-MM');
   Chart.register(ArcElement, Tooltip, Legend);
@@ -63,8 +63,11 @@ export default function IsReportDataDiary() {
     });
   }, [selectedValue]);
 
+  const monthData = dayjs(selectedValue).format('M');
+
   return (
     <div className={styles.reportContainer}>
+      <span>{monthData}월 통계 데이터</span>
       <Doughnut data={data} options={options} />
     </div>
   );
