@@ -1,31 +1,34 @@
 import { Link } from 'react-router-dom';
 import MyProfileImg from './MyProfileImg';
 import styles from './MyProfile.module.scss';
+import { useGetUserInfoQuery } from 'api/communityApiSlice';
+import getBadgeImagePath from 'utils/getBadgeImagePath';
 
 function MyProfile() {
-  const token = localStorage.getItem('token');
-  // const token = 'token';
+  const { data: userInfo } = useGetUserInfoQuery();
 
   return (
     <div className={styles.container}>
       <MyProfileImg />
       <div className={styles.userInfo}>
         <div className={styles.userName}>
-          {!token ? (
+          {!userInfo ? (
             <Link to='/login'>
               <span className={styles.notLoggedIn}>로그인</span>
             </Link>
           ) : (
-            <span>어프</span>
+            <span>{userInfo.name}</span>
           )}
-          {token && <div className={styles.userBadge}></div>}
+          {userInfo && <img src={getBadgeImagePath(userInfo?.checkedBadge)} className={styles.userBadge} alt='Badge' />}
         </div>
-        {!token ? (
+        {!userInfo ? (
           <span className={`${styles.notLoggedIn} ${styles.userPostingNumber}`}>하러가기</span>
         ) : (
           <div className={styles.userPostingNumber}>
             <span>작성한 글</span>
-            <button>17 개</button>
+            <Link to='/mypage/mycommunity'>
+              <button>{userInfo.postNum} 개</button>
+            </Link>
           </div>
         )}
       </div>

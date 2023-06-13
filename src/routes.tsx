@@ -5,18 +5,24 @@ import MyPageEdit from 'pages/MyPageEdit';
 import Community from 'pages/Community';
 import CommunityPosting from 'pages/CommunityPosting';
 import Boast from 'pages/Boast';
-import Calender from 'components/Calender';
+import Calender from 'pages/Calendar';
 import Login from 'pages/Login';
 import Join from 'pages/Join';
 import FindId from 'pages/FindId';
 import FindPassword from 'pages/FindPassword';
 import ChangePassword from 'pages/ChangePassword';
 import MyBadge from 'pages/MyBadge';
+import CommunityPost from 'pages/CommunityPost';
+import EditCommunityPosting from 'pages/EditCommunityPosting';
 
 export const protectedRoutes = [
   {
-    path: '/community/post',
+    path: '/community/question/post',
     element: <CommunityPosting />,
+  },
+  {
+    path: '/community/question/:postId/edit',
+    element: <EditCommunityPosting />,
   },
   {
     path: '/mypage/info',
@@ -35,6 +41,10 @@ export const routes = [
   {
     path: '/community/boast',
     element: <Boast />,
+  },
+  {
+    path: '/community/question/:postId',
+    element: <CommunityPost />,
   },
   {
     path: '/mypage/edit',

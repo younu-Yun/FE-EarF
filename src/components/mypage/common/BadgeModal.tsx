@@ -1,7 +1,7 @@
 import styles from './BadgeModal.module.scss';
 import { ReactComponent as Exit } from 'assets/icons/Exit.svg';
 import Button from 'components/common/Button';
-import { checkedBadgeChange } from 'api/Fetcher';
+import { checkedBadgeChange } from 'api/fetcher';
 interface BadgeModalProps {
   type: string;
   name: string;
@@ -15,6 +15,7 @@ function BadgeModal({ type, name, imgSrc, isGet, info, onClick }: BadgeModalProp
   const handleCheckedBadge = async () => {
     try {
       await checkedBadgeChange(type);
+      console.log('뱃지 변경에 성공했습니다', type);
     } catch (error) {
       console.error('대표 뱃지 변경 실패', error);
     }

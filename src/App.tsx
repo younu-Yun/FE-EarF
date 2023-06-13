@@ -4,12 +4,12 @@ import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom
 import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
 import { protectedRoutes, routes } from 'routes';
+import { getToken, refreshAccessToken } from 'api/token';
 
 function App() {
   const PrivateRoutes = () => {
-    // accessToken으로 인증 추가
-    // 코드 작성을 위해 true로 값을 지정해놓음
-    const auth = true;
+    refreshAccessToken();
+    const auth = getToken();
     return auth ? <Outlet /> : <Navigate to='/login' />;
   };
   return (

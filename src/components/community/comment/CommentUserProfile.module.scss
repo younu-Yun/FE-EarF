@@ -1,0 +1,37 @@
+@import 'color.scss';
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.imgContainer {
+  position: relative;
+  display: inline-block;
+
+  .userProfile {
+    width: 4rem;
+    height: 4rem;
+
+    background: pink;
+    border-radius: 50%;
+  }
+
+  .userBadge {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    width: 2rem;
+    height: 2rem;
+
+    background: skyblue;
+    border-radius: 50%;
+  }
+}
+
+.userName {
+  font-size: 10pt;
+  font-weight: 500;
+  color: $--color--text2;
+}

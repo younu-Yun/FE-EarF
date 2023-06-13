@@ -1,0 +1,18 @@
+@import 'color.scss';
+
+.container {
+  display: flex;
+  gap: 3rem;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+
+    cursor: pointer;
+
+    transition: all 0.5s ease;
+    &:hover {
+      stroke: $--color--primary;
+    }
+  }
+}

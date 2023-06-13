@@ -4,7 +4,7 @@ function DiaryButton(props: { text: string; className?: string; onClick: () => v
   const buttonClass = props.className ? `${styles.button} ${styles[props.className]}` : styles.button;
 
   return (
-    <button className={buttonClass} onClick={props.onClick}>
+    <button className={buttonClass} onClick={props.onClick} type='submit'>
       {props.text}
     </button>
   );

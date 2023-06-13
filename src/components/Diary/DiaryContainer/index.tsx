@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styles.module.scss';
-import IsPostDataDiary from './IsPostDataDiary';
-import IsReportDataDiary from './IsReportDataDiary';
+import IsPostDataDiary from '../IsPostDataDiary';
+import IsReportDataDiary from '../IsReportDataDiary';
 
 export default function DiaryContainer() {
   const [isReport, setIsReport] = useState(false);
@@ -13,7 +13,7 @@ export default function DiaryContainer() {
   return (
     <div className={styles.container}>
       <button onClick={handleReportClick}>리포트 보기</button>
-      {isReport ? <IsPostDataDiary /> : <IsReportDataDiary />}
+      {!isReport ? <IsPostDataDiary /> : <IsReportDataDiary />}
     </div>
   );
 }

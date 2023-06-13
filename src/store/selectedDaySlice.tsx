@@ -8,7 +8,7 @@ type InitialState = {
 
 const initialState: InitialState = {
   id: 1,
-  value: dayjs(new Date().toString()).format('YYYY MM DD'),
+  value: dayjs(new Date().toString()).format('YYYY-MM-DD'),
 };
 const selectedDaySlice = createSlice({
   name: 'selectedDay',

@@ -6,17 +6,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store';
 import { setSelectedDay } from 'store/selectedDaySlice';
 import DiaryButton from './common/DiaryButton';
-import DiaryTagButton from './common/DiaryTagButton';
+
 import ShareButton from './common/ShareButton';
 import CheckboxComponent from './common/CheckboxComponent';
 import { TFormData, CheckboxesState } from 'types/types';
 import {
-  handleDiarySubmit,
+  HandleDiarySubmit,
   HandleEachValue,
   HandleSharedClick,
   HandleImageChange,
   HandleCheckboxChange,
-} from 'services/calenderService';
+} from 'services/diaryService';
 
 export default function Diary() {
   const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
@@ -41,20 +41,13 @@ export default function Diary() {
     HandleEachValue('tag', getSelectedCheckboxes(), setFormData);
   }, [checkboxes]);
 
-  // console.log(checkboxes.tag1, 'checkbox');
-
   const handleImageClick = () => {
     hiddenFileInput.current?.click();
-  };
-
-  const handleDiarySubmit = () => {
-    console.log('Form Data:', formData);
   };
 
   const getSelectedCheckboxes = (): string[] => {
     return Object.keys(checkboxes).filter((checkbox: string) => checkboxes[checkbox]);
   };
-  // console.log(getSelectedCheckboxes(), 'checkout value');
 
   console.log(selectedValue, 'in diary state');
   return (
@@ -85,7 +78,7 @@ export default function Diary() {
       <div className={styles.recordContainer}>
         <span>기록</span>
         <div className={styles.recondWrapper}>
-          <img src={selectedImage} className={styles.defaultImg} onClick={handleImageClick} />
+          <img alt='selectimg' src={selectedImage} className={styles.defaultImg} onClick={handleImageClick} />
           <input
             placeholder='사진'
             type='file'
@@ -115,7 +108,7 @@ export default function Diary() {
             toggle={formData.shareStatus}
             onClick={() => HandleSharedClick('shareStatus', !formData.shareStatus, setFormData)}
           />
-          <DiaryButton text='등록하기' onClick={handleDiarySubmit} />
+          <DiaryButton text='등록하기' onClick={() => HandleDiarySubmit(formData, selectedValue)} />
         </div>
       </div>
     </div>
