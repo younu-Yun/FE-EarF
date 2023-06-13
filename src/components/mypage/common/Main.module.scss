@@ -33,9 +33,10 @@
     height: 10rem;
 
     border-radius: 50%;
+    overflow: hidden;
 
     & > img {
-      border-radius: 50%;
+      height: 100%;
     }
   }
 

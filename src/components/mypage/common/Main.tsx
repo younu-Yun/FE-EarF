@@ -2,15 +2,14 @@ import styles from './Main.module.scss';
 import { useEffect, useState } from 'react';
 import Button from 'components/common/Button';
 import Modal from './Modal';
-import { userInfo } from 'api/fetcher';
-import defaultProfile from 'assets/icons/UserIcon.svg';
+import { userInfo, userDelete } from 'api/fetcher';
 
 interface UserData {
   id: string;
   name: string;
   email: string;
   phoneNumber: string;
-  profileImage: string | null;
+  profileImage: string;
 }
 
 function Main() {
@@ -21,7 +20,7 @@ function Main() {
     name: '',
     email: '',
     phoneNumber: '',
-    profileImage: null,
+    profileImage: '',
   });
 
   // Edit 모달
@@ -40,7 +39,9 @@ function Main() {
 
   // 회원 탈퇴
   const handleRemoveAccount = (): void => {
-    // api 요청
+    userDelete();
+    alert('회원 탈퇴가 완료되었습니다. 그동안 EarF를 이용해주셔서 감사합니다.');
+    window.location.href = '/';
     console.log('회원 탈퇴 버튼 클릭');
   };
 
@@ -66,11 +67,11 @@ function Main() {
 
   return (
     <div className={styles.main}>
-      {showEditModal && <Modal handleShowModal={handleShowEditModal} handleNavigateToEdit={handleNavigateToEdit} />}
-      {showRemoveModal && <Modal handleShowModal={handleShowRemoveModal} handleNavigateToEdit={handleRemoveAccount} />}
+      {showEditModal && <Modal handleShowModal={handleShowEditModal} handleNextAction={handleNavigateToEdit} />}
+      {showRemoveModal && <Modal handleShowModal={handleShowRemoveModal} handleNextAction={handleRemoveAccount} />}
       <div className={styles.profile}>
         <div className={styles.imgContainer}>
-          <img src={userData.profileImage ? userData.profileImage : `${defaultProfile}`} alt='프로필' />
+          <img src={userData.profileImage} alt='프로필' />
         </div>
         <div className={styles.userId}>{userData.id}</div>
       </div>

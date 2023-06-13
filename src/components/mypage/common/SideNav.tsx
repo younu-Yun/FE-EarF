@@ -19,7 +19,8 @@ function SideNav() {
     try {
       await userLogout();
       removeToken();
-      console.log('로그아웃이 완료되었습니다');
+      alert('로그아웃이 완료되었습니다');
+      window.location.href = '/';
     } catch (error) {
       console.error('로그아웃 실패', error);
     }
