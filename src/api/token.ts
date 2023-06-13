@@ -33,16 +33,20 @@ function removeAccessTokenTime(): void {
 
 //만료여부 판단
 function isTokenExpired() {
+  /**
+   * 토큰 만료여부 판단법
+   * 1. 로그인시 토큰생성시간을 localStorage에 저장 (accessTokenTime)
+   * 2. expirationTime (accessTokenTime + oneHourInMillis) < currentTime 이면 RefreshAccessToken작동
+   */
+
   const accessTokenTime = localStorage.getItem('accessTokenTime');
+  const oneHourInMillis = 60 * 60 * 1000; // 1시간을 밀리초로 변환
+  const expirationTime = Number(accessTokenTime) + oneHourInMillis;
+  const currentTime = new Date().getTime();
 
-  if (accessTokenTime) {
-    const currentTime = new Date().getTime();
-    const elapsedTime = currentTime - parseInt(accessTokenTime);
-    const oneHourInMillis = 60 * 60 * 1000; // 1시간을 밀리초로 변환
-    return elapsedTime > oneHourInMillis;
-  }
-
-  return true;
+  //만료시간보다 현재시간이 크면 true(만료), 적으면 false
+  if (expirationTime < currentTime) return true;
+  return false;
 }
 
 async function RefreshAccessToken() {
@@ -58,6 +62,7 @@ async function RefreshAccessToken() {
 
     const { accessToken } = response.data;
     saveToken(accessToken);
+    accessTokenTime();
   } catch (error) {
     console.error('토큰을 재발급하는데 실패했습니다:', error);
     alert('토큰을 재발급하는데 실패했습니다.');
