@@ -75,11 +75,16 @@ const Join: React.FC = () => {
       const userData = {
         id: formData.id,
         password: formData.password,
+        name: formData.name,
+        email: formData.email,
+        phoneNumber: formData.phone,
       };
+
+      console.log(userData);
       const response = await axios.post('http://34.64.216.86/api/user/register', userData);
 
       console.log('회원가입에 성공했습니다:', response.data);
-      alert('회원가입에 성공했습니다!');
+      alert('회원가입에 성공했습니다. 로그인 해주세요!');
 
       navigate('/login');
     } catch (error) {
