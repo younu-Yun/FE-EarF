@@ -28,7 +28,7 @@ axios.interceptors.response.use(
     return response;
   },
   async (error: AxiosError) => {
-    if (error.response?.status === 403) {
+    if (error.response?.status === 401) {
       if (isTokenExpired()) await RefreshAccessToken();
 
       const accessToken = getToken();
