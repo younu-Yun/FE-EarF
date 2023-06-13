@@ -62,12 +62,19 @@ export const HandleDiarySubmit: THandleDiarySubmit = (formData, selectedValue) =
   console.log('Form Data:', formData);
 
   const { tag, file, title, content, shareStatus } = formData;
-  console.log(JSON.stringify(tag), 'tag');
 
-  console.log(file, 'file');
+  const tagMapping: Record<string, string> = {
+    tag1: '텀블러',
+    tag2: '대중교통',
+    tag3: '채식',
+  };
+
+  const transformedTags: string[] = tag.map((data: any) => tagMapping[data]);
 
   const postFormData = new FormData();
-  postFormData.append('tag', JSON.stringify(tag));
+  transformedTags.forEach((value: string, index: number) => {
+    postFormData.append(`tag[${index}]`, value);
+  });
   postFormData.append('file', file);
   postFormData.append('title', title);
   postFormData.append('content', content);
