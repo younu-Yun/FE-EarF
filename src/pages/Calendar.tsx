@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import Calender from 'components/Calender';
 import DiaryContainer from 'components/Diary/DiaryContainer';
-
 import changeView from 'assets/images/changeview.png';
+import IsReportDataDiary from 'components/Diary/IsReportDataDiary';
 
 import styles from './Calendar.module.scss';
-import IsReportDataDiary from 'components/Diary/IsReportDataDiary';
 
 export default function Calendar() {
   const [isReport, setIsReport] = useState(false);

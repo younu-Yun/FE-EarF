@@ -1,7 +1,7 @@
-import React from 'react';
 import styles from './styles.module.scss';
-import sharebtn from '../../../../assets/images/sharebtn.png';
-import sharedbtn from '../../../../assets/images/sharedbtn.png';
+
+import sharebtn from 'assets/images/sharebtn.png';
+import sharedbtn from 'assets/images/sharedbtn.png';
 
 export default function ShareButton(props: { toggle: boolean; onClick: () => void }) {
   return (

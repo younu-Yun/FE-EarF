@@ -27,3 +27,8 @@ export async function getApiCalendarReportData(date?: string): Promise<string[]>
   const params = `/diary/month/${date}`;
   return await Api.get(domain, params, true);
 }
+
+export async function patchApiPostData(date?: string, data?: any): Promise<string[]> {
+  const params = `/diary/${date}`;
+  return await Api.patch(domain, params, data, true);
+}

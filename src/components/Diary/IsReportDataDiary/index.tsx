@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import styles from './styles.module.scss';
+import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
-
 import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement, ChartOptions, Tooltip, Legend } from 'chart.js';
 
@@ -9,6 +7,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 
 import { getApiCalendarReportData } from 'services/calendarApiService';
+
+import styles from './styles.module.scss';
 
 interface ChartData {
   labels: string[];

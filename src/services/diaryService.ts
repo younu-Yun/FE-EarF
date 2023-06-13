@@ -1,5 +1,4 @@
 import { TFormData, CheckboxesState } from 'types/types';
-import { postApiCalendarData } from './calendarApiService';
 import axios from 'axios';
 
 type THandleEachValue = <T extends keyof TFormData>(
@@ -99,8 +98,4 @@ export const HandleDiarySubmit: THandleDiarySubmit = (formData, selectedValue) =
     .catch((error) => {
       console.error('에러 발생:', error);
     });
-
-  // postApiCalendarData(selectedValue, postFormData).then(() => {
-  //   // window.location.reload();
-  // });
 };

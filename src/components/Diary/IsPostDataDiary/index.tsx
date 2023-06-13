@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import styles from './styles.module.scss';
+import { useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
@@ -7,6 +6,8 @@ import { RootState } from 'store';
 import { getApiCalendarEachData } from 'services/calendarApiService';
 import { GetTagImage } from 'services/calendarService';
 import { EachDayDataApiType } from 'types/types';
+
+import styles from './styles.module.scss';
 
 export default function IsPostDataDiary() {
   const [data, setData] = useState<EachDayDataApiType>();
@@ -27,6 +28,8 @@ export default function IsPostDataDiary() {
       setLoading(false);
     });
   }, [selectedValue]);
+
+  console.log(data, 'datatddddd');
 
   const tagImageSrc = GetTagImage(data?.tag.length);
 
