@@ -4,24 +4,24 @@ import Button from 'components/common/Button';
 import camera from 'assets/images/camera.png';
 import { useNavigate } from 'react-router-dom';
 import { userInfo, userInfoChange, userImgChange } from 'api/fetcher';
-import defaultProfile from 'assets/icons/UserIcon.svg';
 interface FormValues {
   id: string;
   name: string;
   email: string;
   phoneNumber: string;
-  profileImage?: File | null | string;
+  profileImage: string;
 }
 
 function Edit() {
   const navigate = useNavigate();
   const imgFormData = new FormData();
+  // const [previewImage, setPreviewImage] = useState('');
   const [formData, setFormData] = useState<FormValues>({
     id: '',
     name: '',
     email: '',
     phoneNumber: '',
-    profileImage: null,
+    profileImage: '',
   });
 
   useEffect(() => {
@@ -52,14 +52,10 @@ function Edit() {
   };
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+    const file: File | undefined = e.target.files?.[0];
     if (file) {
-      console.log(file);
-      setFormData((prevData) => ({
-        ...prevData,
-        profileImage: file,
-      }));
-      imgFormData.append('profileImage', formData.profileImage as File);
+      imgFormData.append('profileImage', file);
+      // setPreviewImage(URL.createObjectURL(file));
     }
   };
 
@@ -83,8 +79,7 @@ function Edit() {
     <div className={styles.edit}>
       <form>
         <div className={styles.profileImageBox}>
-          {/* formData.profileImage ? formData.profileImage : */}
-          <img src={`${defaultProfile}`} alt='프로필' />
+          <img src={formData.profileImage} alt='프로필' />
           <label htmlFor='profileImage' className={styles.camera}>
             <img src={camera} alt='카메라'></img>
           </label>

@@ -1,4 +1,5 @@
 import * as Api from './apiRequest';
+import * as ApiMulti from './formDataRequest';
 
 const domain = `http://34.64.216.86/api`;
 
@@ -92,9 +93,11 @@ export async function checkPassword(password: string) {
 }
 
 // 유저 프로필 이지미 변경
-export async function userImgChange(profileImg: FormData) {
-  const data = {
-    profileImg: profileImg,
-  };
-  return await Api.post(domain, 'user/profile', data);
+export async function userImgChange(profileImage: FormData) {
+  return await ApiMulti.post(domain, 'user/profile', profileImage);
+}
+
+// 회원 탈퇴
+export async function userDelete() {
+  return await Api.delete(domain, 'user/delete');
 }
