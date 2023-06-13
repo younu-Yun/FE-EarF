@@ -46,7 +46,7 @@ const ChangePassword: React.FC = () => {
 
   useEffect(() => {
     const newValidation = {
-      currentPassword: validateField('password', formData.password, formData),
+      currentPassword: validateField('currentPassword', formData.currentPassword, formData),
       password: validateField('password', formData.password, formData),
       passwordConfirm: validateField('passwordConfirm', formData.passwordConfirm, formData),
     };
@@ -111,7 +111,7 @@ const ChangePassword: React.FC = () => {
                   type='password'
                   id='currentPassword'
                   value={formData.currentPassword}
-                  error={!validation.password && formData.password.length > 0}
+                  error={!validation.currentPassword && formData.currentPassword.length > 0}
                   errorMessage='비밀번호는 8자 이상이어야 합니다.'
                   onChange={handleInputChange}
                 />
