@@ -48,36 +48,42 @@ export default function IsPostDataDiary() {
 
   return (
     <>
-      <div className={styles.postContainer}>
-        <div className={styles.postItemWrapper}>
-          <img src={tagImageSrc} alt='tagimg' className={styles.tagImg} />
-          <span>{data?.tag.length}개 달성!</span>
-        </div>
-        <img alt='postimg' src={data?.imageUrl} className={styles.imgContainer} />
-        {isEditing ? (
-          <div className={styles.inputContainer}>
-            <input
-              type='text'
-              value={editedTitle}
-              onChange={(e) => setEditedTitle(e.target.value)}
-              className={styles.inputContent}
-            />
-            <textarea
-              value={editedContent}
-              onChange={(e) => setEditedContent(e.target.value)}
-              className={styles.inputContent}
-            />
+      <div className={styles.container}>
+        <div className={styles.postContainer}>
+          <div className={styles.postItemWrapper}>
+            <img src={tagImageSrc} alt='tagimg' className={styles.tagImg} />
+            <span>{data?.tag.length}개 달성!</span>
           </div>
-        ) : (
-          <>
-            <div className={styles.postItemWrapper}>{editedTitle}</div>
-            <div className={styles.postItemWrapper}>{editedContent}</div>
-          </>
-        )}
-      </div>
-      <div>
-        {isEditing ? <button onClick={handleSaveClick}>완료</button> : <button onClick={handleEditClick}>수정</button>}
-        <button>삭제</button>
+          <img alt='postimg' src={data?.imageUrl} className={styles.imgContainer} />
+          {isEditing ? (
+            <div className={styles.inputContainer}>
+              <input
+                type='text'
+                value={editedTitle}
+                onChange={(e) => setEditedTitle(e.target.value)}
+                className={styles.inputContent}
+              />
+              <textarea
+                value={editedContent}
+                onChange={(e) => setEditedContent(e.target.value)}
+                className={styles.inputContent}
+              />
+            </div>
+          ) : (
+            <>
+              <div className={styles.postItemWrapper}>{editedTitle}</div>
+              <div className={styles.postItemWrapper}>{editedContent}</div>
+            </>
+          )}
+        </div>
+        <div>
+          {isEditing ? (
+            <button onClick={handleSaveClick}>완료</button>
+          ) : (
+            <button onClick={handleEditClick}>수정</button>
+          )}
+          <button>삭제</button>
+        </div>
       </div>
     </>
   );

@@ -66,7 +66,6 @@ export default function IsReportDataDiary() {
   return (
     <div className={styles.reportContainer}>
       <Doughnut data={data} options={options} />
-      {/* <div className={styles.reportWrapper}>this is report diary</div> */}
     </div>
   );
 }
