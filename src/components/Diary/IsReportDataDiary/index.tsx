@@ -46,10 +46,9 @@ export default function IsReportDataDiary() {
   const [data, setData] = useState<ChartData>(initialData); // 상태로 관리할 데이터
 
   const selectedValueInReport = dayjs(selectedValue).format('YYYY-MM');
+  Chart.register(ArcElement, Tooltip, Legend);
 
   useEffect(() => {
-    Chart.register(ArcElement, Tooltip, Legend);
-
     getApiCalendarReportData(selectedValueInReport).then((response) => {
       setData((prevData) => ({
         ...prevData,
