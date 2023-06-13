@@ -3,7 +3,7 @@ import { useState, ChangeEvent, useEffect } from 'react';
 import Button from 'components/common/Button';
 import camera from 'assets/images/camera.png';
 import { useNavigate } from 'react-router-dom';
-import { userInfo, userInfoChange, userImgChange } from 'api/Fetcher';
+import { userInfo, userInfoChange, userImgChange } from 'api/fetcher';
 import defaultProfile from 'assets/icons/UserIcon.svg';
 interface FormValues {
   id: string;

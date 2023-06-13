@@ -1,7 +1,7 @@
 import styles from './SideNav.module.scss';
 import { NavLink } from 'react-router-dom';
-import { userLogout } from 'api/Fetcher';
-import { RemoveToken } from 'components/common/token';
+import { userLogout } from 'api/fetcher';
+import { removeToken } from 'api/token';
 
 interface NavLinkItem {
   to: string;
@@ -18,7 +18,7 @@ function SideNav() {
   async function handleLogout() {
     try {
       await userLogout();
-      RemoveToken();
+      removeToken();
       console.log('로그아웃이 완료되었습니다');
     } catch (error) {
       console.error('로그아웃 실패', error);

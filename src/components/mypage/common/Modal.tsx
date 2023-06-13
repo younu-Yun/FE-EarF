@@ -2,7 +2,7 @@ import Button from 'components/common/Button';
 import styles from './Modal.module.scss';
 import { ChangeEvent } from 'react';
 import { ReactComponent as Exit } from 'assets/icons/Exit.svg';
-import { checkPassword } from 'api/Fetcher';
+import { checkPassword } from 'api/fetcher';
 import { useState } from 'react';
 
 interface ModalProps {
