@@ -1,5 +1,8 @@
 import styles from './Home.module.scss';
 import { Link } from 'react-router-dom';
+import CommunitySwiper from 'components/home/CommunitySwiper';
+import MainSwiper from 'components/home/MainSwiper';
+
 import HomeCheck from 'assets/icons/HomeCheck.svg';
 import homeBanner1 from 'assets/images/homeBanner1.png';
 import homeBanner2 from 'assets/images/homeBanner2.png';
@@ -12,17 +15,50 @@ import badge05 from 'assets/images/badge05.png';
 import badge06 from 'assets/images/badge06.png';
 import badge07 from 'assets/images/badge07.png';
 
+import Star from 'assets/icons/Star.svg';
+
 function Home() {
+  const onAnchor = () => {
+    window.location.href = '#diary';
+  };
+
   return (
     <div className={styles.container}>
       <main>
-        <div className={styles.homeMain}>
+        <section className={styles.homeMain}>
           <div className={styles.inner}>
-            <div></div>
-            <div></div>
+            <div className={styles.left}>
+              <div>
+                <p>
+                  지구를 위한 <br /> 우리들의
+                </p>
+                <strong>지속가능한 행동</strong>
+                <div className={styles.logo}>
+                  <div>
+                    <img src={Star} alt='별아이콘' />
+                  </div>
+                  <div>
+                    <img src={Star} alt='별아이콘' />
+                  </div>
+                  <h1>EarF</h1>
+                </div>
+              </div>
+              <div className={styles.buttonBox}>
+                <button onClick={onAnchor}>구경하기</button>
+                <Link to='/login'>시작하기</Link>
+              </div>
+            </div>
+            <div className={styles.right}>
+              <div className={styles.greenBackground}></div>
+              <div className={styles.whiteBackground}></div>
+              {/* <MainSwiper></MainSwiper> */}
+              <div className={styles.mascot}>
+                <img src='' alt='마스코트' />
+              </div>
+            </div>
           </div>
-        </div>
-        <section className={styles.diary}>
+        </section>
+        <section id='diary' className={styles.diary}>
           <div className={styles.inner}>
             <div className={styles.left}>
               <div className={styles.title}>
@@ -79,10 +115,7 @@ function Home() {
                 </p>
               </div>
               <div className={styles.contents}>
-                <div className={styles.board}>
-                  <div></div>
-                  <div></div>
-                </div>
+                <CommunitySwiper></CommunitySwiper>
                 <div className={styles.gradation}></div>
               </div>
             </div>
@@ -91,6 +124,7 @@ function Home() {
             </div>
           </div>
         </section>
+
         <section className={styles.badge}>
           <div className={styles.inner}>
             <div className={styles.title}>
