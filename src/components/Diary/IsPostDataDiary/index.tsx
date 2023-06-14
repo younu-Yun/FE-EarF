@@ -6,6 +6,7 @@ import { getApiCalendarEachData, deleteApiCalendarData } from 'services/calendar
 import { GetTagImage } from 'services/calendarService';
 import { EachDayDataApiType } from 'types/types';
 
+import { ReactComponent as LoadingImg } from 'assets/icons/LoadingImg2.svg';
 import styles from './styles.module.scss';
 
 export default function IsPostDataDiary() {
@@ -32,7 +33,7 @@ export default function IsPostDataDiary() {
   const tagImageSrc = GetTagImage(data?.tag.length);
 
   if (loading) {
-    return <div>loading...</div>;
+    return <LoadingImg />;
   }
 
   return (
