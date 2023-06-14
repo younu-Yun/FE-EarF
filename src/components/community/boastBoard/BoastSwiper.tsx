@@ -7,6 +7,8 @@ import { useState } from 'react';
 // import 'swiper/components/navigation/navigation.min.scss';
 import BoastItem from './BoastItem';
 import styles from './BoastSwiper.module.scss';
+import background from 'assets/images/background.png';
+import BoastItemCopy from './BoastItemCopy';
 
 function BoastSwiper() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -17,44 +19,32 @@ function BoastSwiper() {
 
   return (
     <>
-      {/* <Swiper
-        speed={800}
-        spaceBetween={30}
-        autoHeight={true}
-        mousewheel={true}
-        centeredSlides={true}
-        effect={'cards'}
-        initialSlide={0}
-        modules={[EffectFade, Navigation, Pagination]}
-        preventClicksPropagation={true}
-        className={styles.swiperContainer}
-      > */}
       <Swiper
         spaceBetween={30}
         effect='fade'
         loop={false}
-        // navigation={{
-        //   nextEl: '.next',
-        //   prevEl: '.prev',
-        // }}
-        // initialSlide={0}
-        // modules={[EffectCoverflow, Mousewheel]}
-        // preventClicksPropagation={true}
+        navigation={{
+          nextEl: '.next',
+          prevEl: '.prev',
+        }}
+        preventClicksPropagation={true}
         className={styles.swiperContainer}
       >
+        {/* <SwiperSlide>
+          <BoastItemCopy />
+        </SwiperSlide>
+        <SwiperSlide>
+          <BoastItemCopy />
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className={styles.third}>2</div>
+        </SwiperSlide>
         <SwiperSlide>
           <BoastItem />
         </SwiperSlide>
-        <SwiperSlide>dddd</SwiperSlide>
         <SwiperSlide>
           <BoastItem />
-        </SwiperSlide>
-        <SwiperSlide>
-          <BoastItem />
-        </SwiperSlide>
-        <SwiperSlide>
-          <BoastItem />
-        </SwiperSlide>
+        </SwiperSlide> */}
       </Swiper>
     </>
   );

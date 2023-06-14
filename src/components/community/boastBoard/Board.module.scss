@@ -28,4 +28,35 @@
   align-items: center;
   width: 70rem;
   height: 60rem;
+
+  & > div > div {
+    width: 70rem;
+    height: 60rem;
+  }
+}
+
+.swiperContainer {
+  width: 100%;
+  // height: 60rem;
+  .slick-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 60rem;
+  }
+}
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  width: 100%;
+  margin: 5rem 0;
+
+  font-size: 16pt;
+  color: $--color--text3;
 }

@@ -17,6 +17,23 @@ export interface User {
   __v: number;
 }
 
+export interface BoastPost {
+  _id: string;
+  id: string;
+  name: string;
+  profileImage: string;
+  checkedBadge: string;
+  tag: string[];
+  imageUrl: string;
+  title: string;
+  content: string;
+  shareStatus: boolean;
+  likeIds: likeIds[];
+  date: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
 export interface QuestionPost {
   _id: string;
   id: string;
