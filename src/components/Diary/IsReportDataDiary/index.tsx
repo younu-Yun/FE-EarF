@@ -42,8 +42,10 @@ const options: ChartOptions<'doughnut'> = {
 export default function IsReportDataDiary() {
   const selectedValue = GetSelectedDateState();
   const [data, setData] = useState<ChartData>(initialData);
-
   const selectedValueInReport = dayjs(selectedValue).format('YYYY-MM');
+
+  const monthData = dayjs(selectedValue).format('M');
+
   Chart.register(ArcElement, Tooltip, Legend);
 
   useEffect(() => {
@@ -60,8 +62,6 @@ export default function IsReportDataDiary() {
       }));
     });
   }, [selectedValue]);
-
-  const monthData = dayjs(selectedValue).format('M');
 
   return (
     <div className={styles.reportContainer}>
