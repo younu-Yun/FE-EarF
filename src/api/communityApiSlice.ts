@@ -1,11 +1,49 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { QuestionPost, Comment, CommentPath, LastComment } from 'types/types';
+import {
+  User,
+  QuestionPost,
+  DeletePost,
+  CreateQuestionPost,
+  Comment,
+  CommentPath,
+  CommentPost,
+  LastComment,
+} from 'types/types';
+
+import { getToken, isTokenExpired, refreshAccessToken } from './token';
+
+const addHeaders = () => {
+  let token = getToken();
+  const expirationTime = localStorage.getItem('accessTokenTime');
+
+  if (expirationTime && isTokenExpired()) {
+    refreshAccessToken();
+    token = `${getToken()}`;
+  }
+
+  return token;
+};
 
 export const communityApiSlice = createApi({
   reducerPath: 'communityApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://34.64.216.86/api/' }),
   tagTypes: ['User', 'Post'],
   endpoints: (builder) => ({
+    getUserInfo: builder.query<User, void>({
+      query: () => ({
+        url: 'user',
+        headers: {
+          Authorization: `Bearer ${addHeaders()}`,
+          'Content-Type': 'application/json',
+        },
+        providesTags: ['User'],
+      }),
+    }),
+    // 커뮤니티 게시판 질문 검색 get Api
+    getSearch: builder.query<QuestionPost[], string>({
+      query: (q) => `community/questions/search?keyword=${q}`,
+      providesTags: ['Post'],
+    }),
     // 커뮤니티 게시판 단일 게시글 전체 get Api
     getAllCommunityPosts: builder.query<QuestionPost[], void>({
       query: () => `community/questions-all`,
@@ -45,6 +83,44 @@ export const communityApiSlice = createApi({
       query: () => `community/questions/no-comments`,
       providesTags: ['Post'],
     }),
+    // 커뮤니티 게시글 등록 post Api
+    createCommunityPost: builder.mutation<Comment, Partial<CreateQuestionPost>>({
+      query: (post) => ({
+        url: 'community/questions',
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${addHeaders()}`,
+          'Content-Type': 'application/json',
+        },
+        body: post,
+      }),
+      invalidatesTags: ['Post'],
+    }),
+    // 커뮤니티 게시글 수정 patch Api
+    editCommunityPost: builder.mutation<CreateQuestionPost, Partial<QuestionPost> & { id: string }>({
+      query: ({ id, ...patch }) => ({
+        url: `community/questions/${id}`,
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${addHeaders()}`,
+          'Content-Type': 'application/json',
+        },
+        body: patch,
+      }),
+      invalidatesTags: ['Post'],
+    }),
+    // 커뮤니티 게시글 삭제 delete Api
+    deleteCommunityPost: builder.mutation<CreateQuestionPost, Partial<DeletePost> & { id: string }>({
+      query: ({ id }) => ({
+        url: `community/questions/${id}`,
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${addHeaders()}`,
+          'Content-Type': 'application/json',
+        },
+      }),
+      invalidatesTags: ['Post'],
+    }),
     // 커뮤니티 댓글 전체 조회 get Api
     getAllComments: builder.query<Comment[], string>({
       query: (postId) => `community/questions/comments/${postId}`,
@@ -55,10 +131,73 @@ export const communityApiSlice = createApi({
       query: ({ postId, commentId }) => `community/questions/comments/${postId}/${commentId}`,
       providesTags: ['Post'],
     }),
+    // 커뮤니티 댓글 생성 post Api
+    createComment: builder.mutation<Comment, CommentPost & { id: string }>({
+      query: ({ id, ...post }) => ({
+        url: `community/questions/comments/${id}`,
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${addHeaders()}`,
+          'Content-Type': 'application/json',
+        },
+        body: post,
+      }),
+      invalidatesTags: ['Post'],
+    }),
+    // 커뮤니티 댓글 수정 patch Api
+    editComment: builder.mutation<CommentPost, CommentPost & CommentPath>({
+      query: ({ postId, commentId, ...patch }) => ({
+        url: `community/questions/comments/${postId}/${commentId}`,
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${addHeaders()}`,
+          'Content-Type': 'application/json',
+        },
+        body: patch,
+      }),
+      invalidatesTags: ['Post'],
+    }),
+    // 커뮤니티 댓글 삭제 delete Api
+    deleteComment: builder.mutation<CommentPost, CommentPath>({
+      query: ({ postId, commentId }) => ({
+        url: `community/questions/comments/${postId}/${commentId}`,
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${addHeaders()}`,
+          'Content-Type': 'application/json',
+        },
+      }),
+      invalidatesTags: ['Post'],
+    }),
+    // 작성글 좋아요 patch Api
+    toggleLikePost: builder.mutation<QuestionPost, { postId: string }>({
+      query: ({ postId }) => ({
+        url: `community/questions/like/${postId}`,
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${addHeaders()}`,
+          'Content-Type': 'application/json',
+        },
+      }),
+      invalidatesTags: ['Post'],
+    }),
+    // 댓글 좋아요 patch Api
+    toggleLikeComment: builder.mutation<Omit<Comment, 'numLikes'>, CommentPath>({
+      query: ({ postId, commentId }) => ({
+        url: `community/questions/comments/like/${postId}/${commentId}`,
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${addHeaders()}`,
+          'Content-Type': 'application/json',
+        },
+      }),
+      invalidatesTags: ['Post'],
+    }),
   }),
 });
 
 export const {
+  useGetSearchQuery,
   useGetAllCommunityPostsQuery,
   useGetCommunityPostQuery,
   useGetCommunityPostsQuery,
@@ -69,4 +208,13 @@ export const {
   useGetNoCommentQuery,
   useGetAllCommentsQuery,
   useGetCommentQuery,
+  useGetUserInfoQuery,
+  useCreateCommunityPostMutation,
+  useEditCommunityPostMutation,
+  useDeleteCommunityPostMutation,
+  useCreateCommentMutation,
+  useEditCommentMutation,
+  useDeleteCommentMutation,
+  useToggleLikePostMutation,
+  useToggleLikeCommentMutation,
 } = communityApiSlice;

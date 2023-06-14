@@ -1,5 +1,4 @@
-import { useGetCommunityPostQuery } from 'api/communityApiSlice';
-import { useGetUserInfoQuery } from 'api/communityTokenApiSlice';
+import { useGetCommunityPostQuery, useGetUserInfoQuery } from 'api/communityApiSlice';
 import CommentUserProfile from '../comment/CommentUserProfile';
 import PostEditButton from '../common/PostEditButton';
 import styles from './QuestionPostingBoard.module.scss';

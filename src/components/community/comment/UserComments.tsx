@@ -1,5 +1,5 @@
 import { useGetAllCommentsQuery } from 'api/communityApiSlice';
-import { useGetUserInfoQuery, useCreateCommentMutation } from 'api/communityTokenApiSlice';
+import { useGetUserInfoQuery, useCreateCommentMutation } from 'api/communityApiSlice';
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CommentItem from './CommentItem';

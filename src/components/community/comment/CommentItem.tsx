@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { useGetUserInfoQuery, useEditCommentMutation } from 'api/communityTokenApiSlice';
+import { useGetUserInfoQuery, useEditCommentMutation } from 'api/communityApiSlice';
 import HeartReaction from '../common/HeartReaction';
 import PostEditButton from '../common/PostEditButton';
 import styles from './CommentItem.module.scss';

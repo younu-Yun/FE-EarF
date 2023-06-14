@@ -2,16 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import selectedDaySlice from './selectedDaySlice';
 import { communityApiSlice } from 'api/communityApiSlice';
-import { communityTokenApiSlice } from 'api/communityTokenApiSlice';
 
 export const store = configureStore({
   reducer: {
     selectedDay: selectedDaySlice.reducer,
     [communityApiSlice.reducerPath]: communityApiSlice.reducer,
-    [communityTokenApiSlice.reducerPath]: communityTokenApiSlice.reducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(communityApiSlice.middleware).concat(communityTokenApiSlice.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(communityApiSlice.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

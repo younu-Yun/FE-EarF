@@ -1,7 +1,7 @@
 import getPostingTime from 'utils/getPostingTime';
 import UserProfileImage from '../common/sideNav/UserProfile';
 import PostEditButton from '../common/PostEditButton';
-import { useGetUserInfoQuery } from 'api/communityTokenApiSlice';
+import { useGetUserInfoQuery } from 'api/communityApiSlice';
 import { ReactComponent as Heart } from 'assets/icons/Heart.svg';
 import { ReactComponent as Comment } from 'assets/icons/Comment.svg';
 import { QuestionPost } from 'types/types';

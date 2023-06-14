@@ -2,8 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'components/common/Button';
 import styles from './EditQuestionPostingBoard.module.scss';
-import { useGetCommunityPostQuery } from 'api/communityApiSlice';
-import { useEditCommunityPostMutation } from 'api/communityTokenApiSlice';
+import { useGetCommunityPostQuery, useEditCommunityPostMutation } from 'api/communityApiSlice';
 
 function EditQuestionPostingBoard() {
   const url = new URL(window.location.href);

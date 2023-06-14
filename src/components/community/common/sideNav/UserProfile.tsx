@@ -1,4 +1,4 @@
-import { ReactComponent as ProfileImg } from 'assets/icons/profile.svg';
+import profileDefault from 'assets/images/profileDefault.png';
 import styles from './UserProfile.module.scss';
 
 function UserProfile(props: { profileImage?: string; username?: string }) {
@@ -8,7 +8,7 @@ function UserProfile(props: { profileImage?: string; username?: string }) {
         {props.profileImage ? (
           <img className={styles.userProfile} src={props.profileImage} alt='Profile' />
         ) : (
-          <ProfileImg className={styles.userProfile} />
+          <img src={profileDefault} className={styles.userProfile} />
         )}
       </div>
       <span className={styles.userName}>{props.username}</span>
