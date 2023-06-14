@@ -28,6 +28,26 @@ export const protectedRoutes = [
     path: '/mypage/info',
     element: <MyPage />,
   },
+  {
+    path: '/mypage/edit',
+    element: <MyPageEdit />,
+  },
+  {
+    path: '/mypage/mycommunity',
+    element: <MyCommunity />,
+  },
+  {
+    path: '/mypage/badge',
+    element: <MyBadge />,
+  },
+  {
+    path: '/calender',
+    element: <Calender />,
+  },
+  {
+    path: '/change_password',
+    element: <ChangePassword />,
+  },
 ];
 export const routes = [
   {
@@ -47,22 +67,6 @@ export const routes = [
     element: <CommunityPost />,
   },
   {
-    path: '/mypage/edit',
-    element: <MyPageEdit />,
-  },
-  {
-    path: '/mypage/mycommunity',
-    element: <MyCommunity />,
-  },
-  {
-    path: '/mypage/badge',
-    element: <MyBadge />,
-  },
-  {
-    path: '/calender',
-    element: <Calender />,
-  },
-  {
     path: '/login',
     element: <Login />,
   },
@@ -77,9 +81,5 @@ export const routes = [
   {
     path: '/find_password',
     element: <FindPassword />,
-  },
-  {
-    path: '/change_password',
-    element: <ChangePassword />,
   },
 ];
