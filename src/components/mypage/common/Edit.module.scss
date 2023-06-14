@@ -95,7 +95,17 @@ form {
     display: flex;
     flex-direction: column;
 
+    height: 25px;
+    padding: 0 5px;
     border-bottom: 1px solid $--color--border;
+  }
+}
+
+.readOnly {
+  & > input {
+    color: $--color--text2;
+    background-color: $--color--background;
+    border: none;
   }
 }
 

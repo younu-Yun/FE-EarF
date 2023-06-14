@@ -12,7 +12,6 @@ interface NavLinkItem {
 function SideNav() {
   const handleUpdateBadge = (): void => {
     updateBadge();
-    console.log('뱃지가 업데이트 되었습니다');
   };
 
   const handleLogout = async () => {
