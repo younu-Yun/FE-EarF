@@ -2,20 +2,21 @@ import styles from './SideNav.module.scss';
 import { NavLink } from 'react-router-dom';
 import { userLogout } from 'api/fetcher';
 import { clearLocalStorage } from 'api/token';
+import { userLogout, updateBadge } from 'api/fetcher';
 
 interface NavLinkItem {
   to: string;
   label: string;
+  onclick?: () => void;
 }
 
-const navLinks: NavLinkItem[] = [
-  { to: '/mypage/info', label: '내 정보' },
-  { to: '/mypage/mycommunity', label: '내 게시물' },
-  { to: '/mypage/badge', label: '뱃지' },
-];
-
 function SideNav() {
-  async function handleLogout() {
+  const handleUpdateBadge = () => {
+    updateBadge();
+    console.log('뱃지가 업데이트 되었습니다');
+  };
+
+  const handleLogout = async () => {
     try {
       await userLogout();
       clearLocalStorage();
@@ -24,15 +25,23 @@ function SideNav() {
     } catch (error) {
       console.error('로그아웃 실패', error);
     }
-  }
+  };
+
+  const navLinks: NavLinkItem[] = [
+    { to: '/mypage/info', label: '내 정보' },
+    { to: '/mypage/mycommunity', label: '내 게시물' },
+    { to: '/mypage/badge', label: '뱃지', onclick: handleUpdateBadge },
+  ];
+
   return (
     <div className={styles.sideNavigation}>
       <ul>
-        {navLinks.map(({ to, label }) => (
+        {navLinks.map(({ to, label, onclick }) => (
           <li key={to}>
             <NavLink
               to={to}
               className={({ isActive, isPending }) => (isPending ? styles.inactive : isActive ? styles.active : '')}
+              onClick={onclick}
             >
               {label}
             </NavLink>
