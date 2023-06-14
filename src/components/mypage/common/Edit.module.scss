@@ -69,6 +69,17 @@ form {
   }
 }
 
+.defaultImgButton {
+  margin: 5px 0;
+
+  padding: 3px;
+  border: solid 1px $--color--border;
+  border-radius: 5px;
+
+  color: $--color--text3;
+  background-color: $--color--background;
+}
+
 .userInfo {
   display: flex;
   align-items: center;

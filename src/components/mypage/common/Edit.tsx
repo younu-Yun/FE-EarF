@@ -3,7 +3,7 @@ import { useState, ChangeEvent, useEffect } from 'react';
 import Button from 'components/common/Button';
 import camera from 'assets/images/camera.png';
 import { useNavigate } from 'react-router-dom';
-import { userInfo, userInfoChange, userImgChange } from 'api/fetcher';
+import { userInfo, userInfoChange, userImgChange, userImgDelete } from 'api/fetcher';
 interface FormValues {
   id: string;
   name: string;
@@ -16,6 +16,8 @@ function Edit() {
   const navigate = useNavigate();
   const imgFormData = new FormData();
   const [previewImage, setPreviewImage] = useState('');
+  const [imageData, setImageData] = useState<File>();
+
   const [formData, setFormData] = useState<FormValues>({
     id: '',
     name: '',
@@ -54,41 +56,40 @@ function Edit() {
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file: File | undefined = e.target.files?.[0];
     if (file) {
-      imgFormData.append('profileImage', file);
       console.log('imgFormData1', imgFormData.get('profileImage'));
-
+      // imgFormData.append('test', 'test');
+      imgFormData.append('profileImage', file);
       const reader = new FileReader();
-      reader.readAsDataURL(file);
+
       reader.onloadend = () => {
         const imageUrl = reader.result as string;
         setPreviewImage(imageUrl);
       };
+      reader.readAsDataURL(file);
+      setImageData(file);
     }
   };
-  // const changePreviewImage = (file: File) => {
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(file);
-  //   reader.onloadend = () => {
-  //     const imageUrl = reader.result as string;
-  //     setPreviewImage(imageUrl);
-  //   };
-  // };
 
   const useNavigateToChangePassword = () => {
     navigate('/change_password');
   };
 
-  const handleUserInfoChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
+  const handleUserInfoChange = async () => {
+    // e.preventDefault();
     try {
       const { id, name, email, phoneNumber } = formData;
       await userInfoChange(id, name, email, phoneNumber);
-      console.log('imgFormData2', imgFormData.get('profileImage'));
       await userImgChange(imgFormData);
       navigate('/mypage/info');
     } catch (error) {
       console.error('수정에 실패했습니다.', error);
     }
+  };
+
+  const handleDefaultImgChange = async () => {
+    // e.preventDefault();
+    // e: React.MouseEvent<HTMLButtonElement>
+    await userImgDelete();
   };
 
   return (
@@ -108,6 +109,9 @@ function Edit() {
             style={{ display: 'none' }}
           />
         </div>
+        <button className={styles.defaultImgButton} onClick={handleDefaultImgChange}>
+          기본 이미지로 변경
+        </button>
         <div className={styles.userInfo}>
           <label htmlFor='id'>아이디</label>
           <input type='text' id='id' name='id' value={formData.id} readOnly />
