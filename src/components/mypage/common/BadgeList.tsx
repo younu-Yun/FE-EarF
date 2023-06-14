@@ -106,8 +106,6 @@ const BadgeList = () => {
         const badgeTypes = getBadgeTypes(userData);
         const updatedBadges = updateBadgeList(badgeTypes, badgeList);
         setBadgeList((prevBadge) => updatedBadges);
-        console.log(userData);
-        console.log(updatedBadges);
       } catch (error) {
         console.error('Error fetching user info:', error);
       }
