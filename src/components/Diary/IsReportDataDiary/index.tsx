@@ -3,9 +3,7 @@ import dayjs from 'dayjs';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement, ChartOptions, Tooltip, Legend } from 'chart.js';
 
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
-
+import { GetSelectedDateState } from 'services/calendarService';
 import { getApiCalendarReportData } from 'services/calendarApiService';
 
 import styles from './styles.module.scss';
@@ -16,7 +14,7 @@ interface ChartData {
 }
 
 const initialData: ChartData = {
-  labels: ['텀블러', '대중교통', '채식'],
+  labels: ['텀블러', '대중교통', '장바구니'],
   datasets: [
     {
       label: 'My First Dataset',
@@ -42,10 +40,12 @@ const options: ChartOptions<'doughnut'> = {
 };
 
 export default function IsReportDataDiary() {
-  const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
+  const selectedValue = GetSelectedDateState();
   const [data, setData] = useState<ChartData>(initialData);
-
   const selectedValueInReport = dayjs(selectedValue).format('YYYY-MM');
+
+  const monthData = dayjs(selectedValue).format('M');
+
   Chart.register(ArcElement, Tooltip, Legend);
 
   useEffect(() => {
@@ -62,8 +62,6 @@ export default function IsReportDataDiary() {
       }));
     });
   }, [selectedValue]);
-
-  const monthData = dayjs(selectedValue).format('M');
 
   return (
     <div className={styles.reportContainer}>

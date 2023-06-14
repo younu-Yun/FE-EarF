@@ -3,12 +3,11 @@ import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import Calendar from 'react-calendar';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { useDispatch } from 'react-redux';
 
 import { getApiCalendarHavedata } from 'services/calendarApiService';
 import { setSelectedDay } from 'store/selectedDaySlice';
-import { GetTagImage } from 'services/calendarService';
+import { GetTagImage, GetFormatDate, GetSelectedDateState } from 'services/calendarService';
 import notPost from 'assets/images/notpost.png';
 
 import 'react-calendar/dist/Calendar.css';
@@ -18,13 +17,15 @@ export default function Calender() {
   const [markData, setMarkData] = useState<string[]>();
 
   const dispatch = useDispatch();
-  const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
+  const selectedValue = GetSelectedDateState();
 
   const handleDateChange = (date: any) => {
-    dispatch(setSelectedDay(dayjs(date?.toString()).format('YYYY MM DD')));
+    const formatData = GetFormatDate(date);
+    dispatch(setSelectedDay(formatData));
   };
   const handleActiveStartDateChange = (date: any) => {
-    handleDateChange(dayjs(date?.toString()).format('YYYY MM DD'));
+    const formatData = GetFormatDate(date);
+    handleDateChange(formatData);
   };
 
   const paramsMonth = dayjs(selectedValue).format('YYYY-MM');
@@ -33,6 +34,7 @@ export default function Calender() {
     getApiCalendarHavedata(paramsMonth).then((data: string[]) => {
       setMarkData(data);
     });
+    console.log(selectedValue);
   }, [selectedValue]);
 
   return (
@@ -59,7 +61,6 @@ export default function Calender() {
           }
         }}
       />
-      <div>{dayjs(selectedValue?.toString()).format('YYYY년 MM월 DD일')}</div>
     </>
   );
 }

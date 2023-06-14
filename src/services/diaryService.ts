@@ -58,13 +58,14 @@ export const HandleCheckboxChange: THandleCheckboxChange = (checkboxName, checkb
   });
 };
 
+// FIX:
 export const HandleDiarySubmit: THandleDiarySubmit = (formData, selectedValue) => {
   const { tag, file, title, content, shareStatus } = formData;
 
   const tagMapping: Record<string, string> = {
     tag1: '텀블러',
     tag2: '대중교통',
-    tag3: '채식',
+    tag3: '장바구니',
   };
 
   const transformedTags: string[] = tag.map((data: any) => tagMapping[data]);

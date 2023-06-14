@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
 
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { GetSelectedDateState } from 'services/calendarService';
 
 import { getApiCalendarEachData, deleteApiCalendarData } from 'services/calendarApiService';
 import { GetTagImage } from 'services/calendarService';
 import { EachDayDataApiType } from 'types/types';
 
+import { ReactComponent as LoadingImg } from 'assets/icons/LoadingImg2.svg';
 import styles from './styles.module.scss';
 
 export default function IsPostDataDiary() {
   const [data, setData] = useState<EachDayDataApiType>();
   const [loading, setLoading] = useState(true);
 
-  const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
+  const tagImageSrc = GetTagImage(data?.tag.length);
+  const selectedValue = GetSelectedDateState();
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -30,10 +31,8 @@ export default function IsPostDataDiary() {
     fetchPost();
   }, [selectedValue]);
 
-  const tagImageSrc = GetTagImage(data?.tag.length);
-
   if (loading) {
-    return <div>loading...</div>;
+    return <LoadingImg />;
   }
 
   return (
