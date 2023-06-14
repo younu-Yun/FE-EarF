@@ -8,6 +8,7 @@ import {
   CommentPath,
   CommentPost,
   LastComment,
+  BoastPost,
 } from 'types/types';
 
 import { getToken, isTokenExpired, refreshAccessToken } from './token';
@@ -26,7 +27,7 @@ const addHeaders = () => {
 export const communityApiSlice = createApi({
   reducerPath: 'communityApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://34.64.216.86/api/' }),
-  tagTypes: ['User', 'Post'],
+  tagTypes: ['User', 'Post', 'Boast'],
   endpoints: (builder) => ({
     getUserInfo: builder.query<User, void>({
       query: () => ({
@@ -203,6 +204,38 @@ export const communityApiSlice = createApi({
       }),
       invalidatesTags: ['Post'],
     }),
+    // 자랑하기 전체 get Api
+    getAllBoastPosts: builder.query<BoastPost[], void>({
+      query: () => `community/boasts`,
+      providesTags: ['Boast'],
+    }),
+    // 자랑하기 텀블러 get Api
+    getTumBoastPosts: builder.query<BoastPost[], void>({
+      query: () => `community/boasts?tag=텀블러`,
+      providesTags: ['Boast'],
+    }),
+    // 자랑하기 대중교통 get Api
+    getTransBoastPosts: builder.query<BoastPost[], void>({
+      query: () => `/api/community/boasts?tag=대중교통`,
+      providesTags: ['Boast'],
+    }),
+    // 자랑하기 장바구니 get Api
+    getBasketBoastPosts: builder.query<BoastPost[], void>({
+      query: () => `/api/community/boasts?tag=장바구니`,
+      providesTags: ['Boast'],
+    }),
+    // 댓글 좋아요 patch Api
+    toggleLikeBoast: builder.mutation<BoastPost[], { postId: string }>({
+      query: ({ postId }) => ({
+        url: `community/boasts/like/${postId}`,
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${addHeaders()}`,
+          'Content-Type': 'application/json',
+        },
+      }),
+      invalidatesTags: ['Post'],
+    }),
   }),
 });
 
@@ -228,4 +261,9 @@ export const {
   useDeleteCommentMutation,
   useToggleLikePostMutation,
   useToggleLikeCommentMutation,
+  useGetAllBoastPostsQuery,
+  useGetTumBoastPostsQuery,
+  useGetTransBoastPostsQuery,
+  useGetBasketBoastPostsQuery,
+  useToggleLikeBoastMutation,
 } = communityApiSlice;

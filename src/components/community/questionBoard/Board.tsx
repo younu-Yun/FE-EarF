@@ -62,7 +62,6 @@ function Board() {
   };
   const pressEnterSearch: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === 'Enter') {
-      //키를 눌렀을 때 동작할 코드
       e.preventDefault();
       setSearchQuery(search);
     }
