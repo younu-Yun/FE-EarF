@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Button from 'components/common/Button';
 import Modal from './Modal';
 import { userInfo, userDelete } from 'api/fetcher';
+import { clearLocalStorage } from 'api/token';
 
 interface UserData {
   id: string;
@@ -40,9 +41,9 @@ function Main() {
   // 회원 탈퇴
   const handleRemoveAccount = (): void => {
     userDelete();
+    clearLocalStorage();
     alert('회원 탈퇴가 완료되었습니다. 그동안 EarF를 이용해주셔서 감사합니다.');
     window.location.href = '/';
-    console.log('회원 탈퇴 버튼 클릭');
   };
 
   // 유저 정보 불러오기
