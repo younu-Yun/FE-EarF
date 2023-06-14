@@ -1,11 +1,11 @@
 .postContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 1.5rem;
+  justify-content: flex-start;
 
   position: relative;
-  width: 50rem;
+  width: 30rem;
+  height: 45rem;
   margin: 1rem 0;
 
   background: white;
@@ -81,8 +81,4 @@
 
 .content {
   font-size: 14pt;
-}
-
-.heartReaction {
-  align-self: flex-start;
 }

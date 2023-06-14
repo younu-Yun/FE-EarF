@@ -37,10 +37,10 @@ function BoastSwiper() {
         //   nextEl: '.next',
         //   prevEl: '.prev',
         // }}
-        onSlideChange={handleSlideChange}
-        initialSlide={activeIndex}
-        mousewheel={true}
-        modules={[EffectFade, Navigation, Pagination, Mousewheel]}
+        // initialSlide={0}
+        // modules={[EffectCoverflow, Mousewheel]}
+        // preventClicksPropagation={true}
+        className={styles.swiperContainer}
       >
         <SwiperSlide>
           <BoastItem />
