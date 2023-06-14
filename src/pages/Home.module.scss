@@ -1,0 +1,108 @@
+@import 'color.scss';
+
+.container {
+  padding: 130px 0 0;
+}
+
+main {
+  section {
+    & > .inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 50px 150px;
+      margin: 0 auto;
+      width: 1140px;
+
+      .title {
+        padding: 0 0 5rem;
+
+        & > div {
+          padding: 0 0 2rem;
+
+          span {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #24ae63;
+            opacity: 0.5;
+          }
+
+          h3 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: #24ae63;
+          }
+        }
+
+        p {
+          font-size: 1.6rem;
+          font-weight: 600;
+          line-height: 1.6;
+          color: $--color--text2;
+        }
+      }
+
+      .contents {
+        li {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 1.5rem;
+          padding: 0 0 2rem;
+
+          & > div {
+            width: 3rem;
+            height: 3rem;
+          }
+
+          & > span {
+            font-size: 2rem;
+            font-weight: 700;
+          }
+        }
+
+        .communityBox {
+          margin: 0 0 2rem;
+          min-width: 40rem;
+          min-height: 8rem;
+          border-radius: 1rem;
+          box-shadow: rgba(112, 112, 112, 0.2) 0px 2px 15px 0px;
+        }
+      }
+    }
+  }
+}
+.link {
+  background: rgba(152, 218, 123, 0.5);
+
+  & > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 1140px;
+    min-height: 500px;
+    text-align: center;
+
+    h2 {
+      display: block;
+      padding: 0 0 5rem;
+      font-size: 3.8rem;
+      color: $--color--text1;
+    }
+
+    a {
+      display: block;
+      width: 20rem;
+      height: 6rem;
+
+      background: $--color--text1;
+      border-radius: 3rem;
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 6rem;
+      color: $--color--white;
+    }
+  }
+}
