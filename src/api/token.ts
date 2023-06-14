@@ -44,7 +44,7 @@ const isTokenExpired = (): boolean => {
 // 만료된 액세스 토큰 재발급
 const refreshAccessToken = async () => {
   const refreshToken = localStorage.getItem('refreshToken');
-  if (true) {
+  if (isTokenExpired()) {
     try {
       const response = await axios.get('http://34.64.216.86/api/auth', {
         headers: {

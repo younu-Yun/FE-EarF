@@ -20,7 +20,8 @@ function PostEditButton({ _id, commentId, postId, onEditClick }: PostEditButtonP
       const confirmed = window.confirm('게시글을 삭제하면 복구할 수 없습니다. 정말로 삭제하시겠습니까?');
       if (confirmed) {
         try {
-          await deleteCommunityPostMutation({ id: _id });
+          const res = await deleteCommunityPostMutation({ id: _id });
+          res && navigate(`/community`);
         } catch (err) {
           console.error(err);
         }

@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import MyProfileImg from './MyProfileImg';
 import styles from './MyProfile.module.scss';
-import { useGetUserInfoQuery } from 'api/communityApiSlice';
+import { useGetUserInfoQuery, useGetMyQuestionQuery } from 'api/communityApiSlice';
 import getBadgeImagePath from 'utils/getBadgeImagePath';
 
 function MyProfile() {
   const { data: userInfo } = useGetUserInfoQuery();
-
+  const { data: postInfo } = useGetMyQuestionQuery();
   return (
     <div className={styles.container}>
       <MyProfileImg />
@@ -26,9 +26,11 @@ function MyProfile() {
         ) : (
           <div className={styles.userPostingNumber}>
             <span>작성한 글</span>
-            <Link to='/mypage/mycommunity'>
-              <button>{userInfo.postNum} 개</button>
-            </Link>
+            {postInfo && (
+              <Link to='/mypage/mycommunity'>
+                <button>{postInfo.length} 개</button>
+              </Link>
+            )}
           </div>
         )}
       </div>

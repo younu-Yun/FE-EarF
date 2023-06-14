@@ -7,7 +7,6 @@ function LeftSideNav() {
     <div>
       <aside className={styles.container}>
         <MyProfile />
-
         <nav>
           <ul>
             <Link to='/community'>
