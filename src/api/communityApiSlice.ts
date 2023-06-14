@@ -39,6 +39,17 @@ export const communityApiSlice = createApi({
         providesTags: ['User'],
       }),
     }),
+    // 커뮤니티 자기 게시글 get Api
+    getMyQuestion: builder.query<QuestionPost[], void>({
+      query: () => ({
+        url: 'community/questions/user',
+        headers: {
+          Authorization: `Bearer ${addHeaders()}`,
+          'Content-Type': 'application/json',
+        },
+        providesTags: ['Post'],
+      }),
+    }),
     // 커뮤니티 게시판 질문 검색 get Api
     getSearch: builder.query<QuestionPost[], string>({
       query: (q) => `community/questions/search?keyword=${q}`,
@@ -197,6 +208,7 @@ export const communityApiSlice = createApi({
 });
 
 export const {
+  useGetMyQuestionQuery,
   useGetSearchQuery,
   useGetAllCommunityPostsQuery,
   useGetCommunityPostQuery,
