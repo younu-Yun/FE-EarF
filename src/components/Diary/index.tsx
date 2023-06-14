@@ -68,7 +68,7 @@ export default function Diary() {
             tag='tag2'
           />
           <CheckboxComponent
-            label='채식'
+            label='장바구니'
             isChecked={checkboxes.tag3}
             onChange={() => HandleCheckboxChange('tag3', checkboxes, setCheckboxes)}
             tag='tag3'

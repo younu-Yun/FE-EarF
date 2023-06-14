@@ -16,7 +16,7 @@ interface ChartData {
 }
 
 const initialData: ChartData = {
-  labels: ['텀블러', '대중교통', '채식'],
+  labels: ['텀블러', '대중교통', '장바구니'],
   datasets: [
     {
       label: 'My First Dataset',
