@@ -4,6 +4,14 @@ import HomeCheck from 'assets/icons/HomeCheck.svg';
 import homeBanner1 from 'assets/images/homeBanner1.png';
 import homeBanner2 from 'assets/images/homeBanner2.png';
 
+import badge01 from 'assets/images/badge01.png';
+import badge02 from 'assets/images/badge02.png';
+import badge03 from 'assets/images/badge03.png';
+import badge04 from 'assets/images/badge04.png';
+import badge05 from 'assets/images/badge05.png';
+import badge06 from 'assets/images/badge06.png';
+import badge07 from 'assets/images/badge07.png';
+
 function Home() {
   return (
     <div className={styles.container}>
@@ -14,7 +22,7 @@ function Home() {
             <div></div>
           </div>
         </div>
-        <section>
+        <section className={styles.diary}>
           <div className={styles.inner}>
             <div className={styles.left}>
               <div className={styles.title}>
@@ -56,7 +64,7 @@ function Home() {
             </div>
           </div>
         </section>
-        <section>
+        <section className={styles.community}>
           <div className={styles.inner}>
             <div className={styles.left}>
               <div className={styles.title}>
@@ -83,19 +91,61 @@ function Home() {
             </div>
           </div>
         </section>
-        <section>
+        <section className={styles.badge}>
           <div className={styles.inner}>
-            <div className={styles.left}>
-              <div className={styles.title}>
-                <div>
-                  <span>chapter 03</span>
-                  <h3>뱃지수집</h3>
-                </div>
-                <p>미션을 수행하고 다양한 뱃지를 모아보세요!</p>
+            <div className={styles.title}>
+              <div>
+                <span>chapter 03</span>
+                <h3>뱃지수집</h3>
               </div>
-              <div className={styles.contents}></div>
+              <p>미션을 수행하고 다양한 뱃지를 모아보세요!</p>
             </div>
-            <div className={styles.right}></div>
+            <div className={styles.contents}>
+              <ul>
+                <li>
+                  <img src={badge01} alt='뱃지01' />
+                </li>
+                <li>
+                  <img src={badge02} alt='뱃지02' />
+                </li>
+                <li>
+                  <img src={badge03} alt='뱃지03' />
+                </li>
+                <li>
+                  <img src={badge04} alt='뱃지04' />
+                </li>
+                <li>
+                  <img src={badge05} alt='뱃지05' />
+                </li>
+                <li>
+                  <img src={badge06} alt='뱃지06' />
+                </li>
+                <li>
+                  <img src={badge07} alt='뱃지07' />
+                </li>
+                <li>
+                  <img src={badge01} alt='뱃지01' />
+                </li>
+                <li>
+                  <img src={badge02} alt='뱃지02' />
+                </li>
+                <li>
+                  <img src={badge03} alt='뱃지03' />
+                </li>
+                <li>
+                  <img src={badge04} alt='뱃지04' />
+                </li>
+                <li>
+                  <img src={badge05} alt='뱃지05' />
+                </li>
+                <li>
+                  <img src={badge06} alt='뱃지06' />
+                </li>
+                <li>
+                  <img src={badge07} alt='뱃지07' />
+                </li>
+              </ul>
+            </div>
           </div>
         </section>
         <div className={styles.link}>

@@ -61,17 +61,59 @@ main {
           }
         }
 
-        .communityBox {
-          margin: 0 0 2rem;
-          min-width: 40rem;
-          min-height: 8rem;
-          border-radius: 1rem;
-          box-shadow: rgba(112, 112, 112, 0.2) 0px 2px 15px 0px;
+        .board {
+          & > div {
+            margin: 0 0 2rem;
+            min-width: 40rem;
+            min-height: 8rem;
+            border-radius: 1rem;
+            box-shadow: rgba(112, 112, 112, 0.2) 0px 2px 15px 0px;
+          }
+          
+        }
+      }
+    }
+  }
+
+  section.badge {
+    & > .inner {
+      display: block;
+
+      .contents {
+        position: relative;
+        display: flex;
+        width: 114rem;
+        height: 20rem;
+        overflow: hidden;
+
+        ul {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          animation: imageLoop 15s linear infinite;
+
+          li {
+            flex-shrink: 0;
+            padding: 0 2rem;
+            width: 14.28%;
+          }
+        }
+
+        @keyframes imageLoop {
+          0% {
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+          }
+          100% {
+            -webkit-transform: translate3d(-100%, 0, 0);
+            transform: translate3d(-100%, 0, 0);
+          }
         }
       }
     }
   }
 }
+
 .link {
   background: rgba(152, 218, 123, 0.5);
 
