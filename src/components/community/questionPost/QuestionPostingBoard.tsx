@@ -8,7 +8,6 @@ import UserPostContent from './UserPostContent';
 
 function QuestionPostingBoard() {
   const url = useLocation();
-  console.log(url);
   const [postId, setPostId] = useState('');
 
   useEffect(() => {
