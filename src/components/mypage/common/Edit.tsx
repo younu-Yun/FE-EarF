@@ -112,17 +112,17 @@ function Edit() {
         <button className={styles.defaultImgButton} onClick={handleDefaultImgChange}>
           기본 이미지로 변경
         </button>
-        <div className={styles.userInfo}>
+        <div className={`${styles.userInfo} ${styles.readOnly}`}>
           <label htmlFor='id'>아이디</label>
           <input type='text' id='id' name='id' value={formData.id} readOnly />
+        </div>
+        <div className={`${styles.userInfo} ${styles.readOnly}`}>
+          <label htmlFor='email'>이메일</label>
+          <input type='email' id='email' name='email' value={formData.email} onChange={handleChange} readOnly />
         </div>
         <div className={styles.userInfo}>
           <label htmlFor='name'>이름</label>
           <input type='text' id='name' name='name' value={formData.name} onChange={handleChange} />
-        </div>
-        <div className={styles.userInfo}>
-          <label htmlFor='email'>이메일</label>
-          <input type='email' id='email' name='email' value={formData.email} onChange={handleChange} />
         </div>
         <div className={styles.userInfo}>
           <label htmlFor='phoneNumber'>전화번호</label>
