@@ -46,11 +46,11 @@ const initialBadgeList: BadgeInfo[] = [
     info: '데일리 기록을 최초 작성 시 획득가능합니다.',
   },
   {
-    type: '연속',
-    name: '3회이상 연속 작성',
+    type: '꾸준',
+    name: '데일리 기록 5회',
     isGet: false,
     url: getBadgeImagePath('연속'),
-    info: '데일리 기록을 3회 이상 작성 시 획득가능합니다.',
+    info: '데일리 기록을 5회 이상 작성 시 획득가능합니다.',
   },
   {
     type: '텀블',
@@ -68,23 +68,23 @@ const initialBadgeList: BadgeInfo[] = [
   },
   {
     type: '버켓',
-    name: '채식하기 3회',
+    name: '장바구니 사용 3회',
     isGet: false,
     url: getBadgeImagePath('버켓'),
-    info: '대중교통 태그 3회 이상 작성 시 획득 가능합니다.',
+    info: '장바구니 태그 3회 이상 작성 시 획득 가능합니다.',
   },
   {
-    type: '커뮤',
-    name: '커뮤니티 포스팅 3회',
+    type: '기록왕',
+    name: '커뮤니티 포스팅 10회',
     isGet: false,
     url: getBadgeImagePath('커뮤'),
-    info: '커뮤니티 게시물을 3회 이상 작성 시 획득 가능합니다.',
+    info: '커뮤니티 게시물을 10회 이상 작성 시 획득 가능합니다.',
   },
 ];
 
 function getBadgeTypes(user: User): string[] {
   const { badges } = user;
-  const badgeTypes = badges.map((badge) => badge.type);
+  const badgeTypes = badges.map((badge) => String(badge));
   return badgeTypes;
 }
 
@@ -106,7 +106,9 @@ const BadgeList = () => {
         const userData: User = (await userInfo()) as User;
         const badgeTypes = getBadgeTypes(userData);
         const updatedBadges = updateBadgeList(badgeTypes, badgeList);
-        setBadgeList(updatedBadges);
+        setBadgeList((prevBadge) => updatedBadges);
+        console.log(userData);
+        console.log(updatedBadges);
       } catch (error) {
         console.error('Error fetching user info:', error);
       }
