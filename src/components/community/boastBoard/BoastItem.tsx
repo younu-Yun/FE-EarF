@@ -14,9 +14,7 @@ function BoastItem() {
       <div className={styles.contentsContainer}>
         <p className={styles.title}>제목1</p>
         <p className={styles.content}>본문1</p>
-        <div className={styles.heartReaction}>
-          <HeartReaction />
-        </div>
+        <div className={styles.heartReaction}>{/* <HeartReaction /> */}</div>
       </div>
     </div>
   );

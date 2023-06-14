@@ -1,42 +1,51 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Mousewheel } from 'swiper';
+import { EffectFade, Navigation, Pagination, Mousewheel } from 'swiper';
 import 'swiper/scss';
-import 'swiper/css/effect-coverflow';
+import { useState } from 'react';
+// import 'swiper/swiper.min.scss';
+// import 'swiper/components/pagination/pagination.min.scss';
+// import 'swiper/components/navigation/navigation.min.scss';
 import BoastItem from './BoastItem';
 import styles from './BoastSwiper.module.scss';
 
 function BoastSwiper() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const handleSlideChange = (swiper: any) => {
+    const index = swiper.activeIndex;
+    setActiveIndex(index);
+  };
+
   return (
     <>
-      <Swiper
-        dir={'rtl'}
-        // direction={'vertical'}
+      {/* <Swiper
         speed={800}
-        slidesPerView={2}
         spaceBetween={30}
         autoHeight={true}
-        slideToClickedSlide={true}
         mousewheel={true}
         centeredSlides={true}
-        effect={'coverflow'}
-        coverflowEffect={{
-          rotate: 10,
-          stretch: 700,
-          depth: 150,
-          modifier: 1,
-          slideShadows: !1,
-        }}
+        effect={'cards'}
         initialSlide={0}
-        modules={[EffectCoverflow, Mousewheel]}
+        modules={[EffectFade, Navigation, Pagination]}
         preventClicksPropagation={true}
         className={styles.swiperContainer}
+      > */}
+      <Swiper
+        spaceBetween={30}
+        effect='fade'
+        loop={false}
+        // navigation={{
+        //   nextEl: '.next',
+        //   prevEl: '.prev',
+        // }}
+        onSlideChange={handleSlideChange}
+        initialSlide={activeIndex}
+        mousewheel={true}
+        modules={[EffectFade, Navigation, Pagination, Mousewheel]}
       >
         <SwiperSlide>
           <BoastItem />
         </SwiperSlide>
-        <SwiperSlide>
-          <BoastItem />
-        </SwiperSlide>
+        <SwiperSlide>dddd</SwiperSlide>
         <SwiperSlide>
           <BoastItem />
         </SwiperSlide>
