@@ -58,6 +58,7 @@ export const HandleCheckboxChange: THandleCheckboxChange = (checkboxName, checkb
   });
 };
 
+// FIX:
 export const HandleDiarySubmit: THandleDiarySubmit = (formData, selectedValue) => {
   const { tag, file, title, content, shareStatus } = formData;
 

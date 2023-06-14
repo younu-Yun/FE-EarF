@@ -34,10 +34,11 @@ export async function patchApiPostData(date?: string, data?: any): Promise<strin
   return await Api.patch(domain, params, data, true);
 }
 
+// FIX:
 export async function deleteApiCalendarData(date?: string) {
   axios
     .delete(`http://34.64.216.86/api/diary/${date}`)
-    .then((response) => {
+    .then(() => {
       alert('삭제되었습니다.');
     })
     .catch((error) => {
