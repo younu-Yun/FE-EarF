@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from 'components/common/Button';
 import PostingContent from './PostingContent';
 import styles from './QuestionPostingBoard.module.scss';
-import { useCreateCommunityPostMutation } from 'api/communityApiSlice';
+import { useCreateCommunityPostMutation } from 'api/communityTokenApiSlice';
 import { useState } from 'react';
 
 function QuestionPostingBoard() {

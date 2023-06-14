@@ -1,6 +1,6 @@
 import profileDefault from 'assets/images/profileDefault.png';
 import styles from './MyProfileImg.module.scss';
-import { useGetUserInfoQuery } from 'api/communityApiSlice';
+import { useGetUserInfoQuery } from 'api/communityTokenApiSlice';
 
 function MyProfileImg() {
   const { data: userInfo, isLoading } = useGetUserInfoQuery();

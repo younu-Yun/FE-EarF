@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import MyProfileImg from './MyProfileImg';
 import styles from './MyProfile.module.scss';
-import { useGetUserInfoQuery } from 'api/communityApiSlice';
+import { useGetUserInfoQuery } from 'api/communityTokenApiSlice';
 import getBadgeImagePath from 'utils/getBadgeImagePath';
 
 function MyProfile() {

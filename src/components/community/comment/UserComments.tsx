@@ -1,4 +1,5 @@
-import { useGetUserInfoQuery, useGetAllCommentsQuery, useCreateCommentMutation } from 'api/communityApiSlice';
+import { useGetAllCommentsQuery } from 'api/communityApiSlice';
+import { useGetUserInfoQuery, useCreateCommentMutation } from 'api/communityTokenApiSlice';
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CommentItem from './CommentItem';
@@ -87,7 +88,7 @@ function UserComments() {
                     checkedBadge={comments.checkedBadge}
                     comment={comments.comment}
                     createdAt={comments.createdAt}
-                    numLikes={comments.numLikes}
+                    likeIds={comments.likeIds}
                   />
                 ))}
           </ul>

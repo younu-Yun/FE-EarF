@@ -1,4 +1,4 @@
-import { useDeleteCommunityPostMutation, useDeleteCommentMutation } from 'api/communityApiSlice';
+import { useDeleteCommunityPostMutation, useDeleteCommentMutation } from 'api/communityTokenApiSlice';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as Edit } from 'assets/icons/PostEdit.svg';
 import { ReactComponent as Delete } from 'assets/icons/Delete.svg';

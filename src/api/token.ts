@@ -32,7 +32,7 @@ function removeAccessTokenTime(): void {
 }
 
 //만료여부 판단
-function isTokenExpired() {
+function isTokenExpired(): boolean {
   /**
    * 토큰 만료여부 판단법
    * 1. 로그인시 토큰생성시간을 localStorage에 저장 (accessTokenTime)
@@ -49,11 +49,15 @@ function isTokenExpired() {
   return false;
 }
 
-async function refreshAccessToken() {
+async function refreshAccessToken(): Promise<boolean | void> {
   const URL = 'http://34.64.216.86';
-  try {
-    const refreshToken = getRefreshToken();
+  const refreshToken = getRefreshToken();
 
+  if (!refreshToken) {
+    console.error('로그인이 필요한 요청입니다.');
+    return false;
+  }
+  try {
     const response = await axios.get(`${URL}/api/auth`, {
       headers: {
         Authorization: `Bearer ${refreshToken}`,
