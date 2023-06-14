@@ -1,6 +1,10 @@
+import styles from './Header.module.scss';
 import { useState, useEffect, MouseEvent } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
-import styles from './Header.module.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from 'store';
+import { logout } from 'store/loginSlice';
+
 import axios from 'axios';
 import { getToken, removeToken, removeAccessTokenTime } from '../../api/token';
 import profileIcon from '../../assets/icons/profile.svg';
@@ -8,42 +12,49 @@ import MainLogo from '../../assets/icons/MainLogo.svg';
 
 function Header(): JSX.Element {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [userName, setUserName] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [profileImage, setProfileImage] = useState('');
   const [showSideMenu, setShowSideMenu] = useState(false);
 
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      const token = getToken();
-
-      if (token) {
-        try {
-          const response = await axios.get('http://34.64.216.86/api/user', {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          const { name } = response.data;
-          setUserName(name);
-          setIsLoggedIn(true);
-        } catch (error) {
-          console.error('Failed to fetch user information:', error);
-        }
-      } else {
-        setIsLoggedIn(false);
-      }
-    };
-
-    checkLoginStatus(); // Call the function immediately when the component mounts
-  }, []);
+  const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn);
 
   // 로그아웃시 access, refrest 토큰 제거
   const handleLogout = () => {
     removeToken();
     removeAccessTokenTime();
-    setIsLoggedIn(false);
     navigate('/login');
+    dispatch(logout());
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      const fetchUserData = async () => {
+        const token = getToken();
+
+        if (token) {
+          try {
+            const response = await axios.get('http://34.64.216.86/api/user', {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+
+            const { name, profileImage } = response.data;
+            setUserName(name);
+            setProfileImage(profileImage);
+
+            console.log(name, profileImage);
+          } catch (error) {
+            console.error('Failed to fetch user information:', error);
+          }
+        }
+      };
+
+      fetchUserData();
+    }
+  }, [isLoggedIn]);
 
   const handleMouseOver = () => {
     setShowSideMenu(true);
@@ -84,12 +95,16 @@ function Header(): JSX.Element {
           {isLoggedIn ? (
             <div className={styles.login} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
               <div className={styles.infoBox} onClick={handleMyPageClick}>
-                <span>안녕하세요, {userName}님</span>
+                <span>안녕하세요, {userName}</span>
               </div>
               <div className={styles.imgBox}>
-                <img src={profileIcon} alt='profile' />
+                {profileImage !== 'http://34.64.216.86/images/undefined' ? (
+                  <img src={profileImage} alt='profile' />
+                ) : (
+                  <img src={profileIcon} alt='profile' />
+                )}
               </div>
-              {showSideMenu && ( // showSideMenu 상태에 따라 사이드 메뉴 표시 여부 결정
+              {showSideMenu && (
                 <div className={styles.sideMenu}>
                   <NavLink to='/mypage/info'>내 정보</NavLink>
                   <NavLink to='/mypage/mycommunity'>내 게시글</NavLink>
