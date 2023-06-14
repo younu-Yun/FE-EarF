@@ -1,8 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
-import inputDefaultImg from '../../assets/images/inputDefaultImg.png';
+import inputDefaultImg from 'assets/images/inputDefaultImg.png';
 
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { GetSelectedDateState } from 'services/calendarService';
 
 import DiaryButton from './common/DiaryButton';
 import ShareButton from './common/ShareButton';
@@ -20,7 +19,7 @@ import {
 import styles from './styles.module.scss';
 
 export default function Diary() {
-  const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
+  const selectedValue = GetSelectedDateState();
   const [selectedImage, setSelectedImage] = useState<string | undefined>(inputDefaultImg);
   const hiddenFileInput = useRef<HTMLInputElement | null>(null);
 

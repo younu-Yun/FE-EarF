@@ -3,9 +3,7 @@ import { useState } from 'react';
 import DiaryPost from 'components/Diary';
 import IsPostDataDiary from '../IsPostDataDiary';
 
-import { RootState } from 'store';
-import { useSelector } from 'react-redux';
-
+import { GetSelectedDateState } from 'services/calendarService';
 import { getApiCalendarEachData } from 'services/calendarApiService';
 
 import styles from './styles.module.scss';
@@ -13,7 +11,7 @@ import styles from './styles.module.scss';
 export default function DiaryContainer() {
   const [isDataInDay, setIsDataInDay] = useState(false);
 
-  const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
+  const selectedValue = GetSelectedDateState();
 
   getApiCalendarEachData(selectedValue).then((data) => {
     if (data !== null) {

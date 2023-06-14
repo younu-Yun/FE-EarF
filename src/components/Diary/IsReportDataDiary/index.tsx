@@ -3,9 +3,7 @@ import dayjs from 'dayjs';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement, ChartOptions, Tooltip, Legend } from 'chart.js';
 
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
-
+import { GetSelectedDateState } from 'services/calendarService';
 import { getApiCalendarReportData } from 'services/calendarApiService';
 
 import styles from './styles.module.scss';
@@ -42,7 +40,7 @@ const options: ChartOptions<'doughnut'> = {
 };
 
 export default function IsReportDataDiary() {
-  const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
+  const selectedValue = GetSelectedDateState();
   const [data, setData] = useState<ChartData>(initialData);
 
   const selectedValueInReport = dayjs(selectedValue).format('YYYY-MM');
