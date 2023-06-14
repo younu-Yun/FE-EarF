@@ -14,9 +14,8 @@ import { getToken, isTokenExpired, refreshAccessToken } from './token';
 
 const addHeaders = () => {
   let token = getToken();
-  const expirationTime = localStorage.getItem('accessTokenTime');
 
-  if (expirationTime && isTokenExpired()) {
+  if (isTokenExpired()) {
     refreshAccessToken();
     token = `${getToken()}`;
   }
@@ -52,7 +51,7 @@ export const communityApiSlice = createApi({
     }),
     // 커뮤니티 게시판 질문 검색 get Api
     getSearch: builder.query<QuestionPost[], string>({
-      query: (q) => `community/questions/search?keyword=${q}`,
+      query: (q) => `community/questions/search?page=1&keyword=${q}`,
       providesTags: ['Post'],
     }),
     // 커뮤니티 게시판 단일 게시글 전체 get Api
