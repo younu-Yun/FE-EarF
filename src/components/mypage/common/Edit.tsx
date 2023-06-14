@@ -15,7 +15,7 @@ interface FormValues {
 function Edit() {
   const navigate = useNavigate();
   const imgFormData = new FormData();
-  // const [previewImage, setPreviewImage] = useState('');
+  const [previewImage, setPreviewImage] = useState('');
   const [formData, setFormData] = useState<FormValues>({
     id: '',
     name: '',
@@ -55,9 +55,24 @@ function Edit() {
     const file: File | undefined = e.target.files?.[0];
     if (file) {
       imgFormData.append('profileImage', file);
-      // setPreviewImage(URL.createObjectURL(file));
+      console.log('imgFormData1', imgFormData.get('profileImage'));
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        const imageUrl = reader.result as string;
+        setPreviewImage(imageUrl);
+      };
     }
   };
+  // const changePreviewImage = (file: File) => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onloadend = () => {
+  //     const imageUrl = reader.result as string;
+  //     setPreviewImage(imageUrl);
+  //   };
+  // };
 
   const useNavigateToChangePassword = () => {
     navigate('/change_password');
@@ -68,6 +83,7 @@ function Edit() {
     try {
       const { id, name, email, phoneNumber } = formData;
       await userInfoChange(id, name, email, phoneNumber);
+      console.log('imgFormData2', imgFormData.get('profileImage'));
       await userImgChange(imgFormData);
       navigate('/mypage/info');
     } catch (error) {
@@ -79,7 +95,7 @@ function Edit() {
     <div className={styles.edit}>
       <form>
         <div className={styles.profileImageBox}>
-          <img src={formData.profileImage} alt='프로필' />
+          <img src={previewImage ? previewImage : formData.profileImage} alt='프로필' />
           <label htmlFor='profileImage' className={styles.camera}>
             <img src={camera} alt='카메라'></img>
           </label>
