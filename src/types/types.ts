@@ -25,7 +25,7 @@ export interface QuestionPost {
   checkedBadge: string;
   title: string;
   content: string;
-  likeIds: string[];
+  likeIds: likeIds[];
   commentIds: string[];
   createdAt: string;
   updatedAt: string;
@@ -52,7 +52,10 @@ export interface LastComment {
   title: string;
   comment: string;
 }
-
+export interface likeIds {
+  _id: string;
+  name: string;
+}
 export interface Comment {
   _id: string;
   postId: string;
@@ -61,7 +64,7 @@ export interface Comment {
   profileImage: string;
   checkedBadge: string;
   comment: string;
-  likeIds: string[];
+  likeIds: likeIds[];
   createdAt: string;
   updatedAt: string;
   __v: number;

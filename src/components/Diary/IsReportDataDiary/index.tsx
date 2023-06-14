@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import styles from './styles.module.scss';
+import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
-
 import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement, ChartOptions, Tooltip, Legend } from 'chart.js';
 
@@ -9,6 +7,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 
 import { getApiCalendarReportData } from 'services/calendarApiService';
+
+import styles from './styles.module.scss';
 
 interface ChartData {
   labels: string[];
@@ -43,7 +43,7 @@ const options: ChartOptions<'doughnut'> = {
 
 export default function IsReportDataDiary() {
   const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
-  const [data, setData] = useState<ChartData>(initialData); // 상태로 관리할 데이터
+  const [data, setData] = useState<ChartData>(initialData);
 
   const selectedValueInReport = dayjs(selectedValue).format('YYYY-MM');
   Chart.register(ArcElement, Tooltip, Legend);
@@ -63,10 +63,12 @@ export default function IsReportDataDiary() {
     });
   }, [selectedValue]);
 
+  const monthData = dayjs(selectedValue).format('M');
+
   return (
     <div className={styles.reportContainer}>
+      <span>{monthData}월 통계 데이터</span>
       <Doughnut data={data} options={options} />
-      {/* <div className={styles.reportWrapper}>this is report diary</div> */}
     </div>
   );
 }

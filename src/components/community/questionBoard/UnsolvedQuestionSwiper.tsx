@@ -9,18 +9,6 @@ import styles from './UnsolvedQuestionSwiper.module.scss';
 function UnsolvedQuestionSwiper() {
   const { data: noCommentData } = useGetNoCommentQuery();
 
-  const swiperParams = {
-    spaceBetween: 5,
-    autoHeight: true,
-    slidesPerView: 2,
-    className: styles.unsolvedSwiper,
-    autoplay: {
-      delay: 3000,
-    },
-    loop: true,
-    loopAdditionalSlides: 1,
-    // allowTouchMove: false,
-  };
   return (
     <div className={styles.unsolved}>
       <span>답변을 기다리고 있어요</span>

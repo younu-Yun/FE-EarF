@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
-import styles from './styles.module.scss';
+import { useState } from 'react';
+
+import DiaryPost from 'components/Diary';
 import IsPostDataDiary from '../IsPostDataDiary';
-import IsReportDataDiary from '../IsReportDataDiary';
+
+import { RootState } from 'store';
+import { useSelector } from 'react-redux';
+
+import { getApiCalendarEachData } from 'services/calendarApiService';
+
+import styles from './styles.module.scss';
 
 export default function DiaryContainer() {
-  const [isReport, setIsReport] = useState(false);
+  const [isDataInDay, setIsDataInDay] = useState(false);
 
-  const handleReportClick = () => {
-    setIsReport(true);
-  };
+  const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
 
-  return (
-    <div className={styles.container}>
-      <button onClick={handleReportClick}>리포트 보기</button>
-      {!isReport ? <IsPostDataDiary /> : <IsReportDataDiary />}
-    </div>
-  );
+  getApiCalendarEachData(selectedValue).then((data) => {
+    if (data !== null) {
+      setIsDataInDay(true);
+    } else {
+      setIsDataInDay(false);
+    }
+  });
+
+  return <div className={styles.container}>{isDataInDay ? <IsPostDataDiary /> : <DiaryPost />}</div>;
 }

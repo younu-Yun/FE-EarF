@@ -7,10 +7,10 @@ import { useState } from 'react';
 
 interface ModalProps {
   handleShowModal: () => void;
-  handleNavigateToEdit: () => void;
+  handleNextAction: () => void;
 }
 
-function Modal({ handleShowModal, handleNavigateToEdit }: ModalProps) {
+function Modal({ handleShowModal, handleNextAction }: ModalProps) {
   const [password, setPassword] = useState('');
   const [isValid, setIsValid] = useState(true);
 
@@ -22,7 +22,7 @@ function Modal({ handleShowModal, handleNavigateToEdit }: ModalProps) {
   const handleCheckPassword = async () => {
     try {
       await checkPassword(password);
-      handleNavigateToEdit();
+      handleNextAction();
     } catch (error) {
       setIsValid((prev) => !prev);
       console.error('요청 실패', error);
