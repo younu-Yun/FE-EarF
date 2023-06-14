@@ -2,7 +2,7 @@ import styles from './ChangePassword.module.scss';
 import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { removeToken, removeAccessTokenTime } from 'api/token';
+import { clearLocalStorage } from 'api/token';
 
 import FormHead from 'components/User/FormHead';
 import FormButton from 'components/User/FormButton';
@@ -73,8 +73,7 @@ const ChangePassword: React.FC = () => {
 
       alert('비밀번호 변경이 완료되었습니다. 다시 로그인해주세요.');
       console.log(response.data);
-      removeToken();
-      removeAccessTokenTime();
+      clearLocalStorage();
 
       navigate('/login');
 

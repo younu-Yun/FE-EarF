@@ -6,7 +6,7 @@ import { RootState } from 'store';
 import { logout } from 'store/loginSlice';
 
 import axios from 'axios';
-import { getToken, removeToken, removeAccessTokenTime } from '../../api/token';
+import { getToken, clearLocalStorage } from '../../api/token';
 import profileIcon from '../../assets/icons/profile.svg';
 import MainLogo from '../../assets/icons/MainLogo.svg';
 
@@ -22,8 +22,7 @@ function Header(): JSX.Element {
 
   // 로그아웃시 access, refrest 토큰 제거
   const handleLogout = () => {
-    removeToken();
-    removeAccessTokenTime();
+    clearLocalStorage();
     navigate('/login');
     dispatch(logout());
   };

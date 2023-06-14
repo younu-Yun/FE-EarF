@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { login } from 'store/loginSlice';
-import { saveToken, saveRefreshToken, accessTokenTime } from 'api/token';
+import { saveAccessToken, saveRefreshToken } from 'api/token';
 import axios from 'axios';
 
 import FormHead from 'components/User/FormHead';
@@ -71,9 +71,8 @@ const Login: React.FC = () => {
       alert('로그인에 성공했습니다!');
 
       const { accessToken, refreshToken } = response.data;
-      saveToken(accessToken);
+      saveAccessToken(accessToken);
       saveRefreshToken(refreshToken);
-      accessTokenTime();
 
       dispatch(login());
 
