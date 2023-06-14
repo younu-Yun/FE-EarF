@@ -3,7 +3,7 @@ import { useState, ChangeEvent, useEffect } from 'react';
 import Button from 'components/common/Button';
 import camera from 'assets/images/camera.png';
 import { useNavigate } from 'react-router-dom';
-import { userInfo, userInfoChange, userImgChange } from 'api/fetcher';
+import { userInfo, userInfoChange, userImgChange, userImgDelete } from 'api/fetcher';
 interface FormValues {
   id: string;
   name: string;
@@ -15,7 +15,9 @@ interface FormValues {
 function Edit() {
   const navigate = useNavigate();
   const imgFormData = new FormData();
-  // const [previewImage, setPreviewImage] = useState('');
+  const [previewImage, setPreviewImage] = useState<string>('');
+  const [imageData, setImageData] = useState<File | undefined>();
+
   const [formData, setFormData] = useState<FormValues>({
     id: '',
     name: '',
@@ -55,11 +57,18 @@ function Edit() {
     const file: File | undefined = e.target.files?.[0];
     if (file) {
       imgFormData.append('profileImage', file);
-      // setPreviewImage(URL.createObjectURL(file));
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        const imageUrl = reader.result as string;
+        setPreviewImage(imageUrl);
+      };
+      reader.readAsDataURL(file);
+      setImageData(file);
     }
   };
 
-  const useNavigateToChangePassword = () => {
+  const useNavigateToChangePassword = (): void => {
     navigate('/change_password');
   };
 
@@ -68,18 +77,26 @@ function Edit() {
     try {
       const { id, name, email, phoneNumber } = formData;
       await userInfoChange(id, name, email, phoneNumber);
-      await userImgChange(imgFormData);
+      if (imageData) {
+        imgFormData.append('profileImage', imageData);
+        await userImgChange(imgFormData);
+      }
       navigate('/mypage/info');
     } catch (error) {
       console.error('수정에 실패했습니다.', error);
     }
   };
 
+  const handleDefaultImgChange = async () => {
+    await userImgDelete();
+    setPreviewImage('');
+  };
+
   return (
     <div className={styles.edit}>
       <form>
         <div className={styles.profileImageBox}>
-          <img src={formData.profileImage} alt='프로필' />
+          <img src={previewImage ? previewImage : formData.profileImage} alt='프로필' />
           <label htmlFor='profileImage' className={styles.camera}>
             <img src={camera} alt='카메라'></img>
           </label>
@@ -92,6 +109,9 @@ function Edit() {
             style={{ display: 'none' }}
           />
         </div>
+        <button className={styles.defaultImgButton} onClick={handleDefaultImgChange}>
+          기본 이미지로 변경
+        </button>
         <div className={styles.userInfo}>
           <label htmlFor='id'>아이디</label>
           <input type='text' id='id' name='id' value={formData.id} readOnly />

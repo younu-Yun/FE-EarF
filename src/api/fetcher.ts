@@ -97,7 +97,17 @@ export async function userImgChange(profileImage: FormData) {
   return await ApiMulti.post(domain, 'user/profile', profileImage);
 }
 
+// 유저 프로필 이지미 삭제
+export async function userImgDelete() {
+  return await ApiMulti.delete(domain, 'user/profile');
+}
+
 // 회원 탈퇴
 export async function userDelete() {
   return await Api.delete(domain, 'user/delete');
+}
+
+// 뱃지 업데이트
+export async function updateBadge() {
+  return await Api.get(domain, 'user/badges/badge');
 }
