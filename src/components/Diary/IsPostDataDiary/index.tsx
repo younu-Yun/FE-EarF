@@ -13,6 +13,7 @@ export default function IsPostDataDiary() {
   const [data, setData] = useState<EachDayDataApiType>();
   const [loading, setLoading] = useState(true);
 
+  const tagImageSrc = GetTagImage(data?.tag.length);
   const selectedValue = GetSelectedDateState();
 
   useEffect(() => {
@@ -29,8 +30,6 @@ export default function IsPostDataDiary() {
 
     fetchPost();
   }, [selectedValue]);
-
-  const tagImageSrc = GetTagImage(data?.tag.length);
 
   if (loading) {
     return <LoadingImg />;
