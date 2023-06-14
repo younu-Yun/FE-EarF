@@ -8,28 +8,29 @@ interface BadgeModalProps {
   imgSrc: string;
   isGet: boolean;
   info: string;
-  onClick: () => void;
+  handleShowModal: () => void;
 }
 
-function BadgeModal({ type, name, imgSrc, isGet, info, onClick }: BadgeModalProps) {
+function BadgeModal({ type, name, imgSrc, isGet, info, handleShowModal }: BadgeModalProps) {
   const handleCheckedBadge = async () => {
     try {
       await checkedBadgeChange(type);
       console.log('뱃지 변경에 성공했습니다', type);
+      handleShowModal();
     } catch (error) {
       console.error('대표 뱃지 변경 실패', error);
     }
   };
   return (
     <div className={styles.modalBox}>
-      <Exit className={styles.exitButton} onClick={onClick} />
+      <Exit className={styles.exitButton} onClick={handleShowModal} />
       <div className={styles.modalContents}>
         <img src={imgSrc} alt='이미지' />
         <p className={styles.name}>{name}</p>
         <p className={styles.info}>{info}</p>
         <Button
           text='대표 뱃지 설정'
-          className={isGet ? '' : 'whiteButton'}
+          className={isGet ? '' : 'nonCursor'}
           disabled={!isGet}
           onClick={handleCheckedBadge}
         />

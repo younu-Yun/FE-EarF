@@ -99,7 +99,6 @@ function updateBadgeList(badgeTypes: string[], badgeList: BadgeInfo[]): BadgeInf
 
 const BadgeList = () => {
   const [badgeList, setBadgeList] = useState(initialBadgeList);
-  //유저 정보 불러오기
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {

@@ -35,7 +35,7 @@ function Badge() {
           imgSrc={badgeList[selectedImageIndex].url}
           isGet={badgeList[selectedImageIndex].isGet}
           info={badgeList[selectedImageIndex].info}
-          onClick={handleShowModal}
+          handleShowModal={handleShowModal}
         />
       )}
     </div>
