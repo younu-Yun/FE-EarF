@@ -75,10 +75,10 @@ const initialBadgeList: BadgeInfo[] = [
   },
   {
     type: '기록왕',
-    name: '커뮤니티 포스팅 10회',
+    name: '커뮤니티 작성 10회',
     isGet: false,
     url: getBadgeImagePath('커뮤'),
-    info: '커뮤니티 게시물을 10회 이상 작성 시 획득 가능합니다.',
+    info: '커뮤니티 게시물 10회 이상 작성 시 획득 가능합니다.',
   },
 ];
 
