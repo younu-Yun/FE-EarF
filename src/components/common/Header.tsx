@@ -9,6 +9,7 @@ import axios from 'axios';
 import { getToken, clearLocalStorage } from '../../api/token';
 import profileIcon from '../../assets/icons/profile.svg';
 import MainLogo from '../../assets/icons/MainLogo.svg';
+import { updateBadge } from 'api/fetcher';
 
 function Header(): JSX.Element {
   const navigate = useNavigate();
@@ -66,6 +67,9 @@ function Header(): JSX.Element {
   const handleMyPageClick = (e: MouseEvent) => {
     navigate('/mypage/info');
   };
+  const handleUpdateBadge = (): void => {
+    updateBadge();
+  };
 
   return (
     <header>
@@ -107,7 +111,9 @@ function Header(): JSX.Element {
                 <div className={styles.sideMenu}>
                   <NavLink to='/mypage/info'>내 정보</NavLink>
                   <NavLink to='/mypage/mycommunity'>내 게시글</NavLink>
-                  <NavLink to='/mypage/badge'>뱃지</NavLink>
+                  <NavLink to='/mypage/badge' onClick={handleUpdateBadge}>
+                    뱃지
+                  </NavLink>
                   <button onClick={handleLogout}>로그아웃</button>
                 </div>
               )}
