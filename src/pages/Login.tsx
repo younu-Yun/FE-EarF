@@ -70,7 +70,7 @@ const Login: React.FC = () => {
       saveRefreshToken(refreshToken);
       accessTokenTime();
 
-      navigate('/calender');
+      navigate('/');
 
       /*
           //Fetcher 사용
