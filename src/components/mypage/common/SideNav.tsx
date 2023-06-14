@@ -1,6 +1,5 @@
 import styles from './SideNav.module.scss';
 import { NavLink } from 'react-router-dom';
-import { userLogout } from 'api/fetcher';
 import { clearLocalStorage } from 'api/token';
 import { userLogout, updateBadge } from 'api/fetcher';
 
@@ -11,7 +10,7 @@ interface NavLinkItem {
 }
 
 function SideNav() {
-  const handleUpdateBadge = () => {
+  const handleUpdateBadge = (): void => {
     updateBadge();
     console.log('뱃지가 업데이트 되었습니다');
   };

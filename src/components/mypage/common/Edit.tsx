@@ -15,8 +15,8 @@ interface FormValues {
 function Edit() {
   const navigate = useNavigate();
   const imgFormData = new FormData();
-  const [previewImage, setPreviewImage] = useState('');
-  const [imageData, setImageData] = useState<File>();
+  const [previewImage, setPreviewImage] = useState<string>('');
+  const [imageData, setImageData] = useState<File | undefined>();
 
   const [formData, setFormData] = useState<FormValues>({
     id: '',
@@ -56,8 +56,6 @@ function Edit() {
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file: File | undefined = e.target.files?.[0];
     if (file) {
-      console.log('imgFormData1', imgFormData.get('profileImage'));
-      // imgFormData.append('test', 'test');
       imgFormData.append('profileImage', file);
       const reader = new FileReader();
 
@@ -70,16 +68,19 @@ function Edit() {
     }
   };
 
-  const useNavigateToChangePassword = () => {
+  const useNavigateToChangePassword = (): void => {
     navigate('/change_password');
   };
 
-  const handleUserInfoChange = async () => {
-    // e.preventDefault();
+  const handleUserInfoChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     try {
       const { id, name, email, phoneNumber } = formData;
       await userInfoChange(id, name, email, phoneNumber);
-      await userImgChange(imgFormData);
+      if (imageData) {
+        imgFormData.append('profileImage', imageData);
+        await userImgChange(imgFormData);
+      }
       navigate('/mypage/info');
     } catch (error) {
       console.error('수정에 실패했습니다.', error);
@@ -87,9 +88,8 @@ function Edit() {
   };
 
   const handleDefaultImgChange = async () => {
-    // e.preventDefault();
-    // e: React.MouseEvent<HTMLButtonElement>
     await userImgDelete();
+    setPreviewImage('');
   };
 
   return (
