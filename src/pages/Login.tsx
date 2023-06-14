@@ -1,6 +1,9 @@
 import styles from './Login.module.scss';
 import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { login } from 'store/loginSlice';
 import { saveToken, saveRefreshToken, accessTokenTime } from 'api/token';
 import axios from 'axios';
 
@@ -17,6 +20,8 @@ interface FormData {
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState<FormData>({
     id: '',
     password: '',
@@ -69,6 +74,8 @@ const Login: React.FC = () => {
       saveToken(accessToken);
       saveRefreshToken(refreshToken);
       accessTokenTime();
+
+      dispatch(login());
 
       navigate('/');
 
