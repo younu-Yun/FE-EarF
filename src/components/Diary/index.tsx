@@ -90,8 +90,11 @@ export default function Diary() {
           <input
             placeholder='행동 한마디'
             className={styles.inputContent}
+            maxLength={20}
             onChange={(event) => {
-              HandleEachValue('title', event.target.value, setFormData);
+              if (event.target.value.length <= 20) {
+                HandleEachValue('title', event.target.value, setFormData);
+              }
             }}
           />
           <textarea
