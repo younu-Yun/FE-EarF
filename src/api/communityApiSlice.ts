@@ -13,6 +13,7 @@ import {
 
 import { getToken, isTokenExpired, refreshAccessToken } from './token';
 
+// 코치님이 말하신 방법으로 사용을 했는데 403 에러가 반환되어서 오류를 잡고있습니다..ㅠㅠ
 const addHeaders = () => {
   let token = getToken();
 
@@ -27,7 +28,7 @@ const addHeaders = () => {
 export const communityApiSlice = createApi({
   reducerPath: 'communityApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://34.64.216.86/api/' }),
-  tagTypes: ['User', 'Post', 'Boast'],
+  tagTypes: ['Post', 'Boast'],
   endpoints: (builder) => ({
     getUserInfo: builder.query<User, void>({
       query: () => ({
@@ -36,7 +37,6 @@ export const communityApiSlice = createApi({
           Authorization: `Bearer ${addHeaders()}`,
           'Content-Type': 'application/json',
         },
-        providesTags: ['User'],
       }),
     }),
     // 커뮤니티 자기 게시글 get Api
@@ -83,6 +83,7 @@ export const communityApiSlice = createApi({
     // 커뮤니티 질문 BEST 추천 5개 조회 get Api
     getBestLikesCommunityPosts: builder.query<QuestionPost[], void>({
       query: () => `community/questions/most-liked`,
+      providesTags: ['Post'],
     }),
     // 커뮤니티 질문 최신 댓글 1개 조회 get Api
     getLatestComment: builder.query<LastComment, void>({
