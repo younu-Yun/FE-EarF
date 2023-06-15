@@ -5,6 +5,7 @@ import background from 'assets/images/logoBoast.png';
 import { BoastPost } from 'types/types';
 import getPostingTime from 'utils/getPostingTime';
 import CommentUserProfile from '../comment/CommentUserProfile';
+import getBadgeImagePath from 'utils/getBadgeImagePath';
 
 function BoastItems({
   _id,
@@ -20,12 +21,6 @@ function BoastItems({
   date,
 }: Omit<BoastPost, 'shareStatus' | 'createdAt' | 'updatedAt' | '__v'>) {
   const [isActive, setIsActive] = useState(false);
-  const [likeIt, setLikeIt] = useState(false);
-
-  const handleLikeIt = (e: React.MouseEvent<HTMLElement>) => {
-    e.stopPropagation();
-    setLikeIt((prevLikeIt) => !prevLikeIt);
-  };
 
   const handleImgClick = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
@@ -39,12 +34,20 @@ function BoastItems({
       </div>
       <div className={styles.contentContainer}>
         <div className={styles.content}>
-          <div className={styles.userProfile}>
-            <CommentUserProfile profileImage={profileImage} checkedBadge={checkedBadge} />
-            <p className={styles.user}>
-              <span className={styles.useName}>{name}</span> 님의
-              <span className={styles.time}> {getPostingTime(date)}</span> 기록
-            </p>
+          <div className={styles.userProfileContainer}>
+            <div className={styles.badgeContainer}>
+              {tag &&
+                tag.map((tagItem, index) => (
+                  <img key={index} src={getBadgeImagePath(tagItem)} alt={tagItem} className={styles.tagImage} />
+                ))}
+            </div>
+            <div className={styles.userProfile}>
+              <CommentUserProfile profileImage={profileImage} checkedBadge={checkedBadge} />
+              <p className={styles.user}>
+                <span className={styles.useName}>{name}</span> 님의
+                <span className={styles.time}> {getPostingTime(date)}</span> 기록
+              </p>
+            </div>
           </div>
           <p className={styles.userContent}>
             <h2>{title}</h2>
