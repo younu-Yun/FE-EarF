@@ -140,11 +140,13 @@
     flex-direction: column;
     align-self: center;
     gap: 1rem;
-    padding-left: 10rem;
+    padding-left: 12rem;
     text-align: center;
+    line-height: 1.1;
     & > h2 {
-      font-size: 26pt;
+      font-size: 24pt;
       color: $--color--text1;
+      line-height: 1;
       opacity: 0;
       transform: translateY(100px);
       animation: slideUpAnimation 0.5s ease-out forwards;
