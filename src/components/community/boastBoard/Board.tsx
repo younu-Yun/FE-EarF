@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SelectBox from './SelectBox';
 import styles from './Board.module.scss';
 import Slider from 'react-slick';
@@ -52,23 +52,22 @@ function Board() {
     boastData = basData;
     isLoading = isBasLoading;
     error = basError;
+    console.log(boastData);
   }
 
   const settings = {
     className: 'boastSliderContainer',
     autoPlay: false,
     adaptiveHeigh: true,
-    // centerMode: true,
     infinite: true,
     initialSlide: 0,
     speed: 800,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // fade: true,
     // swipe:false,
     arrows: true,
     rtl: true,
-    prevArrow: <ArrowLeft style={{ width: '50rem', height: '50rem' }} />,
+    prevArrow: <ArrowLeft />,
     nextArrow: <ArrowRight />,
   };
   return (
@@ -81,10 +80,10 @@ function Board() {
           <div className={styles.loadingContainer}>
             <PuffLoader color='#24AE63' loading size={100} />
           </div>
-        ) : error ? (
+        ) : error || (boastData && boastData.length === 0) ? (
           <div className={styles.errorContainer}>
             <img src={errorCommunity} />
-            게시글을 불러오지 못했습니다.
+            {selectedOption.value} 태그로만 작성된 기록이 없습니다.
           </div>
         ) : (
           <Slider {...settings}>
