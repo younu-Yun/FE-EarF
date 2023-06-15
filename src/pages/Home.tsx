@@ -1,11 +1,15 @@
 import styles from './Home.module.scss';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from 'store';
+
 import CommunitySwiper from 'components/home/CommunitySwiper';
 import MainSwiper from 'components/home/MainSwiper';
 
 import HomeCheck from 'assets/icons/HomeCheck.svg';
 import homeBanner1 from 'assets/images/homeBanner1.png';
 import homeBanner2 from 'assets/images/homeBanner2.png';
+import mascot from 'assets/images/mascot.png';
 
 import badge01 from 'assets/images/badge01.png';
 import badge02 from 'assets/images/badge02.png';
@@ -18,8 +22,21 @@ import badge07 from 'assets/images/badge07.png';
 import Star from 'assets/icons/Star.svg';
 
 function Home() {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn);
+
+  const smoothScrollToAnchor = (target: any) => {
+    const targetElement = document.querySelector(target);
+    if (targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   const onAnchor = () => {
-    window.location.href = '#diary';
+    smoothScrollToAnchor('#diary');
   };
 
   return (
@@ -45,15 +62,17 @@ function Home() {
               </div>
               <div className={styles.buttonBox}>
                 <button onClick={onAnchor}>구경하기</button>
-                <Link to='/login'>시작하기</Link>
+                {isLoggedIn ? <Link to='/calender'>시작하기</Link> : <Link to='/login'>시작하기</Link>}
               </div>
             </div>
             <div className={styles.right}>
               <div className={styles.greenBackground}></div>
               <div className={styles.whiteBackground}></div>
-              {/* <MainSwiper></MainSwiper> */}
+              <div className={styles.card}>
+                <MainSwiper></MainSwiper>
+              </div>
               <div className={styles.mascot}>
-                <img src='' alt='마스코트' />
+                <img src={mascot} alt='마스코트' />
               </div>
             </div>
           </div>
@@ -124,7 +143,6 @@ function Home() {
             </div>
           </div>
         </section>
-
         <section className={styles.badge}>
           <div className={styles.inner}>
             <div className={styles.title}>
@@ -184,8 +202,8 @@ function Home() {
         </section>
         <div className={styles.link}>
           <div>
-            <h2>지금바로 시작하고 싶다면?</h2>
-            <Link to='/join'>시작하기</Link>
+            <h2>지금 바로 시작하고 싶다면?</h2>
+            {isLoggedIn ? <Link to='/calender'>시작하기</Link> : <Link to='/join'>시작하기</Link>}
           </div>
         </div>
       </main>

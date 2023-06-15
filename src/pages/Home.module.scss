@@ -71,7 +71,7 @@ main {
   section.homeMain {
     .inner {
       align-items: stretch;
-      padding: 15rem 0 20rem 5rem;
+      padding: 15rem 0 0 5rem;
     }
 
     .left {
@@ -107,7 +107,7 @@ main {
 
           &:nth-child(2n) {
             bottom: -2rem;
-            right: 10%;
+            right: 18%;
             transform: rotate(60deg);
           }
         }
@@ -170,9 +170,9 @@ main {
       flex: 0.6;
 
       .greenBackground {
-        margin: 3rem 0 0 auto;
+        margin: 0 0 0 auto;
         width: 50rem;
-        height: 32rem;
+        height: 36rem;
         background: rgba(152, 218, 123, 0.5);
         border-radius: 18rem;
       }
@@ -188,7 +188,38 @@ main {
         height: 35rem;
         background: $--color--white;
         border-radius: 4.5rem;
+        box-shadow: rgba(174, 174, 174, 0.3) 0px 2px 15px 0px;
       }
+
+      .card {
+        position: absolute;
+        top: 50%;
+        left: 10%;
+        transform: translateY(-50%);
+        display: block;
+
+        width: 32rem;
+        height: 42rem;
+        background: $--color--white;
+        border-radius: 4.5rem;
+      }
+
+      .mascot {
+        position: absolute;
+        top: -20%;
+        right: 0;
+        transform: rotate(12deg);
+        z-index: 10;
+        display: block;
+        width: 36rem;
+        height: 36rem;
+      }
+    }
+  }
+
+  section.diary {
+    .inner {
+      padding: 20rem 5rem;
     }
   }
 
