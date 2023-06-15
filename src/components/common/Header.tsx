@@ -98,7 +98,7 @@ function Header(): JSX.Element {
           {isLoggedIn ? (
             <div className={styles.login} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
               <div className={styles.infoBox} onClick={handleMyPageClick}>
-                <span>안녕하세요, {userName}</span>
+                <span>안녕하세요, {userName}님</span>
               </div>
               <div className={styles.imgBox}>
                 {profileImage !== 'http://34.64.216.86/images/undefined' ? (
