@@ -11,7 +11,7 @@ import FormHead from 'components/User/FormHead';
 import FormButton from 'components/User/FormButton';
 import { DefaultInput } from 'components/User/DefaultInput';
 import { validateField } from 'components/User/validation';
-import LoginIllust from '../assets/images/LoginIllust.jpg';
+import LoginIllust from '../assets/images/LoginIllust.png';
 
 interface FormData {
   id: string;
