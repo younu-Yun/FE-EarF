@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import HeartReaction from '../common/HeartReaction';
-import styles from './BoastItemCopy.module.scss';
-import background from 'assets/images/background.png';
+import styles from './BoastItems.module.scss';
+import background from 'assets/images/logoBoast.png';
 import { BoastPost } from 'types/types';
 import getPostingTime from 'utils/getPostingTime';
 import CommentUserProfile from '../comment/CommentUserProfile';
 
-function BoastItemCopy({
+function BoastItems({
   _id,
   id,
   name,
@@ -34,20 +34,23 @@ function BoastItemCopy({
 
   return (
     <div className={styles.postContainer}>
-      <div className={styles.backgroundImg}>
+      <div style={{ backgroundImage: `url(${imageUrl})` }} className={styles.backgroundImg}>
         <img src={background} />
       </div>
       <div className={styles.contentContainer}>
         <div className={styles.content}>
-          <h2>{title}</h2>
-          <span> {content}</span>
-          <div>
-            <p>
-              <span className={styles.useName}>{name}</span>님의{' '}
-              <span className={styles.time}>{getPostingTime(date)}</span> 기록
+          <div className={styles.userProfile}>
+            <CommentUserProfile profileImage={profileImage} checkedBadge={checkedBadge} />
+            <p className={styles.user}>
+              <span className={styles.useName}>{name}</span> 님의
+              <span className={styles.time}> {getPostingTime(date)}</span> 기록
             </p>
-            <HeartReaction postId={_id} likeIds={likeIds} />
           </div>
+          <p className={styles.userContent}>
+            <h2>{title}</h2>
+            <span> {content}</span>
+          </p>
+          <HeartReaction postId={_id} likeIds={likeIds} isBoast={true} />
         </div>
       </div>
       <img
@@ -55,11 +58,8 @@ function BoastItemCopy({
         className={`${styles.imgContainer} ${isActive ? styles.active : ''}`}
         onClick={handleImgClick}
       />
-      <div className={styles.userProfile}>
-        <CommentUserProfile profileImage={profileImage} checkedBadge={checkedBadge} />
-      </div>
     </div>
   );
 }
 
-export default BoastItemCopy;
+export default BoastItems;

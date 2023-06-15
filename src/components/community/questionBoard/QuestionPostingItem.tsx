@@ -22,7 +22,12 @@ function QuestionPostingItem({
   numLikes,
 }: QuestionPostingItemProps) {
   const { data: userInfo } = useGetUserInfoQuery();
-  const contentText = `${content.split('.').slice(0, 5).join('.')}`;
+  let contentText;
+  if (content.split('.').length <= 4 && content.length >= 100) {
+    contentText = `${content.substring(0, 100)}`;
+  } else {
+    contentText = `${content.split('.').slice(0, 5).join('.')}`;
+  }
 
   return (
     <li className={styles.container}>

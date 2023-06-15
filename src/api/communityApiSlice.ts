@@ -206,25 +206,25 @@ export const communityApiSlice = createApi({
     }),
     // 자랑하기 전체 get Api
     getAllBoastPosts: builder.query<BoastPost[], void>({
-      query: () => `community/boasts`,
+      query: () => 'community/boasts',
       providesTags: ['Boast'],
     }),
     // 자랑하기 텀블러 get Api
-    getTumBoastPosts: builder.query<BoastPost[], void>({
-      query: () => `community/boasts?tag=텀블러`,
+    getSortedTumPosts: builder.query<BoastPost[], void>({
+      query: () => 'community/boasts?tag=텀블러',
       providesTags: ['Boast'],
     }),
     // 자랑하기 대중교통 get Api
-    getTransBoastPosts: builder.query<BoastPost[], void>({
-      query: () => `/api/community/boasts?tag=대중교통`,
+    getSortedTransPosts: builder.query<BoastPost[], void>({
+      query: () => 'community/boasts?tag=대중교통',
       providesTags: ['Boast'],
     }),
     // 자랑하기 장바구니 get Api
-    getBasketBoastPosts: builder.query<BoastPost[], void>({
-      query: () => `/api/community/boasts?tag=장바구니`,
+    getSortedBasketPosts: builder.query<BoastPost[], void>({
+      query: () => 'community/boasts?tag=장바구니',
       providesTags: ['Boast'],
     }),
-    // 댓글 좋아요 patch Api
+    // 자랑하기 좋아요 patch Api
     toggleLikeBoast: builder.mutation<BoastPost[], { postId: string }>({
       query: ({ postId }) => ({
         url: `community/boasts/like/${postId}`,
@@ -234,7 +234,7 @@ export const communityApiSlice = createApi({
           'Content-Type': 'application/json',
         },
       }),
-      invalidatesTags: ['Post'],
+      invalidatesTags: ['Boast'],
     }),
   }),
 });
@@ -262,8 +262,8 @@ export const {
   useToggleLikePostMutation,
   useToggleLikeCommentMutation,
   useGetAllBoastPostsQuery,
-  useGetTumBoastPostsQuery,
-  useGetTransBoastPostsQuery,
-  useGetBasketBoastPostsQuery,
+  useGetSortedTumPostsQuery,
+  useGetSortedTransPostsQuery,
+  useGetSortedBasketPostsQuery,
   useToggleLikeBoastMutation,
 } = communityApiSlice;

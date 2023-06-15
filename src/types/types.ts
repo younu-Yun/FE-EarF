@@ -66,6 +66,7 @@ export interface CommentPost {
 }
 
 export interface LastComment {
+  _id: string;
   title: string;
   comment: string;
 }

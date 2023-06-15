@@ -1,6 +1,7 @@
 @import 'color.scss';
 
 .reactionContainer {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,4 +23,17 @@
     font-size: 10pt;
     color: white;
   }
+}
+
+.notLoggedIn {
+  position: absolute;
+  top: -4rem;
+  width: 10rem;
+  padding: 0.5rem 0;
+  border-radius: 0.5rem;
+  font-size: 9pt;
+  word-break: keep-all;
+  background: $--color--text3;
+  white-space: pre-wrap;
+  opacity: 1;
 }
