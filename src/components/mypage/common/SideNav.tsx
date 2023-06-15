@@ -1,7 +1,6 @@
 import styles from './SideNav.module.scss';
 import { NavLink } from 'react-router-dom';
-import { clearLocalStorage } from 'api/token';
-import { userLogout, updateBadge } from 'api/fetcher';
+import { updateBadge } from 'api/fetcher';
 
 interface NavLinkItem {
   to: string;
@@ -12,17 +11,6 @@ interface NavLinkItem {
 function SideNav() {
   const handleUpdateBadge = (): void => {
     updateBadge();
-  };
-
-  const handleLogout = async () => {
-    try {
-      await userLogout();
-      clearLocalStorage();
-      alert('로그아웃이 완료되었습니다');
-      window.location.href = '/';
-    } catch (error) {
-      console.error('로그아웃 실패', error);
-    }
   };
 
   const navLinks: NavLinkItem[] = [
@@ -41,11 +29,13 @@ function SideNav() {
               className={({ isActive, isPending }) => (isPending ? styles.inactive : isActive ? styles.active : '')}
               onClick={onclick}
             >
-              {label}
+              <div>
+                <div className={styles.icon}></div>
+                <span>{label}</span>
+              </div>
             </NavLink>
           </li>
         ))}
-        <li onClick={handleLogout}>로그아웃</li>
       </ul>
     </div>
   );
