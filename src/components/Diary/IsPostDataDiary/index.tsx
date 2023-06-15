@@ -7,6 +7,9 @@ import { GetTagImage } from 'services/calendarService';
 import { EachDayDataApiType } from 'types/types';
 
 import { ReactComponent as LoadingImg } from 'assets/icons/LoadingImg2.svg';
+import tumblr from 'assets/images/badge04.png';
+import bus from 'assets/images/badge05.png';
+import shoppingbag from 'assets/images/badge06.png';
 import EditedDiary from '../EditDiary';
 
 import styles from './styles.module.scss';
@@ -18,6 +21,7 @@ export default function IsPostDataDiary() {
 
   const tagImageSrc = GetTagImage(data?.tag.length);
   const selectedValue = GetSelectedDateState();
+  console.log(data?.tag);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -44,8 +48,17 @@ export default function IsPostDataDiary() {
         <div className={styles.container}>
           <div className={styles.postContainer}>
             <div className={styles.postItemWrapper}>
-              <img src={tagImageSrc} alt='tagimg' className={styles.tagImg} />
-              <span>{data?.tag.length}개 달성!</span>
+              {data?.tag.map((item, index) => {
+                if (item == '텀블러') {
+                  return <img src={tumblr} key={index} alt='tumblr' className={styles.tagImg} />;
+                }
+                if (item == '대중교통') {
+                  return <img src={bus} key={index} alt='tumblr' className={styles.tagImg} />;
+                }
+                if (item == '장바구니') {
+                  return <img src={shoppingbag} key={index} alt='tumblr' className={styles.tagImg} />;
+                }
+              })}
             </div>
             <img alt='postimg' src={data?.imageUrl} className={styles.imgContainer} />
             <>
