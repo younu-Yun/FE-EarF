@@ -1,15 +1,23 @@
 @import 'color.scss';
 
 .swiperContainer {
-  height: 42rem;
+  height: 45rem;
 
   & > div {
     width: 100%;
     height: 100%;
   }
 
-  .community {
-    padding: 0 10px;
+  .main {
+    & > div:last-child {
+      bottom: 0;
+
+      & > span {
+        width: 1rem;
+        height: 1rem;
+        background: $--color--primary;
+      }
+    }
   }
 
   .swiperSlide {
