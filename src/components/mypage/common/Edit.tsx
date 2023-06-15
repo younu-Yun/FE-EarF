@@ -1,9 +1,10 @@
 import styles from './Edit.module.scss';
-import { useState, ChangeEvent, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Button from 'components/common/Button';
 import plus from 'assets/images/plus.png';
 import { useNavigate } from 'react-router-dom';
 import { userInfo, userInfoChange, userImgChange, userImgDelete } from 'api/fetcher';
+import profileDefault from 'assets/images/profileDefault.png';
 
 import Star from 'assets/icons/Star.svg';
 interface FormValues {
@@ -47,7 +48,7 @@ function Edit() {
     fetchUserInfo();
   }, []);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -55,17 +56,16 @@ function Edit() {
     }));
   };
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file: File | undefined = e.target.files?.[0];
     if (file) {
-      imgFormData.append('profileImage', file);
       const reader = new FileReader();
 
+      reader.readAsDataURL(file);
       reader.onloadend = () => {
         const imageUrl = reader.result as string;
         setPreviewImage(imageUrl);
       };
-      reader.readAsDataURL(file);
       setImageData(file);
     }
   };
@@ -74,7 +74,7 @@ function Edit() {
     navigate('/change_password');
   };
 
-  const handleUserInfoChange = async (e: ChangeEvent<HTMLInputElement>) => {
+  const handleUserInfoChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     try {
       const { id, name, email, phoneNumber } = formData;
@@ -89,9 +89,11 @@ function Edit() {
     }
   };
 
-  const handleDefaultImgChange = async () => {
+  const handleDefaultImgChange = async (e: React.MouseEvent) => {
+    e.preventDefault();
     await userImgDelete();
-    setPreviewImage('');
+    setPreviewImage(profileDefault);
+    setImageData(undefined);
   };
 
   return (
