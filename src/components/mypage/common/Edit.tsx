@@ -1,7 +1,7 @@
 import styles from './Edit.module.scss';
 import { useState, ChangeEvent, useEffect } from 'react';
 import Button from 'components/common/Button';
-import camera from 'assets/images/camera.png';
+import plus from 'assets/images/plus.png';
 import { useNavigate } from 'react-router-dom';
 import { userInfo, userInfoChange, userImgChange, userImgDelete } from 'api/fetcher';
 interface FormValues {
@@ -98,7 +98,7 @@ function Edit() {
         <div className={styles.profileImageBox}>
           <img src={previewImage ? previewImage : formData.profileImage} alt='프로필' />
           <label htmlFor='profileImage' className={styles.camera}>
-            <img src={camera} alt='카메라'></img>
+            <img src={plus} alt='카메라'></img>
           </label>
           <input
             type='file'
