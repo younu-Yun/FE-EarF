@@ -47,10 +47,10 @@ const initialBadgeList: BadgeInfo[] = [
   },
   {
     type: '꾸준',
-    name: '데일리 기록 5회',
+    name: '커뮤니티 기록 5회',
     isGet: false,
-    url: getBadgeImageIsBorderPath('연속'),
-    info: '데일리 기록을 5회 이상 작성 시 획득가능합니다.',
+    url: getBadgeImageIsBorderPath('꾸준'),
+    info: '커뮤니티 게시물 5회 작성 시 획득 가능합니다.',
   },
   {
     type: '텀블',
@@ -77,8 +77,8 @@ const initialBadgeList: BadgeInfo[] = [
     type: '기록왕',
     name: '커뮤니티 작성 10회',
     isGet: false,
-    url: getBadgeImageIsBorderPath('커뮤'),
-    info: '커뮤니티 게시물 10회 이상 작성 시 획득 가능합니다.',
+    url: getBadgeImageIsBorderPath('기록왕'),
+    info: '커뮤니티 게시물 10회 작성 시 획득 가능합니다.',
   },
 ];
 
