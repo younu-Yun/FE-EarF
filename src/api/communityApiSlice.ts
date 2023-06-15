@@ -224,7 +224,7 @@ export const communityApiSlice = createApi({
       query: () => 'community/boasts?tag=장바구니',
       providesTags: ['Boast'],
     }),
-    // 댓글 좋아요 patch Api
+    // 자랑하기 좋아요 patch Api
     toggleLikeBoast: builder.mutation<BoastPost[], { postId: string }>({
       query: ({ postId }) => ({
         url: `community/boasts/like/${postId}`,
@@ -234,7 +234,7 @@ export const communityApiSlice = createApi({
           'Content-Type': 'application/json',
         },
       }),
-      invalidatesTags: ['Post'],
+      invalidatesTags: ['Boast'],
     }),
   }),
 });

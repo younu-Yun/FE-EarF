@@ -16,7 +16,7 @@ import { ReactComponent as ArrowRight } from 'assets/icons/ArrowRight.svg';
 import errorCommunity from 'assets/images/errorCommunity.png';
 import 'slick-carousel/slick/slick.scss';
 import 'slick-carousel/slick/slick-theme.scss';
-import BoastItemCopy from './BoastItemCopy';
+import BoastItems from './BoastItems';
 import './BoastSlider.scss';
 
 function Board() {
@@ -90,7 +90,7 @@ function Board() {
           <Slider {...settings}>
             {boastData &&
               boastData?.map((post) => (
-                <BoastItemCopy
+                <BoastItems
                   key={post._id}
                   _id={post._id}
                   imageUrl={post.imageUrl}

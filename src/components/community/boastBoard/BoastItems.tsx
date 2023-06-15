@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import HeartReaction from '../common/HeartReaction';
-import styles from './BoastItemCopy.module.scss';
+import styles from './BoastItems.module.scss';
 import background from 'assets/images/logoBoast.png';
 import { BoastPost } from 'types/types';
 import getPostingTime from 'utils/getPostingTime';
 import CommentUserProfile from '../comment/CommentUserProfile';
 
-function BoastItemCopy({
+function BoastItems({
   _id,
   id,
   name,
@@ -50,7 +50,7 @@ function BoastItemCopy({
             <h2>{title}</h2>
             <span> {content}</span>
           </p>
-          <HeartReaction postId={_id} likeIds={likeIds} />
+          <HeartReaction postId={_id} likeIds={likeIds} isBoast={true} />
         </div>
       </div>
       <img
@@ -62,4 +62,4 @@ function BoastItemCopy({
   );
 }
 
-export default BoastItemCopy;
+export default BoastItems;
