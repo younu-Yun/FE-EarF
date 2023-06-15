@@ -1,63 +1,104 @@
 @import 'color.scss';
 
+.modal {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .modalBox {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 2000;
 
-  width: 500px;
+  max-width: 600px;
+  min-width: 400px;
   height: 300px;
 
   border: 1px solid $--color--border;
   border-radius: 10px;
-  background-color: $--color--background;
+  background-color: $--color--white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px, rgba(0, 0, 0, 0.12) 0px 4px 10px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
+  h3 {
+    width: 80%;
+    padding: 0 0 10px;
+    border-bottom: 1px solid #dbdbdb;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
   & > .exitButton {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 8px;
+    right: 8px;
 
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
 
     cursor: pointer;
   }
 
-  & > .text {
-    font-size: 2rem;
-    margin: 20px;
-    margin-bottom: 20px;
-  }
+  .modalContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-  & > .passwordInput {
-    width: 250px;
-    height: 30px;
+    height: 60%;
 
-    & > input {
+    & > .text {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    & > .passwordInput {
       width: 250px;
       height: 30px;
+
+      & > input {
+        border-radius: 5px;
+        background-color: rgb(221, 218, 218);
+        width: 250px;
+        height: 30px;
+      }
+
+      & > label {
+        width: 0;
+      }
     }
 
-    & > label {
-      width: 0;
+    & > .errorMessage {
+      width: 250px;
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+
+      color: red;
     }
-  }
-
-  & > .errorMessage {
-    width: 250px;
-    margin-bottom: 10px;
-    font-size: 1.5rem;
-
-    color: red;
   }
 
   Button {
-    margin-top: 20px;
+    width: 30%;
+    height: 40px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 40px;
+    border-radius: 5px;
+    margin-bottom: 10px;
   }
 }
