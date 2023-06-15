@@ -1,18 +1,18 @@
-// import badgeDefault from 'assets/images/badgeDefault.png';
-// import badgeNewPost from 'assets/images/badgeNewPost.png';
-// import badgeWrite3Times from 'assets/images/badgeWrite3Times.png';
-// import badgeTumbler from 'assets/images/badgeTumbler.png';
-// import badgePublicTrans from 'assets/images/badgePublicTrans.png';
-// import badgeBasket from 'assets/images/badgeBasket.png';
-// import badgeCommunity from 'assets/images/badgeCommunity.png';
+import badgeDefault from 'assets/images/badgeDefault.png';
+import badgeNewPost from 'assets/images/badgeNewPost.png';
+import badgeWrite3Times from 'assets/images/badgeWrite3Times.png';
+import badgeTumbler from 'assets/images/badgeTumbler.png';
+import badgePublicTrans from 'assets/images/badgePublicTrans.png';
+import badgeBasket from 'assets/images/badgeBasket.png';
+import badgeCommunity from 'assets/images/badgeCommunity.png';
 
-import badgeDefault from 'assets/images/badge01.png';
-import badgeNewPost from 'assets/images/badge02.png';
-import badgeWrite3Times from 'assets/images/badge03.png';
-import badgeTumbler from 'assets/images/badge04.png';
-import badgePublicTrans from 'assets/images/badge05.png';
-import badgeBasket from 'assets/images/badge06.png';
-import badgeCommunity from 'assets/images/badge07.png';
+// import badgeDefault from 'assets/images/badge01.png';
+// import badgeNewPost from 'assets/images/badge02.png';
+// import badgeWrite3Times from 'assets/images/badge03.png';
+// import badgeTumbler from 'assets/images/badge04.png';
+// import badgePublicTrans from 'assets/images/badge05.png';
+// import badgeBasket from 'assets/images/badge06.png';
+// import badgeCommunity from 'assets/images/badge07.png';
 
 export default function getBadgeImagePath(checkedBadge: string) {
   switch (checkedBadge) {

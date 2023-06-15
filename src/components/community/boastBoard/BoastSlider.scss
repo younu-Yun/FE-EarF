@@ -17,19 +17,5 @@
   & .slick-slide {
     width: 700px !important;
     overflow: hidden;
-
-    & h2,
-    span {
-      transform: translateX(0);
-      opacity: 1;
-      transition: opacity 1s, transform 1s;
-      transition-delay: 1s;
-    }
-  }
-
-  & .slick-active {
-    transform: translateX(-50px);
-    opacity: 0;
-    transition: opacity 0s 2s, transform 0s 2s;
   }
 }

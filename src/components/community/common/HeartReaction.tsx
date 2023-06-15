@@ -1,8 +1,9 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {
   useToggleLikePostMutation,
   useToggleLikeCommentMutation,
   useToggleLikeBoastMutation,
+  useGetUserInfoQuery,
 } from 'api/communityApiSlice';
 import { ReactComponent as Heart } from 'assets/icons/HeartFull.svg';
 import styles from './HeartReaction.module.scss';
@@ -24,10 +25,13 @@ function HeartReaction({ postId, commentId, likeIds, isBoast }: HeartReactionPro
   const [toggleLikeComment] = useToggleLikeCommentMutation();
   const [toggleLikeBoast] = useToggleLikeBoastMutation();
   const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
+  const [likeItNumber, setLikeItNumber] = useState(0);
+
+  useEffect(() => {
+    likeIds && setLikeItNumber(likeIds.length);
+  });
 
   const token = localStorage.getItem('token');
-  const likes = likeIds.length;
-  const [likeItNumber, setLikeItNumber] = useState(likes);
 
   const handleLikeIt = async (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
@@ -58,9 +62,6 @@ function HeartReaction({ postId, commentId, likeIds, isBoast }: HeartReactionPro
     };
     const debounceDelay = 500;
     timeoutRef.current = setTimeout(makeApiRequest, debounceDelay);
-
-    // 좋아요 상태를 업데이트합니다.
-    setLikeItNumber((prevNumber) => (likeItNumber ? prevNumber - 1 : prevNumber + 1));
   };
 
   return (

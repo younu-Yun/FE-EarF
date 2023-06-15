@@ -43,7 +43,6 @@ function EditQuestionPostingBoard() {
   const handleEditPost = async () => {
     try {
       const { data }: any = await editCommunityPostMutation({ id: postId, title, content });
-      console.log('게시글 수정 성공:', data);
       navigate(-1);
     } catch (error) {
       console.log('게시글 수정 실패:', error);
@@ -57,17 +56,9 @@ function EditQuestionPostingBoard() {
         <span>질문해요</span>
       </div>
       <form className={styles.contentContainer}>
-        <input
-          type='text'
-          value={title}
-          onChange={handleTitleChange}
-          placeholder='제목을 입력하세요.'
-          className={styles.title}
-          spellCheck='false'
-        />
+        <input type='text' value={title} onChange={handleTitleChange} className={styles.title} spellCheck='false' />
         <textarea
           rows={1}
-          placeholder='상세한 내용을 입력해주세요.'
           value={content}
           className={styles.content}
           onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
