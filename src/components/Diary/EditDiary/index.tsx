@@ -3,32 +3,36 @@ import inputDefaultImg from 'assets/images/inputDefaultImg.png';
 
 import { GetSelectedDateState } from 'services/calendarService';
 
-import DiaryButton from './common/DiaryButton';
-import ShareButton from './common/ShareButton';
-import CheckboxComponent from './common/CheckboxComponent';
+import DiaryButton from 'components/Diary/common/DiaryButton';
+import ShareButton from 'components/Diary/common/ShareButton';
+import CheckboxComponent from 'components/Diary/common/CheckboxComponent';
 import { TFormData, CheckboxesState } from 'types/types';
 
 import {
-  HandleDiarySubmit,
   HandleEachValue,
   HandleSharedClick,
   HandleImageChange,
   HandleCheckboxChange,
+  HandleDiaryEditSubmit,
 } from 'services/diaryService';
 
 import styles from './styles.module.scss';
 
-export default function Diary() {
+export default function EditedDiary(props: {
+  data: any;
+  currentState: boolean;
+  onClick: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const selectedValue = GetSelectedDateState();
   const [selectedImage, setSelectedImage] = useState<string | undefined>(inputDefaultImg);
   const hiddenFileInput = useRef<HTMLInputElement | null>(null);
 
   const [formData, setFormData] = useState<TFormData>({
     tag: [],
-    file: null,
-    title: '',
-    content: '',
-    shareStatus: false,
+    file: props.data.imageUrl,
+    title: props.data.title,
+    content: props.data.content,
+    shareStatus: props.data.shareStatus,
   });
 
   const [checkboxes, setCheckboxes] = useState<CheckboxesState>({
@@ -38,8 +42,12 @@ export default function Diary() {
   });
 
   useEffect(() => {
+    setSelectedImage(props.data.imageUrl);
+
     HandleEachValue('tag', getSelectedCheckboxes(), setFormData);
   }, [checkboxes]);
+
+  console.log(formData, 'editDiary form');
 
   const handleImageClick = () => {
     hiddenFileInput.current?.click();
@@ -80,6 +88,7 @@ export default function Diary() {
           <img alt='selectimg' src={selectedImage} className={styles.defaultImg} onClick={handleImageClick} />
           <input
             placeholder='사진'
+            disabled={true}
             type='file'
             className={styles.inputImg}
             ref={hiddenFileInput}
@@ -93,6 +102,7 @@ export default function Diary() {
             onChange={(event) => {
               HandleEachValue('title', event.target.value, setFormData);
             }}
+            value={formData.title}
           />
           <textarea
             placeholder='오늘 어떤 행동을 했나요 ?'
@@ -101,12 +111,14 @@ export default function Diary() {
             onChange={(event) => {
               HandleEachValue('content', event.target.value, setFormData);
             }}
+            value={formData.content}
           />
           <ShareButton
             toggle={formData.shareStatus}
             onClick={() => HandleSharedClick('shareStatus', !formData.shareStatus, setFormData)}
           />
-          <DiaryButton text='등록하기' onClick={() => HandleDiarySubmit(formData, selectedValue)} />
+          <DiaryButton text='완료' onClick={() => HandleDiaryEditSubmit(formData, selectedValue)} />
+          <DiaryButton text='취소' onClick={() => props.onClick(!props.currentState)} />
         </div>
       </div>
     </div>
