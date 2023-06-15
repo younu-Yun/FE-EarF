@@ -9,7 +9,7 @@ import { DefaultInput } from 'components/User/DefaultInput';
 import { validateField } from 'components/User/validation';
 
 // import { FindPassword } from 'components/common/Fetcher';
-import JoginIllust from '../assets/images/JoinIllust.jpg';
+import FindPWIllust from '../assets/images/FindPWIllust.png';
 
 interface FormData {
   email: string;
@@ -75,7 +75,7 @@ function FindPassword() {
     <div className={styles.container}>
       <div>
         <div className={styles.image}>
-          <img src={JoginIllust} alt='아이디찾기 일러스트' />
+          <img src={FindPWIllust} alt='아이디찾기 일러스트' />
         </div>
         <div className={styles.form}>
           <form onSubmit={handleSubmit}>
