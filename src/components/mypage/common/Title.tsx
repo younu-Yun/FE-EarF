@@ -35,7 +35,7 @@ function Title() {
 
   return (
     <div className={styles.title}>
-      <div>{pageTitle}</div>
+      <h2>{pageTitle}</h2>
     </div>
   );
 }

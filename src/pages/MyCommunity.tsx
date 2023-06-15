@@ -8,11 +8,13 @@ function MyCommunity() {
   return (
     <div className={styles.container}>
       <ScrollToTopOnPageLoad />
-      <Title />
-      <section className={styles.main}>
-        <SideNav />
-        <Board />
-      </section>
+      <div className={styles.inner}>
+        <Title />
+        <section className={styles.main}>
+          <SideNav />
+          <Board />
+        </section>
+      </div>
     </div>
   );
 }
