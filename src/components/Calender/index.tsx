@@ -34,7 +34,6 @@ export default function Calender() {
     getApiCalendarHavedata(paramsMonth).then((data: string[]) => {
       setMarkData(data);
     });
-    console.log(selectedValue);
   }, [selectedValue]);
 
   return (

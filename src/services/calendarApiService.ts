@@ -36,12 +36,16 @@ export async function patchApiPostData(date?: string, data?: any): Promise<strin
 
 // FIX:
 export async function deleteApiCalendarData(date?: string) {
-  axios
-    .delete(`http://34.64.216.86/api/diary/${date}`)
-    .then(() => {
-      alert('삭제되었습니다.');
-    })
-    .catch((error) => {
-      console.error('에러 발생:', error);
-    });
+  if (window.confirm('Really go to another page?')) {
+    axios
+      .delete(`http://34.64.216.86/api/diary/${date}`)
+      .then(() => {
+        alert('삭제되었습니다.');
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error('에러 발생:', error);
+      });
+  } else {
+  }
 }
