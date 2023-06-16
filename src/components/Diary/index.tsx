@@ -102,6 +102,7 @@ export default function Diary() {
             />
             <textarea
               placeholder='오늘 어떤 행동을 했나요 ?'
+              spellCheck={false}
               className={styles.inputContent}
               rows={5}
               onChange={(event) => {
@@ -111,6 +112,7 @@ export default function Diary() {
           </div>
 
           <div className={styles.shareButtonBox}>
+            <span>자랑하기</span>
             <ShareButton
               toggle={formData.shareStatus}
               onClick={() => HandleSharedClick('shareStatus', !formData.shareStatus, setFormData)}

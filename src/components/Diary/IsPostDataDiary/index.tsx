@@ -19,9 +19,7 @@ export default function IsPostDataDiary() {
   const [isEdited, setIsEdited] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const tagImageSrc = GetTagImage(data?.tag.length);
   const selectedValue = GetSelectedDateState();
-  console.log(data?.tag);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -70,6 +68,7 @@ export default function IsPostDataDiary() {
               <div className={styles.postContentDiv}>
                 <p>{data?.content}</p>{' '}
               </div>
+              {data?.shareStatus ? <div className={styles.boastDiv}>자랑하기</div> : <></>}
             </div>
           </div>
           <div className={styles.buttonBox}>
