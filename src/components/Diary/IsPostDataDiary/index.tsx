@@ -60,15 +60,20 @@ export default function IsPostDataDiary() {
                 }
               })}
             </div>
-            <img alt='postimg' src={data?.imageUrl} className={styles.imgContainer} />
-            <>
-              <div className={styles.postTitleDiv}>{data?.title}</div>
-
-              <div className={styles.postContentDiv}>{data?.content}</div>
-            </>
+            <div className={styles.imgContainer}>
+              <img alt='postimg' src={data?.imageUrl} />
+            </div>
+            <div className={styles.textContainer}>
+              <div className={styles.postTitleDiv}>
+                <h3>{data?.title}</h3>
+              </div>
+              <div className={styles.postContentDiv}>
+                <p>{data?.content}</p>{' '}
+              </div>
+            </div>
           </div>
-          <div style={{ display: 'flex' }}>
-            <button className={styles.deleteButton} onClick={() => setIsEdited(!isEdited)}>
+          <div className={styles.buttonBox}>
+            <button className={styles.modifyButton} onClick={() => setIsEdited(!isEdited)}>
               수정
             </button>
             <button className={styles.deleteButton} onClick={() => deleteApiCalendarData(selectedValue)}>

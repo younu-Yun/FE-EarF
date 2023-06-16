@@ -25,8 +25,8 @@ const MainSwiper = () => {
           delay: 3000,
           disableOnInteraction: false,
         }}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log('slide change')}
+        // onSwiper={(swiper) => console.log(swiper)}
+        // onSlideChange={() => console.log('slide change')}
         className={styles.main}
       >
         <SwiperSlide className={styles.swiperSlide}>

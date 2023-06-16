@@ -24,8 +24,8 @@ const CommunitySwiper = () => {
           delay: 3000,
           disableOnInteraction: false,
         }}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log('slide change')}
+        // onSwiper={(swiper) => console.log(swiper)}
+        // onSlideChange={() => console.log('slide change')}
         className={styles.community}
       >
         <SwiperSlide className={styles.swiperSlide}>
