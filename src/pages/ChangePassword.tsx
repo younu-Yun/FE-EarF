@@ -2,7 +2,12 @@ import styles from './ChangePassword.module.scss';
 import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
 import { clearLocalStorage } from 'api/token';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from 'store';
+import { logout } from 'store/loginSlice';
 
 import FormHead from 'components/User/FormHead';
 import FormButton from 'components/User/FormButton';
@@ -20,6 +25,7 @@ interface FormData {
 
 const ChangePassword: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState<FormData>({
     currentPassword: '',
@@ -34,6 +40,14 @@ const ChangePassword: React.FC = () => {
   });
 
   const [formValid, setFormValid] = useState(false);
+
+  // 로그아웃시 access, refrest 토큰 제거
+  const handleLogout = () => {
+    clearLocalStorage();
+    navigate('/login');
+    dispatch(logout());
+    alert('비밀번호 변경이 완료되었습니다. 다시 로그인해주세요.');
+  };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -71,10 +85,8 @@ const ChangePassword: React.FC = () => {
 
       const response = await axios.post('http://34.64.216.86/api/user/change', passwordData);
 
-      alert('비밀번호 변경이 완료되었습니다. 다시 로그인해주세요.');
-      clearLocalStorage();
-
-      navigate('/login');
+      // console.log(response.data);
+      handleLogout();
 
       /*
       //Fetcher 사용
