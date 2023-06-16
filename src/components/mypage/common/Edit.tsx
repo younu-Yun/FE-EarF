@@ -1,12 +1,12 @@
 import styles from './Edit.module.scss';
 import { useState, useEffect } from 'react';
 import Button from 'components/common/Button';
+import Title from 'components/common/PageTitle';
 import plus from 'assets/images/plus.png';
 import { useNavigate } from 'react-router-dom';
 import { userInfo, userInfoChange, userImgChange, userImgDelete } from 'api/fetcher';
 import profileDefault from 'assets/images/profileDefault.png';
 
-import Star from 'assets/icons/Star.svg';
 interface FormValues {
   id: string;
   name: string;
@@ -98,12 +98,7 @@ function Edit() {
 
   return (
     <div className={styles.edit}>
-      <div className={styles.title}>
-        <div className={styles.star}>
-          <img src={Star} alt='별아이콘' />
-        </div>
-        <h2>마이페이지 - 수정</h2>
-      </div>
+      <Title title='마이페이지 : 수정' />
 
       <div className={styles.contents}>
         <div className={styles.form}>

@@ -1,6 +1,7 @@
 import styles from './SideNav.module.scss';
 import { NavLink } from 'react-router-dom';
 import { updateBadge } from 'api/fetcher';
+import HomeCheck from 'assets/icons/HomeCheck.svg';
 
 interface NavLinkItem {
   to: string;
@@ -30,7 +31,9 @@ function SideNav() {
               onClick={onclick}
             >
               <div>
-                <div className={styles.icon}></div>
+                <div className={styles.icon}>
+                  <img src={HomeCheck} alt='' />
+                </div>
                 <span>{label}</span>
               </div>
             </NavLink>

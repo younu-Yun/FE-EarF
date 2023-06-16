@@ -2,8 +2,7 @@ import { useState } from 'react';
 import styles from './Badge.module.scss';
 import BadgeModal from './BadgeModal';
 import BadgeList from './BadgeList';
-
-import Star from 'assets/icons/Star.svg';
+import Title from 'components/common/PageTitle';
 
 function Badge() {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -18,12 +17,7 @@ function Badge() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>
-        <div className={styles.star}>
-          <img src={Star} alt='별아이콘' />
-        </div>
-        <h2>뱃지관리</h2>
-      </div>
+      <Title title='뱃지관리' />
 
       <div className={styles.contents}>
         <div>

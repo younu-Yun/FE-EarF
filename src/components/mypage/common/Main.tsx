@@ -2,10 +2,9 @@ import styles from './Main.module.scss';
 import { useEffect, useState } from 'react';
 import Button from 'components/common/Button';
 import Modal from './Modal';
+import Title from 'components/common/PageTitle';
 import { userInfo, userDelete } from 'api/fetcher';
 import { clearLocalStorage } from 'api/token';
-
-import Star from 'assets/icons/Star.svg';
 
 interface UserData {
   id: string;
@@ -71,13 +70,7 @@ function Main() {
   return (
     <>
       <div className={styles.main}>
-        <div className={styles.title}>
-          <div className={styles.star}>
-            <img src={Star} alt='별아이콘' />
-          </div>
-          <h2>마이페이지</h2>
-        </div>
-
+        <Title title='마이페이지' />
         <div className={styles.contents}>
           <div className={styles.profile}>
             <div className={styles.imgContainer}>
