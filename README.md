@@ -115,31 +115,31 @@
     <tr>
         <th>사진</th>
          <td width="100" align="center">
-                <img src="![dnwjd](https://github.com/bicco2/bjAlgorithm/assets/77577434/590e7875-e76f-4a85-b0b8-41b6d7e65f3c)" width="60" height="60">
+                <img src="/uploads/32786b22aae13ab7da6ba79e5729df3e/dnwjd.png" width="60" height="60">
             </a>
         </td>
         <td width="100" align="center">
-                <img src="" width="60" height="60">
+                <img src="/uploads/e89b79791d9cc34716a57b222d0f78c8/tjdwns.png" width="60" height="60">
             </a>
         </td>
         <td width="100" align="center">
-                <img src="" width="60" height="60">
+               <img src="/uploads/316f23f9312048744495382f256f18b8/codus.png" width="60" height="60">
             </a>
         </td>
         <td width="100" align="center">
-                <img src="" width="60" height="60">
+                    <img src="/uploads/73eeed3fae83304ab5c1ea85c914f4a1/ghqud.png" width="60" height="60">
             </a>
         </td>
         <td width="100" align="center">
-                <img src="" width="60" height="60">
+                       <img src="/uploads/9f0afc6959e5ad7b90ebb64cacc548ae/dbswhd.png" width="60" height="60">
             </a>
         </td>
         <td width="100" align="center">
-                <img src="" width="60" height="60">
+              <img src="/uploads/962e876ce48f41fe3ef132bf29c2659d/woduf.png" width="60" height="60">
             </a>
         </td>
         <td width="100" align="center">
-                <img src="" width="60" height="60">
+                <img src="/uploads/e910ad8c6f68956adfae744edcdc33bd/ckdgus.png" width="60" height="60">
             </a>
         </td>
     </tr>
@@ -180,38 +180,38 @@
     <tr>
         <th>GitHub</th>
         <td width="100" align="center">
-            <a href="https://github.com/Zzyoon">
-                <img src="http://img.shields.io/badge/Zzyoon-green?style=social&logo=github"/>
+            <a href="https://github.com/younu-Yun">
+                <img src="http://img.shields.io/badge/younu-Yun-green?style=social&logo=github"/>
             </a>
         </td>
         <td width="100" align="center">
-            <a href="https://github.com/Ellie010707">
-                <img src="http://img.shields.io/badge/Ellie010707-green?style=social&logo=github"/>
+            <a href="https://github.com/joony0219">
+                <img src="http://img.shields.io/badge/joony0219-green?style=social&logo=github"/>
             </a>
         </td>
         <td width="100" align="center">
-            <a href="https://github.com/bicco2">  
+            <a href="https://github.com/gwanseeum">  
+                <img src="http://img.shields.io/badge/gwanseeum-green?style=social&logo=github"/>
+            </a>
+        </td>
+        <td width="100" align="center">
+            <a href="https://github.com/bicco2">
                 <img src="http://img.shields.io/badge/bicco2-green?style=social&logo=github"/>
             </a>
         </td>
         <td width="100" align="center">
-            <a href="https://github.com/suhyeon3484">
-                <img src="http://img.shields.io/badge/suhyeon3484-green?style=social&logo=github"/>
-            </a>
-        </td>
-        <td width="100" align="center">
-            <a href="https://github.com/gogo220">
-                <img src="http://img.shields.io/badge/gogo220-green?style=social&logo=github"/>
+            <a href="https://github.com/YunJ96">
+                <img src="http://img.shields.io/badge/YunJ96-green?style=social&logo=github"/>
             </a>
         </td>
          <td width="100" align="center">
-            <a href="https://github.com/yura0302">
-                <img src="http://img.shields.io/badge/yura0302-green?style=social&logo=github"/>
+            <a href="https://github.com/paikpaik">
+                <img src="http://img.shields.io/badge/paikpaik-green?style=social&logo=github"/>
             </a>
           </td>
                    <td width="100" align="center">
-            <a href="https://github.com/yura0302">
-                <img src="http://img.shields.io/badge/yura0302-green?style=social&logo=github"/>
+            <a href="https://github.com/ChanghyeonO">
+                <img src="http://img.shields.io/badge/ChanghyeonO-green?style=social&logo=github"/>
             </a>
           </td>
     </tr>
