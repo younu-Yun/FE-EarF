@@ -25,7 +25,7 @@ function RightSideNav() {
         </ul>
         <div className={styles.newPostContainer}>
           <span className={styles.subTitle}>최신 댓글</span>
-          {lastCommentData && (
+          {lastCommentData && !undefined && (
             <NewComment _id={lastCommentData._id} title={lastCommentData.title} comment={lastCommentData.comment} />
           )}
         </div>
