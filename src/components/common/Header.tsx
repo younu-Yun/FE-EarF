@@ -26,6 +26,7 @@ function Header(): JSX.Element {
     clearLocalStorage();
     navigate('/login');
     dispatch(logout());
+    alert('다음에 또 만나요! :D');
   };
 
   useEffect(() => {

@@ -75,7 +75,7 @@ main {
     }
 
     .left {
-      flex: 0.4;
+      width: 40%;
 
       p {
         display: block;
@@ -224,6 +224,9 @@ main {
   }
 
   section.community {
+    .left {
+      flex: 0.4;
+    }
     .contents {
       position: relative;
 

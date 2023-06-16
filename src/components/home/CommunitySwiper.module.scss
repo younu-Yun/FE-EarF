@@ -1,7 +1,8 @@
 @import 'color.scss';
 
 .swiperContainer {
-  height: 24rem;
+  height: 30rem;
+  width: 100%;
 
   & > div {
     width: 100%;
@@ -14,6 +15,7 @@
 
   .swiperSlide {
     padding: 20px;
+    width: 100%;
     border: 1px solid #eeeeee;
     border-radius: 1rem;
     box-shadow: rgba(112, 112, 112, 0.2) 0px 2px 15px 0px;

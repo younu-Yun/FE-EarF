@@ -6,6 +6,7 @@ import styles from './CommunitySwiper.module.scss';
 // Import Swiper styles
 import 'swiper/css';
 // import 'swiper/css/navigation';
+import CommunityBanner01 from 'assets/images/comSwiper01.png';
 
 const CommunitySwiper = () => {
   return (
@@ -29,16 +30,24 @@ const CommunitySwiper = () => {
         className={styles.community}
       >
         <SwiperSlide className={styles.swiperSlide}>
-          <div className={styles.board}></div>
+          <div className={styles.board}>
+            <img src={CommunityBanner01} alt='' />
+          </div>
         </SwiperSlide>
         <SwiperSlide className={styles.swiperSlide}>
-          <div className={styles.board}></div>
+          <div className={styles.board}>
+            <img src={CommunityBanner01} alt='' />
+          </div>
         </SwiperSlide>
         <SwiperSlide className={styles.swiperSlide}>
-          <div className={styles.board}></div>
+          <div className={styles.board}>
+            <img src={CommunityBanner01} alt='' />
+          </div>
         </SwiperSlide>
         <SwiperSlide className={styles.swiperSlide}>
-          <div className={styles.board}></div>
+          <div className={styles.board}>
+            <img src={CommunityBanner01} alt='' />
+          </div>
         </SwiperSlide>
       </Swiper>
     </div>
