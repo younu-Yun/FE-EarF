@@ -1,11 +1,8 @@
 @mixin container {
-  margin: 10rem auto 20rem;
-  width: 1140px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 
-  & > .inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 4rem;
-  }
+  width: 1140px;
+  margin: 6rem auto;
 }

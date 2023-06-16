@@ -11,9 +11,9 @@ interface CheckboxComponentProps {
 const CheckboxComponent: React.FC<CheckboxComponentProps> = ({ label, isChecked, onChange, tag }) => {
   const buttonClass = `${styles.button} ${styles[tag]}`;
   return (
-    <div className={styles.tagContents}>
+    <div className={styles.container}>
       <input type='checkbox' checked={isChecked} onChange={onChange} className={buttonClass} />
-      <span>{label}</span>
+      {label}
     </div>
   );
 };

@@ -1,5 +1,4 @@
-import { useGetAllCommentsQuery } from 'api/communityApiSlice';
-import { useGetUserInfoQuery, useCreateCommentMutation } from 'api/communityApiSlice';
+import { useGetUserInfoQuery, useGetAllCommentsQuery, useCreateCommentMutation } from 'api/communityApiSlice';
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CommentItem from './CommentItem';
@@ -42,7 +41,7 @@ function UserComments() {
     } else {
       try {
         const { data }: any = await createCommentMutation({ id: postId, comment });
-        setComment('');
+        console.log('댓글 생성 성공:', data);
       } catch (error) {
         console.log('댓글 생성 실패:', error);
       }
@@ -88,7 +87,7 @@ function UserComments() {
                     checkedBadge={comments.checkedBadge}
                     comment={comments.comment}
                     createdAt={comments.createdAt}
-                    likeIds={comments.likeIds}
+                    numLikes={comments.numLikes}
                   />
                 ))}
           </ul>

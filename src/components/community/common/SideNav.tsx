@@ -16,6 +16,8 @@ function SideNav() {
             <Link to='/community/boast'>
               <li>자랑해요</li>
             </Link>
+            <li>함께해요</li>
+            <li>소개해요</li>
           </ul>
         </nav>
       </aside>

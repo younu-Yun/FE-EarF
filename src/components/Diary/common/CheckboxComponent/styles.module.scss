@@ -6,14 +6,12 @@
   align-items: center;
   flex-direction: column;
 }
-
 .button {
   display: flex;
   justify-content: center;
   align-items: center;
 
   appearance: none;
-  cursor: pointer;
 
   &:checked {
     background-size: 100% 100%;
@@ -26,8 +24,8 @@
   background-position: 50%;
   background-repeat: no-repeat;
 
-  width: 55px;
-  height: 55px;
+  width: 50px;
+  height: 50px;
   opacity: 0.5;
 
   border-radius: 50%;
@@ -35,27 +33,16 @@
   color: #fff;
 }
 
-.tagContents {
-  cursor: pointer;
+.tag1 {
+  background-image: url('../../../../assets/images/tumblr.png');
+}
 
-  .tag1 {
-    background-image: url('../../../../assets/images/badge04.png');
-  }
+.tag2 {
+  background-image: url('../../../../assets/images/bus.png');
+}
 
-  .tag2 {
-    background-image: url('../../../../assets/images/badge05.png');
-  }
-
-  .tag3 {
-    background-image: url('../../../../assets/images/badge06.png');
-  }
-
-  span {
-    display: block;
-    padding: 5px 0 0;
-    font-size: 16px;
-    text-align: center;
-  }
+.tag3 {
+  background-image: url('../../../../assets/images/ecobag.png');
 }
 
 .whiteButton {

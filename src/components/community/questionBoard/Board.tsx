@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
-  useGetSearchQuery,
   useGetAllCommunityPostsQuery,
   useGetCommunityPostsQuery,
   useGetMostCommentsCommunityPostsQuery,
@@ -22,19 +21,13 @@ function Board() {
   const [page, setPage] = useState(1);
   const [activeSorting, setActiveSorting] = useState('recent');
   const [totalItemsCount, setTotalItemsCount] = useState(0);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [search, setSearch] = useState('');
 
   const { data: allPostData } = useGetAllCommunityPostsQuery();
-
   useEffect(() => {
     if (allPostData) {
       setTotalItemsCount(allPostData.length);
     }
   }, [allPostData]);
-
-  const { data: searchData, isLoading: isSearchLoading } = useGetSearchQuery(searchQuery);
-
   const { data: postData, isLoading: isPostLoading, error: postError } = useGetCommunityPostsQuery(page);
   const {
     data: mostCommentsData,
@@ -58,17 +51,14 @@ function Board() {
   // 검색 이벤트
   const handleSubmitSearch: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    setSearchQuery(search);
+    console.log('검색동작');
   };
   const pressEnterSearch: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === 'Enter') {
+      //키를 눌렀을 때 동작할 코드
       e.preventDefault();
-      setSearchQuery(search);
+      console.log('검색동작');
     }
-  };
-  const handleClickSearch: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault();
-    setSearchQuery(search);
   };
 
   // 작성하기 버튼 페이지 이동
@@ -97,8 +87,8 @@ function Board() {
   const handleSortingClick = (sorting: string) => {
     setActiveSorting(sorting);
   };
-  let sortedData = searchData || postData;
-  let isLoading = isSearchLoading || isPostLoading;
+  let sortedData = postData;
+  let isLoading = isPostLoading;
   let error = postError;
 
   if (activeSorting === 'comments') {
@@ -120,9 +110,8 @@ function Board() {
             className={styles.searchInput}
             placeholder='궁금한 질문을 검색해보세요!'
             onKeyPress={pressEnterSearch}
-            onChange={(e) => setSearch(e.target.value)}
           />
-          <button type='submit' className={styles.searchButton} onClick={handleClickSearch}>
+          <button type='submit' className={styles.searchButton}>
             <Chat />
           </button>
         </form>

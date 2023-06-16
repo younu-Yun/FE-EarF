@@ -12,21 +12,15 @@ export default function getBadgeImagePath(checkedBadge: string) {
       return badgeDefault;
     case '최초':
       return badgeNewPost;
-    case '꾸준':
+    case '연속':
       return badgeWrite3Times;
     case '텀블':
       return badgeTumbler;
-    case '텀블러':
-      return badgeTumbler;
     case '교통':
-      return badgePublicTrans;
-    case '대중교통':
       return badgePublicTrans;
     case '버켓':
       return badgeBasket;
-    case '장바구니':
-      return badgeBasket;
-    case '기록왕':
+    case '커뮤':
       return badgeCommunity;
     default:
       return badgeDefault;

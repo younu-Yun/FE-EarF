@@ -1,24 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import { ReactComponent as ArrowDown } from 'assets/icons/ArrowDown.svg';
-import { useDispatch } from 'react-redux';
-import { setSelectedOption } from 'store/selectedOptionSlice';
 import styles from './SelectBox.module.scss';
 
 const options = [
   { value: 'all', name: '전체보기' },
-  { value: '텀블러', name: '텀블러 사용하기' },
-  { value: '대중교통', name: '대중교통 이용하기' },
-  { value: '장바구니', name: '장바구니 사용하기' },
+  { value: 'tumbler', name: '텀블러 사용하기' },
+  { value: 'public', name: '대중교통 이용하기' },
+  { value: 'basket', name: '장바구니 사용하기' },
 ];
 
-interface SelectBoxProps {
-  onSelectClick?: (selectedValue: string) => void;
-}
-
-function SelectBox({ onSelectClick }: SelectBoxProps) {
-  const dispatch = useDispatch();
+function SelectBox() {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectOption, setSelectOption] = useState(options[0]);
+  const [selectedOption, setSelectedOption] = useState(options[0]);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -40,15 +33,13 @@ function SelectBox({ onSelectClick }: SelectBoxProps) {
 
   const handleOptionClick = (value: string, name: string) => {
     setIsOpen(false);
-    setSelectOption({ value, name });
-
-    dispatch(setSelectedOption({ value, name }));
+    setSelectedOption({ value, name });
   };
 
   return (
     <div className={styles.container} ref={containerRef}>
       <div className={styles.selectValue} onClick={handleSelectValueClick}>
-        <span>{selectOption.name}</span>
+        <span>{selectedOption.name}</span>
         <ArrowDown />
       </div>
       {isOpen && (

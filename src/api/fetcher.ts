@@ -1,5 +1,4 @@
 import * as Api from './apiRequest';
-import * as ApiMulti from './formDataRequest';
 
 const domain = `http://34.64.216.86/api`;
 
@@ -30,7 +29,7 @@ export async function userJoin(userId: string, password: string, name: string, e
 }
 
 //아이디찾기
-export async function userFindId(email: string, name: string) {
+export async function FindId(email: string, name: string) {
   const data = {
     email: email,
     name: name,
@@ -39,7 +38,7 @@ export async function userFindId(email: string, name: string) {
 }
 
 //비밀번호 찾기
-export async function userFindPassword(email: string) {
+export async function FindPassword(email: string) {
   const data = {
     email: email,
   };
@@ -47,7 +46,7 @@ export async function userFindPassword(email: string) {
 }
 
 //비밀번호 변경
-export async function userChangePassword(currentPassword: string, newPassword: string) {
+export async function ChangePassword(currentPassword: string, newPassword: string) {
   const data = {
     currentPassword: currentPassword,
     newPassword: newPassword,
@@ -93,21 +92,9 @@ export async function checkPassword(password: string) {
 }
 
 // 유저 프로필 이지미 변경
-export async function userImgChange(profileImage: FormData) {
-  return await ApiMulti.post(domain, 'user/profile', profileImage);
-}
-
-// 유저 프로필 이지미 삭제
-export async function userImgDelete() {
-  return await ApiMulti.delete(domain, 'user/profile');
-}
-
-// 회원 탈퇴
-export async function userDelete() {
-  return await Api.delete(domain, 'user/delete');
-}
-
-// 뱃지 업데이트
-export async function updateBadge() {
-  return await Api.get(domain, 'user/badges/badge');
+export async function userImgChange(profileImg: FormData) {
+  const data = {
+    profileImg: profileImg,
+  };
+  return await Api.post(domain, 'user/profile', data);
 }

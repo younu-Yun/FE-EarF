@@ -1,15 +1,11 @@
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
 import { Link } from 'react-router-dom';
 import MyProfileImg from './MyProfileImg';
 import styles from './MyProfile.module.scss';
-import { useGetUserInfoQuery, useGetMyQuestionQuery } from 'api/communityApiSlice';
+import { useGetUserInfoQuery } from 'api/communityApiSlice';
 import getBadgeImagePath from 'utils/getBadgeImagePath';
 
 function MyProfile() {
-  const selectedBadge = useSelector((state: RootState) => state.selectedBadge);
   const { data: userInfo } = useGetUserInfoQuery();
-  const { data: postInfo } = useGetMyQuestionQuery();
 
   return (
     <div className={styles.container}>
@@ -23,18 +19,16 @@ function MyProfile() {
           ) : (
             <span>{userInfo.name}</span>
           )}
-          {userInfo && <img src={getBadgeImagePath(selectedBadge.badge)} className={styles.userBadge} alt='Badge' />}
+          {userInfo && <img src={getBadgeImagePath(userInfo?.checkedBadge)} className={styles.userBadge} alt='Badge' />}
         </div>
         {!userInfo ? (
           <span className={`${styles.notLoggedIn} ${styles.userPostingNumber}`}>하러가기</span>
         ) : (
           <div className={styles.userPostingNumber}>
             <span>작성한 글</span>
-            {postInfo && !undefined && (
-              <Link to='/mypage/mycommunity'>
-                <button>{postInfo.length} 개</button>
-              </Link>
-            )}
+            <Link to='/mypage/mycommunity'>
+              <button>{userInfo.postNum} 개</button>
+            </Link>
           </div>
         )}
       </div>

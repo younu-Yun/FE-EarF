@@ -1,25 +1,5 @@
 @import 'components/mypage/common/containerStyle.scss';
 
-.main {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 4rem;
-
-  width: 1140px;
-  margin: 10rem auto;
-
-  & > :first-child {
-    flex-shrink: 0;
-    width: 18rem;
-  }
-
-  & > :nth-child(2) {
-    flex-grow: 1;
-  }
-  & > :last-child {
-    flex-shrink: 0;
-
-    width: 18rem;
-  }
+.container {
+  @include container;
 }

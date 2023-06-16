@@ -8,7 +8,7 @@ import { Comment } from 'types/types';
 import getPostingDate from 'utils/getPostingDate';
 import Button from 'components/common/Button';
 
-type CommentProps = Omit<Comment, 'numLikes' | 'updatedAt' | '__v'>;
+type CommentProps = Omit<Comment, 'likeIds' | 'updatedAt' | '__v'>;
 
 function CommentItem({
   _id,
@@ -19,7 +19,7 @@ function CommentItem({
   checkedBadge,
   comment: initialComment,
   createdAt,
-  likeIds,
+  numLikes,
 }: CommentProps) {
   const { data: userInfo } = useGetUserInfoQuery();
   const [isEditing, setIsEditing] = useState(false);
@@ -95,7 +95,7 @@ function CommentItem({
         <>
           <div className={styles.comment}>{comment}</div>
           <div className={styles.reactionContainer}>
-            <HeartReaction likeIds={likeIds} postId={postId} commentId={_id} />
+            <HeartReaction numLikes={numLikes} />
           </div>
         </>
       )}

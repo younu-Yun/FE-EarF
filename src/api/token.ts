@@ -1,71 +1,81 @@
 import axios from 'axios';
 
-// 액세스 토큰과 발급 시간을 로컬 스토리지에 저장
-const saveAccessToken = (accessToken: string) => {
-  localStorage.setItem('token', accessToken);
-  const currentTime = new Date().toISOString();
-  localStorage.setItem('validatedTime', currentTime);
-};
-// 리프레쉬 토큰을 로컬 스토리지에 저장
-const saveRefreshToken = (value: string) => {
-  localStorage.setItem('refreshToken', value);
-};
-// 로컬 스토리지의 모든 값을 삭제
-const clearLocalStorage = (): void => {
-  localStorage.clear();
-};
-
-// 'token' 값을 반환
-const getToken = (): string | null => {
+function getToken(): string | null {
   return localStorage.getItem('token');
-};
-// 'validatedTime' 값을 반환
-const getValidatedTime = (): string | null => {
-  return localStorage.getItem('validatedTime');
-};
-// 'refreshToken' 값을 반환
-const getRefreshToken = (): string | null => {
+}
+
+function getRefreshToken(): string | null {
   return localStorage.getItem('refreshToken');
-};
+}
 
-// 만료 여부 판단 (한 시간이 지나면 true, 지나지 않았다면 false)
-const isTokenExpired = (): boolean => {
-  const validatedTime = localStorage.getItem('validatedTime');
+function saveToken(accessToken: string): void {
+  localStorage.setItem('token', accessToken);
+}
 
-  if (validatedTime) {
-    const currentTime = new Date().getTime();
-    const oneHour = 60 * 60 * 1000;
-    const isValidatedTime = new Date(validatedTime).getTime();
-    return currentTime - isValidatedTime > oneHour;
+function saveRefreshToken(refreshToken: string): void {
+  localStorage.setItem('refreshToken', refreshToken);
+}
+
+function removeToken(): void {
+  localStorage.removeItem('token');
+  localStorage.removeItem('refreshToken');
+}
+
+//accessToken 발급 시 해당 시간 저장
+function accessTokenTime() {
+  const currentTime = new Date().getTime();
+  localStorage.setItem('accessTokenTime', currentTime.toString());
+}
+
+function removeAccessTokenTime(): void {
+  localStorage.removeItem('accessTokenTime');
+}
+
+//만료여부 판단
+function isTokenExpired() {
+  /**
+   * 토큰 만료여부 판단법
+   * 1. 로그인시 토큰생성시간을 localStorage에 저장 (accessTokenTime)
+   * 2. expirationTime (accessTokenTime + oneHourInMillis) < currentTime 이면 RefreshAccessToken작동
+   */
+
+  const accessTokenTime = localStorage.getItem('accessTokenTime');
+  const oneHourInMillis = 60 * 60 * 1000; // 1시간을 밀리초로 변환
+  const expirationTime = Number(accessTokenTime) + oneHourInMillis;
+  const currentTime = new Date().getTime();
+
+  //만료시간보다 현재시간이 크면 true(만료), 적으면 false
+  if (expirationTime < currentTime) return true;
+  return false;
+}
+
+async function refreshAccessToken() {
+  const URL = 'http://34.64.216.86';
+  try {
+    const refreshToken = getRefreshToken();
+
+    const response = await axios.get(`${URL}/api/auth`, {
+      headers: {
+        Authorization: `Bearer ${refreshToken}`,
+      },
+    });
+
+    const { accessToken } = response.data;
+    saveToken(accessToken);
+    accessTokenTime();
+  } catch (error) {
+    console.error('토큰을 재발급하는데 실패했습니다:', error);
   }
-  return true;
-};
-
-// 만료된 액세스 토큰 재발급
-const refreshAccessToken = async () => {
-  const refreshToken = localStorage.getItem('refreshToken');
-  if (isTokenExpired()) {
-    try {
-      const response = await axios.get('http://34.64.216.86/api/auth', {
-        headers: {
-          Authorization: `Bearer ${refreshToken}`,
-        },
-      });
-      const accessToken = response.data.accessToken;
-      saveAccessToken(accessToken);
-    } catch (err) {
-      console.error('토큰 재발급 오류:', err);
-    }
-  }
-};
+}
 
 export {
-  saveAccessToken,
-  saveRefreshToken,
-  clearLocalStorage,
   getToken,
-  getValidatedTime,
   getRefreshToken,
+  saveToken,
+  saveRefreshToken,
+  removeToken,
+  accessTokenTime,
+  removeAccessTokenTime,
   isTokenExpired,
   refreshAccessToken,
 };

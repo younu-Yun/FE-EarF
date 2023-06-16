@@ -9,7 +9,7 @@ import { DefaultInput } from 'components/User/DefaultInput';
 import { validateField } from 'components/User/validation';
 
 // import { FindPassword } from 'components/common/Fetcher';
-import FindPWIllust from '../assets/images/FindPWIllust.png';
+import JoginIllust from '../assets/images/JoinIllust.jpg';
 
 interface FormData {
   email: string;
@@ -25,7 +25,6 @@ function FindPassword() {
   });
 
   const [formValid, setFormValid] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -52,15 +51,12 @@ function FindPassword() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    setIsLoading(true);
-
     try {
       const response = await axios.post('http://34.64.216.86/api/user/reset', {
         email: formData.email,
       });
 
       alert(response.data);
-      setIsLoading(false);
 
       /*
       //Fetcher 사용
@@ -70,8 +66,6 @@ function FindPassword() {
     } catch (error) {
       alert('이메일 발송 중 오류가 발생했습니다.');
       console.log(`이메일 발송 중 오류가 발생했습니다. ${error}`);
-
-      setIsLoading(false);
     }
 
     console.log('Send email to:', formData.email);
@@ -81,16 +75,13 @@ function FindPassword() {
     <div className={styles.container}>
       <div>
         <div className={styles.image}>
-          <img src={FindPWIllust} alt='아이디찾기 일러스트' />
+          <img src={JoginIllust} alt='아이디찾기 일러스트' />
         </div>
         <div className={styles.form}>
           <form onSubmit={handleSubmit}>
             <fieldset>
               <legend>비밀번호 찾기</legend>
-              <FormHead
-                heading={'비밀번호 찾기'}
-                description={'비밀번호 변경은 마이페이지 → 회원정보수정에서 변경 가능합니다.'}
-              />
+              <FormHead heading={'비밀번호 찾기'} description={'이메일 입력시, 임시비밀번호가 발송됩니다.'} />
               <div>
                 <DefaultInput
                   label='이메일'
@@ -105,8 +96,8 @@ function FindPassword() {
             </fieldset>
             <FormButton>
               <Link to='/login'>로그인</Link>
-              <button type='submit' disabled={!formValid || isLoading}>
-                {isLoading ? '대기중' : '비밀번호 발송'}
+              <button type='submit' disabled={!formValid}>
+                비밀번호 발송
               </button>
             </FormButton>
           </form>

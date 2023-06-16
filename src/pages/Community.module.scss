@@ -1,15 +1,12 @@
 .main {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
   gap: 4rem;
 
   width: 1140px;
-  margin: 10rem auto;
+  margin: 5rem auto;
 
   & > :first-child {
-    position: sticky;
-    top: 150px;
     flex-shrink: 0;
 
     width: 18rem;
@@ -19,8 +16,6 @@
     flex-grow: 1;
   }
   & > :last-child {
-    position: sticky;
-    top: 150px;
     flex-shrink: 0;
 
     width: 18rem;

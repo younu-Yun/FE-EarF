@@ -1,220 +1,46 @@
-# 쇼핑몰 웹 서비스 - 기본 코드 Heroku 배포
+# Getting Started with Create React App
 
-<div>
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-<img alt="쇼핑-데모 로고" src="https://i.ibb.co/xSZHxmy/image.png">
+## Available Scripts
 
-</div>
+In the project directory, you can run:
 
-<br />
+### `npm start`
 
-## 1. 서비스 링크
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### https://shopping-mall-racer.herokuapp.com/
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-<br />
+### `npm test`
 
-## 2. 서비스 소개
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-#### 제품 등록, 장바구니 추가, 주문하기 등 쇼핑몰의 핵심 서비스를 구현합니다.
+### `npm run build`
 
-1. 회원가입, 로그인, 회원정보 수정 및 탈퇴 등 사용자 관련 CRUD를 할 수 있습니다.
-2. 카테고리 관련 CRUD, 제품 관련 CRUD, 주문 관련 CRUD할 할 수 있습니다.
-3. 장바구니 관련 기능을 프론트 단에서 수행할 수 있습니다.
-4. 관리자 페이지가 있습니다.
-5. 추가 기능 ???
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-<br />
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-### 2-1. API 문서
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### https://documenter.getpostman.com/view/19463141/Uz5JHvXh
+### `npm run eject`
 
-<br>
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-### 2-2. 데모 영상
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-<details><summary>사용자 회원가입, 로그인</summary>
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-![image](https://user-images.githubusercontent.com/91174156/172159634-1e105633-9948-464e-a540-5429200a1353.gif)
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-</details>
+## Learn More
 
-<details><summary>카테고리 추가 및 반영</summary>
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-관련 영상 삽입해야 함 (하기 2가지 방법 가능)
-
-1. 화면녹화 -> 유튜브 업로드 -> 유튜브 링크 삽입
-2. 화면움짤녹화 -> 움짤삽입 (https://www.screentogif.com/ 활용가능)
-
-</details>
-
-<details><summary>제품 추가 및 반영</summary>
-
-관련 영상 삽입해야 함 (하기 2가지 방법 가능)
-
-1. 화면녹화 -> 유튜브 업로드 -> 유튜브 링크 삽입
-2. 화면움짤녹화 -> 움짤삽입 (https://www.screentogif.com/ 활용가능)
-
-</details>
-
-<details><summary>장바구니 기능</summary>
-
-관련 영상 삽입해야 함 (하기 2가지 방법 가능)
-
-1. 화면녹화 -> 유튜브 업로드 -> 유튜브 링크 삽입
-2. 화면움짤녹화 -> 움짤삽입 (https://www.screentogif.com/ 활용가능)
-
-</details>
-
-<details><summary>주문 기능</summary>
-
-관련 영상 삽입해야 함 (하기 2가지 방법 가능)
-
-1. 화면녹화 -> 유튜브 업로드 -> 유튜브 링크 삽입
-2. 화면움짤녹화 -> 움짤삽입 (https://www.screentogif.com/ 활용가능)
-
-</details>
-
-<details><summary>관리자 페이지</summary>
-
-관련 영상 삽입해야 함 (하기 2가지 방법 가능)
-
-1. 화면녹화 -> 유튜브 업로드 -> 유튜브 링크 삽입
-2. 화면움짤녹화 -> 움짤삽입 (https://www.screentogif.com/ 활용가능)
-
-</details>
-
-<br />
-
-## 4. 인프라 구조
-
-![image](https://i.ibb.co/9tGxmx0/image.png)<br />
-
-<br />
-
-<br />
-
-## 6. Tech Stack
-
-| **Dev-Ops**  |                                                                                                                                                                                                                                                                          <img src="https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=NGINX&logoColor=black">                                                                                                                                                                                                                                                                           |
-| ------------ | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| **Frontend** | <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=black"> <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"> <img src="https://img.shields.io/badge/Redux_Toolkit-764ABC?style=for-the-badge&logo=Redux&logoColor=black"> <img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white"> <img src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white"> <img src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E"> |
-| **Backend**  |                                                                                                                                                                                                                   <img src="https://img.shields.io/badge/nodejs-339933?style=for-the-badge&logo=nodedotjs&logoColor=white"> <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white">                                                                                                                                                                                                                    |
-| **DB**       |                                                                                                                                                                                                                                                                        <img src="https://img.shields.io/badge/mongodb-47A248?style=for-the-badge&logo=mongodb&logoColor=white">                                                                                                                                                                                                                                                                         |
-| **Others**   |                                                                                                               <img src="https://img.shields.io/badge/GitLab-FC6D26?style=for-the-badge&logo=gitlab&logoColor=white"> <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white"><img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"> <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white">                                                                                                                |
-
-<br>
-
-## 7. Team Member
-
-<table width="950">
-    <thead>
-    </thead>
-    <tbody>
-    <tr>
-        <th>사진</th>
-         <td width="100" align="center">
-                <img src="/uploads/32786b22aae13ab7da6ba79e5729df3e/dnwjd.png" width="60" height="60">
-            </a>
-        </td>
-        <td width="100" align="center">
-                <img src="/uploads/e89b79791d9cc34716a57b222d0f78c8/tjdwns.png" width="60" height="60">
-            </a>
-        </td>
-        <td width="100" align="center">
-               <img src="/uploads/316f23f9312048744495382f256f18b8/codus.png" width="60" height="60">
-            </a>
-        </td>
-        <td width="100" align="center">
-                    <img src="/uploads/73eeed3fae83304ab5c1ea85c914f4a1/ghqud.png" width="60" height="60">
-            </a>
-        </td>
-        <td width="100" align="center">
-                       <img src="/uploads/9f0afc6959e5ad7b90ebb64cacc548ae/dbswhd.png" width="60" height="60">
-            </a>
-        </td>
-        <td width="100" align="center">
-              <img src="/uploads/962e876ce48f41fe3ef132bf29c2659d/woduf.png" width="60" height="60">
-            </a>
-        </td>
-        <td width="100" align="center">
-                <img src="/uploads/e910ad8c6f68956adfae744edcdc33bd/ckdgus.png" width="60" height="60">
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <th>이름</th>
-        <td width="100" align="center">윤우정</td>
-        <td width="100" align="center">윤성준</td>
-        <td width="100" align="center">이채연</td>
-        <td width="100" align="center">진호병</td>
-        <td width="100" align="center">김윤중</td>
-        <td width="100" align="center">노재열</td>
-        <td width="100" align="center">윤창현</td>
-    </tr>
-    <tr>
-        <th>역할</th>
-        <td width="150" align="center">
-            frontend<br>
-        </td>
-        <td width="150" align="center">
-            frontend<br>
-        </td>
-        <td width="150" align="center">
-            frontend<br>
-        </td>
-         <td width="150" align="center">
-            frontend<br>
-        </td>
-         <td width="150" align="center">
-            frontend<br>
-        </td>
-         <td width="150" align="center">
-            frontend<br>
-        </td>
-         <td width="150" align="center">
-            frontend<br>
-        </td>
-    </tr>
-    <tr>
-        <th>GitHub</th>
-        <td width="100" align="center">
-            <a href="https://github.com/younu-Yun">
-                <img src="http://img.shields.io/badge/younu-Yun-green?style=social&logo=github"/>
-            </a>
-        </td>
-        <td width="100" align="center">
-            <a href="https://github.com/joony0219">
-                <img src="http://img.shields.io/badge/joony0219-green?style=social&logo=github"/>
-            </a>
-        </td>
-        <td width="100" align="center">
-            <a href="https://github.com/gwanseeum">  
-                <img src="http://img.shields.io/badge/gwanseeum-green?style=social&logo=github"/>
-            </a>
-        </td>
-        <td width="100" align="center">
-            <a href="https://github.com/bicco2">
-                <img src="http://img.shields.io/badge/bicco2-green?style=social&logo=github"/>
-            </a>
-        </td>
-        <td width="100" align="center">
-            <a href="https://github.com/YunJ96">
-                <img src="http://img.shields.io/badge/YunJ96-green?style=social&logo=github"/>
-            </a>
-        </td>
-         <td width="100" align="center">
-            <a href="https://github.com/paikpaik">
-                <img src="http://img.shields.io/badge/paikpaik-green?style=social&logo=github"/>
-            </a>
-          </td>
-                   <td width="100" align="center">
-            <a href="https://github.com/ChanghyeonO">
-                <img src="http://img.shields.io/badge/ChanghyeonO-green?style=social&logo=github"/>
-            </a>
-          </td>
-    </tr>
-    </tbody>
-</table>
-<br>
+To learn React, check out the [React documentation](https://reactjs.org/).

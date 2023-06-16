@@ -1,4 +1,4 @@
-import { useGetCommunityPostQuery, useGetUserInfoQuery } from 'api/communityApiSlice';
+import { useGetUserInfoQuery, useGetCommunityPostQuery } from 'api/communityApiSlice';
 import CommentUserProfile from '../comment/CommentUserProfile';
 import PostEditButton from '../common/PostEditButton';
 import styles from './QuestionPostingBoard.module.scss';
@@ -37,7 +37,7 @@ function UserPostContent(props: { postId: string }) {
       {postInfo && (
         <div className={styles.reactionContainer}>
           <span>{postInfo.numComments} 개의 댓글</span>
-          <HeartReaction likeIds={postInfo.likeIds} postId={postInfo._id} />
+          <HeartReaction />
         </div>
       )}
     </div>

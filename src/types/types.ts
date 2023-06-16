@@ -17,23 +17,6 @@ export interface User {
   __v: number;
 }
 
-export interface BoastPost {
-  _id: string;
-  id: string;
-  name: string;
-  profileImage: string;
-  checkedBadge: string;
-  tag: string[];
-  imageUrl: string;
-  title: string;
-  content: string;
-  shareStatus: boolean;
-  likeIds: likeIds[];
-  date: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
 export interface QuestionPost {
   _id: string;
   id: string;
@@ -42,7 +25,7 @@ export interface QuestionPost {
   checkedBadge: string;
   title: string;
   content: string;
-  likeIds: likeIds[];
+  likeIds: string[];
   commentIds: string[];
   createdAt: string;
   updatedAt: string;
@@ -66,14 +49,10 @@ export interface CommentPost {
 }
 
 export interface LastComment {
-  _id: string;
   title: string;
   comment: string;
 }
-export interface likeIds {
-  _id: string;
-  name: string;
-}
+
 export interface Comment {
   _id: string;
   postId: string;
@@ -82,7 +61,7 @@ export interface Comment {
   profileImage: string;
   checkedBadge: string;
   comment: string;
-  likeIds: likeIds[];
+  likeIds: string[];
   createdAt: string;
   updatedAt: string;
   __v: number;

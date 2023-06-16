@@ -1,25 +1,30 @@
-@import 'color.scss';
-
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+
+  width: 50%;
+  height: fit-content;
+
+  margin-top: 30px;
+  padding: 10px;
 
   border: none;
 }
 
 .tagContainer {
-  padding: 20px;
-  margin: 0 0 20px;
   width: 100%;
+  height: 20%;
 
-  background: white;
+  padding: 10px;
+  margin: 10px;
+
+  background-color: white;
   border-radius: 10px;
 
   & > span {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     font-weight: bold;
   }
 
@@ -49,22 +54,23 @@
     }
   }
 }
-
 .recordContainer {
   display: flex;
   flex-direction: column;
-  padding: 20px;
 
   width: 100%;
   height: fit-content;
 
-  background: white;
+  margin: 10px;
+  padding: 10px;
+
+  background-color: white;
   border-radius: 10px;
 
   & > span {
     margin: 10px 0;
 
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     font-weight: bold;
   }
 
@@ -83,71 +89,28 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-
-  .photo {
-    width: 100%;
-    padding: 0 20px;
-    margin: 0 0 10px;
-    cursor: pointer;
-
-    .defaultImg {
-      border-radius: 10px;
-      overflow: hidden;
-    }
-  }
-
-  .text {
-    width: 100%;
-    padding: 0 20px;
-
-    .inputContent {
-      width: 100%;
-      resize: none;
-
-      padding: 10px;
-      margin-bottom: 10px;
-
-      font-size: 16px;
-
-      border: 1px solid #cccccc;
-      border-radius: 5px;
-      outline: none;
-    }
-  }
 }
 
-.shareButtonBox {
-  display: flex;
-  flex-direction: row;
-
-  align-items: center;
-  padding: 0 20px;
+.defaultImg {
   width: 100%;
+  height: 300px;
 
-  & > span {
-    margin-bottom: 10px;
-    margin-right: 5px;
-  }
+  padding: 0 30px;
+  margin-bottom: 20px;
+
+  border-radius: 10%;
 }
 
-.postButtonBox {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  padding: 0 20px;
-  margin: 10px 0;
+.inputContent {
+  width: 90%;
 
-  button {
-    flex: 1;
-    display: block;
-    height: 4.5rem;
-    border-radius: 0.5rem;
-    font-size: 18px;
-    font-weight: 600;
-    background: $--color--primary;
-    border: 1px solid $--color--primary;
-    color: white;
-  }
+  resize: none;
+
+  padding: 10px;
+  margin-bottom: 10px;
+
+  font-size: 20px;
+
+  border: 1px solid #969696;
+  border-radius: 10px;
 }

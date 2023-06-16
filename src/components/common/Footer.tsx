@@ -1,32 +1,16 @@
 import styles from './Footer.module.scss';
-import { useLocation } from 'react-router-dom';
-
 import headsetIcon from 'assets/icons/headset.svg';
 import githubIcon from 'assets/icons/github.svg';
 import gitlabIcon from 'assets/icons/gitlab.svg';
-import footerLogo from 'assets/images/footerLogo.png';
 
 function Footer() {
-  const location = useLocation();
-
-  const hideFooter =
-    location.pathname === '/login' ||
-    location.pathname === '/join' ||
-    location.pathname === '/find_id' ||
-    location.pathname === '/find_password' ||
-    location.pathname === '/change_passord';
-
-  if (hideFooter) {
-    return null; // 경로가 해당되면 Footer를 비노출
-  }
-
   return (
     <footer>
       <div className='inner w1140'>
         <div className={styles.footer_top}>
           <div className={styles.left}>
-            <div className={styles.logo}>
-              <img src={footerLogo} alt='하단_로고' />
+            <div className='logo'>
+              <img src='' alt='하단_로고' />
             </div>
             <ul>
               <li>

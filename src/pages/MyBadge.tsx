@@ -8,10 +8,8 @@ function MyBadge() {
     <div>
       <Title />
       <div className={styles.container}>
-        <div className={styles.inner}>
-          <SideNav />
-          <Badge />
-        </div>
+        <SideNav />
+        <Badge />
       </div>
     </div>
   );

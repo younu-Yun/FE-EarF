@@ -1,105 +1,63 @@
 @import 'color.scss';
 
-.modal {
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
 .modalBox {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2000;
 
-  max-width: 600px;
-  min-width: 400px;
+  width: 500px;
   height: 300px;
 
   border: 1px solid $--color--border;
   border-radius: 10px;
-  background-color: $--color--white;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px, rgba(0, 0, 0, 0.12) 0px 4px 10px;
+  background-color: $--color--background;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  h3 {
-    width: 80%;
-    padding: 0 0 10px;
-    border-bottom: 1px solid #dbdbdb;
-    font-size: 2rem;
-    font-weight: 600;
-    text-align: center;
-  }
-
   & > .exitButton {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 0;
+    right: 0;
 
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
 
     cursor: pointer;
   }
 
-  .modalContent {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  & > .text {
+    font-size: 2rem;
+    margin: 20px;
+    margin-bottom: 20px;
+  }
 
-    height: 60%;
+  & > .passwordInput {
+    width: 250px;
+    height: 30px;
 
-    & > .text {
-      font-size: 2rem;
-      margin-bottom: 10px;
+    & > input {
+      width: 250px;
+      height: 30px;
     }
 
-    & > .passwordInput {
-      width: 250px;
-      // height: 30px;
-
-      & > input {
-        padding: 0 15px;
-        border-radius: 5px;
-        border: 1px solid $--color--border;
-        width: 250px;
-        height: 45px;
-      }
-
-      & > label {
-        width: 0;
-      }
-    }
-
-    & > .errorMessage {
-      width: 250px;
-      margin-bottom: 10px;
-      font-size: 1.5rem;
-
-      color: red;
+    & > label {
+      width: 0;
     }
   }
 
-  Button {
-    width: 30%;
-    height: 40px;
-    font-size: 1.4rem;
-    font-weight: 500;
-    line-height: 40px;
-    border-radius: 5px;
+  & > .errorMessage {
+    width: 250px;
     margin-bottom: 10px;
+    font-size: 1.5rem;
+
+    color: red;
+  }
+
+  Button {
+    margin-top: 20px;
   }
 }

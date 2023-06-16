@@ -1,5 +1,5 @@
 import { TFormData, CheckboxesState } from 'types/types';
-import axios from 'axios';
+import { postApiCalendarData } from './calendarApiService';
 
 type THandleEachValue = <T extends keyof TFormData>(
   element: T,
@@ -58,74 +58,26 @@ export const HandleCheckboxChange: THandleCheckboxChange = (checkboxName, checkb
   });
 };
 
-// FIX:
 export const HandleDiarySubmit: THandleDiarySubmit = (formData, selectedValue) => {
+  console.log('Form Data:', formData);
+
   const { tag, file, title, content, shareStatus } = formData;
+  console.log(JSON.stringify(tag), 'tag');
 
-  if (tag == false || title === '' || file == null || content === '') {
-    alert('모든 값을 입력하셔야합니다!');
-  } else {
-    const tagMapping: Record<string, string> = {
-      tag1: '텀블러',
-      tag2: '대중교통',
-      tag3: '장바구니',
-    };
+  console.log(file, 'file');
 
-    const transformedTags: string[] = tag.map((data: any) => tagMapping[data]);
+  const postFormData = new FormData();
+  postFormData.append('tag', JSON.stringify(tag));
+  postFormData.append('file', file);
+  postFormData.append('title', title);
+  postFormData.append('content', content);
+  postFormData.append('shareStatus', shareStatus.toString());
 
-    const postFormData = new FormData();
-    transformedTags.forEach((value: string, index: number) => {
-      postFormData.append(`tag[${index}]`, value);
-    });
-    postFormData.append('imageUrl', file);
-    postFormData.append('title', title);
-    postFormData.append('content', content);
-    postFormData.append('shareStatus', shareStatus.toString());
+  console.log(postFormData, '폼데이터 확인');
 
-    axios
-      .post(`http://34.64.216.86/api/diary/${selectedValue}`, postFormData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      })
-      .then((response) => {
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.error('에러 발생:', error);
-      });
-  }
-};
+  console.log(postFormData.get('file'), 'postFormData file');
 
-export const HandleDiaryEditSubmit: THandleDiarySubmit = (formData, selectedValue) => {
-  const { tag, file, title, content, shareStatus } = formData;
-
-  if (tag == false || title === '' || content === '') {
-    alert('모든 값을 입력하셔야합니다!');
-  } else {
-    const tagMapping: Record<string, string> = {
-      tag1: '텀블러',
-      tag2: '대중교통',
-      tag3: '장바구니',
-    };
-
-    const transformedTags: string[] = tag.map((data: any) => tagMapping[data]);
-
-    const postFormData = new FormData();
-    transformedTags.forEach((value: string, index: number) => {
-      postFormData.append(`tag[${index}]`, value);
-    });
-    postFormData.append('title', title);
-    postFormData.append('content', content);
-    postFormData.append('shareStatus', shareStatus.toString());
-
-    axios
-      .patch(`http://34.64.216.86/api/diary/${selectedValue}`, postFormData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      })
-      .then((response) => {
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.error('에러 발생:', error);
-      });
-  }
+  postApiCalendarData(selectedValue, postFormData).then(() => {
+    // window.location.reload();
+  });
 };

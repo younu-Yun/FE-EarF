@@ -2,16 +2,15 @@ import styles from './Main.module.scss';
 import { useEffect, useState } from 'react';
 import Button from 'components/common/Button';
 import Modal from './Modal';
-import Title from 'components/common/PageTitle';
-import { userInfo, userDelete } from 'api/fetcher';
-import { clearLocalStorage } from 'api/token';
+import { userInfo } from 'api/fetcher';
+import defaultProfile from 'assets/icons/UserIcon.svg';
 
 interface UserData {
   id: string;
   name: string;
   email: string;
   phoneNumber: string;
-  profileImage: string;
+  profileImage: string | null;
 }
 
 function Main() {
@@ -22,7 +21,7 @@ function Main() {
     name: '',
     email: '',
     phoneNumber: '',
-    profileImage: '',
+    profileImage: null,
   });
 
   // Edit 모달
@@ -41,10 +40,8 @@ function Main() {
 
   // 회원 탈퇴
   const handleRemoveAccount = (): void => {
-    userDelete();
-    clearLocalStorage();
-    alert('회원 탈퇴가 완료되었습니다. 그동안 EarF를 이용해주셔서 감사합니다.');
-    window.location.href = '/';
+    // api 요청
+    console.log('회원 탈퇴 버튼 클릭');
   };
 
   // 유저 정보 불러오기
@@ -68,55 +65,34 @@ function Main() {
   }, []);
 
   return (
-    <>
-      <div className={styles.main}>
-        <Title title='마이페이지' />
-        <div className={styles.contents}>
-          <div className={styles.profile}>
-            <div className={styles.imgContainer}>
-              <img src={userData.profileImage} alt='프로필' />
-            </div>
-          </div>
-
-          <div className={styles.dataFiledSet}>
-            <div className={styles.dataFiled}>
-              <div className={styles.fixedData}>
-                <span>이름</span>
-              </div>
-              <div className={styles.fetchData}>{userData.name}</div>
-            </div>
-            <div className={styles.dataFiled}>
-              <div className={styles.fixedData}>
-                <span>아이디</span>
-              </div>
-              <div className={styles.fetchData}>{userData.id}</div>
-            </div>
-            <div className={styles.dataFiled}>
-              <div className={styles.fixedData}>
-                <span>이메일</span>
-              </div>
-              <div className={styles.fetchData}>{userData.email}</div>
-            </div>
-            <div className={styles.dataFiled}>
-              <div className={styles.fixedData}>
-                <span>전화번호</span>
-              </div>
-              <div className={styles.fetchData}>{userData.phoneNumber}</div>
-            </div>
-          </div>
-          <div className={styles.buttonContainer}>
-            <Button text={'수정하기'} onClick={handleShowEditModal} />
-            <Button text={'회원탈퇴'} className={'whiteButton'} onClick={handleShowRemoveModal} />
-          </div>
+    <div className={styles.main}>
+      {showEditModal && <Modal handleShowModal={handleShowEditModal} handleNavigateToEdit={handleNavigateToEdit} />}
+      {showRemoveModal && <Modal handleShowModal={handleShowRemoveModal} handleNavigateToEdit={handleRemoveAccount} />}
+      <div className={styles.profile}>
+        <div className={styles.imgContainer}>
+          <img src={userData.profileImage ? userData.profileImage : `${defaultProfile}`} alt='프로필' />
+        </div>
+        <div className={styles.userId}>{userData.id}</div>
+      </div>
+      <div className={styles.dataFiledSet}>
+        <div className={styles.dataFiled}>
+          <div className={styles.fixedData}>이름</div>
+          <div className={styles.fetchData}>{userData.name}</div>
+        </div>
+        <div className={styles.dataFiled}>
+          <div className={styles.fixedData}>이메일</div>
+          <div className={styles.fetchData}>{userData.email}</div>
+        </div>
+        <div className={styles.dataFiled}>
+          <div className={styles.fixedData}>전화번호</div>
+          <div className={styles.fetchData}>{userData.phoneNumber}</div>
         </div>
       </div>
-      {showEditModal && (
-        <Modal title={'수정하기'} handleShowModal={handleShowEditModal} handleNextAction={handleNavigateToEdit} />
-      )}
-      {showRemoveModal && (
-        <Modal title={'회원탈퇴'} handleShowModal={handleShowRemoveModal} handleNextAction={handleRemoveAccount} />
-      )}
-    </>
+      <div className={styles.buttonContainer}>
+        <Button text={'수정하기'} onClick={handleShowEditModal} />
+        <Button text={'회원탈퇴'} className={'whiteButton'} onClick={handleShowRemoveModal} />
+      </div>
+    </div>
   );
 }
 

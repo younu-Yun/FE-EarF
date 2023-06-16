@@ -1,13 +1,15 @@
-import { useRef, useState, useEffect } from 'react';
-import inputDefaultImg from 'assets/images/inputDefaultImg.png';
+import React, { useRef, useState, useEffect } from 'react';
+import styles from './styles.module.scss';
+import inputDefaultImg from '../../assets/images/inputDefaultImg.png';
 
-import { GetSelectedDateState } from 'services/calendarService';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from 'store';
+import { setSelectedDay } from 'store/selectedDaySlice';
 import DiaryButton from './common/DiaryButton';
+
 import ShareButton from './common/ShareButton';
 import CheckboxComponent from './common/CheckboxComponent';
 import { TFormData, CheckboxesState } from 'types/types';
-
 import {
   HandleDiarySubmit,
   HandleEachValue,
@@ -16,10 +18,8 @@ import {
   HandleCheckboxChange,
 } from 'services/diaryService';
 
-import styles from './styles.module.scss';
-
 export default function Diary() {
-  const selectedValue = GetSelectedDateState();
+  const selectedValue = useSelector((state: RootState) => state.selectedDay.value);
   const [selectedImage, setSelectedImage] = useState<string | undefined>(inputDefaultImg);
   const hiddenFileInput = useRef<HTMLInputElement | null>(null);
 
@@ -49,6 +49,7 @@ export default function Diary() {
     return Object.keys(checkboxes).filter((checkbox: string) => checkboxes[checkbox]);
   };
 
+  console.log(selectedValue, 'in diary state');
   return (
     <div className={styles.container}>
       <div className={styles.tagContainer}>
@@ -67,7 +68,7 @@ export default function Diary() {
             tag='tag2'
           />
           <CheckboxComponent
-            label='장바구니'
+            label='채식'
             isChecked={checkboxes.tag3}
             onChange={() => HandleCheckboxChange('tag3', checkboxes, setCheckboxes)}
             tag='tag3'
@@ -77,49 +78,37 @@ export default function Diary() {
       <div className={styles.recordContainer}>
         <span>기록</span>
         <div className={styles.recondWrapper}>
-          <div className={styles.photo}>
-            <img alt='selectimg' src={selectedImage} className={styles.defaultImg} onClick={handleImageClick} />
-            <input
-              placeholder='사진'
-              type='file'
-              className={styles.inputImg}
-              ref={hiddenFileInput}
-              style={{ display: 'none' }}
-              onChange={(event) => HandleImageChange(event, setSelectedImage, setFormData)}
-            />
-          </div>
+          <img alt='selectimg' src={selectedImage} className={styles.defaultImg} onClick={handleImageClick} />
+          <input
+            placeholder='사진'
+            type='file'
+            className={styles.inputImg}
+            ref={hiddenFileInput}
+            style={{ display: 'none' }}
+            onChange={(event) => HandleImageChange(event, setSelectedImage, setFormData)}
+          />
 
-          <div className={styles.text}>
-            <input
-              placeholder='행동 한마디'
-              className={styles.inputContent}
-              maxLength={20}
-              onChange={(event) => {
-                if (event.target.value.length <= 20) {
-                  HandleEachValue('title', event.target.value, setFormData);
-                }
-              }}
-            />
-            <textarea
-              placeholder='오늘 어떤 행동을 했나요 ?'
-              spellCheck={false}
-              className={styles.inputContent}
-              rows={5}
-              onChange={(event) => {
-                HandleEachValue('content', event.target.value, setFormData);
-              }}
-            />
-          </div>
-
-          <div className={styles.shareButtonBox}>
-            <ShareButton
-              toggle={formData.shareStatus}
-              onClick={() => HandleSharedClick('shareStatus', !formData.shareStatus, setFormData)}
-            />
-          </div>
-          <div className={styles.postButtonBox}>
-            <DiaryButton text='등록하기' onClick={() => HandleDiarySubmit(formData, selectedValue)} />
-          </div>
+          <input
+            placeholder='행동 한마디'
+            className={styles.inputContent}
+            onChange={(event) => {
+              HandleEachValue('title', event.target.value, setFormData);
+            }}
+            value={formData.title}
+          />
+          <textarea
+            placeholder='오늘 어떤 행동을 했나요 ?'
+            className={styles.inputContent}
+            rows={5}
+            onChange={(event) => {
+              HandleEachValue('content', event.target.value, setFormData);
+            }}
+          />
+          <ShareButton
+            toggle={formData.shareStatus}
+            onClick={() => HandleSharedClick('shareStatus', !formData.shareStatus, setFormData)}
+          />
+          <DiaryButton text='등록하기' onClick={() => HandleDiarySubmit(formData, selectedValue)} />
         </div>
       </div>
     </div>

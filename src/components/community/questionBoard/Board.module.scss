@@ -4,10 +4,6 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-
-  & > .inner {
-    border-top: 0.3rem solid #252525;
-  }
 }
 
 .searchContainer {
@@ -23,7 +19,7 @@
   padding: 0 1.5rem;
 
   background: white;
-  border: 2px solid $--color--primary;
+  border: 1px solid $--color--border;
   border-radius: 0.4rem;
 
   .searchInput {
@@ -38,7 +34,7 @@
     &::placeholder {
       font-size: 12pt;
       font-weight: 300;
-      color: $--color--text2;
+      color: gainsboro;
     }
   }
 

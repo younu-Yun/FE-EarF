@@ -1,8 +1,7 @@
 import { ReactComponent as Message } from 'assets/icons/Message.svg';
-import { Link } from 'react-router-dom';
 import styles from './NewComment.module.scss';
 
-export default function NewComment(props: { _id: string; title: string; comment: string }) {
+export default function NewComment(props: { title: string; comment: string }) {
   const commentText = `${props.comment.split('.').slice(0, 2).join('. ')}.`;
   let titleText;
 
@@ -14,12 +13,10 @@ export default function NewComment(props: { _id: string; title: string; comment:
 
   return (
     <div className={styles.container}>
-      <Link to={`/community/question/${props._id}`}>
-        <div className={styles.commentContainer}>
-          <Message />
-          <span>{commentText}</span>
-        </div>
-      </Link>
+      <div className={styles.commentContainer}>
+        <Message />
+        <span>{commentText}</span>
+      </div>
       <p>{titleText}</p>
     </div>
   );

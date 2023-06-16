@@ -1,19 +1,23 @@
 .reportContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  width: 95%;
 
-  width: 50%;
-
-  padding: 20px 30px;
+  padding: 10px;
   margin: 10px;
 
   background-color: white;
   border-radius: 10px;
+}
 
-  & > span {
-    font-weight: bold;
-    font-size: 20px;
-  }
+.reportItemWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  // height: 500px;
+
+  margin: 10px 20px;
+  padding: 0 30px;
+
+  font-size: 1.7rem;
+  font-weight: bold;
 }
