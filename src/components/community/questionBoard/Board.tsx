@@ -68,7 +68,6 @@ function Board() {
   };
   const handleClickSearch: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
-    console.log(searchData);
     setSearchQuery(search);
   };
 

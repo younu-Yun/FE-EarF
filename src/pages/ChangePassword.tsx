@@ -72,7 +72,6 @@ const ChangePassword: React.FC = () => {
       const response = await axios.post('http://34.64.216.86/api/user/change', passwordData);
 
       alert('비밀번호 변경이 완료되었습니다. 다시 로그인해주세요.');
-      console.log(response.data);
       clearLocalStorage();
 
       navigate('/login');
