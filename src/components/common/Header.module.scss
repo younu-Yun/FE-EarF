@@ -63,6 +63,11 @@ header {
     font-weight: 500;
     color: #666666;
     cursor: pointer;
+
+    &.active {
+      font-weight: 700;
+      color: $--color--text1;
+    }
   }
 }
 
