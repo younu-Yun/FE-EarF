@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+import { RootState } from 'store';
 import { Link } from 'react-router-dom';
 import MyProfileImg from './MyProfileImg';
 import styles from './MyProfile.module.scss';
@@ -5,8 +7,10 @@ import { useGetUserInfoQuery, useGetMyQuestionQuery } from 'api/communityApiSlic
 import getBadgeImagePath from 'utils/getBadgeImagePath';
 
 function MyProfile() {
+  const selectedBadge = useSelector((state: RootState) => state.selectedBadge);
   const { data: userInfo } = useGetUserInfoQuery();
   const { data: postInfo } = useGetMyQuestionQuery();
+
   return (
     <div className={styles.container}>
       <MyProfileImg />
@@ -19,7 +23,7 @@ function MyProfile() {
           ) : (
             <span>{userInfo.name}</span>
           )}
-          {userInfo && <img src={getBadgeImagePath(userInfo?.checkedBadge)} className={styles.userBadge} alt='Badge' />}
+          {userInfo && <img src={getBadgeImagePath(selectedBadge.type)} className={styles.userBadge} alt='Badge' />}
         </div>
         {!userInfo ? (
           <span className={`${styles.notLoggedIn} ${styles.userPostingNumber}`}>하러가기</span>

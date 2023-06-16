@@ -4,6 +4,7 @@ import selectedDaySlice from './selectedDaySlice';
 import { communityApiSlice } from 'api/communityApiSlice';
 import loginSlice from './loginSlice';
 import selectedOptionReducer from './selectedOptionSlice';
+import selectedBadgeReducer from './selectedBadgeSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     [communityApiSlice.reducerPath]: communityApiSlice.reducer,
     login: loginSlice.reducer,
     selectedOption: selectedOptionReducer,
+    selectedBadge: selectedBadgeReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(communityApiSlice.middleware),
 });

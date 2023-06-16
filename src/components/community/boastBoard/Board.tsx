@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import SelectBox from './SelectBox';
 import styles from './Board.module.scss';
 import Slider from 'react-slick';

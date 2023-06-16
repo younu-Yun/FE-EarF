@@ -3,6 +3,8 @@ import { ReactComponent as Exit } from 'assets/icons/Exit.svg';
 import Button from 'components/common/Button';
 import { checkedBadgeChange } from 'api/fetcher';
 import { useEffect, useRef } from 'react';
+import { setSelectedBadge } from 'store/selectedBadgeSlice';
+
 interface BadgeModalProps {
   type: string;
   name: string;
@@ -40,6 +42,7 @@ function BadgeModal({ type, name, imgSrc, isGet, info, handleShowModal }: BadgeM
     try {
       await checkedBadgeChange(type);
       console.log('뱃지 변경에 성공했습니다', type);
+      setSelectedBadge({ type });
       handleShowModal();
     } catch (error) {
       console.error('대표 뱃지 변경 실패', error);
