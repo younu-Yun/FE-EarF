@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import MyProfile from './sideNav/MyProfile';
 import styles from './LeftSideNav.module.scss';
-import HomeCheck from 'assets/icons/HomeCheck.svg';
+
+import SideNavQuestion from 'assets/icons/SideNavQuestion.svg';
+import SideNavBoast from 'assets/icons/SideNavBoast.svg';
 
 function LeftSideNav() {
   return (
@@ -11,24 +13,30 @@ function LeftSideNav() {
         <nav>
           <ul>
             <li>
-              <Link to='/community'>
+              <NavLink
+                to='/community'
+                className={({ isActive, isPending }) => (isPending ? styles.inactive : isActive ? styles.active : '')}
+              >
                 <div>
                   <div className={styles.icon}>
-                    <img src={HomeCheck} alt='' />
+                    <img src={SideNavQuestion} alt='' />
                   </div>
                   <span>질문해요</span>
                 </div>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to='/community/boast'>
+              <NavLink
+                to='/community/boast'
+                className={({ isActive, isPending }) => (isPending ? styles.inactive : isActive ? styles.active : '')}
+              >
                 <div>
                   <div className={styles.icon}>
-                    <img src={HomeCheck} alt='' />
+                    <img src={SideNavBoast} alt='' />
                   </div>
                   <span>자랑해요</span>
                 </div>
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>

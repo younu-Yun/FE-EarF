@@ -85,12 +85,18 @@ function Header(): JSX.Element {
           </Link>
           <ul className={styles.menu}>
             <li>
-              <NavLink to='/calender' className={({ isActive }) => (isActive ? `active` : '')}>
+              <NavLink
+                to='/calender'
+                className={({ isActive, isPending }) => (isPending ? styles.inactive : isActive ? styles.active : '')}
+              >
                 기록하기
               </NavLink>
             </li>
             <li>
-              <NavLink to='/community' className={({ isActive }) => (isActive ? 'active' : '')}>
+              <NavLink
+                to='/community'
+                className={({ isActive, isPending }) => (isPending ? styles.inactive : isActive ? styles.active : '')}
+              >
                 커뮤니티
               </NavLink>
             </li>
