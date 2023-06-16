@@ -43,6 +43,7 @@
 }
 
 .textContainer {
+  position: relative;
   margin: 10px;
   padding: 20px 0;
 
@@ -121,4 +122,17 @@
       color: $--color--primary;
     }
   }
+}
+
+.boastDiv {
+  position: absolute;
+  top: 24px;
+  right: 0;
+
+  padding: 2px 5px;
+  border-radius: 12px;
+  border: 1.5px solid #51a2ee;
+
+  color: #51a2ee;
+  font-weight: bold;
 }

@@ -116,6 +116,18 @@
   }
 }
 
+.shareButtonBox {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+
+  & > span {
+    margin-bottom: 10px;
+    margin-right: 5px;
+  }
+}
+
 .postButtonBox {
   display: flex;
   justify-content: space-between;

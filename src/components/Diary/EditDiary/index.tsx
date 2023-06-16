@@ -36,18 +36,15 @@ export default function EditedDiary(props: {
   });
 
   const [checkboxes, setCheckboxes] = useState<CheckboxesState>({
-    tag1: false,
-    tag2: false,
-    tag3: false,
+    tag1: props.data.tag[0],
+    tag2: props.data.tag[1],
+    tag3: props.data.tag[2],
   });
 
   useEffect(() => {
     setSelectedImage(props.data.imageUrl);
-
     HandleEachValue('tag', getSelectedCheckboxes(), setFormData);
   }, [checkboxes]);
-
-  console.log(formData, 'editDiary form');
 
   const handleImageClick = () => {
     hiddenFileInput.current?.click();
@@ -118,6 +115,7 @@ export default function EditedDiary(props: {
             />
           </div>
           <div className={styles.shareButtonBox}>
+            <span>자랑하기</span>
             <ShareButton
               toggle={formData.shareStatus}
               onClick={() => HandleSharedClick('shareStatus', !formData.shareStatus, setFormData)}
