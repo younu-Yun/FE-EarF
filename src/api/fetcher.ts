@@ -30,7 +30,7 @@ export async function userJoin(userId: string, password: string, name: string, e
 }
 
 //아이디찾기
-export async function FindId(email: string, name: string) {
+export async function userFindId(email: string, name: string) {
   const data = {
     email: email,
     name: name,
@@ -39,7 +39,7 @@ export async function FindId(email: string, name: string) {
 }
 
 //비밀번호 찾기
-export async function FindPassword(email: string) {
+export async function userFindPassword(email: string) {
   const data = {
     email: email,
   };
@@ -47,7 +47,7 @@ export async function FindPassword(email: string) {
 }
 
 //비밀번호 변경
-export async function ChangePassword(currentPassword: string, newPassword: string) {
+export async function userChangePassword(currentPassword: string, newPassword: string) {
   const data = {
     currentPassword: currentPassword,
     newPassword: newPassword,
