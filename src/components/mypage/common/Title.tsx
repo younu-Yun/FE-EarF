@@ -1,7 +1,6 @@
 import styles from './Title.module.scss';
 import { useLocation } from 'react-router-dom';
 
-// 추후 interface 추출하여 따로 관리하기
 interface PageType {
   INFO: string;
   EDIT: string;
@@ -16,7 +15,6 @@ const Pages: PageType = {
   BADGE: 'badge',
 };
 
-// 현재 URL을 가져와 /mypage/ 이후의 값만 사용하도록 바꾸는 함수
 function useLastPath() {
   const location = useLocation();
   const nowPath = location.pathname.replace('/mypage/', '');
@@ -37,7 +35,7 @@ function Title() {
 
   return (
     <div className={styles.title}>
-      <div>{pageTitle}</div>
+      <h2>{pageTitle}</h2>
     </div>
   );
 }

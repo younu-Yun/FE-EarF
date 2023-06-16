@@ -11,8 +11,10 @@ function MyPage() {
     <div>
       <Title />
       <div className={styles.container}>
-        <SideNav />
-        <Main />
+        <div className={styles.inner}>
+          <SideNav />
+          <Main />
+        </div>
       </div>
     </div>
   );

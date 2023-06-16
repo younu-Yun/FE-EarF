@@ -8,7 +8,7 @@ import { DefaultInput } from 'components/User/DefaultInput';
 import { validateField } from 'components/User/validation';
 import DefaultModal from '../components/common/DefaultModal';
 // import { FindId } from 'components/common/Fetcher';
-import JoginIllust from '../assets/images/JoinIllust.jpg';
+import FindIDIllust from '../assets/images/FindIDIllust.png';
 import AlertCircle from '../assets/icons/AlertCircle.svg';
 
 interface FormData {
@@ -64,7 +64,6 @@ const FindId: React.FC = () => {
         email: formData.email,
         name: formData.name,
       };
-      console.log(userData);
       const response = await axios.post('http://34.64.216.86/api/user/loginid', userData);
       const foundUser = response.data;
 
@@ -94,7 +93,7 @@ const FindId: React.FC = () => {
       <div className={styles.container}>
         <div>
           <div className={styles.image}>
-            <img src={JoginIllust} alt='아이디찾기 일러스트' />
+            <img src={FindIDIllust} alt='아이디찾기 일러스트' />
           </div>
           <div className={styles.form}>
             <form onSubmit={handleSubmit}>

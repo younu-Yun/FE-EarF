@@ -14,6 +14,7 @@
     align-items: center;
     gap: 0.5rem;
 
+    cursor: pointer;
     font-size: 11pt;
     > :last-child {
       color: $--color--primary;
@@ -83,6 +84,7 @@
     font-size: 12pt;
     font-weight: 400;
     color: $--color--text2;
+    white-space: pre-wrap;
   }
 }
 

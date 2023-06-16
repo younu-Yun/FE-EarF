@@ -8,21 +8,52 @@ import {
   CommentPath,
   CommentPost,
   LastComment,
+  BoastPost,
 } from 'types/types';
+
+import { getToken, isTokenExpired, refreshAccessToken } from './token';
+
+// 코치님이 말하신 방법으로 사용을 했는데 403 에러가 반환되어서 오류를 잡고있습니다..ㅠㅠ
+const addHeaders = () => {
+  let token = getToken();
+
+  if (isTokenExpired()) {
+    refreshAccessToken();
+    token = `${getToken()}`;
+  }
+
+  return token;
+};
 
 export const communityApiSlice = createApi({
   reducerPath: 'communityApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://34.64.216.86/api/' }),
-  tagTypes: ['User', 'Post'],
+  tagTypes: ['Post', 'Boast'],
   endpoints: (builder) => ({
     getUserInfo: builder.query<User, void>({
       query: () => ({
         url: 'user',
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${addHeaders()}`,
+          'Content-Type': 'application/json',
         },
-        providesTags: ['User'],
       }),
+    }),
+    // 커뮤니티 자기 게시글 get Api
+    getMyQuestion: builder.query<QuestionPost[], void>({
+      query: () => ({
+        url: 'community/questions/user',
+        headers: {
+          Authorization: `Bearer ${addHeaders()}`,
+          'Content-Type': 'application/json',
+        },
+      }),
+      providesTags: ['Post'],
+    }),
+    // 커뮤니티 게시판 질문 검색 get Api
+    getSearch: builder.query<QuestionPost[], string>({
+      query: (q) => `community/questions/search?page=1&keyword=${q}`,
+      providesTags: ['Post'],
     }),
     // 커뮤니티 게시판 단일 게시글 전체 get Api
     getAllCommunityPosts: builder.query<QuestionPost[], void>({
@@ -52,6 +83,7 @@ export const communityApiSlice = createApi({
     // 커뮤니티 질문 BEST 추천 5개 조회 get Api
     getBestLikesCommunityPosts: builder.query<QuestionPost[], void>({
       query: () => `community/questions/most-liked`,
+      providesTags: ['Post'],
     }),
     // 커뮤니티 질문 최신 댓글 1개 조회 get Api
     getLatestComment: builder.query<LastComment, void>({
@@ -69,7 +101,7 @@ export const communityApiSlice = createApi({
         url: 'community/questions',
         method: 'POST',
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${addHeaders()}`,
           'Content-Type': 'application/json',
         },
         body: post,
@@ -82,7 +114,7 @@ export const communityApiSlice = createApi({
         url: `community/questions/${id}`,
         method: 'PATCH',
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${addHeaders()}`,
           'Content-Type': 'application/json',
         },
         body: patch,
@@ -95,7 +127,8 @@ export const communityApiSlice = createApi({
         url: `community/questions/${id}`,
         method: 'DELETE',
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${addHeaders()}`,
+          'Content-Type': 'application/json',
         },
       }),
       invalidatesTags: ['Post'],
@@ -116,7 +149,7 @@ export const communityApiSlice = createApi({
         url: `community/questions/comments/${id}`,
         method: 'POST',
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${addHeaders()}`,
           'Content-Type': 'application/json',
         },
         body: post,
@@ -129,7 +162,7 @@ export const communityApiSlice = createApi({
         url: `community/questions/comments/${postId}/${commentId}`,
         method: 'PATCH',
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${addHeaders()}`,
           'Content-Type': 'application/json',
         },
         body: patch,
@@ -142,30 +175,96 @@ export const communityApiSlice = createApi({
         url: `community/questions/comments/${postId}/${commentId}`,
         method: 'DELETE',
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${addHeaders()}`,
+          'Content-Type': 'application/json',
         },
       }),
       invalidatesTags: ['Post'],
+    }),
+    // 작성글 좋아요 patch Api
+    toggleLikePost: builder.mutation<QuestionPost, { postId: string }>({
+      query: ({ postId }) => ({
+        url: `community/questions/like/${postId}`,
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${addHeaders()}`,
+          'Content-Type': 'application/json',
+        },
+      }),
+      invalidatesTags: ['Post'],
+    }),
+    // 댓글 좋아요 patch Api
+    toggleLikeComment: builder.mutation<Omit<Comment, 'numLikes'>, CommentPath>({
+      query: ({ postId, commentId }) => ({
+        url: `community/questions/comments/like/${postId}/${commentId}`,
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${addHeaders()}`,
+          'Content-Type': 'application/json',
+        },
+      }),
+      invalidatesTags: ['Post'],
+    }),
+    // 자랑하기 전체 get Api
+    getAllBoastPosts: builder.query<BoastPost[], void>({
+      query: () => 'community/boasts',
+      providesTags: ['Boast'],
+    }),
+    // 자랑하기 텀블러 get Api
+    getSortedTumPosts: builder.query<BoastPost[], void>({
+      query: () => 'community/boasts?tag=텀블러',
+      providesTags: ['Boast'],
+    }),
+    // 자랑하기 대중교통 get Api
+    getSortedTransPosts: builder.query<BoastPost[], void>({
+      query: () => 'community/boasts?tag=대중교통',
+      providesTags: ['Boast'],
+    }),
+    // 자랑하기 장바구니 get Api
+    getSortedBasketPosts: builder.query<BoastPost[], void>({
+      query: () => 'community/boasts?tag=장바구니',
+      providesTags: ['Boast'],
+    }),
+    // 자랑하기 좋아요 patch Api
+    toggleLikeBoast: builder.mutation<BoastPost[], { postId: string }>({
+      query: ({ postId }) => ({
+        url: `community/boasts/like/${postId}`,
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${addHeaders()}`,
+          'Content-Type': 'application/json',
+        },
+      }),
+      invalidatesTags: ['Boast'],
     }),
   }),
 });
 
 export const {
-  useGetUserInfoQuery,
+  useGetMyQuestionQuery,
+  useGetSearchQuery,
   useGetAllCommunityPostsQuery,
   useGetCommunityPostQuery,
   useGetCommunityPostsQuery,
   useGetMostCommentsCommunityPostsQuery,
   useGetMostLikesCommunityPostsQuery,
-  useCreateCommunityPostMutation,
-  useEditCommunityPostMutation,
-  useDeleteCommunityPostMutation,
   useGetBestLikesCommunityPostsQuery,
   useGetLatestCommentQuery,
   useGetNoCommentQuery,
   useGetAllCommentsQuery,
   useGetCommentQuery,
+  useGetUserInfoQuery,
+  useCreateCommunityPostMutation,
+  useEditCommunityPostMutation,
+  useDeleteCommunityPostMutation,
   useCreateCommentMutation,
   useEditCommentMutation,
   useDeleteCommentMutation,
+  useToggleLikePostMutation,
+  useToggleLikeCommentMutation,
+  useGetAllBoastPostsQuery,
+  useGetSortedTumPostsQuery,
+  useGetSortedTransPostsQuery,
+  useGetSortedBasketPostsQuery,
+  useToggleLikeBoastMutation,
 } = communityApiSlice;
