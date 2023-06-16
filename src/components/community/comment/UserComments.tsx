@@ -42,7 +42,7 @@ function UserComments() {
     } else {
       try {
         const { data }: any = await createCommentMutation({ id: postId, comment });
-        console.log('댓글 생성 성공:', data);
+        setComment('');
       } catch (error) {
         console.log('댓글 생성 실패:', error);
       }

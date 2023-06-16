@@ -19,3 +19,16 @@
     overflow: hidden;
   }
 }
+
+.swiper {
+  position: relative;
+  height: 18rem;
+}
+.swiper-pagination {
+  position: absolute;
+  bottom: -2rem;
+}
+.swiper-pagination-bullet {
+  background-color: #2eab67;
+  margin: 0 10px;
+}

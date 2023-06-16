@@ -32,6 +32,7 @@ export default function Board() {
         ) : (
           <ul>
             {postData &&
+              !undefined &&
               postData?.map((post) => (
                 <QuestionPostingItem
                   key={post._id}

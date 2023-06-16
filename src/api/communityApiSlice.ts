@@ -47,8 +47,8 @@ export const communityApiSlice = createApi({
           Authorization: `Bearer ${addHeaders()}`,
           'Content-Type': 'application/json',
         },
-        providesTags: ['Post'],
       }),
+      providesTags: ['Post'],
     }),
     // 커뮤니티 게시판 질문 검색 get Api
     getSearch: builder.query<QuestionPost[], string>({

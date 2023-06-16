@@ -10,6 +10,7 @@ function MyProfile() {
   const selectedBadge = useSelector((state: RootState) => state.selectedBadge);
   const { data: userInfo } = useGetUserInfoQuery();
   const { data: postInfo } = useGetMyQuestionQuery();
+  console.log(postInfo);
 
   return (
     <div className={styles.container}>
@@ -23,14 +24,14 @@ function MyProfile() {
           ) : (
             <span>{userInfo.name}</span>
           )}
-          {userInfo && <img src={getBadgeImagePath(selectedBadge.type)} className={styles.userBadge} alt='Badge' />}
+          {userInfo && <img src={getBadgeImagePath(selectedBadge.badge)} className={styles.userBadge} alt='Badge' />}
         </div>
         {!userInfo ? (
           <span className={`${styles.notLoggedIn} ${styles.userPostingNumber}`}>하러가기</span>
         ) : (
           <div className={styles.userPostingNumber}>
             <span>작성한 글</span>
-            {postInfo && (
+            {postInfo && !undefined && (
               <Link to='/mypage/mycommunity'>
                 <button>{postInfo.length} 개</button>
               </Link>

@@ -3,6 +3,7 @@ import { ReactComponent as Exit } from 'assets/icons/Exit.svg';
 import Button from 'components/common/Button';
 import { checkedBadgeChange } from 'api/fetcher';
 import { useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { setSelectedBadge } from 'store/selectedBadgeSlice';
 
 interface BadgeModalProps {
@@ -16,6 +17,7 @@ interface BadgeModalProps {
 
 function BadgeModal({ type, name, imgSrc, isGet, info, handleShowModal }: BadgeModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -42,7 +44,8 @@ function BadgeModal({ type, name, imgSrc, isGet, info, handleShowModal }: BadgeM
     try {
       await checkedBadgeChange(type);
       console.log('뱃지 변경에 성공했습니다', type);
-      setSelectedBadge({ type });
+      const badge = type;
+      dispatch(setSelectedBadge({ badge }));
       handleShowModal();
     } catch (error) {
       console.error('대표 뱃지 변경 실패', error);

@@ -1,22 +1,24 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 interface SelectedBadgeState {
-  type: string;
+  badge: string;
+  name: string;
 }
 
 const initialState: SelectedBadgeState = {
-  type: '신규',
+  badge: '신규',
+  name: '신규유저',
 };
 
 const selectedBadgeSlice = createSlice({
   name: 'SelectedBadge',
   initialState,
   reducers: {
-    setSelectedBadge: (state, action: PayloadAction<SelectedBadgeState>) => {
-      state.type = action.payload.type;
+    setSelectedBadge: (state, action) => {
+      state.badge = action.payload.badge;
     },
   },
 });
 
 export const { setSelectedBadge } = selectedBadgeSlice.actions;
-export default selectedBadgeSlice.reducer;
+export default selectedBadgeSlice;
