@@ -85,40 +85,48 @@ export default function EditedDiary(props: {
       <div className={styles.recordContainer}>
         <span>기록</span>
         <div className={styles.recondWrapper}>
-          <img alt='selectimg' src={selectedImage} className={styles.defaultImg} onClick={handleImageClick} />
-          <input
-            placeholder='사진'
-            disabled={true}
-            type='file'
-            className={styles.inputImg}
-            ref={hiddenFileInput}
-            style={{ display: 'none' }}
-            onChange={(event) => HandleImageChange(event, setSelectedImage, setFormData)}
-          />
+          <div className={styles.photo}>
+            <img alt='selectimg' src={selectedImage} className={styles.defaultImg} onClick={handleImageClick} />
+            <input
+              placeholder='사진'
+              disabled={true}
+              type='file'
+              className={styles.inputImg}
+              ref={hiddenFileInput}
+              style={{ display: 'none' }}
+              onChange={(event) => HandleImageChange(event, setSelectedImage, setFormData)}
+            />
+          </div>
 
-          <input
-            placeholder='행동 한마디'
-            className={styles.inputContent}
-            onChange={(event) => {
-              HandleEachValue('title', event.target.value, setFormData);
-            }}
-            value={formData.title}
-          />
-          <textarea
-            placeholder='오늘 어떤 행동을 했나요 ?'
-            className={styles.inputContent}
-            rows={5}
-            onChange={(event) => {
-              HandleEachValue('content', event.target.value, setFormData);
-            }}
-            value={formData.content}
-          />
-          <ShareButton
-            toggle={formData.shareStatus}
-            onClick={() => HandleSharedClick('shareStatus', !formData.shareStatus, setFormData)}
-          />
-          <DiaryButton text='완료' onClick={() => HandleDiaryEditSubmit(formData, selectedValue)} />
-          <DiaryButton text='취소' onClick={() => props.onClick(!props.currentState)} />
+          <div className={styles.text}>
+            <input
+              placeholder='행동 한마디'
+              className={styles.inputContent}
+              onChange={(event) => {
+                HandleEachValue('title', event.target.value, setFormData);
+              }}
+              value={formData.title}
+            />
+            <textarea
+              placeholder='오늘 어떤 행동을 했나요 ?'
+              className={styles.inputContent}
+              rows={5}
+              onChange={(event) => {
+                HandleEachValue('content', event.target.value, setFormData);
+              }}
+              value={formData.content}
+            />
+          </div>
+          <div className={styles.shareButtonBox}>
+            <ShareButton
+              toggle={formData.shareStatus}
+              onClick={() => HandleSharedClick('shareStatus', !formData.shareStatus, setFormData)}
+            />
+          </div>
+          <div className={styles.postButtonBox}>
+            <DiaryButton text='완료' onClick={() => HandleDiaryEditSubmit(formData, selectedValue)} />
+            <DiaryButton text='취소' onClick={() => props.onClick(!props.currentState)} />
+          </div>
         </div>
       </div>
     </div>
