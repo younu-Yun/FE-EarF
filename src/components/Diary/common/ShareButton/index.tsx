@@ -7,6 +7,7 @@ export default function ShareButton(props: { toggle: boolean; onClick: () => voi
   return (
     <button className={styles.shareButton} onClick={props.onClick}>
       <img src={props.toggle ? sharedbtn : sharebtn} alt='Like Button' />
+      <span>자랑하기</span>
     </button>
   );
 }

@@ -115,7 +115,6 @@ export default function EditedDiary(props: {
             />
           </div>
           <div className={styles.shareButtonBox}>
-            <span>자랑하기</span>
             <ShareButton
               toggle={formData.shareStatus}
               onClick={() => HandleSharedClick('shareStatus', !formData.shareStatus, setFormData)}
