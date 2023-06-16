@@ -3,6 +3,8 @@ import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+// import { userJoin } from 'api/fetcher';
+
 import FormHead from 'components/User/FormHead';
 import FormButton from 'components/User/FormButton';
 import { DefaultInput } from 'components/User/DefaultInput';
@@ -89,6 +91,7 @@ const Join: React.FC = () => {
       navigate('/login');
     } catch (error) {
       console.error('회원가입 요청 중 오류 발생:', error);
+      alert('이미 등록된 아이디나 이메일입니다.');
     }
   };
 

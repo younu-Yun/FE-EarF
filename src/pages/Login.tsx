@@ -5,7 +5,8 @@ import { useDispatch } from 'react-redux';
 
 import { login } from 'store/loginSlice';
 import { saveAccessToken, saveRefreshToken } from 'api/token';
-import axios from 'axios';
+
+import { userLogin } from 'api/fetcher';
 
 import FormHead from 'components/User/FormHead';
 import FormButton from 'components/User/FormButton';
@@ -65,30 +66,26 @@ const Login: React.FC = () => {
         id: formData.id,
         password: formData.password,
       };
-      const response = await axios.post('http://34.64.216.86/api/auth', userData);
 
-      console.log('로그인에 성공했습니다:', response.data);
-      alert('로그인에 성공했습니다!');
+      const { id, password } = userData;
 
-      const { accessToken, refreshToken } = response.data;
+      const data: any = await userLogin(id, password);
+
+      // const response = await axios.post('http://34.64.216.86/api/auth', userData);
+
+      console.log(data.message, data);
+      alert(data.message);
+
+      const { accessToken, refreshToken } = data;
       saveAccessToken(accessToken);
       saveRefreshToken(refreshToken);
 
       dispatch(login());
 
       navigate('/');
-
-      /*
-          //Fetcher 사용
-          const data: any = await userLogin(id, password);
-          console.log('로그인에 성공했습니다:', data);
-
-          const { accessToken, refreshToken } = data;
-          SaveToken(accessToken);
-          SaveRefreshToken(refreshToken);
-          */
     } catch (error) {
       console.error('로그인 요청 중 오류 발생:', error);
+      alert('아이디나 비밀번호를 다시 입력해주세요.');
     }
   };
 
