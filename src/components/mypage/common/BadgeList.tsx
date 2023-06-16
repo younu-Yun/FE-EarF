@@ -8,6 +8,7 @@ interface BadgeInfo {
   isGet: boolean;
   url: string;
   info: string;
+  isChecked: boolean;
 }
 
 interface Badge {
@@ -28,6 +29,7 @@ interface User {
   transportNum: number;
   basketNum: number;
   refreshToken: string;
+  checkedBadge: string;
 }
 
 const initialBadgeList: BadgeInfo[] = [
@@ -37,6 +39,7 @@ const initialBadgeList: BadgeInfo[] = [
     isGet: true,
     url: getBadgeImageIsBorderPath('신규'),
     info: '반갑습니다! 회원님! 회원가입시 획득가능합니다.',
+    isChecked: false,
   },
   {
     type: '최초',
@@ -44,6 +47,7 @@ const initialBadgeList: BadgeInfo[] = [
     isGet: false,
     url: getBadgeImageIsBorderPath('최초'),
     info: '데일리 기록을 최초 작성 시 획득가능합니다.',
+    isChecked: false,
   },
   {
     type: '꾸준',
@@ -51,6 +55,7 @@ const initialBadgeList: BadgeInfo[] = [
     isGet: false,
     url: getBadgeImageIsBorderPath('꾸준'),
     info: '커뮤니티 게시물 5회 작성 시 획득 가능합니다.',
+    isChecked: false,
   },
   {
     type: '텀블',
@@ -58,6 +63,7 @@ const initialBadgeList: BadgeInfo[] = [
     isGet: false,
     url: getBadgeImageIsBorderPath('텀블'),
     info: '텀블러 태그 3회 이상 작성 시 획득 가능합니다.',
+    isChecked: false,
   },
   {
     type: '교통',
@@ -65,6 +71,7 @@ const initialBadgeList: BadgeInfo[] = [
     isGet: false,
     url: getBadgeImageIsBorderPath('교통'),
     info: '대중교통 태그 3회 이상 작성 시 획득 가능합니다.',
+    isChecked: false,
   },
   {
     type: '버켓',
@@ -72,6 +79,7 @@ const initialBadgeList: BadgeInfo[] = [
     isGet: false,
     url: getBadgeImageIsBorderPath('버켓'),
     info: '장바구니 태그 3회 이상 작성 시 획득 가능합니다.',
+    isChecked: false,
   },
   {
     type: '기록왕',
@@ -79,6 +87,7 @@ const initialBadgeList: BadgeInfo[] = [
     isGet: false,
     url: getBadgeImageIsBorderPath('기록왕'),
     info: '커뮤니티 게시물 10회 작성 시 획득 가능합니다.',
+    isChecked: false,
   },
 ];
 
@@ -88,10 +97,18 @@ function getBadgeTypes(user: User): string[] {
   return badgeTypes;
 }
 
-function updateBadgeList(badgeTypes: string[], badgeList: BadgeInfo[]): BadgeInfo[] {
+function getCheckedBadge(user: User) {
+  const { checkedBadge } = user;
+  return checkedBadge;
+}
+
+function updateBadgeList(badgeTypes: string[], badgeList: BadgeInfo[], checkedBadge: string): BadgeInfo[] {
   return badgeList.map((badge) => {
     if (badgeTypes.includes(badge.type)) {
-      return { ...badge, isGet: true };
+      if (badge.type === checkedBadge) {
+        return { ...badge, isGet: true, isChecked: true };
+      }
+      return { ...badge, isGet: true, isChecked: false };
     }
     return badge;
   });
@@ -104,7 +121,8 @@ const BadgeList = () => {
       try {
         const userData: User = (await userInfo()) as User;
         const badgeTypes = getBadgeTypes(userData);
-        const updatedBadges = updateBadgeList(badgeTypes, badgeList);
+        const checkedBadge = getCheckedBadge(userData);
+        const updatedBadges = updateBadgeList(badgeTypes, badgeList, checkedBadge);
         setBadgeList((prevBadge) => updatedBadges);
       } catch (error) {
         console.error('Error fetching user info:', error);

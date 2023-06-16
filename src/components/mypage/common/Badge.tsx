@@ -2,9 +2,12 @@ import { useState } from 'react';
 import styles from './Badge.module.scss';
 import BadgeModal from './BadgeModal';
 import BadgeList from './BadgeList';
+import { RootState } from 'store';
 import Title from 'components/common/PageTitle';
+import { useSelector } from 'react-redux';
 
 function Badge() {
+  const selectedBadge = useSelector((state: RootState) => state.selectedBadge);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const badgeList = BadgeList();
@@ -27,6 +30,7 @@ function Badge() {
               className={badge.isGet ? styles.items : `${styles.items} ${styles.notAcquired}`}
               onClick={() => handleShowModal(index)}
             >
+              {badge.type === selectedBadge.badge ? <div className={styles.checked}>대표뱃지</div> : null}
               <img src={badge.url} alt='뱃지 이미지' />
               <div className={styles.badgeName}>
                 <p>{badge.name}</p>
