@@ -115,7 +115,7 @@
     <tr>
         <th>사진</th>
          <td width="100" align="center">
-                <img src="" width="60" height="60">
+                <img src="![dnwjd](/uploads/1edea3dfbd17802fb3991e5fcab16b8f/dnwjd.png)" width="60" height="60">
             </a>
         </td>
         <td width="100" align="center">
