@@ -64,7 +64,6 @@ const FindId: React.FC = () => {
         email: formData.email,
         name: formData.name,
       };
-      console.log(userData);
       const response = await axios.post('http://34.64.216.86/api/user/loginid', userData);
       const foundUser = response.data;
 

@@ -43,7 +43,6 @@ function BadgeModal({ type, name, imgSrc, isGet, info, handleShowModal }: BadgeM
   const handleCheckedBadge = async () => {
     try {
       await checkedBadgeChange(type);
-      console.log('뱃지 변경에 성공했습니다', type);
       const badge = type;
       dispatch(setSelectedBadge({ badge }));
       handleShowModal();

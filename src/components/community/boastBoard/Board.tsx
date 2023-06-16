@@ -52,7 +52,6 @@ function Board() {
     boastData = basData;
     isLoading = isBasLoading;
     error = basError;
-    console.log(boastData);
   }
 
   const settings = {

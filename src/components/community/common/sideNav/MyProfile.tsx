@@ -10,7 +10,6 @@ function MyProfile() {
   const selectedBadge = useSelector((state: RootState) => state.selectedBadge);
   const { data: userInfo } = useGetUserInfoQuery();
   const { data: postInfo } = useGetMyQuestionQuery();
-  console.log(postInfo);
 
   return (
     <div className={styles.container}>

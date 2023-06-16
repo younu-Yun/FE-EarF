@@ -117,9 +117,6 @@ export const HandleDiaryEditSubmit: THandleDiarySubmit = (formData, selectedValu
     postFormData.append('content', content);
     postFormData.append('shareStatus', shareStatus.toString());
 
-    console.log(tag);
-    console.log(postFormData.get('tag'));
-
     axios
       .patch(`http://34.64.216.86/api/diary/${selectedValue}`, postFormData, {
         headers: { 'Content-Type': 'multipart/form-data' },
