@@ -83,7 +83,8 @@ function Edit() {
         imgFormData.append('profileImage', imageData);
         await userImgChange(imgFormData);
       }
-      navigate('/mypage/info');
+      navigate('/mypage/info', { replace: true });
+      window.location.reload();
     } catch (error) {
       console.error('수정에 실패했습니다.', error);
     }
