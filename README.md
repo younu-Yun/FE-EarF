@@ -115,7 +115,7 @@
     <tr>
         <th>사진</th>
          <td width="100" align="center">
-                <img src="![dnwjd](/uploads/1edea3dfbd17802fb3991e5fcab16b8f/dnwjd.png)" width="60" height="60">
+                <img src="![dnwjd](https://github.com/bicco2/bjAlgorithm/assets/77577434/590e7875-e76f-4a85-b0b8-41b6d7e65f3c)" width="60" height="60">
             </a>
         </td>
         <td width="100" align="center">
