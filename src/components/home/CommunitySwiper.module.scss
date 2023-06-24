@@ -1,0 +1,30 @@
+@import 'color.scss';
+
+.swiperContainer {
+  height: 30rem;
+  width: 100%;
+
+  & > div {
+    width: 100%;
+    height: 100%;
+  }
+
+  .community {
+    padding: 0 10px;
+  }
+
+  .swiperSlide {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #eeeeee;
+    border-radius: 1rem;
+    box-shadow: rgba(112, 112, 112, 0.2) 0px 2px 15px 0px;
+    overflow: hidden;
+  }
+
+  .board {
+    // margin: 0 0 2rem;
+    min-width: 40rem;
+    // min-height: 8rem;
+  }
+}

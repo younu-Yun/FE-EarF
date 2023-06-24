@@ -1,4 +1,5 @@
-import { useGetUserInfoQuery, useGetAllCommentsQuery, useCreateCommentMutation } from 'api/communityApiSlice';
+import { useGetAllCommentsQuery } from 'api/communityApiSlice';
+import { useGetUserInfoQuery, useCreateCommentMutation } from 'api/communityApiSlice';
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CommentItem from './CommentItem';
@@ -9,6 +10,7 @@ import profileDefault from 'assets/images/profileDefault.png';
 import getBadgeImagePath from 'utils/getBadgeImagePath';
 
 function UserComments() {
+  const myBadge = localStorage.getItem('badge');
   const [showAllComments, setShowAllComments] = useState(false);
   const [comment, setComment] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -41,7 +43,7 @@ function UserComments() {
     } else {
       try {
         const { data }: any = await createCommentMutation({ id: postId, comment });
-        console.log('댓글 생성 성공:', data);
+        setComment('');
       } catch (error) {
         console.log('댓글 생성 실패:', error);
       }
@@ -87,7 +89,7 @@ function UserComments() {
                     checkedBadge={comments.checkedBadge}
                     comment={comments.comment}
                     createdAt={comments.createdAt}
-                    numLikes={comments.numLikes}
+                    likeIds={comments.likeIds}
                   />
                 ))}
           </ul>
@@ -101,9 +103,7 @@ function UserComments() {
             ) : (
               <img src={profileDefault} className={styles.userProfile} />
             )}
-            {userInfo && (
-              <img src={getBadgeImagePath(userInfo?.checkedBadge)} className={styles.userBadge} alt='Badge' />
-            )}
+            {userInfo && myBadge && <img src={getBadgeImagePath(myBadge)} className={styles.userBadge} alt='Badge' />}
           </div>
           {!token ? (
             <textarea rows={1} placeholder='로그인 후 댓글 작성이 가능합니다.' className={styles.content} disabled />
@@ -112,6 +112,7 @@ function UserComments() {
               rows={1}
               placeholder='댓글을 입력해주세요.'
               className={styles.content}
+              spellCheck='false'
               value={comment}
               onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
                 autoResizeHeight();
