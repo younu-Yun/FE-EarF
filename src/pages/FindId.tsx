@@ -1,13 +1,15 @@
-import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import axios from 'axios';
 import styles from './FindId.module.scss';
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
+
+import { userFindId } from 'api/fetcher';
+
 import FormHead from 'components/User/FormHead';
 import FormButton from 'components/User/FormButton';
 import { DefaultInput } from 'components/User/DefaultInput';
 import { validateField } from 'components/User/validation';
 import DefaultModal from '../components/common/DefaultModal';
-// import { FindId } from 'components/common/Fetcher';
+
 import FindIDIllust from '../assets/images/FindIDIllust.png';
 import AlertCircle from '../assets/icons/AlertCircle.svg';
 
@@ -60,28 +62,18 @@ const FindId: React.FC = () => {
     e.preventDefault();
 
     try {
-      const userData = {
-        email: formData.email,
-        name: formData.name,
-      };
-      const response = await axios.post('http://34.64.216.86/api/user/loginid', userData);
-      const foundUser = response.data;
+      const { email, name } = formData;
+      const data: any = await userFindId(email, name);
 
-      /*
-        //Fetcher 사용
-        const data: any = await FindId(email, name);
-        const foundUser = data;
-        */
+      const foundUser = data;
 
       if (foundUser) {
         setFoundId(foundUser.id);
         setIdFoundWarning(false);
         setShowModal(true);
-        console.log(`찾은 아이디: ${foundUser.id}`);
       } else {
         setIdFoundWarning(true);
         setShowModal(false);
-        console.log('일치하는 사용자를 찾을 수 없습니다.');
       }
     } catch (error) {
       console.log('API 요청 중 에러 발생:', error);

@@ -1,14 +1,14 @@
 import styles from './FindPassword.module.scss';
 import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+
+import { userFindPassword } from 'api/fetcher';
 
 import FormHead from 'components/User/FormHead';
 import FormButton from 'components/User/FormButton';
 import { DefaultInput } from 'components/User/DefaultInput';
 import { validateField } from 'components/User/validation';
 
-// import { FindPassword } from 'components/common/Fetcher';
 import FindPWIllust from '../assets/images/FindPWIllust.png';
 
 interface FormData {
@@ -55,26 +55,17 @@ function FindPassword() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://34.64.216.86/api/user/reset', {
-        email: formData.email,
-      });
+      const { email } = formData;
+      const data: any = await userFindPassword(email);
 
-      alert(response.data);
-      setIsLoading(false);
-
-      /*
-      //Fetcher 사용
-      const data: any = await FindPassword(email);
       alert(data);
-      */
+      setIsLoading(false);
     } catch (error) {
       alert('이메일 발송 중 오류가 발생했습니다.');
       console.log(`이메일 발송 중 오류가 발생했습니다. ${error}`);
 
       setIsLoading(false);
     }
-
-    console.log('Send email to:', formData.email);
   };
 
   return (

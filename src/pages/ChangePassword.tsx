@@ -1,19 +1,17 @@
 import styles from './ChangePassword.module.scss';
 import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-
 import { clearLocalStorage } from 'api/token';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from 'store';
+import { userChangePassword } from 'api/fetcher';
+
+import { useDispatch } from 'react-redux';
 import { logout } from 'store/loginSlice';
 
 import FormHead from 'components/User/FormHead';
 import FormButton from 'components/User/FormButton';
 import { DefaultInput } from 'components/User/DefaultInput';
 import { validateField } from 'components/User/validation';
-// import { ChangePassword } from 'components/common/Fetcher';
 
 import ChangePWIllust from '../assets/images/ChangePWIllust.png';
 
@@ -77,28 +75,11 @@ const ChangePassword: React.FC = () => {
     e.preventDefault();
 
     try {
-      //비밀번호 변경 성공 시
-      const passwordData = {
-        currentPassword: formData.currentPassword,
-        password: formData.password,
-      };
+      const { currentPassword, password } = formData;
+      const data: any = await userChangePassword(currentPassword, password);
 
-      const response = await axios.post('http://34.64.216.86/api/user/change', passwordData);
-
-      // console.log(response.data);
       handleLogout();
-
-      /*
-      //Fetcher 사용
-      const data: any = await ChangePassword(currentPassword, newPassword);
-      
-      alert('비밀번호 변경이 완료되었습니다. 다시 로그인해주세요.');
-      console.log(data);
-
-      navigate('/login');
-      */
     } catch (error) {
-      // 비밀번호 변경 실패 시
       console.error('비밀번호 변경에 실패했습니다:', error);
     }
   };
