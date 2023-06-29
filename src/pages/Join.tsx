@@ -1,9 +1,8 @@
 import styles from './Join.module.scss';
 import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
-// import { userJoin } from 'api/fetcher';
+import { userJoin } from 'api/fetcher';
 
 import FormHead from 'components/User/FormHead';
 import FormButton from 'components/User/FormButton';
@@ -74,18 +73,10 @@ const Join: React.FC = () => {
     e.preventDefault();
 
     try {
-      const userData = {
-        id: formData.id,
-        password: formData.password,
-        name: formData.name,
-        email: formData.email,
-        phoneNumber: formData.phone,
-      };
-
-      const response = await axios.post('http://34.64.216.86/api/user/register', userData);
+      const { id, password, name, email, phone: phoneNumber } = formData;
+      const data: any = await userJoin(id, password, name, email, phoneNumber);
 
       alert('회원가입에 성공했습니다. 로그인 해주세요!');
-
       navigate('/login');
     } catch (error) {
       console.error('회원가입 요청 중 오류 발생:', error);
@@ -165,7 +156,6 @@ const Join: React.FC = () => {
                 />
               </div>
             </fieldset>
-
             <FormButton>
               <button type='submit' disabled={!formValid}>
                 가입하기

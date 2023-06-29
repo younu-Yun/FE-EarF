@@ -62,16 +62,9 @@ const Login: React.FC = () => {
     e.preventDefault();
 
     try {
-      const userData = {
-        id: formData.id,
-        password: formData.password,
-      };
-
-      const { id, password } = userData;
+      const { id, password } = formData;
 
       const data: any = await userLogin(id, password);
-
-      // const response = await axios.post('http://34.64.216.86/api/auth', userData);
       alert(data.message);
 
       const { accessToken, refreshToken } = data;
@@ -79,7 +72,6 @@ const Login: React.FC = () => {
       saveRefreshToken(refreshToken);
 
       dispatch(login());
-
       navigate('/');
     } catch (error) {
       console.error('로그인 요청 중 오류 발생:', error);

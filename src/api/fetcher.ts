@@ -26,7 +26,7 @@ export async function userJoin(userId: string, password: string, name: string, e
     email: email,
     phoneNumber: phone,
   };
-  return await Api.post(domain, 'user/register', data);
+  return await Api.post(domain, 'user/register', data, false);
 }
 
 //아이디찾기
@@ -35,7 +35,7 @@ export async function userFindId(email: string, name: string) {
     email: email,
     name: name,
   };
-  return await Api.post(domain, 'user/loginid', data);
+  return await Api.post(domain, 'user/loginid', data, false);
 }
 
 //비밀번호 찾기
@@ -43,14 +43,14 @@ export async function userFindPassword(email: string) {
   const data = {
     email: email,
   };
-  return await Api.post(domain, 'user/reset', data);
+  return await Api.post(domain, 'user/reset', data, false);
 }
 
 //비밀번호 변경
-export async function userChangePassword(currentPassword: string, newPassword: string) {
+export async function userChangePassword(currentPassword: string, password: string) {
   const data = {
     currentPassword: currentPassword,
-    newPassword: newPassword,
+    password: password,
   };
   return await Api.post(domain, 'user/change', data);
 }
