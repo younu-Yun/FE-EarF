@@ -70,37 +70,49 @@ function FindPassword() {
 
   return (
     <div className={styles.container}>
+      <div className={styles.background}>
+        <div></div>
+        <div></div>
+      </div>
       <div>
-        <div className={styles.image}>
-          <img src={FindPWIllust} alt='아이디찾기 일러스트' />
+        <div className={styles.imageBox}>
+          <div className={styles.image}>
+            <img src={FindPWIllust} alt='아이디찾기 일러스트' />
+          </div>
         </div>
-        <div className={styles.form}>
-          <form onSubmit={handleSubmit}>
-            <fieldset>
-              <legend>비밀번호 찾기</legend>
-              <FormHead
-                heading={'비밀번호 찾기'}
-                description={'비밀번호 변경은 마이페이지 → 회원정보수정에서 변경 가능합니다.'}
-              />
-              <div>
-                <DefaultInput
-                  label='이메일'
-                  type='text'
-                  id='email'
-                  value={formData.email}
-                  error={!validation.email && formData.email.length > 0}
-                  errorMessage='유효한 이메일 주소를 입력해주세요.'
-                  onChange={handleInputChange}
+        <div className={styles.infoBox}>
+          <div></div>
+          <div className={styles.form}>
+            <form onSubmit={handleSubmit}>
+              <fieldset>
+                <legend>비밀번호 찾기</legend>
+                <FormHead
+                  heading={'비밀번호 찾기'}
+                  description={'비밀번호 변경은 마이페이지 → 회원정보수정에서 변경 가능합니다.'}
                 />
-              </div>
-            </fieldset>
-            <FormButton>
-              <Link to='/login'>로그인</Link>
-              <button type='submit' disabled={!formValid || isLoading}>
-                {isLoading ? '대기중' : '비밀번호 발송'}
-              </button>
-            </FormButton>
-          </form>
+                <div>
+                  <DefaultInput
+                    label='이메일'
+                    type='text'
+                    id='email'
+                    value={formData.email}
+                    error={!validation.email && formData.email.length > 0}
+                    errorMessage='유효한 이메일 주소를 입력해주세요.'
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </fieldset>
+              <FormButton>
+                <Link to='/login'>로그인</Link>
+                <button type='submit' disabled={!formValid || isLoading}>
+                  {isLoading ? '대기중' : '비밀번호 발송'}
+                </button>
+              </FormButton>
+            </form>
+          </div>
+          <div className={styles.formBottom}>
+            <p>Copyright ⓒ 2023 - 2023 EarF Inc. All Rights Reserved.</p>
+          </div>
         </div>
       </div>
     </div>

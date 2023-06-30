@@ -12,7 +12,7 @@
     font-family: 'Montserrat Alternates';
     font-style: italic;
     font-weight: 900;
-    color: #24ae63;
+    color: $--color--primary;
   }
 }
 
@@ -36,5 +36,13 @@
   a {
     color: rgb(57, 122, 246);
     text-decoration: underline;
+  }
+}
+
+@media screen and (max-width: 724px) {
+  .title {
+    h2 {
+      font-size: 2.4rem;
+    }
   }
 }

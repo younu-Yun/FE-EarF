@@ -83,44 +83,59 @@ const FindId: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
+        <div className={styles.background}>
+          <div></div>
+          <div></div>
+        </div>
         <div>
-          <div className={styles.image}>
-            <img src={FindIDIllust} alt='아이디찾기 일러스트' />
+          <div className={styles.imageBox}>
+            <div className={styles.image}>
+              <img src={FindIDIllust} alt='아이디찾기 일러스트' />
+            </div>
           </div>
-          <div className={styles.form}>
-            <form onSubmit={handleSubmit}>
-              <fieldset>
-                <legend>아이디찾기</legend>
-                <FormHead heading={'아이디 찾기'} description={'아이디를 잊으셨나요? 이메일과 이름을 입력해주세요.'} />
-                <div>
-                  <DefaultInput
-                    label='이름'
-                    type='text'
-                    id='name'
-                    value={formData.name}
-                    error={!validation.name && formData.name.length > 0}
-                    errorMessage='이름은 2자 이상이어야 합니다.'
-                    onChange={handleInputChange}
+          <div className={styles.infoBox}>
+            <div></div>
+            <div className={styles.form}>
+              <form onSubmit={handleSubmit}>
+                <fieldset>
+                  <legend>아이디찾기</legend>
+                  <FormHead
+                    heading={'아이디 찾기'}
+                    description={'아이디를 잊으셨나요? 이메일과 이름을 입력해주세요.'}
                   />
-                  <DefaultInput
-                    label='이메일'
-                    type='text'
-                    id='email'
-                    value={formData.email}
-                    error={!validation.email && formData.email.length > 0}
-                    errorMessage='유효한 이메일 주소를 입력해주세요.'
-                    onChange={handleInputChange}
-                  />
+                  <div>
+                    <DefaultInput
+                      label='이름'
+                      type='text'
+                      id='name'
+                      value={formData.name}
+                      error={!validation.name && formData.name.length > 0}
+                      errorMessage='이름은 2자 이상이어야 합니다.'
+                      onChange={handleInputChange}
+                    />
+                    <DefaultInput
+                      label='이메일'
+                      type='text'
+                      id='email'
+                      value={formData.email}
+                      error={!validation.email && formData.email.length > 0}
+                      errorMessage='유효한 이메일 주소를 입력해주세요.'
+                      onChange={handleInputChange}
+                    />
 
-                  {idFoundWarning && <div className={styles.warning}>일치하는 아이디가 없습니다.</div>}
-                </div>
-              </fieldset>
-              <FormButton>
-                <button type='submit' disabled={!formValid}>
-                  아이디 찾기
-                </button>
-              </FormButton>
-            </form>
+                    {idFoundWarning && <div className={styles.warning}>일치하는 아이디가 없습니다.</div>}
+                  </div>
+                </fieldset>
+                <FormButton>
+                  <button type='submit' disabled={!formValid}>
+                    아이디 찾기
+                  </button>
+                </FormButton>
+              </form>
+            </div>
+            <div className={styles.formBottom}>
+              <p>Copyright ⓒ 2023 - 2023 EarF Inc. All Rights Reserved.</p>
+            </div>
           </div>
         </div>
       </div>
