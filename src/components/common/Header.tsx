@@ -8,7 +8,6 @@ import { logout } from 'store/loginSlice';
 
 import axios from 'axios';
 import { getToken, clearLocalStorage } from '../../api/token';
-import profileIcon from '../../assets/icons/profile.svg';
 import MainLogo from '../../assets/icons/MainLogo.svg';
 import { updateBadge } from 'api/fetcher';
 
@@ -109,11 +108,7 @@ function Header(): JSX.Element {
                 <span>안녕하세요, {userName}님</span>
               </div>
               <div className={styles.imgBox}>
-                {profileImage !== 'http://34.64.216.86/images/undefined' ? (
-                  <img src={profileImage} alt='profile' />
-                ) : (
-                  <img src={profileIcon} alt='profile' />
-                )}
+                {profileImage !== 'http://34.64.216.86/images/undefined' && <img src={profileImage} alt='profile' />}
               </div>
               {showSideMenu && (
                 <div className={styles.sideMenu}>

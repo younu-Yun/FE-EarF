@@ -88,7 +88,7 @@ const Login: React.FC = () => {
       <div>
         <div className={styles.imageBox}>
           <div className={styles.image}>
-            <img src={LoginIllust} alt='' />
+            <img src={LoginIllust} alt='로그인 일러스트' />
           </div>
         </div>
         <div className={styles.infoBox}>
