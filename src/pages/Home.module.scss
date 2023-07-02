@@ -1,288 +1,11 @@
 @import 'color.scss';
+@import '../components/home/Section.module.scss';
 
 .container {
-  padding: 130px 0 0;
+  padding: 13rem 0 0;
 
   * {
     scroll-behavior: smooth;
-  }
-}
-
-main {
-  section {
-    & > .inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 50px 150px;
-      margin: 0 auto;
-      width: 1140px;
-
-      .title {
-        padding: 0 0 5rem;
-
-        & > div {
-          padding: 0 0 2rem;
-
-          span {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #24ae63;
-            opacity: 0.5;
-          }
-
-          h3 {
-            font-size: 3.2rem;
-            font-weight: 700;
-            color: #24ae63;
-          }
-        }
-
-        p {
-          font-size: 1.6rem;
-          font-weight: 600;
-          line-height: 1.6;
-          color: $--color--text2;
-        }
-      }
-
-      .contents {
-        li {
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
-          gap: 1.5rem;
-          padding: 0 0 2rem;
-
-          & > div {
-            width: 3rem;
-            height: 3rem;
-          }
-
-          & > span {
-            font-size: 2rem;
-            font-weight: 700;
-          }
-        }
-      }
-    }
-  }
-
-  section.homeMain {
-    .inner {
-      align-items: stretch;
-      padding: 15rem 0 0 5rem;
-    }
-
-    .left {
-      width: 40%;
-
-      p {
-        display: block;
-        padding: 0 0 1.5rem;
-        font-size: 3.6rem;
-        font-weight: 300;
-      }
-
-      strong {
-        display: block;
-        padding: 0 0 4rem;
-        font-size: 4.2rem;
-        font-weight: 700;
-      }
-
-      .logo {
-        position: relative;
-        margin: 0 0 10rem;
-        padding-left: 2rem;
-
-        & > div {
-          position: absolute;
-          display: block;
-
-          &:first-child {
-            top: 0;
-            left: -2rem;
-          }
-
-          &:nth-child(2n) {
-            bottom: -2rem;
-            right: 18%;
-            transform: rotate(60deg);
-          }
-        }
-
-        h1 {
-          position: relative;
-          display: inline-block;
-          font-size: 12rem;
-          font-weight: 900;
-          font-family: 'Montserrat Alternates';
-          font-style: italic;
-          line-height: 1;
-
-          &::after {
-            position: absolute;
-            bottom: -5px;
-            z-index: -1;
-            display: block;
-            content: '';
-            width: 100%;
-            height: 37px;
-            background: rgba(152, 218, 123, 0.5);
-          }
-        }
-      }
-
-      .buttonBox {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 2rem;
-
-        a,
-        button {
-          width: 15rem;
-          height: 5rem;
-          border-radius: 3rem;
-          font-size: 1.8rem;
-          font-weight: 600;
-          line-height: 5rem;
-          text-align: center;
-        }
-
-        button {
-          background: $--color--white;
-          border: 2px solid $--color--text1;
-          color: $--color--text1;
-        }
-
-        a {
-          background: $--color--text1;
-          border: 2px solid $--color--text1;
-          color: $--color--white;
-        }
-      }
-    }
-
-    .right {
-      position: relative;
-      flex: 0.6;
-
-      .greenBackground {
-        margin: 0 0 0 auto;
-        width: 50rem;
-        height: 36rem;
-        background: rgba(152, 218, 123, 0.5);
-        border-radius: 18rem;
-      }
-
-      .whiteBackground {
-        position: absolute;
-        top: 50%;
-        left: 20%;
-        transform: translateY(-50%);
-        display: block;
-
-        width: 30rem;
-        height: 35rem;
-        background: $--color--white;
-        border-radius: 4.5rem;
-        box-shadow: rgba(174, 174, 174, 0.3) 0px 2px 15px 0px;
-      }
-
-      .card {
-        position: absolute;
-        top: 50%;
-        left: 10%;
-        transform: translateY(-50%);
-        display: block;
-
-        width: 32rem;
-        height: 42rem;
-        background: $--color--white;
-        border-radius: 4.5rem;
-      }
-
-      .mascot {
-        position: absolute;
-        top: -20%;
-        right: 0;
-        transform: rotate(12deg);
-        z-index: 10;
-        display: block;
-        width: 36rem;
-        height: 36rem;
-      }
-    }
-  }
-
-  section.diary {
-    .inner {
-      padding: 20rem 5rem;
-    }
-  }
-
-  section.community {
-    .left {
-      flex: 0.4;
-    }
-    .contents {
-      position: relative;
-
-      .gradation {
-        position: absolute;
-        bottom: -30px;
-        z-index: 2;
-        background: rgb(255, 255, 255);
-        background: linear-gradient(
-          0deg,
-          rgba(255, 255, 255, 1) 0%,
-          rgba(255, 255, 255, 0.4) 65%,
-          rgba(255, 255, 255, 0) 100%
-        );
-        width: 100%;
-        height: 10rem;
-      }
-    }
-  }
-
-  section.badge {
-    & > .inner {
-      display: block;
-
-      .contents {
-        position: relative;
-        display: flex;
-        width: 114rem;
-        height: 20rem;
-        overflow: hidden;
-
-        ul {
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
-          animation: imageLoop 15s linear infinite;
-
-          li {
-            flex-shrink: 0;
-            padding: 0 2rem;
-            width: 14.28%;
-          }
-        }
-
-        @keyframes imageLoop {
-          0% {
-            -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
-          }
-          100% {
-            -webkit-transform: translate3d(-100%, 0, 0);
-            transform: translate3d(-100%, 0, 0);
-          }
-        }
-      }
-    }
   }
 }
 
@@ -295,8 +18,8 @@ main {
     align-items: center;
     flex-direction: column;
     margin: 0 auto;
-    width: 1140px;
-    min-height: 500px;
+    max-width: 114rem;
+    min-height: 50rem;
     text-align: center;
 
     h2 {
@@ -317,6 +40,32 @@ main {
       font-weight: 700;
       line-height: 6rem;
       color: $--color--white;
+    }
+  }
+}
+
+@media screen and (max-width: 895px) {
+}
+
+@media screen and (max-width: 724px) {
+  .link {
+    background: rgba(152, 218, 123, 0.5);
+
+    & > div {
+      min-height: 30rem;
+
+      h2 {
+        padding: 0 0 3rem;
+        font-size: 2.8rem;
+      }
+
+      a {
+        width: auto;
+        padding: 0 5rem;
+        height: 5rem;
+        font-size: 2rem;
+        line-height: 5rem;
+      }
     }
   }
 }
