@@ -5,9 +5,9 @@ footer {
 
   > div {
     display: block;
-    width: 1140px;
-    min-height: 200px;
-    padding: 50px 10px 20px;
+    max-width: 114rem;
+    min-height: 20rem;
+    padding: 5rem 1.5rem 2rem;
     margin: 0 auto;
   }
 }
@@ -16,7 +16,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 0 15px;
+  padding: 0 0 1.5rem;
   border-bottom: 1px solid $--color--border;
 
   > div {
@@ -26,10 +26,10 @@ footer {
 
     .logo {
       display: block;
-      margin-right: 20px;
+      margin-right: 2rem;
       font-size: 2.4rem;
       font-weight: 900;
-      width: 120px;
+      width: 12rem;
     }
   }
 
@@ -42,10 +42,10 @@ footer {
       li {
         span {
           position: relative;
-          padding: 0 20px;
+          padding: 0 2rem;
           border-right: 1px solid $--color--border;
-          font-size: 14px;
-          letter-spacing: 1px;
+          font-size: 1.4rem;
+          letter-spacing: 0.1rem;
           color: $--color--text2;
         }
 
@@ -63,12 +63,12 @@ footer {
       align-items: center;
 
       li {
-        padding: 0 8px;
+        padding: 0 0.8rem;
         cursor: pointer;
 
         img {
-          width: 25px;
-          height: 25px;
+          width: 2.5rem;
+          height: 2.5rem;
         }
       }
     }
@@ -80,19 +80,19 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 30px 0;
+    padding: 3rem 0;
 
     li > div {
-      padding-bottom: 20px;
+      padding-bottom: 2rem;
     }
   }
 
   strong {
     display: block;
-    padding: 0 0 7px;
-    font-size: 16px;
+    padding: 0 0 0.7rem;
+    font-size: 1.6rem;
     font-weight: 700;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.05rem;
     color: $--color--text2;
   }
 
@@ -100,34 +100,109 @@ footer {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: 500;
     color: $--color--text2;
 
     img {
       display: block;
-      width: 20px;
-      height: 20px;
-      margin-right: 10px;
+      width: 2rem;
+      height: 2rem;
+      margin-right: 1rem;
     }
   }
 
   p {
     display: block;
-    font-size: 13px;
+    font-size: 1.3rem;
     line-height: 1.7;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.03rem;
     color: $--color--text2;
   }
 }
 
 .footer_etc {
-  padding: 15px 0 0;
-  border-top: 1px solid $--color--border;
+  padding: 1.5rem 0 0;
+  border-top: 0.1rem solid $--color--border;
   text-align: center;
 
   p {
-    font-size: 12px;
+    font-size: 1.2rem;
     color: $--color--text2;
+  }
+}
+
+@media screen and (max-width: 895px) {
+  .footer_info {
+    ul {
+      flex-wrap: wrap;
+
+      li {
+        display: block;
+        padding: 0 0 2rem;
+        width: 50%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 724px) {
+  footer {
+    > div {
+      padding: 3rem 1.5rem 2rem;
+    }
+  }
+
+  .footer_top {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+
+    > div {
+      .logo {
+        display: none;
+      }
+    }
+
+    .right {
+      padding: 0 0 2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer_info {
+    ul {
+      flex-wrap: wrap;
+      gap: 3rem;
+
+      li {
+        display: block;
+        padding: 0;
+        width: 100%;
+        text-align: center;
+
+        > div {
+          padding-bottom: 0;
+        }
+
+        span {
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  .footer_top {
+    padding: 0 0 1rem;
+    .left {
+      ul {
+        li {
+          span {
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
   }
 }
