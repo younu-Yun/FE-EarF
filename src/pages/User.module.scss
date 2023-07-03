@@ -175,3 +175,9 @@
     display: none;
   }
 }
+
+@media screen and (max-width: 724px) {
+  .infoBox {
+    overflow-y: unset;
+  }
+}

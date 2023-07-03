@@ -8,7 +8,7 @@ import { logout } from 'store/loginSlice';
 
 import axios from 'axios';
 import { getToken, clearLocalStorage } from '../../api/token';
-import MainLogo from '../../assets/icons/MainLogo.svg';
+import MainLogo from '../../assets/images/logo.png';
 import { updateBadge } from 'api/fetcher';
 
 function Header(): JSX.Element {
@@ -21,7 +21,6 @@ function Header(): JSX.Element {
 
   const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn);
 
-  // 로그아웃시 access, refrest 토큰 제거
   const handleLogout = () => {
     clearLocalStorage();
     navigate('/login');
@@ -80,7 +79,6 @@ function Header(): JSX.Element {
             <div>
               <img src={MainLogo} alt='메인로고' />
             </div>
-            <strong>EarF</strong>
           </Link>
           <ul className={styles.menu}>
             <li>

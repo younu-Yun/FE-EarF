@@ -42,15 +42,9 @@ header {
   gap: 1rem;
 
   & > div {
-    width: 5rem;
-    height: 5rem;
-  }
-
-  strong {
-    font-size: 4rem;
-    font-weight: 900;
-    font-family: 'Montserrat Alternates';
-    font-style: italic;
+    width: 15rem;
+    height: auto;
+    transition: transform 0.5s ease-out;
   }
 }
 
@@ -146,5 +140,46 @@ header {
   }
 }
 
-@media screen and (max-width: 895px) {
+@media screen and (max-width: 724px) {
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    margin: 1rem auto;
+    padding: 0 1.5rem;
+    max-width: 114rem;
+    transition: transform 0.5s ease-out;
+  }
+
+  .inner {
+    padding: 0 5vw;
+    height: 6rem;
+    border-radius: 3rem;
+  }
+
+  .logo {
+    & > div {
+      width: 11rem;
+      height: auto;
+    }
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .login {
+    display: none;
+  }
+
+  .loginButton {
+    padding: 0 1.5rem;
+    height: 4rem;
+    border-radius: 3rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 3.8rem;
+  }
 }
