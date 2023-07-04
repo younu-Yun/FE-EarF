@@ -71,6 +71,10 @@
 }
 
 @media screen and (max-width: 480px) {
+  .container {
+    padding: 11rem 0 0;
+  }
+
   .link {
     & > div {
       min-height: 25rem;
