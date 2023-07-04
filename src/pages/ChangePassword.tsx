@@ -86,54 +86,65 @@ const ChangePassword: React.FC = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.background}>
+        <div></div>
+        <div></div>
+      </div>
       <div>
-        <div className={styles.image}>
-          <img src={ChangePWIllust} alt='아이디찾기 일러스트' />
+        <div className={styles.imageBox}>
+          <div className={styles.image}>
+            <img src={ChangePWIllust} alt='아이디찾기 일러스트' />
+          </div>
         </div>
+        <div className={styles.infoBox}>
+          <div></div>
+          <div className={styles.form}>
+            <form onSubmit={handleSubmit}>
+              <fieldset>
+                <legend>비밀번호 변경</legend>
+                <FormHead heading={'비밀번호 변경'} description={'비밀번호를 변경해주세요.'} />
+                <div>
+                  <DefaultInput
+                    label='현재 비밀번호'
+                    type='password'
+                    id='currentPassword'
+                    value={formData.currentPassword}
+                    error={!validation.currentPassword && formData.currentPassword.length > 0}
+                    errorMessage='비밀번호는 8자 이상이어야 합니다.'
+                    onChange={handleInputChange}
+                  />
 
-        <div className={styles.form}>
-          <form onSubmit={handleSubmit}>
-            <fieldset>
-              <legend>비밀번호 변경</legend>
-              <FormHead heading={'비밀번호 변경'} description={'비밀번호를 변경해주세요.'} />
-              <div>
-                <DefaultInput
-                  label='현재 비밀번호'
-                  type='password'
-                  id='currentPassword'
-                  value={formData.currentPassword}
-                  error={!validation.currentPassword && formData.currentPassword.length > 0}
-                  errorMessage='비밀번호는 8자 이상이어야 합니다.'
-                  onChange={handleInputChange}
-                />
+                  <DefaultInput
+                    label='새 비밀번호'
+                    type='password'
+                    id='password'
+                    value={formData.password}
+                    error={!validation.password && formData.password.length > 0}
+                    errorMessage='비밀번호는 8자 이상이어야 합니다.'
+                    onChange={handleInputChange}
+                  />
 
-                <DefaultInput
-                  label='새 비밀번호'
-                  type='password'
-                  id='password'
-                  value={formData.password}
-                  error={!validation.password && formData.password.length > 0}
-                  errorMessage='비밀번호는 8자 이상이어야 합니다.'
-                  onChange={handleInputChange}
-                />
-
-                <DefaultInput
-                  label='비밀번호 확인'
-                  type='password'
-                  id='passwordConfirm'
-                  value={formData.passwordConfirm}
-                  error={!validation.passwordConfirm && formData.passwordConfirm.length > 0}
-                  errorMessage='비밀번호와 비밀번호 확인이 일치하지 않습니다.'
-                  onChange={handleInputChange}
-                />
-              </div>
-            </fieldset>
-            <FormButton>
-              <button type='submit' disabled={!formValid}>
-                변경하기
-              </button>
-            </FormButton>
-          </form>
+                  <DefaultInput
+                    label='비밀번호 확인'
+                    type='password'
+                    id='passwordConfirm'
+                    value={formData.passwordConfirm}
+                    error={!validation.passwordConfirm && formData.passwordConfirm.length > 0}
+                    errorMessage='비밀번호와 비밀번호 확인이 일치하지 않습니다.'
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </fieldset>
+              <FormButton>
+                <button type='submit' disabled={!formValid}>
+                  변경하기
+                </button>
+              </FormButton>
+            </form>
+          </div>
+          <div className={styles.formBottom}>
+            <p>Copyright ⓒ 2023 - 2023 EarF Inc. All Rights Reserved.</p>
+          </div>
         </div>
       </div>
     </div>

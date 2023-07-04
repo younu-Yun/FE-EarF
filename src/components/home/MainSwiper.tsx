@@ -16,13 +16,15 @@ const MainSwiper = () => {
     <div className={styles.swiperContainer}>
       <Swiper // install Swiper modules
         modules={[Pagination, Autoplay]}
-        pagination={true}
+        pagination={{
+          clickable: true,
+        }}
         spaceBetween={10}
         slidesPerView={1}
         centeredSlides={true}
         loop={true}
         autoplay={{
-          delay: 3000,
+          delay: 1500,
           disableOnInteraction: false,
         }}
         className={styles.main}

@@ -1,4 +1,5 @@
 @import 'color.scss';
+@import './SideNav.module.scss';
 
 header {
   position: fixed;
@@ -6,32 +7,32 @@ header {
   left: 0;
   right: 0;
   z-index: 99;
-  margin: 25px auto;
-  padding: 0 15px;
-  width: 1140px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+  max-width: 114rem;
   transition: transform 0.5s ease-out;
-}
 
-.inner {
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 80px;
-  background: $--color--white;
-  border: 1px solid #eaeaea;
-  border-radius: 65px;
-  padding: 0 35px;
-  box-shadow: rgb(174 174 174 / 20%) 0px 2px 15px 0px;
-
-  & > div {
+  > .inner {
+    margin: 0 auto;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-  }
+    height: 8rem;
+    background: $--color--white;
+    border: 1px solid #eaeaea;
+    border-radius: 6.5rem;
+    padding: 0 3.5rem;
+    box-shadow: rgb(174 174 174 / 20%) 0px 2px 15px 0px;
 
-  & > div:first-child {
-    gap: 30px;
+    & > div {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    & > div:first-child {
+      gap: 3rem;
+    }
   }
 }
 
@@ -39,18 +40,12 @@ header {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 10px;
+  gap: 1rem;
 
   & > div {
-    width: 50px;
-    height: 50px;
-  }
-
-  strong {
-    font-size: 40px;
-    font-weight: 900;
-    font-family: 'Montserrat Alternates';
-    font-style: italic;
+    width: 15rem;
+    height: auto;
+    transition: transform 0.5s ease-out;
   }
 }
 
@@ -59,8 +54,8 @@ header {
 
   a {
     position: relative;
-    padding: 10px 15px;
-    font-size: 16px;
+    padding: 1rem 1rem;
+    font-size: 1.6rem;
     font-weight: 500;
     color: #666666;
     cursor: pointer;
@@ -72,16 +67,20 @@ header {
   }
 }
 
+.hamburgerMenu {
+  display: none;
+}
+
 .loginButton {
   display: block;
-  padding: 0 24px;
-  height: 48px;
+  padding: 0 2.4rem;
+  height: 4.8rem;
   background: #24ae63;
-  border: 2px solid $--color--white;
-  border-radius: 36px;
-  font-size: 16px;
+  border: 0.2rem solid $--color--white;
+  border-radius: 3.6rem;
+  font-size: 1.6rem;
   font-weight: 500;
-  line-height: 48px;
+  line-height: 4.8rem;
   color: $--color--white;
   transition: 0.3s ease-in-out;
 
@@ -95,7 +94,7 @@ header {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 12px 0;
+  padding: 1.2rem 0;
 
   .infoBox {
     color: $--color--text2;
@@ -104,9 +103,9 @@ header {
   }
 
   .imgBox {
-    margin-left: 15px;
-    width: 40px;
-    height: 40px;
+    margin-left: 1.5rem;
+    width: 4rem;
+    height: 4rem;
     overflow: hidden;
     border-radius: 50%;
 
@@ -143,5 +142,61 @@ header {
     &:hover {
       background: #f8f8f8;
     }
+  }
+}
+
+@media screen and (max-width: 724px) {
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    margin: 1rem auto;
+    padding: 0 1.5rem;
+    max-width: 114rem;
+    transition: transform 0.5s ease-out;
+
+    > .inner {
+      padding: 0 3vw;
+      height: 6rem;
+      border-radius: 3rem;
+    }
+  }
+
+  .hamburgerMenu {
+    display: block;
+    width: 3.5rem;
+    height: 3.5rem;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .logo {
+    & > div {
+      width: 11rem;
+      height: auto;
+    }
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .login {
+    display: none;
+  }
+
+  .loginButton {
+    display: none;
+    padding: 0 1.5rem;
+    height: 4rem;
+    border-radius: 3rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 3.8rem;
   }
 }
