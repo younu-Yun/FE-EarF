@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { store } from 'store';
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom';
@@ -8,9 +9,16 @@ import { getToken, refreshAccessToken } from 'api/token';
 
 function App() {
   const PrivateRoutes = () => {
-    refreshAccessToken();
-    const auth = getToken();
-    return auth ? <Outlet /> : <Navigate to='/login' />;
+    useEffect(() => {
+      const token = getToken();
+      if (token) {
+        refreshAccessToken();
+      }
+    }, []);
+
+    const token = getToken();
+
+    return token ? <Outlet /> : <Navigate to='/login' />;
   };
   return (
     <Provider store={store}>

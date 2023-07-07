@@ -34,7 +34,8 @@ function Header(): JSX.Element {
   };
 
   useEffect(() => {
-    if (isLoggedIn) {
+    console.log(isLoggedIn);
+    if (isLoggedIn === true) {
       const fetchUserData = async () => {
         const token = getToken();
 

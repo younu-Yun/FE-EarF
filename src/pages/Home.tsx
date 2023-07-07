@@ -10,11 +10,12 @@ import SectionDiary from 'components/home/SectionDiary';
 import SectionCommunity from 'components/home/SectionCommunity';
 
 function Home() {
-  const dispatch = useDispatch();
   const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn);
-
   const { data: userInfo } = useGetUserInfoQuery();
-  userInfo && localStorage.setItem('badge', userInfo.checkedBadge);
+
+  if (isLoggedIn && userInfo) {
+    localStorage.setItem('badge', userInfo.checkedBadge);
+  }
 
   return (
     <div className={styles.container}>
