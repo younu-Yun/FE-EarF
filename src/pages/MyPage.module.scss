@@ -3,3 +3,30 @@
 .container {
   @include container;
 }
+
+@media screen and (max-width: 895px) {
+  .container {
+    @include container;
+    margin: 3rem auto 10rem;
+
+    & > .inner {
+      flex-direction: column;
+      gap: 3rem;
+      padding: 0 1.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    @include container;
+    margin: 1rem auto 10rem;
+
+    & > .inner {
+      gap: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 724px) {
+}
