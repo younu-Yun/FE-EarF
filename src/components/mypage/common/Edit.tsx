@@ -102,77 +102,74 @@ function Edit() {
       <Title title='마이페이지 : 수정' />
 
       <div className={styles.contents}>
-        <div className={styles.form}>
-          <form>
-            <div>
-              <div className={styles.profileImageBox}>
-                <img src={previewImage ? previewImage : formData.profileImage} alt='프로필' />
-                <label htmlFor='profileImage' className={styles.camera}>
-                  <img src={plus} alt='카메라'></img>
-                </label>
+        <form className={styles.form}>
+          <div>
+            <div className={styles.profileImageBox}>
+              <img src={previewImage ? previewImage : formData.profileImage} alt='프로필' />
+              <label htmlFor='profileImage' className={styles.camera}>
+                <img src={plus} alt='카메라'></img>
+              </label>
+              <input
+                type='file'
+                id='profileImage'
+                name='profileImage'
+                accept='image/*'
+                onChange={handleImageChange}
+                style={{ display: 'none' }}
+              />
+            </div>
+            <button className={styles.defaultImgButton} onClick={handleDefaultImgChange}>
+              기본 이미지로 변경
+            </button>
+          </div>
+          <div className={styles.dataFiledSet}>
+            <div className={styles.dataFiled}>
+              <div className={styles.fixedData}>
+                <label htmlFor='id'>아이디</label>
+              </div>
+              <div className={`${styles.fetchData} ${styles.readOnly}`}>
+                <input type='text' id='id' name='id' value={formData.id} readOnly />
+              </div>
+            </div>
+
+            <div className={`${styles.dataFiled} ${styles.readOnly}`}>
+              <div className={styles.fixedData}>
+                <label htmlFor='email'>이메일</label>
+              </div>
+              <div className={`${styles.fetchData} ${styles.readOnly}`}>
+                <input type='email' id='email' name='email' value={formData.email} onChange={handleChange} readOnly />
+              </div>
+            </div>
+
+            <div className={styles.dataFiled}>
+              <div className={styles.fixedData}>
+                <label htmlFor='name'>이름</label>
+              </div>
+              <div className={styles.fetchData}>
+                <input type='text' id='name' name='name' value={formData.name} onChange={handleChange} />
+              </div>
+            </div>
+
+            <div className={styles.dataFiled}>
+              <div className={styles.fixedData}>
+                <label htmlFor='phoneNumber'>전화번호</label>
+              </div>
+              <div className={styles.fetchData}>
                 <input
-                  type='file'
-                  id='profileImage'
-                  name='profileImage'
-                  accept='image/*'
-                  onChange={handleImageChange}
-                  style={{ display: 'none' }}
+                  type='tel'
+                  id='phoneNumber'
+                  name='phoneNumber'
+                  value={formData.phoneNumber}
+                  onChange={handleChange}
                 />
               </div>
-              <button className={styles.defaultImgButton} onClick={handleDefaultImgChange}>
-                기본 이미지로 변경
-              </button>
             </div>
-            <div className={styles.dataFiledSet}>
-              <div className={styles.dataFiled}>
-                <div className={styles.fixedData}>
-                  <label htmlFor='id'>아이디</label>
-                </div>
-                <div className={`${styles.fetchData} ${styles.readOnly}`}>
-                  <input type='text' id='id' name='id' value={formData.id} readOnly />
-                </div>
-              </div>
-
-              <div className={`${styles.dataFiled} ${styles.readOnly}`}>
-                <div className={styles.fixedData}>
-                  <label htmlFor='email'>이메일</label>
-                </div>
-                <div className={`${styles.fetchData} ${styles.readOnly}`}>
-                  <input type='email' id='email' name='email' value={formData.email} onChange={handleChange} readOnly />
-                </div>
-              </div>
-
-              <div className={styles.dataFiled}>
-                <div className={styles.fixedData}>
-                  <label htmlFor='name'>이름</label>
-                </div>
-                <div className={styles.fetchData}>
-                  <input type='text' id='name' name='name' value={formData.name} onChange={handleChange} />
-                </div>
-              </div>
-
-              <div className={styles.dataFiled}>
-                <div className={styles.fixedData}>
-                  <label htmlFor='phoneNumber'>전화번호</label>
-                </div>
-                <div className={styles.fetchData}>
-                  <input
-                    type='tel'
-                    id='phoneNumber'
-                    name='phoneNumber'
-                    value={formData.phoneNumber}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.buttonContainer}>
-              <Button text={'완료'} onClick={handleUserInfoChange} />
-              <Button text={'비밀번호 변경'} className={'whiteButton'} onClick={useNavigateToChangePassword} />
-            </div>
-          </form>
-        </div>
+          </div>
+          <div className={styles.buttonContainer}>
+            <Button text={'완료'} onClick={handleUserInfoChange} />
+            <Button text={'비밀번호 변경'} className={'whiteButton'} onClick={useNavigateToChangePassword} />
+          </div>
+        </form>
       </div>
     </div>
   );
