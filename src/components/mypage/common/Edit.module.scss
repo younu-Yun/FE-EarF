@@ -3,8 +3,6 @@
 .edit {
   width: 100%;
 
-  width: 100%;
-
   .title {
     position: relative;
     padding: 0 0 3rem;
@@ -52,15 +50,6 @@
     border-bottom-right-radius: 1rem;
     /* box-shadow: rgba(174, 174, 174, 0.2) 0px 2px 15px 0px; */
     /* border: 20px solid rgba(217, 217, 217, 0.231372549); */
-  }
-}
-
-.form {
-  width: 60%;
-
-  form {
-    & > div {
-    }
   }
 }
 
