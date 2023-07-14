@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import Calender from 'components/Calender';
 import DiaryContainer from 'components/Diary/DiaryContainer';
-import changeView from 'assets/images/changeview.png';
 import IsReportDataDiary from 'components/Diary/IsReportDataDiary';
 
 import styles from './Calendar.module.scss';
@@ -21,10 +20,17 @@ export default function Calendar() {
           <Calender />
         </div>
         <div className={styles.post}>{!isReport ? <DiaryContainer /> : <IsReportDataDiary />}</div>
-        <div className={styles.toggleBox}>
-          <button onClick={handleReportClick}>
-            <img src={changeView} alt='changeviewbutton' />
-          </button>
+
+        <div className={styles.switchBox}>
+          <strong>{!isReport ? '통계보기' : '기록하기'}</strong>
+          <label
+            htmlFor='diarySwitch'
+            className={`${styles.switch} ${isReport ? styles.on : ''}`}
+            onClick={handleReportClick}
+          >
+            <span className={styles.slider}></span>
+          </label>
+          <input type='checkbox' id='diarySwitch' />
         </div>
       </div>
     </div>
