@@ -1,7 +1,72 @@
-.buttonBox {
-  .changeButton {
-    display: block;
-    width: 50px;
-    height: 50px;
+@import 'color.scss';
+
+.container {
+  position: relative;
+  margin: 20rem auto 15rem;
+  max-width: 114rem;
+  height: 100%;
+  border: none;
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 7rem 2rem 2rem;
+  background: $--color--background;
+  border-radius: 2rem;
+}
+
+.calendar,
+.post {
+  display: flex;
+  width: 50%;
+}
+
+.toggleBox {
+  position: absolute;
+  display: block;
+  top: 2rem;
+  right: 2rem;
+
+  img {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+@media screen and (max-width: 895px) {
+  .inner {
+    gap: 1rem;
+    padding: 7rem 1.5rem 2rem;
+    border-radius: 0;
+  }
+
+  .calendar {
+    width: 60%;
+  }
+
+  .post {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 724px) {
+  .container {
+    position: relative;
+    margin: 10rem auto;
+  }
+
+  .inner {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .calendar,
+  .post {
+    display: flex;
+    width: 100%;
   }
 }

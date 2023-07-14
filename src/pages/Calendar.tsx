@@ -15,17 +15,17 @@ export default function Calendar() {
   };
 
   return (
-    <div className='wrapper'>
-      <div className='inner'>
-        <div className='custom-calendar-container'>
+    <div className={styles.container}>
+      <div className={styles.inner}>
+        <div className={styles.calendar}>
           <Calender />
         </div>
-        <div className={styles.buttonBox}>
-          <button className={styles.changeButton} onClick={handleReportClick}>
+        <div className={styles.post}>{!isReport ? <DiaryContainer /> : <IsReportDataDiary />}</div>
+        <div className={styles.toggleBox}>
+          <button onClick={handleReportClick}>
             <img src={changeView} alt='changeviewbutton' />
           </button>
         </div>
-        {!isReport ? <DiaryContainer /> : <IsReportDataDiary />}
       </div>
     </div>
   );

@@ -3,16 +3,19 @@
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  padding: 20px 30px;
+  gap: 2rem;
+  padding: 3rem;
   width: 100%;
-  background: $--color--white;
-  border: none;
-  border-radius: 10px;
+  background: #ffffff;
+  border-radius: 2rem;
 }
 
 .postContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   width: 100%;
 }
 
@@ -20,37 +23,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 3rem;
+  width: 100%;
 
-  width: 50%;
-
-  margin: 10px auto;
-  padding: 0 10px;
-
-  font-size: 1.7rem;
-  font-weight: bold;
-}
-
-.tagImg {
-  width: 60px;
-  margin: 0 10px;
+  .tagImg {
+    width: 6rem;
+    height: 6rem;
+  }
 }
 
 .imgContainer {
-  width: 100%;
-  margin: 20px 0;
-  border-radius: 10px;
+  border-radius: 1rem;
   overflow: hidden;
+
+  img {
+    width: 100%;
+  }
 }
 
 .textContainer {
   position: relative;
-  margin: 10px;
-  padding: 20px 0;
 
   .postTitleDiv {
     display: block;
-    width: calc(100% - 85px);
-    margin: 0 0 20px;
+    width: calc(100% - 8.5rem);
+    margin: 0 0 2rem;
 
     h3 {
       position: relative;
@@ -80,27 +77,11 @@
   }
 }
 
-.inputContainer {
-  display: flex;
-  flex-direction: column;
-
-  padding: 40px;
-}
-.inputContent {
-  padding: 10px;
-
-  border: 1px solid #969696;
-  border-radius: 10px;
-
-  font-size: 1.7rem;
-  font-weight: bold;
-}
-
 .buttonBox {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 1rem;
   width: 100%;
 
   button {
@@ -108,13 +89,13 @@
     display: block;
     height: 4.5rem;
     border-radius: 0.5rem;
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: 600;
 
     &:first-child {
       background: $--color--primary;
       border: 1px solid $--color--primary;
-      color: white;
+      color: $--color--white;
     }
 
     &:last-child {
@@ -127,13 +108,38 @@
 
 .boastDiv {
   position: absolute;
-  top: 24px;
+  top: 0.3rem;
   right: 0;
-  padding: 2px 12px;
-  border-radius: 16px;
-  border: 1px solid #51a2ee;
-  background: #51a2ee;
+  padding: 0.2rem 1.2rem;
+  border-radius: 1.6rem;
+  border: 1px solid $--color--blue;
+  background: $--color--blue;
   color: #ffffff;
   font-size: 1.4rem;
   font-weight: 500;
+}
+
+@media screen and (max-width: 895px) {
+  .container {
+    padding: 3rem 1.5rem 1rem;
+    border-radius: 1rem;
+  }
+
+  .tagContainer {
+    flex: 0.2;
+  }
+
+  .recordContainer {
+    flex: 0.8;
+  }
+
+  .buttonBox {
+    button {
+      height: 4rem;
+      font-size: 1.6rem;
+    }
+  }
+}
+
+@media screen and (max-width: 724px) {
 }

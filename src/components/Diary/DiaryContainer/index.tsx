@@ -21,5 +21,5 @@ export default function DiaryContainer() {
     }
   });
 
-  return <div className={styles.container}>{isDataInDay ? <IsPostDataDiary /> : <DiaryPost />}</div>;
+  return <>{isDataInDay ? <IsPostDataDiary /> : <DiaryPost />}</>;
 }
