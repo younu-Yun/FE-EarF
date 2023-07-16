@@ -7,43 +7,37 @@
   gap: 1rem;
 }
 
-.bestPostContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  width: 100%;
-
-  background: white;
-  border: 1px solid $--color--border;
-  border-radius: 1rem;
-
-  & > :first-child {
-    font-size: 11pt;
-    font-weight: 500;
-  }
-
-  & > :last-child {
-    margin-bottom: 2rem;
-  }
-}
-
+.bestPostContainer,
 .newPostContainer {
   display: flex;
   flex-direction: column;
-
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem 1rem 1rem;
   width: 100%;
-
-  background: white;
   border: 1px solid $--color--border;
   border-radius: 1rem;
-
-  & > :first-child {
-    font-size: 11pt;
-    font-weight: 500;
-  }
 }
 
 .subTitle {
-  padding: 2rem 2rem 1rem 2rem;
+  position: relative;
+  display: block;
+  margin: 0 0 1rem;
+  padding: 0 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-indent: 10px;
+
+  &::after {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 0.8rem;
+    transform: translateY(-50%);
+    content: '';
+    width: 0.8rem;
+    height: 0.8rem;
+    background: $--color--primary;
+    border-radius: 50%;
+  }
 }

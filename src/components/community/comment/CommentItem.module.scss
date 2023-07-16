@@ -31,14 +31,13 @@
   gap: 1rem;
 
   .userName {
-    font-size: 12pt;
+    font-size: 1.4rem;
     font-weight: 500;
-    line-height: 1.2;
     color: $--color--text1;
   }
 
   .postingDate {
-    font-size: 9pt;
+    font-size: 1.3rem;
     font-weight: 300;
     color: $--color--text3;
 
@@ -59,7 +58,7 @@
   width: 100%;
   border: 1px solid $--color--border;
 
-  font-size: 12pt;
+  font-size: 1.4rem;
   font-weight: 300;
   color: $--color--text2;
 

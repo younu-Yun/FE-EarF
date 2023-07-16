@@ -1,20 +1,17 @@
 @import 'color.scss';
 
-.container {
+.bestPostList {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-
-  width: 100%;
-  padding: 1.4rem 2rem;
+  padding: 1rem;
 
   .title {
     display: block;
-    padding: 0 0 10px;
-    font-size: 10pt;
-    font-weight: 400;
+    padding: 0 0 1rem;
+    font-size: 1.4rem;
     line-height: 1.2;
   }
+
   .userReactionContainer {
     display: flex;
     justify-content: flex-end;
@@ -23,11 +20,6 @@
 
   &:hover {
     background: $--color--background;
+    border-radius: 0.5rem;
   }
-}
-
-.userName {
-  font-size: 10pt;
-  font-weight: 600;
-  color: $--color--text2;
 }

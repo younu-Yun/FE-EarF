@@ -16,7 +16,7 @@ function UnsolvedQuestion({ _id, title, createdAt, name, profileImage }: Unsolve
     <li id={_id}>
       <Link to={`/community/question/${_id}`} className={styles.questionContainer}>
         <UserProfile profileImage={profileImage} username={name} />
-        <p>{title}</p>
+        <strong>{title}</strong>
         <p>{getPostingTime(createdAt)}</p>
       </Link>
     </li>

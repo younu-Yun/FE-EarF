@@ -22,6 +22,14 @@ function UnsolvedQuestionSwiper() {
         pagination={{ clickable: true }}
         loop={true}
         modules={[Autoplay, Pagination]}
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+          },
+          480: {
+            slidesPerView: 2,
+          },
+        }}
       >
         {noCommentData &&
           noCommentData?.map((post) => (

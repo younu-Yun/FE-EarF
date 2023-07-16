@@ -3,38 +3,39 @@
 .container {
   display: flex;
   flex-direction: column;
-  // align-items: center;
   gap: 1.5rem;
-
   width: 100%;
 
-  .category {
+  > a {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 0.5rem;
-
-    cursor: pointer;
-    font-size: 11pt;
-    > :last-child {
-      color: $--color--primary;
-    }
   }
 }
 
-.buttonContainer {
-  display: flex;
-  justify-content: flex-end;
-  gap: 2rem;
+.category {
+  padding: 0 1.8rem;
+  height: 3.6rem;
+  background: $--color--white;
+  border: 1px solid $--color--primary;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 3.6rem;
+  color: $--color--primary;
+
+  &:hover {
+    background: $--color--primary;
+    color: $--color--white;
+  }
 }
+
 .contentContainer {
   display: flex;
   flex-direction: column;
   gap: 3rem;
-
   width: 100%;
   padding: 4rem 1rem 0 1rem;
-
   border-top: 1px solid $--color--border;
 }
 
@@ -47,42 +48,35 @@
   .userContainer {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
   }
   .userName {
-    font-size: 12pt;
-    font-weight: 500;
-    line-height: 1.2;
+    font-size: 1.6rem;
+    font-weight: 600;
     color: $--color--text1;
   }
 
   .postingDate {
-    font-size: 9pt;
-    font-weight: 300;
+    font-size: 1.3rem;
     color: $--color--text3;
-
-    & > :first-child {
-      margin-right: 0.5rem;
-    }
   }
 }
+
 .textContainer {
   display: flex;
   flex-direction: column;
   gap: 3rem;
 
   .title {
-    font-size: 18pt;
-    font-weight: 400;
+    font-size: 2rem;
+    font-weight: 500;
     color: $--color--text1;
   }
   .content {
     min-height: 10rem;
     width: 100%;
     border: none;
-
-    font-size: 12pt;
-    font-weight: 400;
+    font-size: 1.6rem;
     color: $--color--text2;
     white-space: pre-wrap;
   }
@@ -91,8 +85,12 @@
 .reactionContainer {
   display: flex;
   justify-content: space-between;
-  font-weight: 500;
-  color: $--color--text1;
+
+  span {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: $--color--text2;
+  }
 }
 
 .scrollContainer {
