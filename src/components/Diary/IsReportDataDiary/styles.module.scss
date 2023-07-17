@@ -1,19 +1,23 @@
+@import 'color.scss';
+
 .reportContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 3rem;
+  width: 100%;
+  background-color: $--color--white;
+  border-radius: 1rem;
 
-  width: 50%;
+  > span {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+}
 
-  padding: 20px 30px;
-  margin: 10px;
-
-  background-color: white;
-  border-radius: 10px;
-
-  & > span {
-    font-weight: bold;
-    font-size: 20px;
+@media screen and (max-width: 895px) {
+  .reportContainer {
+    padding: 3rem 1.5rem 1rem;
   }
 }

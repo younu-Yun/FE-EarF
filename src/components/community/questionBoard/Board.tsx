@@ -130,38 +130,36 @@ function Board() {
 
   return (
     <div className={styles.container}>
-      <div>
-        <form onSubmit={handleSubmitSearch} className={styles.searchContainer}>
-          <input
-            type='text'
-            className={styles.searchInput}
-            placeholder='궁금한 질문을 검색해보세요!'
-            onKeyPress={pressEnterSearch}
-            onChange={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setSearch(e.target.value);
-            }}
-          />
-          <button type='submit' className={styles.searchButton} onClick={handleClickSearch}>
-            <Chat />
-          </button>
-        </form>
-        <UnsolvedQuestionSwiper />
-      </div>
-      <div className={styles.boardTopContainer}>
+      <form onSubmit={handleSubmitSearch} className={styles.searchContainer}>
+        <input
+          type='text'
+          className={styles.searchInput}
+          placeholder='궁금한 질문을 검색해보세요!'
+          onKeyPress={pressEnterSearch}
+          onChange={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setSearch(e.target.value);
+          }}
+        />
+        <button type='submit' className={styles.searchButton} onClick={handleClickSearch}>
+          <Chat />
+        </button>
+      </form>
+
+      <UnsolvedQuestionSwiper />
+
+      <div className={styles.boardTop}>
         {!token ? (
           <button onClick={handlePostingClick} className={styles.postingButton}>
-            <Post className={styles.postingSvg} />
             작성하기
           </button>
         ) : (
           <Link to='/community/question/post' className={styles.postingButton}>
-            <Post className={styles.postingSvg} />
             작성하기
           </Link>
         )}
-        <div className={styles.sortingContainer}>
+        <div className={styles.sortingBox}>
           <ul>
             <li
               onClick={() => {
@@ -172,7 +170,6 @@ function Board() {
               }}
               className={activeSorting === 'recent' ? styles.activeSorting : ''}
             >
-              <Circle />
               최신순
             </li>
             <li
@@ -183,7 +180,6 @@ function Board() {
               }}
               className={activeSorting === 'comments' ? styles.activeSorting : ''}
             >
-              <Circle />
               댓글순
             </li>
             <li
@@ -194,7 +190,6 @@ function Board() {
               }}
               className={activeSorting === 'likes' ? styles.activeSorting : ''}
             >
-              <Circle />
               추천순
             </li>
           </ul>
@@ -228,6 +223,7 @@ function Board() {
             ))}
         </ul>
       )}
+
       <div>
         <div className={styles.pageContainer}>
           <Pagination
@@ -241,6 +237,7 @@ function Board() {
           />
         </div>
       </div>
+
       <div className={styles.scrollContainer}>
         <button onClick={scrollToTop} type='button'>
           <Top />

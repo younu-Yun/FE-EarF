@@ -1,25 +1,29 @@
 @import 'components/mypage/common/containerStyle.scss';
 
-.main {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 4rem;
+.container {
+  @include container;
+}
 
-  width: 1140px;
-  margin: 10rem auto;
+@media screen and (max-width: 895px) {
+  .container {
+    @include container;
+    margin: 3rem auto 10rem;
 
-  & > :first-child {
-    flex-shrink: 0;
-    width: 18rem;
+    & > .inner {
+      flex-direction: column;
+      gap: 3rem;
+      padding: 0 1.5rem;
+    }
   }
+}
 
-  & > :nth-child(2) {
-    flex-grow: 1;
-  }
-  & > :last-child {
-    flex-shrink: 0;
+@media screen and (max-width: 480px) {
+  .container {
+    @include container;
+    margin: 1rem auto 10rem;
 
-    width: 18rem;
+    & > .inner {
+      gap: 1rem;
+    }
   }
 }

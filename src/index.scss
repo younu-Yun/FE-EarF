@@ -1,12 +1,6 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
-
-html {
-  /* 62.5% of 16px browser font size is 10px */
-  /* 16px * 0.625 = 10px */
-  font-size: 62.5%;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,800;0,900;1,800;1,900&display=swap');
 
 html {
   /* 62.5% of 16px browser font size is 10px */
@@ -21,7 +15,7 @@ html {
   color: inherit;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Pretendard Variable', 'Spoqa Han Sans Neo', 'Noto Sans KR', 'sans-serif';
+  font-family: 'Pretendard Variable', 'Noto Sans KR', 'sans-serif';
 }
 
 *,

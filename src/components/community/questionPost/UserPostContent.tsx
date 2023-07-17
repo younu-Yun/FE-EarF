@@ -20,7 +20,6 @@ function UserPostContent(props: { postId: string }) {
             <div>
               <p className={styles.userName}>{postInfo.name}</p>
               <p className={styles.postingDate}>
-                <span>작성일</span>
                 <span>{getPostingDate(postInfo.createdAt)}</span>
               </p>
             </div>

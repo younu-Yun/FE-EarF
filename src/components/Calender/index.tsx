@@ -40,7 +40,7 @@ export default function Calender() {
     <>
       <Calendar
         locale='en'
-        className='container'
+        className='calendar-box'
         onChange={handleDateChange}
         value={selectedValue}
         minDetail='month'

@@ -79,6 +79,7 @@ export default function EditedDiary(props: {
           />
         </div>
       </div>
+      <div className={styles.divider}></div>
       <div className={styles.recordContainer}>
         <span>기록</span>
         <div className={styles.recondWrapper}>

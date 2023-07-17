@@ -33,6 +33,11 @@ function BoastItems({
         <img src={background} />
       </div>
       <div className={styles.contentContainer}>
+        <img
+          src={imageUrl}
+          className={`${styles.imgContainer} ${isActive ? styles.active : ''}`}
+          onClick={handleImgClick}
+        />
         <div className={styles.content}>
           <div className={styles.userProfileContainer}>
             <div className={styles.badgeContainer}>
@@ -56,11 +61,6 @@ function BoastItems({
           <HeartReaction postId={_id} likeIds={likeIds} isBoast={true} />
         </div>
       </div>
-      <img
-        src={imageUrl}
-        className={`${styles.imgContainer} ${isActive ? styles.active : ''}`}
-        onClick={handleImgClick}
-      />
     </div>
   );
 }

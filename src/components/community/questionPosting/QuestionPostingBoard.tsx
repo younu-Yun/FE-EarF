@@ -31,10 +31,9 @@ function QuestionPostingBoard() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.category}>
-        <span>커뮤니티</span>
-        <span>질문해요</span>
-      </div>
+      <Link to='/community'>
+        <span className={styles.category}>목록으로</span>
+      </Link>
       <PostingContent
         title={title}
         content={content}
