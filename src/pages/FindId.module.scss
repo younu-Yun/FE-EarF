@@ -1,95 +1,11 @@
 @import 'color.scss';
+@import './User.module.scss';
 
 .container {
-  margin: 0 auto;
-  height: 100vh;
-
-  > div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    & > div:first-child {
-      background: #b9dff6;
-      height: 100vh;
-      position: relative;
-      z-index: -1;
-      width: 65%;
-      img {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 24%;
-        width: 600px;
-      }
-    }
-
-    & > div:last-child {
-      position: relative;
-      top: 0;
-      right: calc(50% - 315px);
-      transform: translateX(50%);
-      z-index: 10;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-width: 450px;
-      width: 50%;
-      height: 100vh;
-      background: #ffffff;
-    }
-  }
-}
-
-.form {
-  flex: 1;
-
-  .logo {
-    span {
-      display: block;
-      padding: 0 0 10px;
-      font-size: 2rem;
-      font-family: 'Montserrat Alternates';
-      font-style: italic;
-      font-weight: 900;
-      color: #24ae63;
-    }
-  }
-
-  .title {
-    padding: 0 0 30px;
-
-    h2 {
-      font-size: 3rem;
-      font-weight: 700;
-      color: $--color--text1;
-    }
-
-    p {
-      display: block;
-      padding: 8px 0 0;
-      font-size: 1.4rem;
-      color: $--color--text2;
-      opacity: 0.8;
-
-      a {
-        color: rgb(57, 122, 246);
-        text-decoration: underline;
-      }
-    }
-  }
-
-  form {
-    fieldset {
-      margin: 0;
-      padding: 0;
-      border: 0;
-
-      legend {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        font-size: 0;
+  .background {
+    > div {
+      &:first-child {
+        background: $--color--userfindid;
       }
     }
   }

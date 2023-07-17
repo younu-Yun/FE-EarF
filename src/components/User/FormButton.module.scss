@@ -4,32 +4,32 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  padding: 20px 0 0;
+  gap: 1rem;
+  padding: 2rem 0 0;
   width: 100%;
 
   > a,
   button {
     display: block;
     flex: 1 1;
-    padding: 0 16px;
-    height: 48px;
-    border-radius: 5px;
+    padding: 0 1.6rem;
+    height: 4.8rem;
+    border-radius: 0.5rem;
     font-size: 1.6rem;
     font-weight: 500;
-    line-height: 48px;
+    line-height: 4.8rem;
     text-align: center;
     transition: background 0.3s ease-in-out;
 
     &:first-child {
       background: $--color--white;
-      border: 1px solid $--color--primary;
+      border: 0.1rem solid $--color--primary;
       color: $--color--primary;
     }
 
     &:last-child {
       background: $--color--primary;
-      border: 1px solid $--color--primary;
+      border: 0.1rem solid $--color--primary;
       color: #ffffff;
 
       &:hover {
@@ -42,6 +42,16 @@
       &:hover {
         background: $--color--primary;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 724px) {
+  .buttonBox {
+    > a,
+    button {
+      height: 4.5rem;
+      line-height: 4.5rem;
     }
   }
 }

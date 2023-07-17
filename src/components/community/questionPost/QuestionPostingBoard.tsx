@@ -27,13 +27,11 @@ function QuestionPostingBoard() {
   return (
     <div className={styles.container}>
       <Link to='/community'>
-        <div className={styles.category}>
-          <span>커뮤니티</span>
-          <span>질문해요</span>
-        </div>
+        <span className={styles.category}>목록으로</span>
       </Link>
       {postInfo && <UserPostContent postId={postInfo._id} />}
       {postInfo && <UserComments />}
+
       <div className={styles.scrollContainer}>
         <button onClick={scrollToTop} type='button'>
           <Top />

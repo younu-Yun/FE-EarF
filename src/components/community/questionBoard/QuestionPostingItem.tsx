@@ -22,31 +22,24 @@ function QuestionPostingItem({
   numLikes,
 }: QuestionPostingItemProps) {
   const { data: userInfo } = useGetUserInfoQuery();
-  let contentText;
-  if (content.split('.').length <= 4 && content.length >= 100) {
-    contentText = `${content.substring(0, 100)}`;
-  } else {
-    contentText = `${content.split('.').slice(0, 5).join('.')}  ...  더보기`;
-  }
 
   return (
-    <li className={styles.container}>
+    <li className={styles.boardList}>
       <div className={styles.userEditContainer}>
-        <span className={styles.postingDate}>{getPostingTime(createdAt)}</span>
+        <UserProfileImage username={name} profileImage={profileImage} />
         {userInfo && userInfo.id === id ? <PostEditButton _id={_id} /> : ''}
       </div>
+
       <Link to={`/community/question/${_id}`}>
         <div className={styles.contentContainer}>
           <div>
             <p className={styles.title}>{title}</p>
-            <p className={styles.content}>{contentText}</p>
+            <p className={styles.content}>{content}</p>
           </div>
         </div>
       </Link>
+
       <div className={styles.userContainer}>
-        <div>
-          <UserProfileImage username={name} profileImage={profileImage} />
-        </div>
         <div className={styles.userReactionContainer}>
           <div className={styles.reactionContainer}>
             <Heart />
@@ -57,6 +50,7 @@ function QuestionPostingItem({
             <span className={styles.reactionNumber}>{numComments}</span>
           </div>
         </div>
+        <span className={styles.postingDate}>{getPostingTime(createdAt)}</span>
       </div>
     </li>
   );

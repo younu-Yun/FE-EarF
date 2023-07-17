@@ -62,16 +62,9 @@ const Login: React.FC = () => {
     e.preventDefault();
 
     try {
-      const userData = {
-        id: formData.id,
-        password: formData.password,
-      };
-
-      const { id, password } = userData;
+      const { id, password } = formData;
 
       const data: any = await userLogin(id, password);
-
-      // const response = await axios.post('http://34.64.216.86/api/auth', userData);
       alert(data.message);
 
       const { accessToken, refreshToken } = data;
@@ -79,7 +72,6 @@ const Login: React.FC = () => {
       saveRefreshToken(refreshToken);
 
       dispatch(login());
-
       navigate('/');
     } catch (error) {
       console.error('로그인 요청 중 오류 발생:', error);
@@ -89,52 +81,64 @@ const Login: React.FC = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.background}>
+        <div></div>
+        <div></div>
+      </div>
       <div>
-        <div className={styles.image}>
-          <img src={LoginIllust} alt='' />
+        <div className={styles.imageBox}>
+          <div className={styles.image}>
+            <img src={LoginIllust} alt='로그인 일러스트' />
+          </div>
         </div>
-        <div className={styles.form}>
-          <form onSubmit={handleSubmit}>
-            <fieldset>
-              <legend>로그인</legend>
-              <FormHead heading={'로그인'} description={'실천하고, 기록하고, 공유해보세요!'} />
-              <div>
-                <DefaultInput
-                  label='아이디'
-                  type='text'
-                  id='id'
-                  value={formData.id}
-                  error={!validation.id && formData.id.length > 0}
-                  errorMessage='아이디는 영어와 숫자의 조합으로 8자 이상이어야 합니다.'
-                  onChange={handleInputChange}
-                />
-                <DefaultInput
-                  label='비밀번호'
-                  type='password'
-                  id='password'
-                  value={formData.password}
-                  error={!validation.password && formData.password.length > 0}
-                  errorMessage='비밀번호는 8자 이상이어야 합니다.'
-                  onChange={handleInputChange}
-                />
-              </div>
-              <FormButton>
-                <button type='submit' disabled={!formValid}>
-                  로그인
-                </button>
-              </FormButton>
-              <div className={styles.linkBox}>
-                <Link to='/find_id'>아이디 찾기</Link>
-                <Link to='/find_password'>비밀번호 찾기</Link>
-              </div>
-              <div className={styles.border}>
-                <span>회원이 아니신가요?</span>
-              </div>
-              <FormButton>
-                <Link to='/join'>회원가입</Link>
-              </FormButton>
-            </fieldset>
-          </form>
+        <div className={styles.infoBox}>
+          <div></div>
+          <div className={styles.form}>
+            <form onSubmit={handleSubmit}>
+              <fieldset>
+                <legend>로그인</legend>
+                <FormHead heading={'로그인'} description={'실천하고, 기록하고, 공유해보세요!'} />
+                <div>
+                  <DefaultInput
+                    label='아이디'
+                    type='text'
+                    id='id'
+                    value={formData.id}
+                    error={!validation.id && formData.id.length > 0}
+                    errorMessage='아이디는 영어와 숫자의 조합으로 8자 이상이어야 합니다.'
+                    onChange={handleInputChange}
+                  />
+                  <DefaultInput
+                    label='비밀번호'
+                    type='password'
+                    id='password'
+                    value={formData.password}
+                    error={!validation.password && formData.password.length > 0}
+                    errorMessage='비밀번호는 8자 이상이어야 합니다.'
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <FormButton>
+                  <button type='submit' disabled={!formValid}>
+                    로그인
+                  </button>
+                </FormButton>
+                <div className={styles.linkBox}>
+                  <Link to='/find_id'>아이디 찾기</Link>
+                  <Link to='/find_password'>비밀번호 찾기</Link>
+                </div>
+                <div className={styles.border}>
+                  <span>회원이 아니신가요?</span>
+                </div>
+                <FormButton>
+                  <Link to='/join'>회원가입</Link>
+                </FormButton>
+              </fieldset>
+            </form>
+          </div>
+          <div className={styles.formBottom}>
+            <p>Copyright ⓒ 2023 - 2023 EarF Inc. All Rights Reserved.</p>
+          </div>
         </div>
       </div>
     </div>

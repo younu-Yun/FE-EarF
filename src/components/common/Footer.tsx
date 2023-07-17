@@ -14,7 +14,7 @@ function Footer() {
     location.pathname === '/join' ||
     location.pathname === '/find_id' ||
     location.pathname === '/find_password' ||
-    location.pathname === '/change_passord';
+    location.pathname === '/change_password';
 
   if (hideFooter) {
     return null; // 경로가 해당되면 Footer를 비노출
@@ -43,10 +43,18 @@ function Footer() {
           <div className={styles.right}>
             <ul>
               <li>
-                <img src={githubIcon} alt='github' />
+                <a href='https://github.com/younu-Yun/FE-EarF' target='_blank' rel='noreferrer'>
+                  <img src={githubIcon} alt='github' />
+                </a>
               </li>
               <li>
-                <img src={gitlabIcon} alt='gitlab' />
+                <a
+                  href='https://kdt-gitlab.elice.io/sw_track/class_04/web_2_project/team09'
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  <img src={gitlabIcon} alt='gitlab' />
+                </a>
               </li>
             </ul>
           </div>

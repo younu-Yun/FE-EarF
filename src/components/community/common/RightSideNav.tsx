@@ -11,7 +11,7 @@ function RightSideNav() {
     <div>
       <aside className={styles.container}>
         <ul className={styles.bestPostContainer}>
-          <li className={styles.subTitle}>주간 인기글</li>
+          <strong className={styles.subTitle}>주간 인기글</strong>
           {bestLikesData &&
             bestLikesData?.map((post) => (
               <BestPost

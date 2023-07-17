@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Button from 'components/common/Button';
 import styles from './EditQuestionPostingBoard.module.scss';
 import { useGetCommunityPostQuery, useEditCommunityPostMutation } from 'api/communityApiSlice';
@@ -51,10 +51,9 @@ function EditQuestionPostingBoard() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.category}>
-        <span>커뮤니티</span>
-        <span>질문해요</span>
-      </div>
+      <Link to='/community'>
+        <span className={styles.category}>목록으로</span>
+      </Link>
       <form className={styles.contentContainer}>
         <input type='text' value={title} onChange={handleTitleChange} className={styles.title} spellCheck='false' />
         <textarea

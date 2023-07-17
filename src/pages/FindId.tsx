@@ -1,13 +1,15 @@
-import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import axios from 'axios';
 import styles from './FindId.module.scss';
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
+
+import { userFindId } from 'api/fetcher';
+
 import FormHead from 'components/User/FormHead';
 import FormButton from 'components/User/FormButton';
 import { DefaultInput } from 'components/User/DefaultInput';
 import { validateField } from 'components/User/validation';
 import DefaultModal from '../components/common/DefaultModal';
-// import { FindId } from 'components/common/Fetcher';
+
 import FindIDIllust from '../assets/images/FindIDIllust.png';
 import AlertCircle from '../assets/icons/AlertCircle.svg';
 
@@ -60,28 +62,18 @@ const FindId: React.FC = () => {
     e.preventDefault();
 
     try {
-      const userData = {
-        email: formData.email,
-        name: formData.name,
-      };
-      const response = await axios.post('http://34.64.216.86/api/user/loginid', userData);
-      const foundUser = response.data;
+      const { email, name } = formData;
+      const data: any = await userFindId(email, name);
 
-      /*
-        //Fetcher 사용
-        const data: any = await FindId(email, name);
-        const foundUser = data;
-        */
+      const foundUser = data;
 
       if (foundUser) {
         setFoundId(foundUser.id);
         setIdFoundWarning(false);
         setShowModal(true);
-        console.log(`찾은 아이디: ${foundUser.id}`);
       } else {
         setIdFoundWarning(true);
         setShowModal(false);
-        console.log('일치하는 사용자를 찾을 수 없습니다.');
       }
     } catch (error) {
       console.log('API 요청 중 에러 발생:', error);
@@ -91,44 +83,59 @@ const FindId: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
+        <div className={styles.background}>
+          <div></div>
+          <div></div>
+        </div>
         <div>
-          <div className={styles.image}>
-            <img src={FindIDIllust} alt='아이디찾기 일러스트' />
+          <div className={styles.imageBox}>
+            <div className={styles.image}>
+              <img src={FindIDIllust} alt='아이디찾기 일러스트' />
+            </div>
           </div>
-          <div className={styles.form}>
-            <form onSubmit={handleSubmit}>
-              <fieldset>
-                <legend>아이디찾기</legend>
-                <FormHead heading={'아이디 찾기'} description={'아이디를 잊으셨나요? 이메일과 이름을 입력해주세요.'} />
-                <div>
-                  <DefaultInput
-                    label='이름'
-                    type='text'
-                    id='name'
-                    value={formData.name}
-                    error={!validation.name && formData.name.length > 0}
-                    errorMessage='이름은 2자 이상이어야 합니다.'
-                    onChange={handleInputChange}
+          <div className={styles.infoBox}>
+            <div></div>
+            <div className={styles.form}>
+              <form onSubmit={handleSubmit}>
+                <fieldset>
+                  <legend>아이디찾기</legend>
+                  <FormHead
+                    heading={'아이디 찾기'}
+                    description={'아이디를 잊으셨나요? 이메일과 이름을 입력해주세요.'}
                   />
-                  <DefaultInput
-                    label='이메일'
-                    type='text'
-                    id='email'
-                    value={formData.email}
-                    error={!validation.email && formData.email.length > 0}
-                    errorMessage='유효한 이메일 주소를 입력해주세요.'
-                    onChange={handleInputChange}
-                  />
+                  <div>
+                    <DefaultInput
+                      label='이름'
+                      type='text'
+                      id='name'
+                      value={formData.name}
+                      error={!validation.name && formData.name.length > 0}
+                      errorMessage='이름은 2자 이상이어야 합니다.'
+                      onChange={handleInputChange}
+                    />
+                    <DefaultInput
+                      label='이메일'
+                      type='text'
+                      id='email'
+                      value={formData.email}
+                      error={!validation.email && formData.email.length > 0}
+                      errorMessage='유효한 이메일 주소를 입력해주세요.'
+                      onChange={handleInputChange}
+                    />
 
-                  {idFoundWarning && <div className={styles.warning}>일치하는 아이디가 없습니다.</div>}
-                </div>
-              </fieldset>
-              <FormButton>
-                <button type='submit' disabled={!formValid}>
-                  아이디 찾기
-                </button>
-              </FormButton>
-            </form>
+                    {idFoundWarning && <div className={styles.warning}>일치하는 아이디가 없습니다.</div>}
+                  </div>
+                </fieldset>
+                <FormButton>
+                  <button type='submit' disabled={!formValid}>
+                    아이디 찾기
+                  </button>
+                </FormButton>
+              </form>
+            </div>
+            <div className={styles.formBottom}>
+              <p>Copyright ⓒ 2023 - 2023 EarF Inc. All Rights Reserved.</p>
+            </div>
           </div>
         </div>
       </div>

@@ -1,16 +1,18 @@
 import styles from './Header.module.scss';
 import { useState, useEffect, MouseEvent } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { getToken, clearLocalStorage } from '../../api/token';
+import { updateBadge } from 'api/fetcher';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store';
 import { logout } from 'store/loginSlice';
 
-import axios from 'axios';
-import { getToken, clearLocalStorage } from '../../api/token';
-import profileIcon from '../../assets/icons/profile.svg';
-import MainLogo from '../../assets/icons/MainLogo.svg';
-import { updateBadge } from 'api/fetcher';
+import SideNav from './SideNav';
+
+import MainLogo from 'assets/images/logo.png';
+import Menu from 'assets/icons/Menu.svg';
 
 function Header(): JSX.Element {
   const navigate = useNavigate();
@@ -19,10 +21,10 @@ function Header(): JSX.Element {
   const [userName, setUserName] = useState('');
   const [profileImage, setProfileImage] = useState('');
   const [showSideMenu, setShowSideMenu] = useState(false);
+  const [isSideNavVisible, setIsSideNavVisible] = useState(false);
 
   const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn);
 
-  // 로그아웃시 access, refrest 토큰 제거
   const handleLogout = () => {
     clearLocalStorage();
     navigate('/login');
@@ -58,6 +60,14 @@ function Header(): JSX.Element {
     }
   }, [isLoggedIn]);
 
+  useEffect(() => {
+    if (isSideNavVisible) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isSideNavVisible]);
+
   const handleMouseOver = () => {
     setShowSideMenu(true);
   };
@@ -66,11 +76,17 @@ function Header(): JSX.Element {
     setShowSideMenu(false);
   };
 
-  const handleMyPageClick = (e: MouseEvent) => {
+  const handleMyPageClick = () => {
     navigate('/mypage/info');
   };
+
   const handleUpdateBadge = (): void => {
     updateBadge();
+    setIsSideNavVisible(!isSideNavVisible);
+  };
+
+  const handleSideNavToggle = () => {
+    setIsSideNavVisible(!isSideNavVisible);
   };
 
   return (
@@ -81,7 +97,6 @@ function Header(): JSX.Element {
             <div>
               <img src={MainLogo} alt='메인로고' />
             </div>
-            <strong>EarF</strong>
           </Link>
           <ul className={styles.menu}>
             <li>
@@ -104,35 +119,51 @@ function Header(): JSX.Element {
         </div>
         <div>
           {isLoggedIn ? (
-            <div className={styles.login} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
-              <div className={styles.infoBox} onClick={handleMyPageClick}>
-                <span>안녕하세요, {userName}님</span>
-              </div>
-              <div className={styles.imgBox}>
-                {profileImage !== 'http://34.64.216.86/images/undefined' ? (
-                  <img src={profileImage} alt='profile' />
-                ) : (
-                  <img src={profileIcon} alt='profile' />
+            <>
+              <div className={styles.login} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
+                <div className={styles.infoBox} onClick={handleMyPageClick}>
+                  <span>안녕하세요, {userName}님</span>
+                </div>
+                <div className={styles.imgBox}>
+                  {profileImage !== 'http://34.64.216.86/images/undefined' && <img src={profileImage} alt='profile' />}
+                </div>
+                {showSideMenu && (
+                  <div className={styles.sideMenu}>
+                    <NavLink to='/mypage/info'>내 정보</NavLink>
+                    <NavLink to='/mypage/mycommunity'>내 게시글</NavLink>
+                    <NavLink to='/mypage/badge' onClick={handleUpdateBadge}>
+                      뱃지
+                    </NavLink>
+                    <button onClick={handleLogout}>로그아웃</button>
+                  </div>
                 )}
               </div>
-              {showSideMenu && (
-                <div className={styles.sideMenu}>
-                  <NavLink to='/mypage/info'>내 정보</NavLink>
-                  <NavLink to='/mypage/mycommunity'>내 게시글</NavLink>
-                  <NavLink to='/mypage/badge' onClick={handleUpdateBadge}>
-                    뱃지
-                  </NavLink>
-                  <button onClick={handleLogout}>로그아웃</button>
-                </div>
-              )}
-            </div>
+              <div className={styles.hamburgerMenu} onClick={handleSideNavToggle}>
+                <img src={Menu} alt='사이드메뉴' />
+              </div>
+            </>
           ) : (
-            <Link to='/login' className={styles.loginButton}>
-              시작하기
-            </Link>
+            <>
+              <Link to='/login' className={styles.loginButton}>
+                시작하기
+              </Link>
+              <div className={styles.hamburgerMenu} onClick={handleSideNavToggle}>
+                <img src={Menu} alt='사이드메뉴' />
+              </div>
+            </>
           )}
         </div>
       </div>
+
+      <SideNav
+        isSideNavVisible={isSideNavVisible}
+        handleSideNavToggle={handleSideNavToggle}
+        userName={userName}
+        profileImage={profileImage}
+        isLoggedIn={isLoggedIn}
+        handleUpdateBadge={handleUpdateBadge}
+        handleLogout={handleLogout}
+      />
     </header>
   );
 }

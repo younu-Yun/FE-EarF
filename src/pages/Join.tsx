@@ -1,9 +1,8 @@
 import styles from './Join.module.scss';
 import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
-// import { userJoin } from 'api/fetcher';
+import { userJoin } from 'api/fetcher';
 
 import FormHead from 'components/User/FormHead';
 import FormButton from 'components/User/FormButton';
@@ -74,18 +73,10 @@ const Join: React.FC = () => {
     e.preventDefault();
 
     try {
-      const userData = {
-        id: formData.id,
-        password: formData.password,
-        name: formData.name,
-        email: formData.email,
-        phoneNumber: formData.phone,
-      };
-
-      const response = await axios.post('http://34.64.216.86/api/user/register', userData);
+      const { id, password, name, email, phone: phoneNumber } = formData;
+      const data: any = await userJoin(id, password, name, email, phoneNumber);
 
       alert('회원가입에 성공했습니다. 로그인 해주세요!');
-
       navigate('/login');
     } catch (error) {
       console.error('회원가입 요청 중 오류 발생:', error);
@@ -95,83 +86,94 @@ const Join: React.FC = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.background}>
+        <div></div>
+        <div></div>
+      </div>
       <div>
-        <div className={styles.image}>
-          <img src={JoginIllust} alt='회원가입 일러스트' />
+        <div className={styles.imageBox}>
+          <div className={styles.image}>
+            <img src={JoginIllust} alt='회원가입 일러스트' />
+          </div>
         </div>
-        <div className={styles.form}>
-          <form onSubmit={handleSubmit}>
-            <fieldset>
-              <legend>회원가입</legend>
-              <FormHead heading={'회원가입'} description={'실천하고, 기록하고, 공유해보세요!'} showLoginLink={true} />
-              <div>
-                <DefaultInput
-                  label='아이디'
-                  type='text'
-                  id='id'
-                  value={formData.id}
-                  error={!validation.id && formData.id.length > 0}
-                  errorMessage='아이디는 영어와 숫자의 조합으로 8자 이상이어야 합니다.'
-                  onChange={handleInputChange}
-                />
-                <DefaultInput
-                  label='비밀번호'
-                  type='password'
-                  id='password'
-                  value={formData.password}
-                  error={!validation.password && formData.password.length > 0}
-                  errorMessage='비밀번호는 8자 이상이어야 합니다.'
-                  onChange={handleInputChange}
-                />
+        <div className={styles.infoBox}>
+          <div></div>
+          <div className={styles.form}>
+            <form onSubmit={handleSubmit}>
+              <fieldset>
+                <legend>회원가입</legend>
+                <FormHead heading={'회원가입'} description={'실천하고, 기록하고, 공유해보세요!'} showLoginLink={true} />
+                <div>
+                  <DefaultInput
+                    label='아이디'
+                    type='text'
+                    id='id'
+                    value={formData.id}
+                    error={!validation.id && formData.id.length > 0}
+                    errorMessage='아이디는 영어와 숫자의 조합으로 8자 이상이어야 합니다.'
+                    onChange={handleInputChange}
+                  />
+                  <DefaultInput
+                    label='비밀번호'
+                    type='password'
+                    id='password'
+                    value={formData.password}
+                    error={!validation.password && formData.password.length > 0}
+                    errorMessage='비밀번호는 8자 이상이어야 합니다.'
+                    onChange={handleInputChange}
+                  />
 
-                <DefaultInput
-                  label='비밀번호 확인'
-                  type='password'
-                  id='passwordConfirm'
-                  value={formData.passwordConfirm}
-                  error={!validation.passwordConfirm && formData.passwordConfirm.length > 0}
-                  errorMessage='비밀번호와 비밀번호 확인이 일치하지 않습니다.'
-                  onChange={handleInputChange}
-                />
+                  <DefaultInput
+                    label='비밀번호 확인'
+                    type='password'
+                    id='passwordConfirm'
+                    value={formData.passwordConfirm}
+                    error={!validation.passwordConfirm && formData.passwordConfirm.length > 0}
+                    errorMessage='비밀번호와 비밀번호 확인이 일치하지 않습니다.'
+                    onChange={handleInputChange}
+                  />
 
-                <DefaultInput
-                  label='이름'
-                  type='text'
-                  id='name'
-                  value={formData.name}
-                  error={!validation.name && formData.name.length > 0}
-                  errorMessage='이름은 2자 이상이어야 합니다.'
-                  onChange={handleInputChange}
-                />
+                  <DefaultInput
+                    label='이름'
+                    type='text'
+                    id='name'
+                    value={formData.name}
+                    error={!validation.name && formData.name.length > 0}
+                    errorMessage='이름은 2자 이상이어야 합니다.'
+                    onChange={handleInputChange}
+                  />
 
-                <DefaultInput
-                  label='이메일'
-                  type='text'
-                  id='email'
-                  value={formData.email}
-                  error={!validation.email && formData.email.length > 0}
-                  errorMessage='유효한 이메일 주소를 입력해주세요.'
-                  onChange={handleInputChange}
-                />
+                  <DefaultInput
+                    label='이메일'
+                    type='text'
+                    id='email'
+                    value={formData.email}
+                    error={!validation.email && formData.email.length > 0}
+                    errorMessage='유효한 이메일 주소를 입력해주세요.'
+                    onChange={handleInputChange}
+                  />
 
-                <DefaultInput
-                  label='전화번호'
-                  type='text'
-                  id='phone'
-                  value={formData.phone}
-                  error={!validation.phone && formData.phone.length > 0}
-                  errorMessage='전화번호는 010-1234-5678 형식으로 입력해주세요.'
-                  onChange={handleInputChange}
-                />
-              </div>
-            </fieldset>
-
-            <FormButton>
-              <button type='submit' disabled={!formValid}>
-                가입하기
-              </button>
-            </FormButton>
-          </form>
+                  <DefaultInput
+                    label='전화번호'
+                    type='text'
+                    id='phone'
+                    value={formData.phone}
+                    error={!validation.phone && formData.phone.length > 0}
+                    errorMessage='전화번호는 010-1234-5678 형식으로 입력해주세요.'
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </fieldset>
+              <FormButton>
+                <button type='submit' disabled={!formValid}>
+                  가입하기
+                </button>
+              </FormButton>
+            </form>
+          </div>
+          <div className={styles.formBottom}>
+            <p>Copyright ⓒ 2023 - 2023 EarF Inc. All Rights Reserved.</p>
+          </div>
         </div>
       </div>
     </div>

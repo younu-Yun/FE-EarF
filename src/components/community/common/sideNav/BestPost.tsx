@@ -10,7 +10,7 @@ interface BestLikesDataProps {
 }
 export default function BestPost({ _id, title, numComments, numLikes }: BestLikesDataProps) {
   return (
-    <li className={styles.container} id={_id}>
+    <li className={styles.bestPostList} id={_id}>
       <Link to={`/community/question/${_id}`}>
         <p className={styles.title}>{title}</p>
         <div className={styles.userReactionContainer}>

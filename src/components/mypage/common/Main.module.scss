@@ -8,20 +8,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 4rem;
   padding: 4rem;
-  border: 1px solid #eee;
-  border-top: 0.3rem solid #252525;
+  border: 1px solid $--color--border;
+  border-top: 0.3rem solid $--color--border-dk;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
-  /* box-shadow: rgba(174, 174, 174, 0.2) 0px 2px 15px 0px; */
-  /* border: 20px solid rgba(217, 217, 217, 0.231372549); */
 }
 
 .profile {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 2rem 0 0;
 
   & > .imgContainer {
     width: 16rem;
@@ -37,7 +35,6 @@
 }
 
 .dataFiledSet {
-  margin: 5rem 0 0;
   width: 60%;
   border: 1px solid $--color--border;
 
@@ -45,7 +42,6 @@
     display: flex;
     align-items: center;
     width: 100%;
-    min-height: 80px;
 
     &:not(:last-child) {
       border-bottom: 1px solid $--color--border;
@@ -57,7 +53,7 @@
       padding-left: 4rem;
       width: 30%;
       min-height: 8rem;
-      background: #f8f8f8;
+      background: $--color--background;
 
       span {
         font-size: 1.8rem;
@@ -79,9 +75,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 5rem 0;
   width: 40%;
-  gap: 20px;
+  gap: 2rem;
 
   & > button {
     flex: 1;
@@ -98,6 +93,88 @@
       border: 1px solid $--color--primary;
       background: $--color--white;
       color: $--color--primary;
+    }
+  }
+}
+
+@media screen and (max-width: 724px) {
+  .contents {
+    padding: 4rem 0;
+  }
+
+  .dataFiledSet {
+    width: 100%;
+    max-width: 45rem;
+
+    & .dataFiled {
+      .fixedData {
+        justify-content: center;
+        padding: 0;
+        width: 30%;
+        min-height: 6rem;
+
+        span {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+
+  .buttonContainer {
+    width: 100%;
+    max-width: 45rem;
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .contents {
+    gap: 2rem;
+    border: none;
+    border-top: 0.2rem solid $--color--border-dk;
+  }
+
+  .dataFiledSet {
+    width: 100%;
+    max-width: unset;
+  }
+
+  .profile {
+    & > .imgContainer {
+      width: 10rem;
+      height: 10rem;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+  }
+
+  .dataFiledSet {
+    width: 100%;
+    max-width: 45rem;
+
+    & .dataFiled {
+      .fixedData {
+        justify-content: center;
+        padding: 0;
+        width: 30%;
+        min-height: 5rem;
+
+        span {
+          font-size: 1.4rem;
+        }
+      }
+
+      & > .fetchData {
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  .buttonContainer {
+    & > button {
+      height: 4rem;
+      font-size: 1.6rem;
+      font-weight: 600;
     }
   }
 }

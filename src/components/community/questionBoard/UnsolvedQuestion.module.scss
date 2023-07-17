@@ -4,29 +4,24 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 34.5rem;
-  height: 14rem;
-  padding: 2rem;
-
+  min-height: 14rem;
+  padding: 2rem 2rem 1rem;
   border: 1px solid $--color--border;
   border-radius: 1rem;
 
-  list-style-type: none;
-
-  & > p:first-child {
-    font-size: 10pt;
-    font-weight: 600;
-  }
-
-  & > :nth-child(2) {
-    font-size: 12pt;
+  strong {
+    font-size: 1.6rem;
     font-weight: 500;
   }
 
-  & > p:last-child {
-    font-size: 10pt;
+  p {
+    font-size: 1.3rem;
     text-align: right;
     font-weight: 400;
     color: $--color--text3;
   }
+}
+
+.swiper-silide {
+  align-items: stretch;
 }

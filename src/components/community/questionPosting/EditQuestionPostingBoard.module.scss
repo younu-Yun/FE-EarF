@@ -3,28 +3,37 @@
 .container {
   display: flex;
   flex-direction: column;
-  // align-items: center;
   gap: 1.5rem;
-
   width: 100%;
 
-  .category {
+  > a {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 0.5rem;
+  }
+}
 
-    font-size: 11pt;
-    > :last-child {
-      color: $--color--primary;
-    }
+.category {
+  padding: 0 1.8rem;
+  height: 3.6rem;
+  background: $--color--white;
+  border: 1px solid $--color--primary;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 3.6rem;
+  color: $--color--primary;
+
+  &:hover {
+    background: $--color--primary;
+    color: $--color--white;
   }
 }
 
 .buttonContainer {
   display: flex;
   justify-content: flex-end;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .contentContainer {
@@ -45,8 +54,8 @@
 }
 
 .title {
-  font-size: 18pt;
-  font-weight: 400;
+  font-size: 2rem;
+  font-weight: 500;
   color: $--color--text1;
 }
 .content {
@@ -54,10 +63,9 @@
   width: 100%;
   border: none;
 
-  font-size: 12pt;
+  font-size: 1.6rem;
   font-weight: 300;
   color: $--color--text2;
-
   resize: none;
 
   &:focus {

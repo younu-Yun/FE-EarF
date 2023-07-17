@@ -1,14 +1,14 @@
 import styles from './FindPassword.module.scss';
 import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+
+import { userFindPassword } from 'api/fetcher';
 
 import FormHead from 'components/User/FormHead';
 import FormButton from 'components/User/FormButton';
 import { DefaultInput } from 'components/User/DefaultInput';
 import { validateField } from 'components/User/validation';
 
-// import { FindPassword } from 'components/common/Fetcher';
 import FindPWIllust from '../assets/images/FindPWIllust.png';
 
 interface FormData {
@@ -55,61 +55,64 @@ function FindPassword() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://34.64.216.86/api/user/reset', {
-        email: formData.email,
-      });
+      const { email } = formData;
+      const data: any = await userFindPassword(email);
 
-      alert(response.data);
-      setIsLoading(false);
-
-      /*
-      //Fetcher 사용
-      const data: any = await FindPassword(email);
       alert(data);
-      */
+      setIsLoading(false);
     } catch (error) {
       alert('이메일 발송 중 오류가 발생했습니다.');
       console.log(`이메일 발송 중 오류가 발생했습니다. ${error}`);
 
       setIsLoading(false);
     }
-
-    console.log('Send email to:', formData.email);
   };
 
   return (
     <div className={styles.container}>
+      <div className={styles.background}>
+        <div></div>
+        <div></div>
+      </div>
       <div>
-        <div className={styles.image}>
-          <img src={FindPWIllust} alt='아이디찾기 일러스트' />
+        <div className={styles.imageBox}>
+          <div className={styles.image}>
+            <img src={FindPWIllust} alt='아이디찾기 일러스트' />
+          </div>
         </div>
-        <div className={styles.form}>
-          <form onSubmit={handleSubmit}>
-            <fieldset>
-              <legend>비밀번호 찾기</legend>
-              <FormHead
-                heading={'비밀번호 찾기'}
-                description={'비밀번호 변경은 마이페이지 → 회원정보수정에서 변경 가능합니다.'}
-              />
-              <div>
-                <DefaultInput
-                  label='이메일'
-                  type='text'
-                  id='email'
-                  value={formData.email}
-                  error={!validation.email && formData.email.length > 0}
-                  errorMessage='유효한 이메일 주소를 입력해주세요.'
-                  onChange={handleInputChange}
+        <div className={styles.infoBox}>
+          <div></div>
+          <div className={styles.form}>
+            <form onSubmit={handleSubmit}>
+              <fieldset>
+                <legend>비밀번호 찾기</legend>
+                <FormHead
+                  heading={'비밀번호 찾기'}
+                  description={'비밀번호 변경은 마이페이지 → 회원정보수정에서 변경 가능합니다.'}
                 />
-              </div>
-            </fieldset>
-            <FormButton>
-              <Link to='/login'>로그인</Link>
-              <button type='submit' disabled={!formValid || isLoading}>
-                {isLoading ? '대기중' : '비밀번호 발송'}
-              </button>
-            </FormButton>
-          </form>
+                <div>
+                  <DefaultInput
+                    label='이메일'
+                    type='text'
+                    id='email'
+                    value={formData.email}
+                    error={!validation.email && formData.email.length > 0}
+                    errorMessage='유효한 이메일 주소를 입력해주세요.'
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </fieldset>
+              <FormButton>
+                <Link to='/login'>로그인</Link>
+                <button type='submit' disabled={!formValid || isLoading}>
+                  {isLoading ? '대기중' : '비밀번호 발송'}
+                </button>
+              </FormButton>
+            </form>
+          </div>
+          <div className={styles.formBottom}>
+            <p>Copyright ⓒ 2023 - 2023 EarF Inc. All Rights Reserved.</p>
+          </div>
         </div>
       </div>
     </div>
