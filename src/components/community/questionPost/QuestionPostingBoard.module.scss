@@ -112,3 +112,13 @@
     }
   }
 }
+
+@media screen and (max-width: 895px) {
+  .contentContainer {
+    padding: 2rem 1rem 1rem;
+  }
+
+  .textContainer {
+    gap: 1rem;
+  }
+}

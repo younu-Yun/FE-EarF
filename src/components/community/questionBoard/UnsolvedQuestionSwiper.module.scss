@@ -13,3 +13,9 @@
     color: $--color--text1;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .unsolved {
+    margin: 1rem 0 0;
+  }
+}

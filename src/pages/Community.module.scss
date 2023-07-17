@@ -49,10 +49,14 @@
     & > :first-child {
       position: relative;
       top: 0;
-      width: auto;
+      width: 100%;
     }
   }
 }
 
 @media screen and (max-width: 480px) {
+  .main {
+    margin: 1rem auto 10rem;
+    gap: 1rem;
+  }
 }

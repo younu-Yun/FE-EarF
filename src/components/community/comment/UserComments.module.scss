@@ -21,7 +21,7 @@
 .allCommentsButton {
   padding: 1.5rem 0;
   border-bottom: 1px solid $--color--border;
-  font-size: 13pt;
+  font-size: 1.6rem;
   text-align: center;
 }
 
@@ -93,5 +93,19 @@
   > img {
     width: 20rem;
     height: 20rem;
+  }
+}
+
+@media screen and (max-width: 895px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .allCommentsButton {
+    display: block;
+    padding: 1rem;
+    width: 100%;
+    font-weight: 600;
+    color: $--color--text1;
   }
 }
