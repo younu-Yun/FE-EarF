@@ -11,8 +11,6 @@ import {
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 import { PuffLoader } from 'react-spinners';
-import { ReactComponent as ArrowLeft } from 'assets/icons/ArrowLeft.svg';
-import { ReactComponent as ArrowRight } from 'assets/icons/ArrowRight.svg';
 import errorCommunity from 'assets/images/errorCommunity.png';
 import 'slick-carousel/slick/slick.scss';
 import 'slick-carousel/slick/slick-theme.scss';
@@ -63,11 +61,7 @@ function Board() {
     speed: 800,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // swipe:false,
-    arrows: true,
     rtl: true,
-    prevArrow: <ArrowLeft />,
-    nextArrow: <ArrowRight />,
   };
   return (
     <div className={styles.container}>

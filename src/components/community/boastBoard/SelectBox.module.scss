@@ -2,54 +2,49 @@
 
 .container {
   position: relative;
-
-  & > .selectValue {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    width: 20rem;
-    height: 5rem;
-
-    padding: 0 1.5rem;
-
-    border: 1px solid $--color--border;
-    border-radius: 0.5rem;
-
-    font-size: 12pt;
-    font-weight: 500;
-    color: $--color--text1;
-    cursor: pointer;
-  }
 }
+
+.selectValue {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.2rem;
+  width: 15rem;
+  height: 4.2rem;
+  border: 1px solid $--color--border;
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: $--color--text1;
+  cursor: pointer;
+}
+
+.selectDown {
+  position: relative;
+}
+
 .optionContainer {
   position: absolute;
-  top: 115%;
-
+  top: 4.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-
-  width: 20rem;
-
+  padding: 1rem;
+  width: 15rem;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
-  z-index: 3;
-
-  background: white;
-
+  background: $--color--white;
   border: 1px solid $--color--border;
   border-radius: 0.5rem;
+  z-index: 3;
 
   & :hover {
-    background: $--color--primary;
+    background: $--color--background;
     font-weight: 500;
-    color: white;
   }
   & > li {
-    padding: 1rem 1.5rem;
-    font-size: 12pt;
+    padding: 1rem 1rem;
+    font-size: 1.4rem;
     font-weight: 400;
     border-radius: 0.5rem;
     cursor: pointer;

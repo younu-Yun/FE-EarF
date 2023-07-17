@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { ReactComponent as ArrowDown } from 'assets/icons/ArrowDown.svg';
 import { useDispatch } from 'react-redux';
 import { setSelectedOption } from 'store/selectedOptionSlice';
 import styles from './SelectBox.module.scss';
@@ -49,7 +48,7 @@ function SelectBox({ onSelectClick }: SelectBoxProps) {
     <div className={styles.container} ref={containerRef}>
       <div className={styles.selectValue} onClick={handleSelectValueClick}>
         <span>{selectOption.name}</span>
-        <ArrowDown />
+        <div className={styles.selectDown}>▾</div>
       </div>
       {isOpen && (
         <div>

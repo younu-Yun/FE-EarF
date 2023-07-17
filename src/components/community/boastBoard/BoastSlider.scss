@@ -1,23 +1,7 @@
+@import 'color.scss';
+
 .boastSliderContainer {
   width: 100%;
-
-  & > :first-child {
-    width: 4rem !important;
-    height: 4rem !important;
-    z-index: 5;
-    left: -5rem;
-  }
-  & > :last-child {
-    width: 4rem !important;
-    height: 4rem !important;
-    z-index: 5;
-    right: -4rem;
-  }
-
-  & .slick-slide {
-    width: 700px !important;
-    overflow: hidden;
-  }
 }
 
 .swiper {
@@ -30,6 +14,6 @@
   bottom: -2rem;
 }
 .swiper-pagination-bullet {
-  background-color: #2eab67;
+  background-color: $--color--primary;
   margin: 0 10px;
 }
