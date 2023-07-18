@@ -10,7 +10,7 @@ import { DefaultInput } from 'components/User/DefaultInput';
 import { validateField } from 'components/User/validation';
 import DefaultModal from '../components/common/DefaultModal';
 
-import FindIDIllust from '../assets/images/FindIDIllust.png';
+import FindIDIllust from '../assets/images/FindIDIllust.webp';
 import AlertCircle from '../assets/icons/AlertCircle.svg';
 
 interface FormData {

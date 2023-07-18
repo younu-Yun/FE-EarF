@@ -9,7 +9,7 @@ import FormButton from 'components/User/FormButton';
 import { DefaultInput } from 'components/User/DefaultInput';
 import { validateField } from 'components/User/validation';
 
-import JoginIllust from '../assets/images/JoinIllust.png';
+import JoginIllust from '../assets/images/JoinIllust.webp';
 
 interface FormData {
   id: string;

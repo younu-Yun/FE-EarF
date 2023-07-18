@@ -1,6 +1,6 @@
 import React from 'react';
 import CommunitySwiper from 'components/home/CommunitySwiper';
-import homeBanner2 from 'assets/images/homeBanner2.png';
+import homeBanner2 from 'assets/images/homeBanner2.webp';
 import styles from './Section.module.scss';
 
 const SectionCommunity = () => {
@@ -25,7 +25,8 @@ const SectionCommunity = () => {
           </div>
         </div>
         <div className={styles.right}>
-          <img src={homeBanner2} alt='' />
+          <div className={styles.colorBackground}></div>
+          <img src={homeBanner2} alt='커뮤니티 이미지' />
         </div>
       </div>
     </section>

@@ -1,6 +1,42 @@
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,800;0,900;1,800;1,900&display=swap');
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-display: swap;
+  src: local('Pretendard Bold'), url('./font/Pretendard-Bold.subset.woff2') format('woff2'),
+    url('./font/Pretendard-Bold.subset.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 600;
+  font-display: swap;
+  src: local('Pretendard SemiBold'), url('./font/Pretendard-SemiBold.subset.woff2') format('woff2'),
+    url('./font/Pretendard-SemiBold.subset.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 500;
+  font-display: swap;
+  src: local('Pretendard Medium'), url('./font/Pretendard-Medium.subset.woff2') format('woff2'),
+    url('./font/Pretendard-Medium.subset.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  font-display: swap;
+  src: local('Pretendard Regular'), url('./font/Pretendard-Regular.subset.woff2') format('woff2'),
+    url('./font/Pretendard-Regular.subset.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Montserrat Alternates';
+  font-weight: 900;
+  font-style: italic;
+  src: local('MontserratAlternates-BlackItalic'), url('./font/MontserratAlternates-BlackItalic.woff2') format('woff2'),
+    url('./font/MontserratAlternates-BlackItalic.woff') format('woff');
+}
 
 html {
   /* 62.5% of 16px browser font size is 10px */
@@ -15,7 +51,7 @@ html {
   color: inherit;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Pretendard Variable', 'Noto Sans KR', 'sans-serif';
+  font-family: 'Pretendard', 'sans-serif';
 }
 
 *,
@@ -72,30 +108,3 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
-/* * {
-  position: absolute;
-  top: 0;
-  z-index: 10;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-
-  width: 100px;
-  height: 100%;
-
-  margin: 0;
-  padding: 0;
-
-  background: red url();
-  border: 10px;
-
-  font-size:  ;
-  font-weight: ;
-  font-style: ;
-  line-height: ;
-  letter-spacing: ;
-  color: ;
-} */

@@ -1,5 +1,5 @@
 import { useGetMyQuestionQuery } from 'api/communityApiSlice';
-import errorCommunity from 'assets/images/errorCommunity.png';
+import errorCommunity from 'assets/icons/errorCommunity.svg';
 import QuestionPostingItem from 'components/community/questionBoard/QuestionPostingItem';
 import Title from 'components/common/PageTitle';
 import { PuffLoader } from 'react-spinners';
