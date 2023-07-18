@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import CommentItem from './CommentItem';
 import Button from 'components/common/Button';
 import styles from './UserComments.module.scss';
-import errorCommunity from 'assets/images/errorCommunity.png';
+import errorCommunity from 'assets/icons/errorCommunity.svg';
 import profileDefault from 'assets/images/profileDefault.png';
 import getBadgeImagePath from 'utils/getBadgeImagePath';
 

@@ -2,7 +2,7 @@ import styles from './Edit.module.scss';
 import { useState, useEffect } from 'react';
 import Button from 'components/common/Button';
 import Title from 'components/common/PageTitle';
-import plus from 'assets/images/plus.png';
+import plus from 'assets/icons/plus.svg';
 import { useNavigate } from 'react-router-dom';
 import { userInfo, userInfoChange, userImgChange, userImgDelete } from 'api/fetcher';
 import profileDefault from 'assets/images/profileDefault.png';

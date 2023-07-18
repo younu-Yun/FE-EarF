@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 import { GetSelectedDateState } from 'services/calendarService';
 
 import { getApiCalendarEachData, deleteApiCalendarData } from 'services/calendarApiService';
-import { GetTagImage } from 'services/calendarService';
 import { EachDayDataApiType } from 'types/types';
 
-import { ReactComponent as LoadingImg } from 'assets/icons/LoadingImg2.svg';
-import tumblr from 'assets/images/badge04.png';
-import bus from 'assets/images/badge05.png';
-import shoppingbag from 'assets/images/badge06.png';
+import tumblr from 'assets/icons/badge04.svg';
+import bus from 'assets/icons/badge05.svg';
+import shoppingbag from 'assets/icons/badge06.svg';
+import { PuffLoader } from 'react-spinners';
+
 import EditedDiary from '../EditDiary';
 
 import styles from './styles.module.scss';
@@ -37,7 +37,11 @@ export default function IsPostDataDiary() {
   }, [selectedValue]);
 
   if (loading) {
-    return <LoadingImg />;
+    return (
+      <div className={styles.loadingContainer}>
+        <PuffLoader color='#24AE63' loading size={100} />
+      </div>
+    );
   }
 
   return (

@@ -3,9 +3,9 @@ import dayjs from 'dayjs';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 
-import tagImg1 from 'assets/images/tagimg1.png';
-import tagImg2 from 'assets/images/tagimg2.png';
-import tagImg3 from 'assets/images/tagimg3.png';
+import tagImg1 from 'assets/icons/tagimg1.svg';
+import tagImg2 from 'assets/icons/tagimg2.svg';
+import tagImg3 from 'assets/icons/tagimg3.svg';
 
 export const GetTagImage = (tagLength: number | undefined) => {
   if (tagLength === 1) {

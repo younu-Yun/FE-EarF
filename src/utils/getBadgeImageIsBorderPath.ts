@@ -1,10 +1,10 @@
-import badgeDefault from 'assets/images/badge01.png';
-import badgeNewPost from 'assets/images/badge02.png';
-import badgeWrite3Times from 'assets/images/badge03.png';
-import badgeTumbler from 'assets/images/badge04.png';
-import badgePublicTrans from 'assets/images/badge05.png';
-import badgeBasket from 'assets/images/badge06.png';
-import badgeCommunity from 'assets/images/badge07.png';
+import badgeDefault from 'assets/icons/badge01.svg';
+import badgeNewPost from 'assets/icons/badge02.svg';
+import badgeWrite3Times from 'assets/icons/badge03.svg';
+import badgeTumbler from 'assets/icons/badge04.svg';
+import badgePublicTrans from 'assets/icons/badge05.svg';
+import badgeBasket from 'assets/icons/badge06.svg';
+import badgeCommunity from 'assets/icons/badge07.svg';
 
 export default function getBadgeImagePath(checkedBadge: string | Promise<string>) {
   switch (checkedBadge) {

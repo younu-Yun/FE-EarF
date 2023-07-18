@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { getApiCalendarHavedata } from 'services/calendarApiService';
 import { setSelectedDay } from 'store/selectedDaySlice';
 import { GetTagImage, GetFormatDate, GetSelectedDateState } from 'services/calendarService';
-import notPost from 'assets/images/notpost.png';
+import notPost from 'assets/icons/notpost.svg';
 
 import 'react-calendar/dist/Calendar.css';
 import './styles.scss';
