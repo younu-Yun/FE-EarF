@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import SelectBox from './SelectBox';
 import styles from './Board.module.scss';
-import Slider from 'react-slick';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/lazy';
+import { Lazy, Autoplay } from 'swiper';
+
 import {
   useGetAllBoastPostsQuery,
   useGetSortedTumPostsQuery,
@@ -12,8 +16,6 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 import { PuffLoader } from 'react-spinners';
 import errorCommunity from 'assets/icons/errorCommunity.svg';
-import 'slick-carousel/slick/slick.scss';
-import 'slick-carousel/slick/slick-theme.scss';
 import BoastItems from './BoastItems';
 import './BoastSlider.scss';
 
@@ -21,10 +23,12 @@ function Board() {
   const selectedOption = useSelector((state: RootState) => state.selectedOption);
 
   const [activeSorting, setActiveSorting] = useState('');
+
   const { data: allPostData, isLoading: isPostLoading, error: postError } = useGetAllBoastPostsQuery();
 
   const handleSortingClick = () => {
     setActiveSorting(selectedOption.value);
+    console.log(selectedOption.value);
   };
   const { data: tumData, isLoading: isTumLoading, error: tumError } = useGetSortedTumPostsQuery();
   const { data: transData, isLoading: isTransLoading, error: transError } = useGetSortedTransPostsQuery();
@@ -52,17 +56,6 @@ function Board() {
     error = basError;
   }
 
-  const settings = {
-    className: 'boastSliderContainer',
-    autoPlay: false,
-    adaptiveHeigh: true,
-    infinite: true,
-    initialSlide: 0,
-    speed: 800,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    rtl: true,
-  };
   return (
     <div className={styles.container}>
       <div className={styles.category}>
@@ -75,29 +68,39 @@ function Board() {
           </div>
         ) : error || (boastData && boastData.length === 0) ? (
           <div className={styles.errorContainer}>
-            <img src={errorCommunity} />
+            <img src={errorCommunity} alt='기록없음' />
             {selectedOption.value} 태그로만 작성된 기록이 없습니다.
           </div>
         ) : (
-          <Slider {...settings}>
+          <Swiper
+            lazy={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            modules={[Lazy, Autoplay]}
+            className='boastSliderContainer'
+          >
             {boastData &&
-              boastData?.map((post) => (
-                <BoastItems
-                  key={post._id}
-                  _id={post._id}
-                  imageUrl={post.imageUrl}
-                  title={post.title}
-                  content={post.content}
-                  date={post.date}
-                  id={post.id}
-                  name={post.name}
-                  profileImage={post.profileImage}
-                  likeIds={post.likeIds}
-                  tag={post.tag}
-                  checkedBadge={post.checkedBadge}
-                />
+              boastData.map((post) => (
+                <SwiperSlide key={post._id}>
+                  <BoastItems
+                    _id={post._id}
+                    imageUrl={post.imageUrl}
+                    title={post.title}
+                    content={post.content}
+                    date={post.date}
+                    id={post.id}
+                    name={post.name}
+                    profileImage={post.profileImage}
+                    likeIds={post.likeIds}
+                    tag={post.tag}
+                    checkedBadge={post.checkedBadge}
+                  />
+                </SwiperSlide>
               ))}
-          </Slider>
+          </Swiper>
         )}
       </div>
     </div>

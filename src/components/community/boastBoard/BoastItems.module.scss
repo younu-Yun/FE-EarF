@@ -12,7 +12,6 @@
   width: 40rem;
   height: 60rem;
   border-radius: 3rem;
-  background-color: #c7e8b9;
 }
 
 .backgroundImg {
@@ -23,7 +22,6 @@
   background-repeat: no-repeat;
   background-position: center;
   filter: blur(10px);
-  transform: scale(1.25);
   overflow: hidden;
 
   & > img {

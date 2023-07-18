@@ -1,21 +1,22 @@
 import styles from './MainSwiper.module.scss';
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay } from 'swiper';
+import { Lazy, Pagination, Autoplay } from 'swiper';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/lazy';
 
 import mainBanner01 from 'assets/images/mainBanner01.jpg';
 import mainBanner02 from 'assets/images/mainBanner02.jpg';
 import mainBanner03 from 'assets/images/mainBanner03.jpg';
-
 const MainSwiper = () => {
+  const mainBanners = [mainBanner01, mainBanner02, mainBanner03];
   return (
     <div className={styles.swiperContainer}>
-      <Swiper // install Swiper modules
-        modules={[Pagination, Autoplay]}
+      <Swiper
+        modules={[Lazy, Pagination, Autoplay]}
         pagination={{
           clickable: true,
         }}
@@ -23,27 +24,21 @@ const MainSwiper = () => {
         slidesPerView={1}
         centeredSlides={true}
         loop={true}
+        preloadImages={true}
+        lazy={true}
         autoplay={{
           delay: 1500,
           disableOnInteraction: false,
         }}
         className={styles.main}
       >
-        <SwiperSlide className={styles.swiperSlide}>
-          <div>
-            <img src={mainBanner01} alt='메인배너이미지01' />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className={styles.swiperSlide}>
-          <div>
-            <img src={mainBanner02} alt='메인배너이미지02' />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className={styles.swiperSlide}>
-          <div>
-            <img src={mainBanner03} alt='메인배너이미지03' />
-          </div>
-        </SwiperSlide>
+        {mainBanners.map((banner, index) => (
+          <SwiperSlide key={index} className={styles.swiperSlide}>
+            <div>
+              <img src={banner} alt={`메인배너이미지${index + 1}`} loading='lazy' />
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );
