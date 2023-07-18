@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import HeartReaction from '../common/HeartReaction';
 import styles from './BoastItems.module.scss';
-import background from 'assets/images/logoBoast.png';
 import { BoastPost } from 'types/types';
 import getPostingTime from 'utils/getPostingTime';
 import CommentUserProfile from '../comment/CommentUserProfile';
@@ -29,9 +28,7 @@ function BoastItems({
 
   return (
     <div className={styles.postContainer}>
-      <div style={{ backgroundImage: `url(${imageUrl})` }} className={styles.backgroundImg}>
-        <img src={background} />
-      </div>
+      <div style={{ backgroundImage: `url(${imageUrl})` }} className={styles.backgroundImg}></div>
       <div className={styles.contentContainer}>
         <img
           src={imageUrl}

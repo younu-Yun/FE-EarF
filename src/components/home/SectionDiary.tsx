@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Section.module.scss';
 import HomeCheck from 'assets/icons/HomeCheck.svg';
-import homeBanner1 from 'assets/images/homeBanner1.png';
+import homeBanner1 from 'assets/images/homeBanner1.webp';
 
 const SectionDiary = () => {
   return (
@@ -43,7 +43,8 @@ const SectionDiary = () => {
           </div>
         </div>
         <div className={styles.right}>
-          <img src={homeBanner1} alt='' />
+          <div className={styles.colorBackground}></div>
+          <img src={homeBanner1} alt='기록하기 이미지' />
         </div>
       </div>
     </section>

@@ -11,7 +11,7 @@ import {
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 import { PuffLoader } from 'react-spinners';
-import errorCommunity from 'assets/images/errorCommunity.png';
+import errorCommunity from 'assets/icons/errorCommunity.svg';
 import 'slick-carousel/slick/slick.scss';
 import 'slick-carousel/slick/slick-theme.scss';
 import BoastItems from './BoastItems';

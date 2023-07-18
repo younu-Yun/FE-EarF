@@ -5,9 +5,8 @@ import { RootState } from 'store';
 
 import styles from './Section.module.scss';
 import MainSwiper from 'components/home/MainSwiper';
-import mascot from 'assets/images/mascot.png';
+import mascot from 'assets/images/mascot.webp';
 import Star from 'assets/icons/Star.svg';
-import HomeLogo from 'assets/images/homeLogo.png';
 
 const SectionMain = () => {
   const dispatch = useDispatch();
@@ -43,7 +42,7 @@ const SectionMain = () => {
               <div>
                 <img src={Star} alt='별아이콘' />
               </div>
-              <img src={HomeLogo} alt='홈로고' />
+              <h2>EarF</h2>
             </div>
           </div>
           <div className={styles.buttonBox}>

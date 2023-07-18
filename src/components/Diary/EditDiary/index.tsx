@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import inputDefaultImg from 'assets/images/inputDefaultImg.png';
+import inputDefaultImg from 'assets/images/inputDefaultImg.webp';
 
 import { GetSelectedDateState } from 'services/calendarService';
 
@@ -34,6 +34,7 @@ export default function EditedDiary(props: {
     content: props.data.content,
     shareStatus: props.data.shareStatus,
   });
+  console.log(formData);
 
   const [checkboxes, setCheckboxes] = useState<CheckboxesState>({
     tag1: props.data.tag[0],

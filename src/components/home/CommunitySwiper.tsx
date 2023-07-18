@@ -6,9 +6,9 @@ import styles from './CommunitySwiper.module.scss';
 // Import Swiper styles
 import 'swiper/css';
 // import 'swiper/css/navigation';
-import CommunityBanner01 from 'assets/images/comSwiper01.png';
-import CommunityBanner02 from 'assets/images/comSwiper02.png';
-import CommunityBanner03 from 'assets/images/comSwiper03.png';
+import CommunityBanner01 from 'assets/images/comSwiper01.jpg';
+import CommunityBanner02 from 'assets/images/comSwiper02.jpg';
+import CommunityBanner03 from 'assets/images/comSwiper03.jpg';
 
 const CommunitySwiper = () => {
   return (

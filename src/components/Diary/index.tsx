@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import inputDefaultImg from 'assets/images/inputDefaultImg.png';
+import inputDefaultImg from 'assets/images/inputDefaultImg.webp';
 
 import { GetSelectedDateState } from 'services/calendarService';
 

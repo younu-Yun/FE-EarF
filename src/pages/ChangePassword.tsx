@@ -13,7 +13,7 @@ import FormButton from 'components/User/FormButton';
 import { DefaultInput } from 'components/User/DefaultInput';
 import { validateField } from 'components/User/validation';
 
-import ChangePWIllust from '../assets/images/ChangePWIllust.png';
+import ChangePWIllust from '../assets/images/ChangePWIllust.webp';
 
 interface FormData {
   currentPassword: string;

@@ -7,9 +7,9 @@ import { Pagination, Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import mainBanner01 from 'assets/images/mainBanner01.png';
-import mainBanner02 from 'assets/images/mainBanner02.png';
-import mainBanner03 from 'assets/images/mainBanner03.png';
+import mainBanner01 from 'assets/images/mainBanner01.jpg';
+import mainBanner02 from 'assets/images/mainBanner02.jpg';
+import mainBanner03 from 'assets/images/mainBanner03.jpg';
 
 const MainSwiper = () => {
   return (

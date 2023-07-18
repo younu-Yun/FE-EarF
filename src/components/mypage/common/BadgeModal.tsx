@@ -1,5 +1,5 @@
 import styles from './BadgeModal.module.scss';
-import { ReactComponent as Exit } from 'assets/icons/Exit.svg';
+import { ReactComponent as Close } from 'assets/icons/Close.svg';
 import Button from 'components/common/Button';
 import { checkedBadgeChange } from 'api/fetcher';
 import { useEffect, useRef } from 'react';
@@ -55,7 +55,7 @@ function BadgeModal({ type, name, imgSrc, isGet, info, handleShowModal }: BadgeM
   return (
     <div className={styles.modal}>
       <div className={styles.modalBox} ref={modalRef}>
-        <Exit className={styles.exitButton} onClick={handleShowModal} />
+        <Close className={styles.exitButton} onClick={handleShowModal} />
         <div className={styles.modalContents}>
           <img src={imgSrc} alt='이미지' />
           <p className={styles.name}>{name}</p>
