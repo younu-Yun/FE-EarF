@@ -1,13 +1,13 @@
-<!-- logo -->
+
+
+<br />
+<br />
 
 <div align="center">
-
-
 <img width="400" src="https://github.com/younu-Yun/FE-EarF/assets/87592697/fb8f40e0-bf4d-437d-a83e-12367dfac439"/>
 <br />
 <br />
-
-[<img src="https://img.shields.io/badge/프로젝트 기간-2023.05.29~2023.06.16-green?style=flat&logoColor=white" />]()
+<img src="https://img.shields.io/badge/프로젝트 기간-2023.05.29~2023.06.16-green?style=flat&logoColor=white" />
 <br />
 
 
@@ -23,89 +23,68 @@
 <br />
 
 ## 📌 서비스 소개
+![페르소나](https://github.com/younu-Yun/FE-EarF/assets/87592697/1f6c30f3-02df-4af9-910f-dfc18b7fde44)
+![서비스 목표](https://github.com/younu-Yun/FE-EarF/assets/87592697/f812426b-48d3-4c83-ad27-c24cb6fe3a14)
+![서비스 기능명세](https://github.com/younu-Yun/FE-EarF/assets/87592697/9bf444ba-fa63-4feb-a1b4-33c8495d3db9)
 
-### 지구를 위한 우리들의 지속 가능한 행동! 환경보호를 실천하고 기록하고 공유하는 웹서비스
-### 매일의 기록을 통해 내가 얼마나 지구를 생각하고 있는지 알 수 있어요
-1. EarF의 서비스는 크게 유저, 데일리투두, 커뮤니티, 뱃지로 소개할 수 있습니다!
-2. 유저는 회원가입, 로그인, 아이디/비밀번호 찾기, 회원정보수정, 프로필이미지, 로그아웃과 관련된 유저 CRUD가 구현되어있습니다! 
-3. 데일리 투두는 EarF의 환경 보호 실천을 기록하는 기능으로서 이미지를 포함하여 게시글 CRUD가 구현되어 있고 자랑하기게시판에서 그간의 활동을 유저들과 공유하거나 한달간의 활동기록을 차트로 한눈에 파악이 가능하도록 구현되어 있습니다! 
-4. 커뮤니티는 환경을 생각하는 사용자들의 의견을 묻고 수집하고 공유하는 공간으로서 질문게시판 형식의 CRUD가 구현되어있고 댓글과 좋아요기능이 구현되어있습니다!
-5. 커뮤니티의 자랑하기 게시판은 데일리 투두에서 유저가 공유하기로 설정한 이미지들을 비회원유저들과 공유하면서 자신의 활동을 자랑하는 공간으로 좋아요기능도 연동이 되게 구현되어있습니다! 
-6. 마이페이지에서는 프로필이미지와 유저에 기본적인 정보들을 CRUD할 수 있게 구현되어 있고, EarF의 활동을 열심히 수행하면 주어지는 뱃지도 구현되어있습니다! 뱃지는 다양한곳에서 자신을 표현하는 또 하나의 프로필로서의 기능도 가지고 있습니다!
 
 <br />
 
-### 2-1. API 문서
-
-### User, Auth
-
-- ### https://documenter.getpostman.com/view/26741774/2s93sgXAzh
-
-### Diary
-
-- ### https://documenter.getpostman.com/view/26747226/2s93shy9AD
-
-### Question
-
-- ### https://documenter.getpostman.com/view/20811195/2s93shyUQx
-
-
-
-
-<br>
-
-
-
-
-## 3. 데모 영상
+## 📌 데모 영상
 
 <details><summary>사용자 회원가입, 로그인</summary>
 
- <img src="/uploads/e3f09629c51e25c177df916b599c0b2d/2._로그인.gif" width="500" />
+![2 _로그인](https://github.com/younu-Yun/FE-EarF/assets/87592697/9a9b8f2e-04ad-42fa-bd46-76266db05b43)
 
 </details>
 
 <details><summary>회원가입 & 아이디, 비밀번호 찾기</summary>
-
-<img src="/uploads/a0fb520852c8c174157c77331358df9a/3._회원가입__아이디_찾기__비밀번호_찾기.gif" width="500" />
-
+ 
+![3 _회원가입__아이디_찾기__비밀번호_찾기 (1)](https://github.com/younu-Yun/FE-EarF/assets/87592697/a2ff83fe-abce-4c06-a6fd-03a4345703e7)
+ 
 </details>
 
 <details><summary>내 정보 & 비밀번호 수정</summary>
-
-<img src="/uploads/4806f4b0c04ba6530177b11fdf5793c8/4._내정보__비밀번호_수정.gif" width="500" />
+ 
+![3 _회원가입__아이디_찾기__비밀번호_찾기](https://github.com/younu-Yun/FE-EarF/assets/87592697/c72f7ba2-ed10-471a-8c7a-290219f7ebd1)
 
 </details>
 
 <details><summary>기록하기 기능</summary>
-
-<img src="/uploads/b2900575f1d464f2ce57c1c768a755d6/5._기록하기.gif" width="500" />
+ 
+![5 _기록하기](https://github.com/younu-Yun/FE-EarF/assets/87592697/45ccaede-86c0-4885-a5d5-807e07a224b9)
 
 </details>
 
 <details><summary>커뮤니티 기능</summary>
-
-<img src="/uploads/6afa3293e8068f8b50558013628561e0/6._커뮤니티__1_.gif" width="500" />
+ 
+![6 _커뮤니티__1_](https://github.com/younu-Yun/FE-EarF/assets/87592697/22415e10-925c-4f96-bcc0-7637f89f2375)
 
 </details>
 
 <details><summary>뱃지 & 게시물 수정</summary>
-
-<img src="/uploads/3542c6880ce7569bd27a113792c23d75/7._대표뱃지_수정__내_게시물_수정__로그아웃.gif" width="500" />
+ 
+![7 _대표뱃지_수정__내_게시물_수정__로그아웃](https://github.com/younu-Yun/FE-EarF/assets/87592697/04381f3d-2a59-4a28-8ddd-9008d0b91113)
 
 </details>
 
 <br />
+<br />
 
-## 4. System Architecture
+## 📌 API 문서
 
-![image](/uploads/b8ef345dbe617d9d3c35a524dc2006ae/Screenshot_2023-06-16_at_4.44.51_PM.png)<br />
+- #### [유저, 인증](https://documenter.getpostman.com/view/26741774/2s93sgXAzh)
+- #### [기록하기](https://documenter.getpostman.com/view/26747226/2s93shy9AD)
+- #### [커뮤니티](https://documenter.getpostman.com/view/20811195/2s93shyUQx)
 
 <br />
 
-<br />
+## 📌 시스템 아키텍쳐
 
-## 5. Tech Stack
+<img width="1000" alt="Screenshot_2023-06-16_at_4 44 51_PM" src="https://github.com/younu-Yun/FE-EarF/assets/87592697/ce4c26be-4b3a-4320-9acd-f25ba9e04cd3">
+
+
+## 📌 기술 스택
 
 |**Tech-Stack**|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | ------------ | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -119,54 +98,12 @@
 
 
 
-## 6. Directory
+## 📌 디렉토리 파일구조
 
 <details><summary>Backend</summary>
 
 ```bash
 📦backend
- ┣ 📂.git
- ┃ ┣ 📂hooks
- ┃ ┃ ┣ 📜applypatch-msg.sample
- ┃ ┃ ┣ 📜commit-msg.sample
- ┃ ┃ ┣ 📜fsmonitor-watchman.sample
- ┃ ┃ ┣ 📜post-update.sample
- ┃ ┃ ┣ 📜pre-applypatch.sample
- ┃ ┃ ┣ 📜pre-commit.sample
- ┃ ┃ ┣ 📜pre-merge-commit.sample
- ┃ ┃ ┣ 📜pre-push.sample
- ┃ ┃ ┣ 📜pre-rebase.sample
- ┃ ┃ ┣ 📜pre-receive.sample
- ┃ ┃ ┣ 📜prepare-commit-msg.sample
- ┃ ┃ ┣ 📜push-to-checkout.sample
- ┃ ┃ ┗ 📜update.sample
- ┃ ┣ 📂info
- ┃ ┃ ┗ 📜exclude
- ┃ ┣ 📂logs
- ┃ ┃ ┣ 📂refs
- ┃ ┃ ┃ ┣ 📂heads
- ┃ ┃ ┃ ┃ ┗ 📜master
- ┃ ┃ ┃ ┗ 📂remotes
- ┃ ┃ ┃ ┃ ┗ 📂origin
- ┃ ┃ ┃ ┃ ┃ ┗ 📜HEAD
- ┃ ┃ ┗ 📜HEAD
- ┃ ┣ 📂objects
- ┃ ┃ ┣ 📂info
- ┃ ┃ ┗ 📂pack
- ┃ ┃ ┃ ┣ 📜pack-a15d242c71d2d3947f9daebe8fabfa37b4a51f23.idx
- ┃ ┃ ┃ ┗ 📜pack-a15d242c71d2d3947f9daebe8fabfa37b4a51f23.pack
- ┃ ┣ 📂refs
- ┃ ┃ ┣ 📂heads
- ┃ ┃ ┃ ┗ 📜master
- ┃ ┃ ┣ 📂remotes
- ┃ ┃ ┃ ┗ 📂origin
- ┃ ┃ ┃ ┃ ┗ 📜HEAD
- ┃ ┃ ┗ 📂tags
- ┃ ┣ 📜config
- ┃ ┣ 📜description
- ┃ ┣ 📜HEAD
- ┃ ┣ 📜index
- ┃ ┗ 📜packed-refs
  ┣ 📂controller
  ┃ ┣ 📜boastController.ts
  ┃ ┣ 📜commentController.ts
@@ -193,10 +130,6 @@
  ┃ ┗ 📜index.ts
  ┣ 📂public
  ┃ ┗ 📂images
- ┃ ┃ ┣ 📜.gitkeep
- ┃ ┃ ┣ 📜1686674764377.jpg
- ┃ ┃ ┣ 📜defaultImage.png
- ┃ ┃ ┗ 📜logoImage.png
  ┣ 📂routers
  ┃ ┣ 📜authRouter.ts
  ┃ ┣ 📜boastRouter.ts
@@ -235,278 +168,36 @@
 
 ```bash
 📦frontend
- ┣ 📂.git
- ┃ ┣ 📂hooks
- ┃ ┃ ┣ 📜applypatch-msg.sample
- ┃ ┃ ┣ 📜commit-msg.sample
- ┃ ┃ ┣ 📜fsmonitor-watchman.sample
- ┃ ┃ ┣ 📜post-update.sample
- ┃ ┃ ┣ 📜pre-applypatch.sample
- ┃ ┃ ┣ 📜pre-commit.sample
- ┃ ┃ ┣ 📜pre-merge-commit.sample
- ┃ ┃ ┣ 📜pre-push.sample
- ┃ ┃ ┣ 📜pre-rebase.sample
- ┃ ┃ ┣ 📜pre-receive.sample
- ┃ ┃ ┣ 📜prepare-commit-msg.sample
- ┃ ┃ ┣ 📜push-to-checkout.sample
- ┃ ┃ ┗ 📜update.sample
- ┃ ┣ 📂info
- ┃ ┃ ┗ 📜exclude
- ┃ ┣ 📂logs
- ┃ ┃ ┣ 📂refs
- ┃ ┃ ┃ ┣ 📂heads
- ┃ ┃ ┃ ┃ ┗ 📜main
- ┃ ┃ ┃ ┗ 📂remotes
- ┃ ┃ ┃ ┃ ┗ 📂origin
- ┃ ┃ ┃ ┃ ┃ ┗ 📜HEAD
- ┃ ┃ ┗ 📜HEAD
- ┃ ┣ 📂objects
- ┃ ┃ ┣ 📂info
- ┃ ┃ ┗ 📂pack
- ┃ ┃ ┃ ┣ 📜pack-34529feb067a94a0cfe84bda566ceaaf6f534a02.idx
- ┃ ┃ ┃ ┗ 📜pack-34529feb067a94a0cfe84bda566ceaaf6f534a02.pack
- ┃ ┣ 📂refs
- ┃ ┃ ┣ 📂heads
- ┃ ┃ ┃ ┗ 📜main
- ┃ ┃ ┣ 📂remotes
- ┃ ┃ ┃ ┗ 📂origin
- ┃ ┃ ┃ ┃ ┗ 📜HEAD
- ┃ ┃ ┗ 📂tags
- ┃ ┣ 📜config
- ┃ ┣ 📜description
- ┃ ┣ 📜HEAD
- ┃ ┣ 📜index
- ┃ ┗ 📜packed-refs
  ┣ 📂public
  ┃ ┗ 📜index.html
  ┣ 📂src
  ┃ ┣ 📂api
- ┃ ┃ ┣ 📜apiRequest.ts
- ┃ ┃ ┣ 📜communityApiSlice.ts
- ┃ ┃ ┣ 📜fetcher.ts
- ┃ ┃ ┗ 📜token.ts
  ┃ ┣ 📂assets
  ┃ ┃ ┣ 📂icons
- ┃ ┃ ┃ ┣ 📜AlertCircle.svg
- ┃ ┃ ┃ ┣ 📜ArrowDown.svg
- ┃ ┃ ┃ ┣ 📜ArrowLeft.svg
- ┃ ┃ ┃ ┣ 📜ArrowRight.svg
- ┃ ┃ ┃ ┣ 📜ArrowUp.svg
- ┃ ┃ ┃ ┣ 📜Cam.svg
- ┃ ┃ ┃ ┣ 📜Circle.svg
- ┃ ┃ ┃ ┣ 📜Close.svg
- ┃ ┃ ┃ ┣ 📜Comment.svg
- ┃ ┃ ┃ ┣ 📜Delete.svg
- ┃ ┃ ┃ ┣ 📜Exit.svg
- ┃ ┃ ┃ ┣ 📜favicon.ico
- ┃ ┃ ┃ ┣ 📜FooterLogo.svg
- ┃ ┃ ┃ ┣ 📜github.svg
- ┃ ┃ ┃ ┣ 📜gitlab.svg
- ┃ ┃ ┃ ┣ 📜headset.svg
- ┃ ┃ ┃ ┣ 📜Heart.svg
- ┃ ┃ ┃ ┣ 📜MainLogo.svg
- ┃ ┃ ┃ ┣ 📜Message.svg
- ┃ ┃ ┃ ┣ 📜Pencil.svg
- ┃ ┃ ┃ ┣ 📜PostEdit.svg
- ┃ ┃ ┃ ┣ 📜profile.svg
- ┃ ┃ ┃ ┣ 📜Search.svg
- ┃ ┃ ┃ ┗ 📜UserIcon.svg
  ┃ ┃ ┗ 📂images
- ┃ ┃ ┃ ┣ 📜8507842.jpg
- ┃ ┃ ┃ ┣ 📜badgeBasket.png
- ┃ ┃ ┃ ┣ 📜badgeCommunity.png
- ┃ ┃ ┃ ┣ 📜badgeDefault.png
- ┃ ┃ ┃ ┣ 📜badgeNewPost.png
- ┃ ┃ ┃ ┣ 📜badgePublicTrans.png
- ┃ ┃ ┃ ┣ 📜badgeTumbler.png
- ┃ ┃ ┃ ┣ 📜badgeWrite3Times.png
- ┃ ┃ ┃ ┣ 📜bus.png
- ┃ ┃ ┃ ┣ 📜camera.png
- ┃ ┃ ┃ ┣ 📜ecobag.png
- ┃ ┃ ┃ ┣ 📜errorCommunity.png
- ┃ ┃ ┃ ┣ 📜inputDefaultImg.png
- ┃ ┃ ┃ ┣ 📜JoinIllust.jpg
- ┃ ┃ ┃ ┣ 📜LoginIllust.jpg
- ┃ ┃ ┃ ┣ 📜logo192.png
- ┃ ┃ ┃ ┣ 📜notpost.png
- ┃ ┃ ┃ ┣ 📜profileDefault.png
- ┃ ┃ ┃ ┣ 📜sharebtn.png
- ┃ ┃ ┃ ┣ 📜sharedbtn.png
- ┃ ┃ ┃ ┣ 📜tagimg1.png
- ┃ ┃ ┃ ┣ 📜tagimg2.png
- ┃ ┃ ┃ ┣ 📜tagimg3.png
- ┃ ┃ ┃ ┗ 📜tumblr.png
  ┃ ┣ 📂components
  ┃ ┃ ┣ 📂Calender
- ┃ ┃ ┃ ┣ 📜index.tsx
- ┃ ┃ ┃ ┗ 📜styles.scss
  ┃ ┃ ┣ 📂common
- ┃ ┃ ┃ ┣ 📜Button.module.scss
- ┃ ┃ ┃ ┣ 📜Button.tsx
- ┃ ┃ ┃ ┣ 📜DefaultModal.module.scss
- ┃ ┃ ┃ ┣ 📜DefaultModal.tsx
- ┃ ┃ ┃ ┣ 📜Footer.module.scss
- ┃ ┃ ┃ ┣ 📜Footer.tsx
- ┃ ┃ ┃ ┣ 📜Header.module.scss
- ┃ ┃ ┃ ┣ 📜Header.tsx
- ┃ ┃ ┃ ┗ 📜ScrollTopOnPageLoad.tsx
  ┃ ┃ ┣ 📂community
  ┃ ┃ ┃ ┣ 📂boastBoard
- ┃ ┃ ┃ ┃ ┣ 📜Board.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜Board.tsx
- ┃ ┃ ┃ ┃ ┣ 📜BoastItem.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜BoastItem.tsx
- ┃ ┃ ┃ ┃ ┣ 📜BoastSwiper.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜BoastSwiper.tsx
- ┃ ┃ ┃ ┃ ┣ 📜SelectBox.module.scss
- ┃ ┃ ┃ ┃ ┗ 📜SelectBox.tsx
  ┃ ┃ ┃ ┣ 📂comment
- ┃ ┃ ┃ ┃ ┣ 📜CommentItem.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜CommentItem.tsx
- ┃ ┃ ┃ ┃ ┣ 📜CommentUserProfile.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜CommentUserProfile.tsx
- ┃ ┃ ┃ ┃ ┣ 📜UserComments.module.scss
- ┃ ┃ ┃ ┃ ┗ 📜UserComments.tsx
  ┃ ┃ ┃ ┣ 📂common
- ┃ ┃ ┃ ┃ ┣ 📂sideNav
- ┃ ┃ ┃ ┃ ┃ ┣ 📜BestPost.module.scss
- ┃ ┃ ┃ ┃ ┃ ┣ 📜BestPost.tsx
- ┃ ┃ ┃ ┃ ┃ ┣ 📜MyProfile.module.scss
- ┃ ┃ ┃ ┃ ┃ ┣ 📜MyProfile.tsx
- ┃ ┃ ┃ ┃ ┃ ┣ 📜MyProfileImg.module.scss
- ┃ ┃ ┃ ┃ ┃ ┣ 📜MyProfileImg.tsx
- ┃ ┃ ┃ ┃ ┃ ┣ 📜NewComment.module.scss
- ┃ ┃ ┃ ┃ ┃ ┣ 📜NewComment.tsx
- ┃ ┃ ┃ ┃ ┃ ┣ 📜UserProfile.module.scss
- ┃ ┃ ┃ ┃ ┃ ┗ 📜UserProfile.tsx
- ┃ ┃ ┃ ┃ ┣ 📜HeartReaction.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜HeartReaction.tsx
- ┃ ┃ ┃ ┃ ┣ 📜LeftSideNav.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜LeftSideNav.tsx
- ┃ ┃ ┃ ┃ ┣ 📜PostEditButton.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜PostEditButton.tsx
- ┃ ┃ ┃ ┃ ┣ 📜RightSideNav.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜RightSideNav.tsx
- ┃ ┃ ┃ ┃ ┣ 📜SideNav.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜SideNav.tsx
- ┃ ┃ ┃ ┃ ┣ 📜Title.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜Title.tsx
- ┃ ┃ ┃ ┃ ┣ 📜UserReaction.module.scss
- ┃ ┃ ┃ ┃ ┗ 📜UserReaction.tsx
  ┃ ┃ ┃ ┣ 📂questionBoard
- ┃ ┃ ┃ ┃ ┣ 📜Board.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜Board.tsx
- ┃ ┃ ┃ ┃ ┣ 📜QuestionPostingItem.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜QuestionPostingItem.tsx
- ┃ ┃ ┃ ┃ ┣ 📜UnsolvedQuestion.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜UnsolvedQuestion.tsx
- ┃ ┃ ┃ ┃ ┣ 📜UnsolvedQuestionSwiper.module.scss
- ┃ ┃ ┃ ┃ ┗ 📜UnsolvedQuestionSwiper.tsx
  ┃ ┃ ┃ ┣ 📂questionPost
- ┃ ┃ ┃ ┃ ┣ 📜QuestionPostingBoard.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜QuestionPostingBoard.tsx
- ┃ ┃ ┃ ┃ ┗ 📜UserPostContent.tsx
  ┃ ┃ ┃ ┗ 📂questionPosting
- ┃ ┃ ┃ ┃ ┣ 📜EditQuestionPostingBoard.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜EditQuestionPostingBoard.tsx
- ┃ ┃ ┃ ┃ ┣ 📜PostingContent.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜PostingContent.tsx
- ┃ ┃ ┃ ┃ ┣ 📜QuestionPostingBoard.module.scss
- ┃ ┃ ┃ ┃ ┗ 📜QuestionPostingBoard.tsx
  ┃ ┃ ┣ 📂Diary
  ┃ ┃ ┃ ┣ 📂common
- ┃ ┃ ┃ ┃ ┣ 📂CheckboxComponent
- ┃ ┃ ┃ ┃ ┃ ┣ 📜index.tsx
- ┃ ┃ ┃ ┃ ┃ ┗ 📜styles.module.scss
- ┃ ┃ ┃ ┃ ┣ 📂DiaryButton
- ┃ ┃ ┃ ┃ ┃ ┣ 📜index.tsx
- ┃ ┃ ┃ ┃ ┃ ┗ 📜styles.module.scss
- ┃ ┃ ┃ ┃ ┣ 📂DiaryTagButton
- ┃ ┃ ┃ ┃ ┃ ┣ 📜index.tsx
- ┃ ┃ ┃ ┃ ┃ ┗ 📜styles.module.scss
- ┃ ┃ ┃ ┃ ┗ 📂ShareButton
- ┃ ┃ ┃ ┃ ┃ ┣ 📜index.tsx
- ┃ ┃ ┃ ┃ ┃ ┗ 📜styles.module.scss
  ┃ ┃ ┃ ┣ 📂DiaryContainer
- ┃ ┃ ┃ ┃ ┣ 📜index.tsx
- ┃ ┃ ┃ ┃ ┗ 📜styles.module.scss
  ┃ ┃ ┃ ┣ 📂IsPostDataDiary
- ┃ ┃ ┃ ┃ ┣ 📜index.tsx
- ┃ ┃ ┃ ┃ ┗ 📜styles.module.scss
  ┃ ┃ ┃ ┣ 📂IsReportDataDiary
- ┃ ┃ ┃ ┃ ┣ 📜index.tsx
- ┃ ┃ ┃ ┃ ┗ 📜styles.module.scss
- ┃ ┃ ┃ ┣ 📜index.tsx
- ┃ ┃ ┃ ┗ 📜styles.module.scss
  ┃ ┃ ┣ 📂mypage
  ┃ ┃ ┃ ┗ 📂common
- ┃ ┃ ┃ ┃ ┣ 📜Badge.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜Badge.tsx
- ┃ ┃ ┃ ┃ ┣ 📜BadgeList.tsx
- ┃ ┃ ┃ ┃ ┣ 📜BadgeModal.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜BadgeModal.tsx
- ┃ ┃ ┃ ┃ ┣ 📜containerStyle.scss
- ┃ ┃ ┃ ┃ ┣ 📜Edit.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜Edit.tsx
- ┃ ┃ ┃ ┃ ┣ 📜Main.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜Main.tsx
- ┃ ┃ ┃ ┃ ┣ 📜Modal.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜Modal.tsx
- ┃ ┃ ┃ ┃ ┣ 📜SideNav.module.scss
- ┃ ┃ ┃ ┃ ┣ 📜SideNav.tsx
- ┃ ┃ ┃ ┃ ┣ 📜Title.module.scss
- ┃ ┃ ┃ ┃ ┗ 📜Title.tsx
  ┃ ┃ ┗ 📂User
- ┃ ┃ ┃ ┣ 📜DefaultInput.module.scss
- ┃ ┃ ┃ ┣ 📜DefaultInput.tsx
- ┃ ┃ ┃ ┣ 📜FormButton.module.scss
- ┃ ┃ ┃ ┣ 📜FormButton.tsx
- ┃ ┃ ┃ ┣ 📜FormHead.module.scss
- ┃ ┃ ┃ ┣ 📜FormHead.tsx
- ┃ ┃ ┃ ┗ 📜validation.ts
- ┃ ┣ 📂pages
- ┃ ┃ ┣ 📜Boast.tsx
- ┃ ┃ ┣ 📜Calendar.module.scss
- ┃ ┃ ┣ 📜Calendar.tsx
- ┃ ┃ ┣ 📜ChangePassword.module.scss
- ┃ ┃ ┣ 📜ChangePassword.tsx
- ┃ ┃ ┣ 📜Community.module.scss
- ┃ ┃ ┣ 📜Community.tsx
- ┃ ┃ ┣ 📜CommunityPost.tsx
- ┃ ┃ ┣ 📜CommunityPosting.tsx
- ┃ ┃ ┣ 📜EditCommunityPosting.tsx
- ┃ ┃ ┣ 📜FindId.module.scss
- ┃ ┃ ┣ 📜FindId.tsx
- ┃ ┃ ┣ 📜FindPassword.module.scss
- ┃ ┃ ┣ 📜FindPassword.tsx
- ┃ ┃ ┣ 📜Home.tsx
- ┃ ┃ ┣ 📜Join.module.scss
- ┃ ┃ ┣ 📜Join.tsx
- ┃ ┃ ┣ 📜Login.module.scss
- ┃ ┃ ┣ 📜Login.tsx
- ┃ ┃ ┣ 📜MyBadge.module.scss
- ┃ ┃ ┣ 📜MyBadge.tsx
- ┃ ┃ ┣ 📜MyCommunity.module.scss
- ┃ ┃ ┣ 📜MyCommunity.tsx
- ┃ ┃ ┣ 📜MyPage.module.scss
- ┃ ┃ ┣ 📜MyPage.tsx
- ┃ ┃ ┣ 📜MyPageEdit.module.scss
- ┃ ┃ ┗ 📜MyPageEdit.tsx
+ ┃ ┣ 📂pages 
  ┃ ┣ 📂services
- ┃ ┃ ┣ 📜calendarApiService.ts
- ┃ ┃ ┣ 📜calendarService.ts
- ┃ ┃ ┗ 📜diaryService.ts
  ┃ ┣ 📂store
- ┃ ┃ ┣ 📜communityPostingSlice.ts
- ┃ ┃ ┣ 📜index.tsx
- ┃ ┃ ┗ 📜selectedDaySlice.tsx
  ┃ ┣ 📂types
- ┃ ┃ ┣ 📜react-app-env.d.ts
- ┃ ┃ ┗ 📜types.ts
  ┃ ┣ 📂utils
- ┃ ┃ ┣ 📜getBadgeImagePath.ts
- ┃ ┃ ┣ 📜getPostingDate.ts
- ┃ ┃ ┗ 📜getPostingTime.ts
  ┃ ┣ 📜App.tsx
  ┃ ┣ 📜color.scss
  ┃ ┣ 📜index.scss
@@ -517,7 +208,6 @@
  ┣ 📜.prettierrc
  ┣ 📜package-lock.json
  ┣ 📜package.json
- ┣ 📜README.md
  ┗ 📜tsconfig.json
 ```
 
@@ -526,7 +216,7 @@
 
 <br>
 
-## 7. 실행 방법
+## 📌 실행 방법
 
 1. 레포지토리를 클론하고자 하는 디렉토리에서 아래 명령어를 수행
 
@@ -561,7 +251,7 @@ npm run start
 
 <br>
 
-## 8. Team Member
+## 📌 팀 구성원
 
 <table width="950">
     <thead>
@@ -570,31 +260,31 @@ npm run start
     <tr>
         <th>사진</th>
          <td width="100" align="center">
-                <img src="/uploads/32786b22aae13ab7da6ba79e5729df3e/dnwjd.png" width="60" height="60">
+                <img src="https://github.com/younu-Yun/FE-EarF/assets/87592697/291aaa1b-9f3e-4251-8ccb-e97e00c2b8d5" width="60" height="60">
             </a>
         </td>
         <td width="100" align="center">
-                <img src="/uploads/e89b79791d9cc34716a57b222d0f78c8/tjdwns.png" width="60" height="60">
+                <img src="https://github.com/younu-Yun/FE-EarF/assets/87592697/51cf0123-e024-402d-a673-1b333097c95f" width="60" height="60">
             </a>
         </td>
         <td width="100" align="center">
-               <img src="/uploads/316f23f9312048744495382f256f18b8/codus.png" width="60" height="60">
+               <img src="https://github.com/younu-Yun/FE-EarF/assets/87592697/597cd6eb-9f41-4d72-a336-7d231cd552d8" width="60" height="60">
             </a>
         </td>
         <td width="100" align="center">
-                    <img src="/uploads/73eeed3fae83304ab5c1ea85c914f4a1/ghqud.png" width="60" height="60">
+              <img src="https://github.com/younu-Yun/FE-EarF/assets/87592697/72b5de9d-d308-4a9e-9c16-50f78cbed017" width="60" height="60">
             </a>
         </td>
         <td width="100" align="center">
-                       <img src="/uploads/9f0afc6959e5ad7b90ebb64cacc548ae/dbswhd.png" width="60" height="60">
+              <img src="https://github.com/younu-Yun/FE-EarF/assets/87592697/ff925e08-1bed-4183-8240-ea3446f3622a" width="60" height="60">
             </a>
         </td>
         <td width="100" align="center">
-              <img src="/uploads/962e876ce48f41fe3ef132bf29c2659d/woduf.png" width="60" height="60">
+              <img src="https://github.com/younu-Yun/FE-EarF/assets/87592697/dc4be7c2-ab40-4821-a854-3dcdf223661f" width="60" height="60">
             </a>
         </td>
         <td width="100" align="center">
-                <img src="/uploads/e910ad8c6f68956adfae744edcdc33bd/ckdgus.png" width="60" height="60">
+                <img src="https://github.com/younu-Yun/FE-EarF/assets/87592697/e14cd7bd-6eb7-435b-93bf-8060434459d1" width="60" height="60">
             </a>
         </td>
     </tr>
@@ -672,4 +362,13 @@ npm run start
     </tr>
     </tbody>
 </table>
+
+<br>
+
+## 🏆 엘리스 SW 4기 2차 프로젝트 우수상 수상
+
+<img src="https://github.com/younu-Yun/FE-EarF/assets/87592697/9b113b75-ca72-417a-8903-19649fe0f997" width="500" align="center"/>
+
+<br>
+<br>
 <br>
