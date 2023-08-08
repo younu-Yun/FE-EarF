@@ -1,5 +1,5 @@
 import styles from './Header.module.scss';
-import { useState, useEffect, MouseEvent } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { getToken, clearLocalStorage } from '../../api/token';
