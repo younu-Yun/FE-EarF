@@ -1,4 +1,3 @@
-import React, { Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { store } from 'store';
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom';
@@ -28,24 +27,16 @@ function App() {
         <BrowserRouter>
           <Header />
           <div id='container'>
-            <Suspense
-              fallback={
-                <div>
-                  <PuffLoader color='#24AE63' loading size={100} />
-                </div>
-              }
-            >
-              <Routes>
-                <Route element={<PrivateRoutes />}>
-                  {protectedRoutes.map(({ path, element }) => {
-                    return <Route key={path} path={path} element={element} />;
-                  })}
-                </Route>
-                {routes.map(({ path, element }) => {
+            <Routes>
+              <Route element={<PrivateRoutes />}>
+                {protectedRoutes.map(({ path, element }) => {
                   return <Route key={path} path={path} element={element} />;
                 })}
-              </Routes>
-            </Suspense>
+              </Route>
+              {routes.map(({ path, element }) => {
+                return <Route key={path} path={path} element={element} />;
+              })}
+            </Routes>
           </div>
           <Footer />
         </BrowserRouter>
