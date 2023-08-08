@@ -1,7 +1,7 @@
 import * as Api from './apiRequest';
 import * as ApiMulti from './formDataRequest';
 
-const domain = `http://34.64.216.86/api`;
+const domain = `http://13.124.143.111/api`;
 
 export async function getCommunityPosts(number?: string) {
   const params = number ? `community/questions?page=${number}?sort=latest` : `community/questions?page=1?sort=latest`;

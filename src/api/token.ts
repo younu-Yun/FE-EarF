@@ -51,7 +51,7 @@ const refreshAccessToken = async () => {
 
   if (isTokenExpired()) {
     try {
-      const response = await axios.get('http://34.64.216.86/api/auth', {
+      const response = await axios.get('http://13.124.143.111/api/auth', {
         headers: {
           Authorization: `Bearer ${refreshToken}`,
         },

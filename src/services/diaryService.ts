@@ -83,7 +83,7 @@ export const HandleDiarySubmit: THandleDiarySubmit = (formData, selectedValue) =
     postFormData.append('shareStatus', shareStatus.toString());
 
     axios
-      .post(`http://34.64.216.86/api/diary/${selectedValue}`, postFormData, {
+      .post(`http://13.124.143.111/api/diary/${selectedValue}`, postFormData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then((response) => {
@@ -118,7 +118,7 @@ export const HandleDiaryEditSubmit: THandleDiarySubmit = (formData, selectedValu
     postFormData.append('shareStatus', shareStatus.toString());
 
     axios
-      .patch(`http://34.64.216.86/api/diary/${selectedValue}`, postFormData, {
+      .patch(`http://13.124.143.111/api/diary/${selectedValue}`, postFormData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then((response) => {
