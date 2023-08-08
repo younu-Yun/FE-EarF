@@ -1,21 +1,21 @@
 import React from 'react';
 
-const Home = React.lazy(() => import('pages/Home'));
-const MyPage = React.lazy(() => import('pages/MyPage'));
-const MyCommunity = React.lazy(() => import('pages/MyCommunity'));
-const MyPageEdit = React.lazy(() => import('pages/MyPageEdit'));
-const Community = React.lazy(() => import('pages/Community'));
-const CommunityPosting = React.lazy(() => import('pages/CommunityPosting'));
-const Boast = React.lazy(() => import('pages/Boast'));
-const Calender = React.lazy(() => import('pages/Calendar'));
-const Login = React.lazy(() => import('pages/Login'));
-const Join = React.lazy(() => import('pages/Join'));
-const FindId = React.lazy(() => import('pages/FindId'));
-const FindPassword = React.lazy(() => import('pages/FindPassword'));
-const ChangePassword = React.lazy(() => import('pages/ChangePassword'));
-const MyBadge = React.lazy(() => import('pages/MyBadge'));
-const CommunityPost = React.lazy(() => import('pages/CommunityPost'));
-const EditCommunityPosting = React.lazy(() => import('pages/EditCommunityPosting'));
+import Home from 'pages/Home';
+import MyPage from 'pages/MyPage';
+import MyCommunity from 'pages/MyCommunity';
+import MyPageEdit from 'pages/MyPageEdit';
+import Community from 'pages/Community';
+import CommunityPosting from 'pages/CommunityPosting';
+import Boast from 'pages/Boast';
+import Calender from 'pages/Calendar';
+import Login from 'pages/Login';
+import Join from 'pages/Join';
+import FindId from 'pages/FindId';
+import FindPassword from 'pages/FindPassword';
+import ChangePassword from 'pages/ChangePassword';
+import MyBadge from 'pages/MyBadge';
+import CommunityPost from 'pages/CommunityPost';
+import EditCommunityPosting from 'pages/EditCommunityPosting';
 
 export const protectedRoutes = [
   {

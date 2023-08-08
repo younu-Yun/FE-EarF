@@ -5,7 +5,6 @@ import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
 import { protectedRoutes, routes } from 'routes';
 import { getToken, refreshAccessToken } from 'api/token';
-import { PuffLoader } from 'react-spinners';
 
 function App() {
   const isUserLoggedIn = () => {
