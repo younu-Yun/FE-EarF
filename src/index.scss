@@ -4,6 +4,7 @@
   font-display: swap;
   src: local('Pretendard Bold'), url('./font/Pretendard-Bold.subset.woff2') format('woff2'),
     url('./font/Pretendard-Bold.subset.woff') format('woff');
+  font-display: swap;
 }
 
 @font-face {
@@ -12,6 +13,7 @@
   font-display: swap;
   src: local('Pretendard SemiBold'), url('./font/Pretendard-SemiBold.subset.woff2') format('woff2'),
     url('./font/Pretendard-SemiBold.subset.woff') format('woff');
+  font-display: swap;
 }
 
 @font-face {
@@ -20,6 +22,7 @@
   font-display: swap;
   src: local('Pretendard Medium'), url('./font/Pretendard-Medium.subset.woff2') format('woff2'),
     url('./font/Pretendard-Medium.subset.woff') format('woff');
+  font-display: swap;
 }
 
 @font-face {
@@ -28,6 +31,7 @@
   font-display: swap;
   src: local('Pretendard Regular'), url('./font/Pretendard-Regular.subset.woff2') format('woff2'),
     url('./font/Pretendard-Regular.subset.woff') format('woff');
+  font-display: swap;
 }
 
 @font-face {
@@ -36,6 +40,7 @@
   font-style: italic;
   src: local('MontserratAlternates-BlackItalic'), url('./font/MontserratAlternates-BlackItalic.woff2') format('woff2'),
     url('./font/MontserratAlternates-BlackItalic.woff') format('woff');
+  font-display: swap;
 }
 
 html {
