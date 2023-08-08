@@ -56,9 +56,7 @@ const SectionMain = () => {
           <div className={styles.card}>
             <MainSwiper></MainSwiper>
           </div>
-          <div className={styles.mascot}>
-            <img src={mascot} alt='마스코트' />
-          </div>
+          <img className={styles.mascot} src={mascot} alt='마스코트' />
         </div>
       </div>
     </section>

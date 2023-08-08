@@ -94,9 +94,7 @@ function Header(): JSX.Element {
       <div className={styles.inner}>
         <div>
           <Link to='/' className={styles.logo}>
-            <div>
-              <img src={MainLogo} alt='메인로고' />
-            </div>
+            <img src={MainLogo} alt='메인로고' />
           </Link>
           <ul className={styles.menu}>
             <li>
