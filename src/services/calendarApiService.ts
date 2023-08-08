@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as Api from '../api/apiRequest';
 import { EachDayDataApiType } from 'types/types';
 
-const domain = `http://34.64.216.86/api`;
+const domain = `http://13.124.143.111/api`;
 
 export async function getApiCalendarAllData(date?: string) {
   const params = `/diary/month/${date}`;
@@ -38,7 +38,7 @@ export async function patchApiPostData(date?: string, data?: any): Promise<strin
 export async function deleteApiCalendarData(date?: string) {
   if (window.confirm('삭제하면 복구할 수 없습니다. 삭제하시겠습니까?')) {
     axios
-      .delete(`http://34.64.216.86/api/diary/${date}`)
+      .delete(`http://13.124.143.111/api/diary/${date}`)
       .then(() => {
         window.location.reload();
       })

@@ -47,7 +47,9 @@ function SideNav({
                   <span>안녕하세요, {userName}님</span>
                 </div>
                 <div className={styles.imgBox}>
-                  {profileImage !== 'http://34.64.216.86/images/undefined' && <img src={profileImage} alt='profile' />}
+                  {profileImage !== 'http://13.124.143.111/images/undefined' && (
+                    <img src={profileImage} alt='profile' />
+                  )}
                 </div>
               </div>
             ) : (
