@@ -42,9 +42,9 @@ header {
   align-items: center;
   gap: 1rem;
 
-  & > div {
+  & > img {
     width: 15rem;
-    height: auto;
+    height: 4.5rem;
     transition: transform 0.5s ease-out;
   }
 }
@@ -104,14 +104,12 @@ header {
 
   .imgBox {
     margin-left: 1.5rem;
-    width: 4rem;
-    height: 4rem;
     overflow: hidden;
     border-radius: 50%;
 
     img {
-      width: 100%;
-      height: 100%;
+      width: 4rem;
+      height: 4rem;
     }
   }
 }
@@ -166,19 +164,18 @@ header {
 
   .hamburgerMenu {
     display: block;
-    width: 3.5rem;
-    height: 3.5rem;
     cursor: pointer;
 
     img {
-      width: 100%;
+      width: 3.5rem;
+      height: 3.5rem;
     }
   }
 
   .logo {
-    & > div {
+    & > img {
       width: 11rem;
-      height: auto;
+      height: 3.3rem;
     }
   }
 

@@ -55,7 +55,7 @@ function BoastItems({
             </div>
           </div>
           <p className={styles.userContent}>
-            <h2>{title}</h2>
+            <strong>{title}</strong>
             <span> {content}</span>
           </p>
           <HeartReaction postId={_id} likeIds={likeIds} isBoast={true} />

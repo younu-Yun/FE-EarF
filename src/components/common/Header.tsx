@@ -1,5 +1,5 @@
 import styles from './Header.module.scss';
-import { useState, useEffect, MouseEvent } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { getToken, clearLocalStorage } from '../../api/token';
@@ -94,9 +94,7 @@ function Header(): JSX.Element {
       <div className={styles.inner}>
         <div>
           <Link to='/' className={styles.logo}>
-            <div>
-              <img src={MainLogo} alt='메인로고' />
-            </div>
+            <img src={MainLogo} alt='메인로고' />
           </Link>
           <ul className={styles.menu}>
             <li>

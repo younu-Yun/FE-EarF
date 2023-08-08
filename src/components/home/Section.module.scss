@@ -47,8 +47,10 @@ section {
         padding: 0 0 2rem;
 
         & > div {
-          width: 3rem;
-          height: 3rem;
+          img {
+            width: 3rem;
+            height: 3rem;
+          }
         }
 
         & > span {
@@ -92,8 +94,6 @@ section.homeMain {
       & > div {
         position: absolute;
         display: block;
-        width: 4.5rem;
-        height: 4.5rem;
 
         &:first-child {
           top: 0;
@@ -104,6 +104,11 @@ section.homeMain {
           bottom: 0;
           right: -4rem;
           transform: rotate(60deg);
+        }
+
+        img {
+          width: 4.5rem;
+          height: 4.5rem;
         }
       }
 
@@ -244,7 +249,8 @@ section.diary {
 
 section.community {
   .left {
-    flex: 0.4;
+    flex: 1 1;
+    padding-right: 3rem;
   }
 
   .contents {
@@ -267,6 +273,7 @@ section.community {
   }
 
   .right {
+    flex: 1;
     position: relative;
 
     img {
@@ -308,6 +315,11 @@ section.badge {
           flex-shrink: 0;
           padding: 0 2rem;
           width: 14.28%;
+
+          img {
+            width: 10rem;
+            height: 10rem;
+          }
         }
       }
 
@@ -348,15 +360,17 @@ section.badge {
         width: 20rem;
 
         & > div {
-          width: 3rem;
-          height: 3rem;
-
           &:first-child {
             left: -1rem;
           }
 
           &:nth-child(2n) {
             right: -2rem;
+          }
+
+          img {
+            width: 3rem;
+            height: 3rem;
           }
         }
 
@@ -456,9 +470,6 @@ section.badge {
         padding: 0;
 
         & > div {
-          width: 3rem;
-          height: 3rem;
-
           &:first-child {
             left: -12%;
           }
@@ -466,6 +477,10 @@ section.badge {
           &:nth-child(2n) {
             right: -12%;
             transform: rotate(60deg);
+          }
+          img {
+            width: 3rem;
+            height: 3rem;
           }
         }
 
@@ -544,6 +559,7 @@ section.badge {
 
     .left {
       flex: 0.4;
+      padding: 0;
     }
 
     .contents {
@@ -551,6 +567,7 @@ section.badge {
     }
 
     .right {
+      flex: 1;
       img {
         width: 20rem;
         height: 20rem;
@@ -644,9 +661,6 @@ section.badge {
         width: 60%;
 
         & > div {
-          width: 3rem;
-          height: 3rem;
-
           &:first-child {
             left: -12%;
           }
@@ -654,6 +668,11 @@ section.badge {
           &:nth-child(2n) {
             right: -12%;
             transform: rotate(60deg);
+          }
+
+          img {
+            width: 3rem;
+            height: 3rem;
           }
         }
 
