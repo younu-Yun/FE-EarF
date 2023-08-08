@@ -1,10 +1,49 @@
-import axios from 'axios';
+import axios, { AxiosError, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 import { isTokenExpired, refreshAccessToken } from './token';
 
 function getToken(): string | null {
   const token = localStorage.getItem('token');
   return token !== null ? token : null;
 }
+
+// 요청 인터셉터 (클라이언트 → 서버)
+axios.interceptors.request.use(
+  async (config: InternalAxiosRequestConfig) => {
+    const accessToken = getToken();
+
+    if (config.headers) {
+      config.headers['Authorization'] = `Bearer ${accessToken}`;
+    }
+
+    return config;
+  },
+  (error: AxiosError) => {
+    return Promise.reject(error);
+  }
+);
+
+// 응답 인터셉터 (서버 → 클라이언트)
+axios.interceptors.response.use(
+  async (response: AxiosResponse) => {
+    return response;
+  },
+  async (error: AxiosError) => {
+    if (error.response?.status === 401) {
+      if (isTokenExpired()) await refreshAccessToken();
+
+      const accessToken = getToken();
+
+      if (error.config && error.config.headers) {
+        error.config.headers.Authorization = `Bearer ${accessToken}`;
+
+        const response = await axios.request(error.config);
+        return response;
+        console.log(response);
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 
 interface RequestParams<T> {
   endpoint: string;
@@ -27,7 +66,6 @@ async function request<T>({ endpoint, method, params = '', data, requiresToken =
   if (requiresToken) {
     headers.Authorization = `Bearer ${getToken()}`;
   }
-
   try {
     const response = await axios.request<T>({
       url: apiUrl,
@@ -38,27 +76,12 @@ async function request<T>({ endpoint, method, params = '', data, requiresToken =
 
     return response.data;
   } catch (error: any) {
-    if (error.response && error.response.status === 401) {
-      if (isTokenExpired()) await refreshAccessToken();
-
-      const accessToken = getToken();
-
-      if (error.config && error.config.headers) {
-        error.config.headers.Authorization = `Bearer ${accessToken}`;
-
-        const response = await axios.request<T>(error.config);
-        return response.data;
-      }
-    } else if (error.response) {
+    if (error.response) {
       const { status } = error.response;
       throw new Error(status);
     } else {
       throw new Error('요청이 실패하였습니다.');
     }
-
-    // 요청의 맥락상 올바른 반환 값을 보장하기 어려우므로,
-    // 모든 경우를 고려했음에도 불구하고 반환에 도달하면 reject로 처리
-    return Promise.reject('요청 처리 중 오류가 발생했습니다.');
   }
 }
 

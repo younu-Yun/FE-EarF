@@ -7,10 +7,17 @@ import { protectedRoutes, routes } from 'routes';
 import { getToken, refreshAccessToken } from 'api/token';
 
 function App() {
+  const isUserLoggedIn = () => {
+    return !!getToken();
+  };
+
   const PrivateRoutes = () => {
-    refreshAccessToken();
-    const auth = getToken();
-    return auth ? <Outlet /> : <Navigate to='/login' />;
+    if (isUserLoggedIn()) {
+      refreshAccessToken();
+      return <Outlet />;
+    }
+
+    return <Navigate to='/login' />;
   };
 
   return (
