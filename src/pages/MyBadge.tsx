@@ -1,7 +1,7 @@
-import Title from 'components/mypage/common/Title';
+import Title from 'components/common/Title';
 import styles from './MyBadge.module.scss';
-import SideNav from 'components/mypage/common/SideNav';
 import Badge from 'components/mypage/common/Badge';
+import SideMenu from 'components/common/SideMenu';
 
 function MyBadge() {
   return (
@@ -9,7 +9,7 @@ function MyBadge() {
       <Title />
       <div className={styles.container}>
         <div className={styles.inner}>
-          <SideNav />
+          <SideMenu />
           <Badge />
         </div>
       </div>
