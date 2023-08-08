@@ -1,10 +1,10 @@
 import { useGetNoCommentQuery } from 'api/communityApiSlice';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper';
+import styles from './UnsolvedQuestionSwiper.module.scss';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
 import UnsolvedQuestion from './UnsolvedQuestion';
-import styles from './UnsolvedQuestionSwiper.module.scss';
 
 function UnsolvedQuestionSwiper() {
   const { data: noCommentData } = useGetNoCommentQuery();

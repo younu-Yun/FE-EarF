@@ -51,6 +51,8 @@
         gap: 1.5rem;
 
         .icon {
+          width: 3rem;
+
           img {
             width: 3rem;
             height: 3rem;
@@ -70,6 +72,11 @@
   .container {
     margin: 0;
 
+    &.mypage {
+      margin: 0;
+      width: 100%;
+    }
+
     > div {
       display: none;
     }
@@ -83,6 +90,7 @@
 
       ul {
         flex-direction: row;
+        white-space: nowrap;
       }
     }
   }

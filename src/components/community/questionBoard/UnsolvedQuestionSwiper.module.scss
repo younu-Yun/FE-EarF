@@ -12,10 +12,19 @@
     font-weight: 700;
     color: $--color--text1;
   }
+  .swiper-autoheight,
+  .swiper-autoheight .swiper-slide {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 480px) {
   .unsolved {
     margin: 1rem 0 0;
+  }
+
+  .swiper-autoheight,
+  .swiper-autoheight .swiper-slide {
+    width: 100%;
   }
 }
