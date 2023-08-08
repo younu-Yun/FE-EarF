@@ -1,6 +1,6 @@
-import Title from 'components/community/common/Title';
+import Title from 'components/common/Title';
+import SideMenu from 'components/common/SideMenu';
 import RightSideNav from 'components/community/common/RightSideNav';
-import LeftSideNav from 'components/community/common/LeftSideNav';
 import styles from './Community.module.scss';
 import EditQuestionPostingBoard from 'components/community/questionPosting/EditQuestionPostingBoard';
 
@@ -9,7 +9,7 @@ function EditCommunityPosting() {
     <div className={styles.container}>
       <Title />
       <section className={styles.main}>
-        <LeftSideNav />
+        <SideMenu />
         <EditQuestionPostingBoard />
         <RightSideNav />
       </section>

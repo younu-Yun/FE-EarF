@@ -1,6 +1,6 @@
 import styles from './MyPageEdit.module.scss';
-import Title from 'components/mypage/common/Title';
-import SideNav from 'components/mypage/common/SideNav';
+import SideMenu from 'components/common/SideMenu';
+import Title from 'components/common/Title';
 import Edit from 'components/mypage/common/Edit';
 
 function MyPageEdit() {
@@ -9,7 +9,7 @@ function MyPageEdit() {
       <Title />
       <div className={styles.container}>
         <div className={styles.inner}>
-          <SideNav />
+          <SideMenu />
           <Edit />
         </div>
       </div>

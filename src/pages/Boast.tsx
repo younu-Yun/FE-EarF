@@ -1,6 +1,6 @@
-import Title from 'components/community/common/Title';
+import Title from 'components/common/Title';
+import SideMenu from 'components/common/SideMenu';
 import RightSideNav from 'components/community/common/RightSideNav';
-import LeftSideNav from 'components/community/common/LeftSideNav';
 import Board from 'components/community/boastBoard/Board';
 import styles from './Community.module.scss';
 import ScrollToTopOnPageLoad from 'components/common/ScrollTopOnPageLoad';
@@ -10,7 +10,7 @@ function Boast() {
     <div className={styles.container}>
       <Title />
       <section className={styles.main}>
-        <LeftSideNav />
+        <SideMenu />
         <Board />
         <RightSideNav />
         <ScrollToTopOnPageLoad />

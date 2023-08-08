@@ -1,7 +1,7 @@
-import Title from 'components/community/common/Title';
+import Title from 'components/common/Title';
 import Board from 'components/community/questionBoard/Board';
 import RightSideNav from 'components/community/common/RightSideNav';
-import LeftSideNav from 'components/community/common/LeftSideNav';
+import SideMenu from 'components/common/SideMenu';
 import styles from './Community.module.scss';
 import ScrollToTopOnPageLoad from 'components/common/ScrollTopOnPageLoad';
 
@@ -11,7 +11,7 @@ function Community() {
       <ScrollToTopOnPageLoad />
       <Title />
       <section className={styles.main}>
-        <LeftSideNav />
+        <SideMenu />
         <Board />
         <RightSideNav />
       </section>

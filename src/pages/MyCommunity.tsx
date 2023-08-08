@@ -1,5 +1,5 @@
-import SideNav from 'components/mypage/common/SideNav';
-import Title from 'components/mypage/common/Title';
+import SideMenu from 'components/common/SideMenu';
+import Title from 'components/common/Title';
 import styles from './MyCommunity.module.scss';
 import Board from 'components/mypage/myCommunity/Board';
 
@@ -9,7 +9,7 @@ function MyCommunity() {
       <Title />
       <div className={styles.container}>
         <div className={styles.inner}>
-          <SideNav />
+          <SideMenu />
           <Board />
         </div>
       </div>
