@@ -1,9 +1,9 @@
 import { useGetNoCommentQuery } from 'api/communityApiSlice';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper';
-import styles from './UnsolvedQuestionSwiper.module.scss';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
+import styles from './UnsolvedQuestionSwiper.module.scss';
 import UnsolvedQuestion from './UnsolvedQuestion';
 
 function UnsolvedQuestionSwiper() {
@@ -16,20 +16,12 @@ function UnsolvedQuestionSwiper() {
         speed={600}
         spaceBetween={5}
         autoHeight={true}
-        slidesPerView={2}
+        slidesPerView={1}
         className={styles.unsolvedSwiper}
         autoplay={{ delay: 3000 }}
         pagination={{ clickable: true }}
         loop={true}
         modules={[Autoplay, Pagination]}
-        breakpoints={{
-          0: {
-            slidesPerView: 1,
-          },
-          480: {
-            slidesPerView: 2,
-          },
-        }}
       >
         {noCommentData &&
           noCommentData?.map((post) => (
