@@ -27,7 +27,7 @@ const addHeaders = () => {
 
 export const communityApiSlice = createApi({
   reducerPath: 'communityApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://13.124.143.111/api/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://13.124.143.111/api/' }),
   tagTypes: ['Post', 'Boast'],
   endpoints: (builder) => ({
     getUserInfo: builder.query<User, void>({
