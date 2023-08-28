@@ -51,7 +51,7 @@ const refreshAccessToken = async () => {
 
   if (isTokenExpired()) {
     try {
-      const response = await axios.get('https://13.124.143.111/api/auth', {
+      const response = await axios.get('https://www.eco-earf.com/api/auth', {
         headers: {
           Authorization: `Bearer ${refreshToken}`,
         },
