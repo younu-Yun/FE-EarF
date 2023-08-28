@@ -72,7 +72,7 @@ const Login: React.FC = () => {
       saveRefreshToken(refreshToken);
 
       dispatch(login());
-      navigate('/');
+      navigate('/calender');
     } catch (error) {
       console.error('로그인 요청 중 오류 발생:', error);
       alert('아이디나 비밀번호를 다시 입력해주세요.');
