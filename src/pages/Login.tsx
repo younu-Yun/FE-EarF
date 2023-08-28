@@ -24,8 +24,8 @@ const Login: React.FC = () => {
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState<FormData>({
-    id: '',
-    password: '',
+    id: 'earf001',
+    password: '1234!@#$',
   });
 
   const [validation, setValidation] = useState<{ [key: string]: boolean }>({
@@ -97,7 +97,7 @@ const Login: React.FC = () => {
             <form onSubmit={handleSubmit}>
               <fieldset>
                 <legend>로그인</legend>
-                <FormHead heading={'로그인'} description={'실천하고, 기록하고, 공유해보세요!'} />
+                <FormHead heading={'로그인'} description={'테스트계정으로 바로 로그인!'} />
                 <div>
                   <DefaultInput
                     label='아이디'
