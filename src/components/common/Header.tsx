@@ -40,7 +40,7 @@ function Header(): JSX.Element {
 
         if (token) {
           try {
-            const response = await axios.get('https://13.124.143.111/api/user', {
+            const response = await axios.get('https://www.eco-earf.com/api/user', {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
@@ -123,7 +123,7 @@ function Header(): JSX.Element {
                   <span>안녕하세요, {userName}님</span>
                 </div>
                 <div className={styles.imgBox}>
-                  {profileImage !== 'https://13.124.143.111/images/undefined' && (
+                  {profileImage !== 'https://www.eco-earf.com/images/undefined' && (
                     <img src={profileImage} alt='profile' />
                   )}
                 </div>

@@ -83,7 +83,7 @@ export const HandleDiarySubmit: THandleDiarySubmit = (formData, selectedValue) =
     postFormData.append('shareStatus', shareStatus.toString());
 
     axios
-      .post(`https://13.124.143.111/api/diary/${selectedValue}`, postFormData, {
+      .post(`https://www.eco-earf.com/api/diary/${selectedValue}`, postFormData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then((response) => {
@@ -118,7 +118,7 @@ export const HandleDiaryEditSubmit: THandleDiarySubmit = (formData, selectedValu
     postFormData.append('shareStatus', shareStatus.toString());
 
     axios
-      .patch(`https://13.124.143.111/api/diary/${selectedValue}`, postFormData, {
+      .patch(`https://www.eco-earf.com/api/diary/${selectedValue}`, postFormData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then((response) => {
