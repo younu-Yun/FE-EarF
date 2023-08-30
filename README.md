@@ -8,7 +8,7 @@
 
 [<img src="https://img.shields.io/badge/프로젝트 기간-2023.05.29~2023.06.16-green?style=flat&logoColor=white" />]()
 <br />
-[🌳 웹사이트 바로가기](http://eco-earf.com/)
+[🌳 웹사이트 바로가기](https://www.eco-earf.com/)
 
 </div>
 
@@ -16,7 +16,7 @@
 
 ## 1-1. 서비스 링크
 
-- ### http://eco-earf.com/
+- ### https://www.eco-earf.com/
 
 
 <br />
